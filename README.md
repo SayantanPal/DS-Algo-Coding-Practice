@@ -1,2 +1,2 @@
-# DSA-Algo-Coding-Practice
+# DS-Algo-Coding-Practice
 Coding Practice for clearing Interviews

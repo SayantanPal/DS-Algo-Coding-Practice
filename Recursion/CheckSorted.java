@@ -1,5 +1,11 @@
 import java.util.*;
 
+/**
+ * Take as input N, the size of an integer array.
+ * Take one more input, which is a list of N integers separated by a space and store that in an array.
+ * Write a recursive function which prints true if the array is sorted, and false otherwise
+ */
+
 public class CheckSorted {
 
     public static boolean isSorted(int[] arr, int n){

@@ -14,7 +14,7 @@ Sample Output 1:
 
 public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
-    public static void dfsTraversal(ArrayList<ArrayList<Integer>> graph, int currVertex, boolean[] visited, ArrayList<Integer> dfs){
+    public static void dfsTraversal(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> dfs, int currVertex){
 
         if(visited[currVertex]) return; // base condition
 
@@ -24,7 +24,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         // find neighbour vertices of current vertex
         for(int neighbourVertex: graph.get(currVertex)){
             // traverse neighbour vertex as current vertex
-            dfsTraversal(graph, neighbourVertex, visited, dfs);
+            dfsTraversal(graph, visited, dfs, neighbourVertex);
         }
     }
 
@@ -48,9 +48,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
         // traverse all unvisited vertices to not miss out on any isolated connected components
-        for(int vertex = 0; vertex < v ; vertex++){
-            if(!visited[vertex]){
-                dfsTraversal(graph, vertex, visited, dfs);
+        for(int startVertex = 0; startVertex < v ; startVertex++){
+            if(!visited[startVertex]){
+                dfsTraversal(graph, visited, dfs, startVertex);
                 result.add(new ArrayList<>(dfs));
                 dfs.clear();
             }
@@ -65,10 +65,10 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         visited[currVertex] = true;
 
         // find neighbour vertices of current vertex
-        for(int neighbourIndex = 0; neighbourIndex < graph[currVertex].length ; neighbourIndex++){
-            if(currVertex != neighbourIndex && graph[currVertex][neighbourIndex] == 1)
+        for(int neighbourVertex = 0; neighbourVertex < graph[currVertex].length ; neighbourVertex++){
+            if(currVertex != neighbourVertex && graph[currVertex][neighbourVertex] == 1)
                 // traverse neighbour vertex as current vertex
-                dfsTraversal(graph, neighbourIndex, visited, dfs);
+                dfsTraversal(graph, neighbourVertex, visited, dfs);
         }
     }
 
@@ -106,7 +106,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         // find neighbour vertices of vertices in current level
         for(int currentVertex: currentLevel){
             for(int neighbourVertex = 0; neighbourVertex < graph[currentVertex].length; neighbourVertex++){
-                if(graph[currentVertex][neighbourVertex] == 1 && !visited[neighbourVertex]){
+                if(graph[currentVertex][neighbourVertex] == 1 && currentVertex != neighbourVertex && !visited[neighbourVertex]){
                     visited[neighbourVertex] = true;
                     bfs.add(neighbourVertex);
                     nextLevel.add(neighbourVertex);

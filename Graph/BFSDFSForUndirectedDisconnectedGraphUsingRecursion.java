@@ -47,6 +47,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
+        // traverse all unvisited vertices to not miss out on connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]){
                 dfsTraversal(graph, vertex, visited, dfs);
@@ -86,6 +87,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
+        // traverse all unvisited vertices to not miss out on connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]) {
                 dfsTraversal(graph, vertex, visited, dfs);
@@ -150,6 +152,8 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         ArrayList<Integer> currentLevel = new ArrayList<>();
+
+        // traverse all unvisited vertices to not miss out on connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]) {
                 bfs.add(vertex);
@@ -182,6 +186,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         ArrayList<Integer> currentLevel = new ArrayList<>();
 
+        // traverse all unvisited vertices to not miss out on connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]){
                 bfs.add(vertex);

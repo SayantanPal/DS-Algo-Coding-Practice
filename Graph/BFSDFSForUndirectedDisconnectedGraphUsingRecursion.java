@@ -213,20 +213,28 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         ArrayList<ArrayList<Integer>> edges = new ArrayList<>() {{
 
             add(new ArrayList<>(Arrays.asList(0, 1)));
-            add(new ArrayList<>(Arrays.asList(0, 2)));
             add(new ArrayList<>(Arrays.asList(0, 3)));
+            add(new ArrayList<>(Arrays.asList(0, 2)));
             add(new ArrayList<>(Arrays.asList(1, 4)));
             add(new ArrayList<>(Arrays.asList(1, 7)));
             add(new ArrayList<>(Arrays.asList(2, 5)));
             add(new ArrayList<>(Arrays.asList(3, 6)));
             add(new ArrayList<>(Arrays.asList(8, 9)));
         }};
+
+        // not preserving order of search using adj list
         ArrayList<ArrayList<Integer>> result = depthFirstSearch(v, e, edges);
         System.out.println(result);
+
+        // preserving order of search from left to right using adj matrix
         ArrayList<ArrayList<Integer>> result2 = depthFirstSearch2(v, e, edges);
         System.out.println(result2);
+
+        // preserving order of search from left to right using adj matrix
         ArrayList<ArrayList<Integer>> result3 = breadthFirstSearch(v, e, edges);
         System.out.println(result3);
+
+        // not preserving order of search using adj list
         ArrayList<ArrayList<Integer>> result4 = breadthFirstSearch2(v, e, edges);
         System.out.println(result4);
     }

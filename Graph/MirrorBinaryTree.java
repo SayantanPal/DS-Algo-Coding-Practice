@@ -27,9 +27,14 @@ public class MirrorBinaryTree {
             BinaryTreeNode currVertex = q.poll();
 
 
-            BinaryTreeNode temp = currVertex.left;
-            currVertex.left = currVertex.right;
-            currVertex.right = temp;
+//            BinaryTreeNode temp = currVertex.left;
+//            currVertex.left = currVertex.right;
+//            currVertex.right = temp;
+            BinaryTreeNode left = currVertex.left;
+            BinaryTreeNode right = currVertex.right;
+
+            currVertex.left = right;
+            currVertex.right = left;
 
             if(currVertex.left != null){
                 q.add(currVertex.left);

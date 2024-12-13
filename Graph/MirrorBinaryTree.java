@@ -57,8 +57,8 @@ public class MirrorBinaryTree {
 
     public static void main(String[] args) {
         int[] nums = { 1, 2, 3, 4, 5, 6, 6, 6, 6 };
-        BinaryTreeNode root = BuildBinaryTreeFromArray.buildTree(nums);
-        BinaryTreeNode root2 = BuildBinaryTreeFromArray.buildTree(nums);
+        BinaryTreeNode root = DataStructuresFromArray.buildTree(nums);
+        BinaryTreeNode root2 = DataStructuresFromArray.buildTree(nums);
 
         inOrderPrintTree(root);
         System.out.println();

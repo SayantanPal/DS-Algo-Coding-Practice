@@ -119,7 +119,7 @@ public class BFSDFSForBinaryTree {
 //        root.left.right = new BinaryTreeNode(5);
 
         int[] nums = { 1, 2, 3, 4, 5, 6, 6, 6, 6 };
-        BinaryTreeNode root = BuildBinaryTreeFromArray.buildTree(nums);
+        BinaryTreeNode root = DataStructuresFromArray.buildTree(nums);
 
         System.out.println(breadthFirstSearchForBinaryTreeNonRecursive(root));
         System.out.println(breadthFirstSearchForBinaryTree(root));

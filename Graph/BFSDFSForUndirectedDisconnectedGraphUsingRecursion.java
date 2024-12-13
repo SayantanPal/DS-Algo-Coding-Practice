@@ -117,7 +117,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         return result;
     }
 
-    public static void bfsTraversalUsingRecursion(int[][] graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
+    public static void bfsTraversalUsingRecursion_ver1(int[][] graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
         if(currentLevel.isEmpty()) return; // base condition
 
         ArrayList<Integer> nextLevel = new ArrayList<>();
@@ -133,7 +133,26 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             }
         }
 
-        bfsTraversalUsingRecursion(graph, visited, bfs, nextLevel);
+        bfsTraversalUsingRecursion_ver1(graph, visited, bfs, nextLevel);
+    }
+
+    public static void bfsTraversalUsingRecursion_ver2(int[][] graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
+        if(currentLevel.isEmpty()) return; // base condition
+
+        ArrayList<Integer> nextLevel = new ArrayList<>();
+
+        // find neighbour vertices of vertices in current level
+        for(int currentVertex: currentLevel){
+            visited[currentVertex] = true;
+            bfs.add(currentVertex);
+            for(int neighbourVertex = 0; neighbourVertex < graph[currentVertex].length; neighbourVertex++){
+                if(graph[currentVertex][neighbourVertex] == 1 && currentVertex != neighbourVertex && !visited[neighbourVertex]){
+                    nextLevel.add(neighbourVertex);
+                }
+            }
+        }
+
+        bfsTraversalUsingRecursion_ver2(graph, visited, bfs, nextLevel);
     }
 
     public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges){
@@ -279,7 +298,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
     }
 
 
-    public static void bfsTraversalUsingRecursion(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
+    public static void bfsTraversalUsingRecursion_ver1(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
         if(currentLevel.isEmpty()) return; // base condition
 
         ArrayList<Integer> nextLevel = new ArrayList<>();
@@ -295,7 +314,26 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             }
         }
 
-        bfsTraversalUsingRecursion(graph, visited, bfs, nextLevel);
+        bfsTraversalUsingRecursion_ver1(graph, visited, bfs, nextLevel);
+    }
+
+    public static void bfsTraversalUsingRecursion_ver2(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
+        if(currentLevel.isEmpty()) return; // base condition
+
+        ArrayList<Integer> nextLevel = new ArrayList<>();
+
+        // find neighbour vertices of vertices in current level
+        for(int currentVertex: currentLevel){
+            visited[currentVertex] = true;
+            bfs.add(currentVertex);
+            for(int neighbourVertex : graph.get(currentVertex)){
+                if(!visited[neighbourVertex]){
+                    nextLevel.add(neighbourVertex);
+                }
+            }
+        }
+
+        bfsTraversalUsingRecursion_ver2(graph, visited, bfs, nextLevel);
     }
 
 
@@ -313,10 +351,11 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]) {
-                bfs.add(vertex);         // for bfs only
-                visited[vertex] = true;  // for bfs only
-                currentLevel.add(vertex);// for bfs only
-                bfsTraversalUsingRecursion(graph, visited, bfs, currentLevel);
+                currentLevel.add(vertex); // for bfs only
+//                bfs.add(vertex);         // for bfs only in ver 1
+//                visited[vertex] = true;  // for bfs only in ver 1
+//                bfsTraversalUsingRecursion_ver2(graph, visited, bfs, currentLevel);
+                bfsTraversalUsingRecursion_ver2(graph, visited, bfs, currentLevel);
                 noOfDisconnectedComponents++;
                 result.add(new ArrayList<>(bfs));
                 bfs.clear();
@@ -340,10 +379,11 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]){
-                bfs.add(vertex);        // for bfs only
-                visited[vertex] = true; // for bfs only
                 currentLevel.add(vertex);// for bfs only
-                bfsTraversalUsingRecursion(graph, visited, bfs, currentLevel);
+//                bfs.add(vertex);        // for bfs only in ver 1
+//                visited[vertex] = true; // for bfs only in ver 1
+//                bfsTraversalUsingRecursion(graph, visited, bfs, currentLevel);
+                bfsTraversalUsingRecursion_ver2(graph, visited, bfs, currentLevel);
                 result.add(new ArrayList<>(bfs));
                 noOfDisconnectedComponents++;
                 bfs.clear();

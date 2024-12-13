@@ -1,7 +1,10 @@
+package builder;
+
+import model.BinaryTreeNode;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
 
 public class DataStructuresFromArray {
 
@@ -52,5 +55,4 @@ public class DataStructuresFromArray {
         }
         return graph;
     }
-
 }

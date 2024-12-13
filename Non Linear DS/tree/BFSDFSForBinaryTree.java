@@ -1,3 +1,8 @@
+package tree;
+
+import builder.DataStructuresFromArray;
+import model.BinaryTreeNode;
+
 import java.util.*;
 
 public class BFSDFSForBinaryTree {
@@ -106,17 +111,17 @@ public class BFSDFSForBinaryTree {
 
         //        for(int i = 0; i <  inputSequence.length; i++) {
 //            if(inputSequence[i] != -1) {
-//                BinaryTreeNode<Integer> root = new BinaryTreeNode<>(inputSequence[i]);
-//                root.left = new BinaryTreeNode<>(inputSequence[2 * i + 1]);
-//                root.right = new BinaryTreeNode<>(inputSequence[2 * i + 2]);
+//                model.BinaryTreeNode<Integer> root = new model.BinaryTreeNode<>(inputSequence[i]);
+//                root.left = new model.BinaryTreeNode<>(inputSequence[2 * i + 1]);
+//                root.right = new model.BinaryTreeNode<>(inputSequence[2 * i + 2]);
 //            }
 //        }
 
-//        BinaryTreeNode root = new BinaryTreeNode(1);
-//        root.left = new BinaryTreeNode(2);
-//        root.right = new BinaryTreeNode(3);
-//        root.left.left = new BinaryTreeNode(4);
-//        root.left.right = new BinaryTreeNode(5);
+//        model.BinaryTreeNode root = new model.BinaryTreeNode(1);
+//        root.left = new model.BinaryTreeNode(2);
+//        root.right = new model.BinaryTreeNode(3);
+//        root.left.left = new model.BinaryTreeNode(4);
+//        root.left.right = new model.BinaryTreeNode(5);
 
         int[] nums = { 1, 2, 3, 4, 5, 6, 6, 6, 6 };
         BinaryTreeNode root = DataStructuresFromArray.buildTree(nums);

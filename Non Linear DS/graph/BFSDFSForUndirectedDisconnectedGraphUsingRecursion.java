@@ -1,3 +1,7 @@
+package graph;
+
+import builder.DataStructuresFromArray;
+
 import java.util.*;
 
 /*
@@ -429,20 +433,20 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         ArrayList<ArrayList<Integer>> result2 = depthFirstSearchNonRecUsingAdjListOfList(v, e, edges);
         System.out.println("DFS via adj list of list without using recursion: "+result2+"\n");
 
-        // preserving sorted order from left to right using adj matrix
+        // preserving sorted order from left to right using adj two_dimensional_matrix
         ArrayList<ArrayList<Integer>> result3 = depthFirstSearchRecUsingAdjMatrix(v, e, edges);
-        System.out.println("DFS via adj matrix using recursion: "+result3);
+        System.out.println("DFS via adj two_dimensional_matrix using recursion: "+result3);
 
         ArrayList<ArrayList<Integer>> result4 = depthFirstSearchNonRecUsingAdjMatrix(v, e, edges);
-        System.out.println("DFS via adj matrix without using recursion: "+result4+"\n");
+        System.out.println("DFS via adj two_dimensional_matrix without using recursion: "+result4+"\n");
 
-        // preserving sorted order from left to right using adj matrix
+        // preserving sorted order from left to right using adj two_dimensional_matrix
         ArrayList<ArrayList<Integer>> result5 = breadthFirstSearchRecUsingAdjMatrix(v, e, edges);
-        System.out.println("BFS via adj matrix using recursion: "+result5);
+        System.out.println("BFS via adj two_dimensional_matrix using recursion: "+result5);
 
-        // preserving sorted order from left to right using adj matrix
+        // preserving sorted order from left to right using adj two_dimensional_matrix
         ArrayList<ArrayList<Integer>> result6 = breadthFirstSearchNonRecUsingAdjMatrix(v, e, edges);
-        System.out.println("BFS via adj matrix without using recursion: "+result6+"\n");
+        System.out.println("BFS via adj two_dimensional_matrix without using recursion: "+result6+"\n");
 
         // preserving insertion order of search using adj list
         ArrayList<ArrayList<Integer>> result7 = breadthFirstSearchRecUsingAdjListOfList(v, e, edges);

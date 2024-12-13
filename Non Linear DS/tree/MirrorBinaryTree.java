@@ -1,3 +1,8 @@
+package tree;
+
+import builder.DataStructuresFromArray;
+import model.BinaryTreeNode;
+
 import java.util.*;
 
 public class MirrorBinaryTree {
@@ -27,7 +32,7 @@ public class MirrorBinaryTree {
             BinaryTreeNode currVertex = q.poll();
 
 
-//            BinaryTreeNode temp = currVertex.left;
+//            model.BinaryTreeNode temp = currVertex.left;
 //            currVertex.left = currVertex.right;
 //            currVertex.right = temp;
             BinaryTreeNode left = currVertex.left;

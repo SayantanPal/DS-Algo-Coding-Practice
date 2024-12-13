@@ -14,7 +14,7 @@ Sample Output 1:
 
 public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
-    public static void dfsTraversal(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> dfs, int currVertex){
+    public static void dfsTraversalRecursive_v1(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> dfs, int currVertex){
 
         if(visited[currVertex]) return; // base condition
 
@@ -24,11 +24,24 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         // find neighbour vertices of current vertex
         for(int neighbourVertex: graph.get(currVertex)){
             // traverse neighbour vertex as current vertex
-            dfsTraversal(graph, visited, dfs, neighbourVertex);
+            dfsTraversalRecursive_v1(graph, visited, dfs, neighbourVertex);
         }
     }
 
-    public static ArrayList<ArrayList<Integer>> depthFirstSearch(int v, int e, ArrayList<ArrayList<Integer>> edges) {
+    public static void dfsTraversalRecursive_v2(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> dfs, int currVertex){
+
+        dfs.add(currVertex);
+        visited[currVertex] = true;
+
+        // find neighbour vertices of current vertex
+        for(int neighbourVertex: graph.get(currVertex)){
+            // traverse neighbour vertex as current vertex
+            if(!visited[neighbourVertex])
+                dfsTraversalRecursive_v2(graph, visited, dfs, neighbourVertex);
+        }
+    }
+
+    public static ArrayList<ArrayList<Integer>> depthFirstSearchRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges) {
         // Write your code here.
 
         ArrayList<Integer> dfs = new ArrayList<>();
@@ -45,20 +58,25 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             graph.get(edge.get(1)).add(edge.get(0)); // v' -> u
         }
 
+        int noOfDisconnectedComponents = 0;
+
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int startVertex = 0; startVertex < v ; startVertex++){
             if(!visited[startVertex]){
-                dfsTraversal(graph, visited, dfs, startVertex);
+                noOfDisconnectedComponents++;
+//                dfsTraversalRecursive_v1(graph, visited, dfs, startVertex);
+                dfsTraversalRecursive_v2(graph, visited, dfs, startVertex);
                 result.add(new ArrayList<>(dfs));
                 dfs.clear();
             }
         }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
         return result;
     }
 
-    public static void dfsTraversal(int[][] graph, int currVertex, boolean[] visited, ArrayList<Integer> dfs){
+    public static void dfsTraversalRecursive_ver1(int[][] graph, int currVertex, boolean[] visited, ArrayList<Integer> dfs){
         if(visited[currVertex]) return; // base condition
 
         dfs.add(currVertex);
@@ -68,11 +86,24 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         for(int neighbourVertex = 0; neighbourVertex < graph[currVertex].length ; neighbourVertex++){
             if(currVertex != neighbourVertex && graph[currVertex][neighbourVertex] == 1)
                 // traverse neighbour vertex as current vertex
-                dfsTraversal(graph, neighbourVertex, visited, dfs);
+                dfsTraversalRecursive_ver1(graph, neighbourVertex, visited, dfs);
         }
     }
 
-    public static ArrayList<ArrayList<Integer>> depthFirstSearch2(int v, int e, ArrayList<ArrayList<Integer>> edges) {
+    public static void dfsTraversalRecursive_ver2(int[][] graph, int currVertex, boolean[] visited, ArrayList<Integer> dfs){
+
+        dfs.add(currVertex);
+        visited[currVertex] = true;
+
+        // find neighbour vertices of current vertex
+        for(int neighbourVertex = 0; neighbourVertex < graph[currVertex].length ; neighbourVertex++){
+            if(currVertex != neighbourVertex && graph[currVertex][neighbourVertex] == 1 && !visited[neighbourVertex])
+                // traverse neighbour vertex as current vertex
+                dfsTraversalRecursive_ver2(graph, neighbourVertex, visited, dfs);
+        }
+    }
+
+    public static ArrayList<ArrayList<Integer>> depthFirstSearchRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges) {
 
         ArrayList<Integer> dfs = new ArrayList<>();
         boolean[] visited = new boolean[v];
@@ -86,15 +117,19 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         }
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        int noOfDisconnectedComponents = 0;
 
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]) {
-                dfsTraversal(graph, vertex, visited, dfs);
+                noOfDisconnectedComponents++;
+//                dfsTraversalRecursive_ver1(graph, vertex, visited, dfs);
+                dfsTraversalRecursive_ver2(graph, vertex, visited, dfs);
                 result.add(new ArrayList<>(dfs));
                 dfs.clear();
             }
         }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
         return result;
     }
 
@@ -117,6 +152,173 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         bfsTraversalUsingRecursion(graph, visited, bfs, nextLevel);
     }
 
+    public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges){
+
+        ArrayList<Integer> bfs = new ArrayList<>();
+        boolean[] visited = new boolean[v];
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+        // create adj undirected graph
+        int[][] graph = new int[v][v];
+
+        for(ArrayList<Integer> edge: edges){
+            graph[edge.get(0)][edge.get(1)] = 1; // u -> v'
+            graph[edge.get(1)][edge.get(0)] = 1; // v' -> u
+        }
+        int noOfDisconnectedComponents = 0;
+        for(int vertex = 0; vertex < v; vertex++){
+            if(!visited[vertex]) {
+                Queue<Integer> q = new LinkedList<>();
+                q.add(vertex);
+
+                while(!q.isEmpty()) {
+                    int currVertex = q.poll();
+                    visited[currVertex] = true;
+                    bfs.add(currVertex);
+
+                    for(int neighbourVertex = 0; neighbourVertex < v; neighbourVertex++){
+                        if(currVertex!= neighbourVertex && graph[currVertex][neighbourVertex] == 1 && !visited[neighbourVertex]){
+                            q.add(neighbourVertex);
+                        }
+                    }
+                }
+                result.add(new ArrayList<>(bfs));
+                bfs.clear();
+                noOfDisconnectedComponents++;
+            }
+        }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
+        return result;
+    }
+
+    public static ArrayList<ArrayList<Integer>> depthFirstSearchNonRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges){
+
+        ArrayList<Integer> dfs = new ArrayList<>();
+        boolean[] visited = new boolean[v];
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+        // create adj undirected graph
+        int[][] graph = new int[v][v];
+
+        for(ArrayList<Integer> edge: edges){
+            graph[edge.get(0)][edge.get(1)] = 1; // u -> v'
+            graph[edge.get(1)][edge.get(0)] = 1; // v' -> u
+        }
+        int noOfDisconnectedComponents = 0;
+        for(int vertex = 0; vertex < v; vertex++){
+            if(!visited[vertex]) {
+                Stack<Integer> stack = new Stack<>();
+                stack.push(vertex);
+
+                while(!stack.isEmpty()) {
+                    int currVertex = stack.pop();
+                    visited[currVertex] = true;
+                    dfs.add(currVertex);
+
+                    for(int neighbourVertex = v - 1; neighbourVertex >= 0; neighbourVertex--){
+                        if(currVertex!= neighbourVertex && graph[currVertex][neighbourVertex] == 1 && !visited[neighbourVertex]){
+                            stack.push(neighbourVertex);
+                        }
+                    }
+                }
+                result.add(new ArrayList<>(dfs));
+                dfs.clear();
+                noOfDisconnectedComponents++;
+            }
+        }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
+        return result;
+    }
+
+    public static ArrayList<ArrayList<Integer>> depthFirstSearchNonRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges){
+
+        ArrayList<Integer> dfs = new ArrayList<>();
+        boolean[] visited = new boolean[v];
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+        // create adj undirected graph
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+        for(int i = 0; i < v ; i++){
+            graph.add(new ArrayList<>());
+        }
+
+        for(ArrayList<Integer> edge: edges){
+            graph.get(edge.get(0)).add(edge.get(1)); // u -> v'
+            graph.get(edge.get(1)).add(edge.get(0)); // v' -> u
+        }
+
+        int noOfDisconnectedComponents = 0;
+        for(int vertex = 0; vertex < v; vertex++){
+            if(!visited[vertex]) {
+                Stack<Integer> stack = new Stack<>();
+                stack.push(vertex);
+
+                while(!stack.isEmpty()) {
+                    int currVertex = stack.pop();
+                    visited[currVertex] = true;
+                    dfs.add(currVertex);
+
+                    for(int neighbourVertex : graph.get(currVertex).reversed()){
+                        if(!visited[neighbourVertex]){
+                            stack.push(neighbourVertex);
+                        }
+                    }
+                }
+                result.add(new ArrayList<>(dfs));
+                dfs.clear();
+                noOfDisconnectedComponents++;
+            }
+        }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
+        return result;
+    }
+
+
+
+    public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges){
+
+        ArrayList<Integer> bfs = new ArrayList<>();
+        boolean[] visited = new boolean[v];
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+        // create adj list of list
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+        for(int i = 0; i < v ; i++){
+            graph.add(new ArrayList<>());
+        }
+
+        for(ArrayList<Integer> edge: edges){
+            graph.get(edge.get(0)).add(edge.get(1)); // u -> v'
+            graph.get(edge.get(1)).add(edge.get(0)); // v' -> u
+        }
+
+        int noOfDisconnectedComponents = 0;
+        for(int vertex = 0; vertex < v; vertex++){
+            if(!visited[vertex]) {
+                Queue<Integer> q = new LinkedList<>();
+                q.add(vertex);
+
+                while(!q.isEmpty()) {
+                    int currVertex = q.poll();
+                    visited[currVertex] = true;
+                    bfs.add(currVertex);
+
+                    for(int neighbourVertex: graph.get(currVertex)){
+                        if(!visited[neighbourVertex]){
+                            q.add(neighbourVertex);
+                        }
+                    }
+                }
+                result.add(new ArrayList<>(bfs));
+                bfs.clear();
+                noOfDisconnectedComponents++;
+            }
+        }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
+        return result;
+    }
+
+
     public static void bfsTraversalUsingRecursion(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
         if(currentLevel.isEmpty()) return; // base condition
 
@@ -137,7 +339,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
     }
 
 
-    public static ArrayList<ArrayList<Integer>> breadthFirstSearch(int v, int e, ArrayList<ArrayList<Integer>> edges) {
+    public static ArrayList<ArrayList<Integer>> breadthFirstSearchRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges) {
 
         ArrayList<Integer> bfs = new ArrayList<>();
         boolean[] visited = new boolean[v];
@@ -149,25 +351,28 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             graph[edge.get(0)][edge.get(1)] = 1; // u -> v'
             graph[edge.get(1)][edge.get(0)] = 1; // v' -> u
         }
-
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
         ArrayList<Integer> currentLevel = new ArrayList<>();
+        int noOfDisconnectedComponents = 0;
 
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]) {
-                bfs.add(vertex);
-                visited[vertex] = true;
-                currentLevel.add(vertex);
+                bfs.add(vertex);         // for bfs only
+                visited[vertex] = true;  // for bfs only
+                currentLevel.add(vertex);// for bfs only
                 bfsTraversalUsingRecursion(graph, visited, bfs, currentLevel);
+                noOfDisconnectedComponents++;
                 result.add(new ArrayList<>(bfs));
                 bfs.clear();
             }
         }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
         return result;
     }
 
-    public static ArrayList<ArrayList<Integer>> breadthFirstSearch2(int v, int e, ArrayList<ArrayList<Integer>> edges) {
+    public static ArrayList<ArrayList<Integer>> breadthFirstSearchRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges) {
 
         ArrayList<Integer> bfs = new ArrayList<>();
         boolean[] visited = new boolean[v];
@@ -182,21 +387,24 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             graph.get(edge.get(0)).add(edge.get(1)); // u -> v'
             graph.get(edge.get(1)).add(edge.get(0)); // v' -> u
         }
-
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        int noOfDisconnectedComponents = 0;
+
         ArrayList<Integer> currentLevel = new ArrayList<>();
 
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
             if(!visited[vertex]){
-                bfs.add(vertex);
-                visited[vertex] = true;
-                currentLevel.add(vertex);
+                bfs.add(vertex);        // for bfs only
+                visited[vertex] = true; // for bfs only
+                currentLevel.add(vertex);// for bfs only
                 bfsTraversalUsingRecursion(graph, visited, bfs, currentLevel);
                 result.add(new ArrayList<>(bfs));
+                noOfDisconnectedComponents++;
                 bfs.clear();
             }
         }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
         return result;
     }
 
@@ -227,20 +435,35 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             add(new ArrayList<>(Arrays.asList(8, 9)));
         }};
 
-        // not preserving order of search using adj list
-        ArrayList<ArrayList<Integer>> result = depthFirstSearch(v, e, edges);
-        System.out.println(result);
+        // preserving insertion order of search using adj list
+        ArrayList<ArrayList<Integer>> result = depthFirstSearchRecUsingAdjListOfList(v, e, edges);
+        System.out.println("DFS via adj list of list using recursion: "+result);
 
-        // preserving order of search from left to right using adj matrix
-        ArrayList<ArrayList<Integer>> result2 = depthFirstSearch2(v, e, edges);
-        System.out.println(result2);
+        // preserving insertion order of search using adj list
+        ArrayList<ArrayList<Integer>> result2 = depthFirstSearchNonRecUsingAdjListOfList(v, e, edges);
+        System.out.println("DFS via adj list of list without using recursion: "+result2+"\n");
 
-        // preserving order of search from left to right using adj matrix
-        ArrayList<ArrayList<Integer>> result3 = breadthFirstSearch(v, e, edges);
-        System.out.println(result3);
+        // preserving sorted order from left to right using adj matrix
+        ArrayList<ArrayList<Integer>> result3 = depthFirstSearchRecUsingAdjMatrix(v, e, edges);
+        System.out.println("DFS via adj graph using recursion: "+result3);
 
-        // not preserving order of search using adj list
-        ArrayList<ArrayList<Integer>> result4 = breadthFirstSearch2(v, e, edges);
-        System.out.println(result4);
+        ArrayList<ArrayList<Integer>> result4 = depthFirstSearchNonRecUsingAdjMatrix(v, e, edges);
+        System.out.println("DFS via adj graph without using recursion: "+result4+"\n");
+
+        // preserving sorted order from left to right using adj matrix
+        ArrayList<ArrayList<Integer>> result5 = breadthFirstSearchRecUsingAdjMatrix(v, e, edges);
+        System.out.println("BFS via adj graph using recursion: "+result5);
+
+        // preserving sorted order from left to right using adj matrix
+        ArrayList<ArrayList<Integer>> result6 = breadthFirstSearchNonRecUsingAdjMatrix(v, e, edges);
+        System.out.println("BFS via adj graph without using recursion: "+result6+"\n");
+
+        // preserving insertion order of search using adj list
+        ArrayList<ArrayList<Integer>> result7 = breadthFirstSearchRecUsingAdjListOfList(v, e, edges);
+        System.out.println("BFS via adj list of list using recursion: "+result7);
+
+        // preserving insertion order of search using adj list
+        ArrayList<ArrayList<Integer>> result8 = breadthFirstSearchNonRecUsingAdjListOfList(v, e, edges);
+        System.out.println("BFS via adj list of list without using recursion: "+result8+"\n");
     }
 }

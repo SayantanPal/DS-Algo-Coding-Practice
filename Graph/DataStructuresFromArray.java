@@ -27,8 +27,7 @@ public class DataStructuresFromArray {
         return root;
     }
 
-    public static ArrayList<ArrayList<Integer>> buildGraphAsAdjListOfList(ArrayList<ArrayList<Integer>> edges, boolean bidirectional) {
-        int v = edges.size();
+    public static ArrayList<ArrayList<Integer>> buildGraphAsAdjListOfList(int v, ArrayList<ArrayList<Integer>> edges, boolean bidirectional) {
         ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
         for(int i = 0; i < v ; i++){
             graph.add(new ArrayList<>());
@@ -42,9 +41,8 @@ public class DataStructuresFromArray {
         return graph;
     }
 
-    public static int[][] buildGraphAsAdjMatrix(ArrayList<ArrayList<Integer>> edges, boolean bidirectional) {
+    public static int[][] buildGraphAsAdjMatrix(int v, ArrayList<ArrayList<Integer>> edges, boolean bidirectional) {
         // create adj undirected graph
-        int v = edges.size();
         int[][] graph = new int[v][v];
 
         for(ArrayList<Integer> edge: edges){

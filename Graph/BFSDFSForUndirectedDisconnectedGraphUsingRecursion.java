@@ -44,9 +44,10 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
     public static ArrayList<ArrayList<Integer>> depthFirstSearchRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges) {
         // Write your code here.
 
-        ArrayList<Integer> dfs = new ArrayList<>();
-        boolean[] visited = new boolean[v];
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> dfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
+
 
         // create adj undirected graph
         ArrayList<ArrayList<Integer>> graph = DataStructuresFromArray.buildGraphAsAdjListOfList(v, edges, true);
@@ -95,9 +96,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
     public static ArrayList<ArrayList<Integer>> depthFirstSearchRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges) {
 
-        ArrayList<Integer> dfs = new ArrayList<>();
-        boolean[] visited = new boolean[v];
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> dfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
 
         // create adj undirected graph
         int[][] graph = DataStructuresFromArray.buildGraphAsAdjMatrix(v, edges, true);
@@ -157,9 +158,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
     public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges){
 
-        ArrayList<Integer> bfs = new ArrayList<>();
-        boolean[] visited = new boolean[v];
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> bfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
 
         // create adj undirected graph
         int[][] graph = DataStructuresFromArray.buildGraphAsAdjMatrix(v, edges, true);
@@ -192,9 +193,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
     public static ArrayList<ArrayList<Integer>> depthFirstSearchNonRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges){
 
-        ArrayList<Integer> dfs = new ArrayList<>();
-        boolean[] visited = new boolean[v];
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> dfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
 
         // create adj undirected graph
         int[][] graph = DataStructuresFromArray.buildGraphAsAdjMatrix(v, edges, true);
@@ -227,9 +228,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
     public static ArrayList<ArrayList<Integer>> depthFirstSearchNonRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges){
 
-        ArrayList<Integer> dfs = new ArrayList<>();
-        boolean[] visited = new boolean[v];
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> dfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
 
         // create adj undirected graph
         ArrayList<ArrayList<Integer>> graph = DataStructuresFromArray.buildGraphAsAdjListOfList(v, edges, true);
@@ -264,9 +265,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
     public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges){
 
-        ArrayList<Integer> bfs = new ArrayList<>();
-        boolean[] visited = new boolean[v];
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> bfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
 
         // create adj list of list
         ArrayList<ArrayList<Integer>> graph = DataStructuresFromArray.buildGraphAsAdjListOfList(v, edges, true);
@@ -339,9 +340,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
     public static ArrayList<ArrayList<Integer>> breadthFirstSearchRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges) {
 
-        ArrayList<Integer> bfs = new ArrayList<>();
-        boolean[] visited = new boolean[v];
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> bfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
 
         // create adj undirected graph
         int[][] graph = DataStructuresFromArray.buildGraphAsAdjMatrix(v, edges, true);
@@ -367,9 +368,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
     public static ArrayList<ArrayList<Integer>> breadthFirstSearchRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges) {
 
-        ArrayList<Integer> bfs = new ArrayList<>();
-        boolean[] visited = new boolean[v];
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> bfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
 
         // create adj undirected graph
         ArrayList<ArrayList<Integer>> graph = DataStructuresFromArray.buildGraphAsAdjListOfList(v, edges, true);

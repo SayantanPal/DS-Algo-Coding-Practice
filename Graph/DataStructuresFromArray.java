@@ -35,7 +35,7 @@ public class DataStructuresFromArray {
 
         for(ArrayList<Integer> edge: edges){
             graph.get(edge.get(0)).add(edge.get(1)); // u -> v'
-            if(bidirectional)
+            if(bidirectional) // for undirected graph
                 graph.get(edge.get(1)).add(edge.get(0)); // v' -> u
         }
         return graph;
@@ -47,7 +47,7 @@ public class DataStructuresFromArray {
 
         for(ArrayList<Integer> edge: edges){
             graph[edge.get(0)][edge.get(1)] = 1; // u -> v'
-            if(bidirectional)
+            if(bidirectional) // for undirected graph
                 graph[edge.get(1)][edge.get(0)] = 1; // v' -> u
         }
         return graph;

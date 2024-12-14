@@ -106,9 +106,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
         // find neighbour vertices of current vertex
         for (int neighbourVertex : IntStream.range(0, graph[currVertex].length)
-                .filter(vertex -> graph[currVertex][vertex] == 1)
-                .boxed() // Convert to Integer stream
-                .toList()) {
+                                    .filter(vertex -> graph[currVertex][vertex] == 1)
+                                    .boxed() // Convert to Integer stream
+                                    .toList()) {
             if (!visited[neighbourVertex]) {  // traverse neighbour vertex as current vertex
                 dfsTraversalRecursive_ver3(graph, neighbourVertex, visited, dfs);
             }

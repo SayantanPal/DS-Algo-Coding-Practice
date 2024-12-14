@@ -200,7 +200,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         bfsTraversalRecursive_ver3(graph, visited, bfs, nextLevel);
     }
 
-    public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges){
+    public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjMatrix_ver1(int v, int e, ArrayList<ArrayList<Integer>> edges){
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         ArrayList<Integer> bfs = new ArrayList<>();
@@ -235,7 +235,43 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         return result;
     }
 
-    public static ArrayList<ArrayList<Integer>> depthFirstSearchNonRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges){
+    public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjMatrix_ver2(int v, int e, ArrayList<ArrayList<Integer>> edges){
+
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> bfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
+
+        // create adj undirected graph
+        int[][] graph = DataStructuresFromArray.buildGraphAsAdjMatrix(v, edges, true);
+
+        int noOfDisconnectedComponents = 0;
+        for(int vertex = 0; vertex < v; vertex++){
+            if(!visited[vertex]) {
+                Queue<Integer> q = new LinkedList<>();
+                q.add(vertex);
+
+                while(!q.isEmpty()) {
+                    int currVertex = q.poll();
+                    visited[currVertex] = true;
+                    bfs.add(currVertex);
+
+                    for(int neighbourVertex : IntStream.range(0, graph[currVertex].length).filter(u -> graph[currVertex][u] == 1).boxed().toList()){
+                        if(!visited[neighbourVertex]){
+                            q.add(neighbourVertex);
+                        }
+                    }
+                }
+                result.add(new ArrayList<>(bfs));
+                bfs.clear();
+                noOfDisconnectedComponents++;
+            }
+        }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
+        return result;
+    }
+
+
+    public static ArrayList<ArrayList<Integer>> depthFirstSearchNonRecUsingAdjMatrix_ver1(int v, int e, ArrayList<ArrayList<Integer>> edges){
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         ArrayList<Integer> dfs = new ArrayList<>();
@@ -269,6 +305,42 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
         return result;
     }
+
+    public static ArrayList<ArrayList<Integer>> depthFirstSearchNonRecUsingAdjMatrix_ver2(int v, int e, ArrayList<ArrayList<Integer>> edges){
+
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> dfs = new ArrayList<>();
+        boolean[] visited = new boolean[v]; // 1D array to mark vertex as visited once scanned and to avoid revisit of same vertex for bfs/dfs in graph ds because of possibility for existence of hidden loops
+
+        // create adj undirected graph
+        int[][] graph = DataStructuresFromArray.buildGraphAsAdjMatrix(v, edges, true);
+
+        int noOfDisconnectedComponents = 0;
+        for(int vertex = 0; vertex < v; vertex++){
+            if(!visited[vertex]) {
+                Stack<Integer> stack = new Stack<>();
+                stack.push(vertex);
+
+                while(!stack.isEmpty()) {
+                    int currVertex = stack.pop();
+                    visited[currVertex] = true;
+                    dfs.add(currVertex);
+
+                    for(int neighbourVertex : IntStream.iterate(v - 1, i -> i >= 0, i -> i - 1).filter(u -> graph[currVertex][u] == 1).boxed().toList()){
+                        if(!visited[neighbourVertex]){
+                            stack.push(neighbourVertex);
+                        }
+                    }
+                }
+                result.add(new ArrayList<>(dfs));
+                dfs.clear();
+                noOfDisconnectedComponents++;
+            }
+        }
+        System.out.printf("No of disconnected components: %d\n", noOfDisconnectedComponents);
+        return result;
+    }
+
 
     public static ArrayList<ArrayList<Integer>> depthFirstSearchNonRecUsingAdjListOfList(int v, int e, ArrayList<ArrayList<Integer>> edges){
 
@@ -394,9 +466,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         int noOfDisconnectedComponents = 0;
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
-            ArrayList<Integer> currentLevel = new ArrayList<>();
+            ArrayList<Integer> currentLevel = new ArrayList<>(Collections.singletonList(vertex));
             if(!visited[vertex]) {
-                currentLevel.add(vertex); // for bfs only
+//                currentLevel.add(vertex); // needs to be skipped if already initializing the list with vertex using Collections.singletonList(vertex)
 //                bfs.add(vertex);         // for bfs only in ver 1
 //                visited[vertex] = true;  // for bfs only in ver 1
 //                bfsTraversalUsingRecursion_ver2(graph, visited, bfs, currentLevel);
@@ -423,9 +495,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         int noOfDisconnectedComponents = 0;
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
-            ArrayList<Integer> currentLevel = new ArrayList<>();
+            ArrayList<Integer> currentLevel = new ArrayList<>(Collections.singletonList(vertex));
             if(!visited[vertex]){
-                currentLevel.add(vertex);// for bfs only
+//                currentLevel.add(vertex);// needs to be skipped if already initializing the list with vertex using Collections.singletonList(vertex)
 //                bfs.add(vertex);        // for bfs only in ver 1
 //                visited[vertex] = true; // for bfs only in ver 1
 //                bfsTraversalUsingRecursion(graph, visited, bfs, currentLevel);
@@ -478,7 +550,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         ArrayList<ArrayList<Integer>> result3 = depthFirstSearchRecUsingAdjMatrix(v, e, edges);
         System.out.println("DFS via adj two_dimensional_grid_matrix using recursion: "+result3);
 
-        ArrayList<ArrayList<Integer>> result4 = depthFirstSearchNonRecUsingAdjMatrix(v, e, edges);
+        ArrayList<ArrayList<Integer>> result4 = depthFirstSearchNonRecUsingAdjMatrix_ver2(v, e, edges);
         System.out.println("DFS via adj two_dimensional_grid_matrix without using recursion: "+result4+"\n");
 
         // preserving sorted order from left to right using adj two_dimensional_grid_matrix
@@ -486,7 +558,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         System.out.println("BFS via adj two_dimensional_grid_matrix using recursion: "+result5);
 
         // preserving sorted order from left to right using adj two_dimensional_grid_matrix
-        ArrayList<ArrayList<Integer>> result6 = breadthFirstSearchNonRecUsingAdjMatrix(v, e, edges);
+        ArrayList<ArrayList<Integer>> result6 = breadthFirstSearchNonRecUsingAdjMatrix_ver2(v, e, edges);
         System.out.println("BFS via adj two_dimensional_grid_matrix without using recursion: "+result6+"\n");
 
         // preserving insertion order of search using adj list

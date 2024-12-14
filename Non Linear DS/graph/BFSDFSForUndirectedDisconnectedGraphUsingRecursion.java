@@ -303,7 +303,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
     }
 
 
-    public static void bfsTraversalUsingRecursion_ver1(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
+    public static void bfsTraversalRecursive_ver1(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
         if(currentLevel.isEmpty()) return; // base condition
 
         ArrayList<Integer> nextLevel = new ArrayList<>();
@@ -319,10 +319,10 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             }
         }
 
-        bfsTraversalUsingRecursion_ver1(graph, visited, bfs, nextLevel);
+        bfsTraversalRecursive_ver1(graph, visited, bfs, nextLevel);
     }
 
-    public static void bfsTraversalUsingRecursion_ver2(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
+    public static void bfsTraversalRecursive_ver2(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
         if(currentLevel.isEmpty()) return; // base condition
 
         ArrayList<Integer> nextLevel = new ArrayList<>();
@@ -338,7 +338,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             }
         }
 
-        bfsTraversalUsingRecursion_ver2(graph, visited, bfs, nextLevel);
+        bfsTraversalRecursive_ver2(graph, visited, bfs, nextLevel);
     }
 
 
@@ -352,9 +352,9 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         int[][] graph = DataStructuresFromArray.buildGraphAsAdjMatrix(v, edges, true);
 
         int noOfDisconnectedComponents = 0;
-        ArrayList<Integer> currentLevel = new ArrayList<>();
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
+            ArrayList<Integer> currentLevel = new ArrayList<>();
             if(!visited[vertex]) {
                 currentLevel.add(vertex); // for bfs only
 //                bfs.add(vertex);         // for bfs only in ver 1
@@ -380,15 +380,15 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         ArrayList<ArrayList<Integer>> graph = DataStructuresFromArray.buildGraphAsAdjListOfList(v, edges, true);
 
         int noOfDisconnectedComponents = 0;
-        ArrayList<Integer> currentLevel = new ArrayList<>();
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
+            ArrayList<Integer> currentLevel = new ArrayList<>();
             if(!visited[vertex]){
                 currentLevel.add(vertex);// for bfs only
 //                bfs.add(vertex);        // for bfs only in ver 1
 //                visited[vertex] = true; // for bfs only in ver 1
 //                bfsTraversalUsingRecursion(graph, visited, bfs, currentLevel);
-                bfsTraversalUsingRecursion_ver2(graph, visited, bfs, currentLevel);
+                bfsTraversalRecursive_ver2(graph, visited, bfs, currentLevel);
                 result.add(new ArrayList<>(bfs));
                 noOfDisconnectedComponents++;
                 bfs.clear();
@@ -433,20 +433,20 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         ArrayList<ArrayList<Integer>> result2 = depthFirstSearchNonRecUsingAdjListOfList(v, e, edges);
         System.out.println("DFS via adj list of list without using recursion: "+result2+"\n");
 
-        // preserving sorted order from left to right using adj two_dimensional_matrix
+        // preserving sorted order from left to right using adj two_dimensional_grid_matrix
         ArrayList<ArrayList<Integer>> result3 = depthFirstSearchRecUsingAdjMatrix(v, e, edges);
-        System.out.println("DFS via adj two_dimensional_matrix using recursion: "+result3);
+        System.out.println("DFS via adj two_dimensional_grid_matrix using recursion: "+result3);
 
         ArrayList<ArrayList<Integer>> result4 = depthFirstSearchNonRecUsingAdjMatrix(v, e, edges);
-        System.out.println("DFS via adj two_dimensional_matrix without using recursion: "+result4+"\n");
+        System.out.println("DFS via adj two_dimensional_grid_matrix without using recursion: "+result4+"\n");
 
-        // preserving sorted order from left to right using adj two_dimensional_matrix
+        // preserving sorted order from left to right using adj two_dimensional_grid_matrix
         ArrayList<ArrayList<Integer>> result5 = breadthFirstSearchRecUsingAdjMatrix(v, e, edges);
-        System.out.println("BFS via adj two_dimensional_matrix using recursion: "+result5);
+        System.out.println("BFS via adj two_dimensional_grid_matrix using recursion: "+result5);
 
-        // preserving sorted order from left to right using adj two_dimensional_matrix
+        // preserving sorted order from left to right using adj two_dimensional_grid_matrix
         ArrayList<ArrayList<Integer>> result6 = breadthFirstSearchNonRecUsingAdjMatrix(v, e, edges);
-        System.out.println("BFS via adj two_dimensional_matrix without using recursion: "+result6+"\n");
+        System.out.println("BFS via adj two_dimensional_grid_matrix without using recursion: "+result6+"\n");
 
         // preserving insertion order of search using adj list
         ArrayList<ArrayList<Integer>> result7 = breadthFirstSearchRecUsingAdjListOfList(v, e, edges);

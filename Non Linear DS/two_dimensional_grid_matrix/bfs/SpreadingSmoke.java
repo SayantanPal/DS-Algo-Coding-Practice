@@ -1,6 +1,8 @@
-package two_dimensional_grid_matrix;
+package two_dimensional_grid_matrix.bfs;
 
 import java.util.*;
+
+// Link: https://www.naukri.com/code360/problems/spreading-smoke_1381967?&interviewProblemRedirection=true&attempt_status=COMPLETED&sort_entity=company_count&sort_order=DESC
 
 public class SpreadingSmoke {
 
@@ -60,7 +62,7 @@ public class SpreadingSmoke {
         breadthFirstSearch(grid, n, m, visited, nextlevel, time);
     }
 
-    public static int breadthFirstSearch(int[][] grid, int n, int m, ArrayList<int[]> currLevel){
+    public static int breadthFirstSearch_ver1(int[][] grid, int n, int m, ArrayList<int[]> currLevel){
         // if(currLevel.isEmpty()) return 0;
 
         ArrayList<int[]> nextlevel = new ArrayList<>();
@@ -82,7 +84,34 @@ public class SpreadingSmoke {
             }
         }
         if(nextlevel.isEmpty()) return currLevel.getFirst()[2];
-        return breadthFirstSearch(grid, n, m, nextlevel);
+        return breadthFirstSearch_ver1(grid, n, m, nextlevel);
+    }
+
+    public static int breadthFirstSearch_ver2(int[][] grid, int n, int m, ArrayList<int[]> currLevel){
+        // if(currLevel.isEmpty()) return 0;
+
+        ArrayList<int[]> nextlevel = new ArrayList<>();
+
+        int[] x = {1, -1, 0, 0};
+        int[] y = {0, 0, 1, -1};
+
+        for(int[] coordinate: currLevel){
+            int currRow = coordinate[0];
+            int currCol = coordinate[1];
+            for(int i = 0; i < 4; i++){
+                int nextRow = currRow + x[i];
+                int nextCol = currCol + y[i];
+                if(validTraversal(nextRow, nextCol, n, m) && grid[nextRow][nextCol] == 0){
+                    grid[nextRow][nextCol] = grid[currRow][currCol] + 1;
+                    nextlevel.add(new int[]{nextRow, nextCol});
+                }
+            }
+        }
+        if(nextlevel.isEmpty()) {
+            int[] coordinate = currLevel.get(0);
+            return grid[coordinate[0]][coordinate[1]] - 1;
+        }
+        return breadthFirstSearch_ver2(grid, n, m, nextlevel);
     }
 
     public static int minimumSpreadTime(int[][] grid, int x, int y) {
@@ -109,7 +138,8 @@ public class SpreadingSmoke {
 
         ArrayList<int[]> currLevel = new ArrayList<>(Collections.singletonList(new int[]{x, y, 0}));
         grid[x][y] = 1;
-        return breadthFirstSearch(grid, n, m, currLevel);
+//        return breadthFirstSearch_ver1(grid, n, m, currLevel);
+        return breadthFirstSearch_ver2(grid, n, m, currLevel);
     }
 
     public static void main(String[] args) {

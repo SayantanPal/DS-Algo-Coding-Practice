@@ -108,7 +108,7 @@ public class SpreadingSmoke {
             }
         }
         if(nextlevel.isEmpty()) {
-            int[] coordinate = currLevel.get(0);
+            int[] coordinate = currLevel.getFirst();
             return grid[coordinate[0]][coordinate[1]] - 1;
         }
         return breadthFirstSearch_ver2(grid, n, m, nextlevel);

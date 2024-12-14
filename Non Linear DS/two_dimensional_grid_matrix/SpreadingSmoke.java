@@ -60,6 +60,31 @@ public class SpreadingSmoke {
         breadthFirstSearch(grid, n, m, visited, nextlevel, time);
     }
 
+    public static int breadthFirstSearch(int[][] grid, int n, int m, ArrayList<int[]> currLevel){
+        // if(currLevel.isEmpty()) return 0;
+
+        ArrayList<int[]> nextlevel = new ArrayList<>();
+
+        int[] x = {1, -1, 0, 0};
+        int[] y = {0, 0, 1, -1};
+
+        for(int[] coordinate: currLevel){
+            int currRow = coordinate[0];
+            int currCol = coordinate[1];
+            int time = coordinate[2];
+            for(int i = 0; i < 4; i++){
+                int nextRow = currRow + x[i];
+                int nextCol = currCol + y[i];
+                if(validTraversal(nextRow, nextCol, n, m) && grid[nextRow][nextCol] == 0){
+                    grid[nextRow][nextCol] = 1;
+                    nextlevel.add(new int[]{nextRow, nextCol, time + 1});
+                }
+            }
+        }
+        if(nextlevel.isEmpty()) return currLevel.getFirst()[2];
+        return breadthFirstSearch(grid, n, m, nextlevel);
+    }
+
     public static int minimumSpreadTime(int[][] grid, int x, int y) {
         // Write your code here
 
@@ -68,17 +93,23 @@ public class SpreadingSmoke {
         if(n > 0){
             m = grid[0].length;
         }
-        boolean[][] visited = new boolean[n][m];
+
         x--; // 0-based indexing
         y--; // 0-based indexing
 
+//        boolean[][] visited = new boolean[n][m];
 //        ArrayList<String> currLevel = new ArrayList<>(Collections.singletonList(x+"-"+y));
 //        ArrayList<Integer> time = new ArrayList<>(Collections.singletonList(0));
 //        breadthFirstSearch(grid, n, m, visited, currLevel, time);
 //        return time.get(0);
 
+//        boolean[][] visited = new boolean[n][m];
+//        ArrayList<int[]> currLevel = new ArrayList<>(Collections.singletonList(new int[]{x, y, 0}));
+//        return breadthFirstSearch(grid, n, m, visited, currLevel);
+
         ArrayList<int[]> currLevel = new ArrayList<>(Collections.singletonList(new int[]{x, y, 0}));
-        return breadthFirstSearch(grid, n, m, visited, currLevel);
+        grid[x][y] = 1;
+        return breadthFirstSearch(grid, n, m, currLevel);
     }
 
     public static void main(String[] args) {

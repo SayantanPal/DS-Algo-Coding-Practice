@@ -3,6 +3,7 @@ package graph;
 import builder.DataStructuresFromArray;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 /*
 * Sample Input 1:
@@ -141,7 +142,7 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         bfsTraversalUsingRecursion_ver1(graph, visited, bfs, nextLevel);
     }
 
-    public static void bfsTraversalUsingRecursion_ver2(int[][] graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
+    public static void bfsTraversalRecursive_ver2(int[][] graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
         if(currentLevel.isEmpty()) return; // base condition
 
         ArrayList<Integer> nextLevel = new ArrayList<>();
@@ -157,7 +158,29 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             }
         }
 
-        bfsTraversalUsingRecursion_ver2(graph, visited, bfs, nextLevel);
+        bfsTraversalRecursive_ver2(graph, visited, bfs, nextLevel);
+    }
+
+    public static void bfsTraversalRecursive_ver3(int[][] graph, boolean[] visited, ArrayList<Integer> bfs, List<Integer> currentLevel){
+        if(currentLevel.isEmpty()) return; // base condition
+
+        ArrayList<Integer> nextLevel = new ArrayList<>();
+
+        // find neighbour vertices of vertices in current level
+        for(int currentVertex: currentLevel){
+            visited[currentVertex] = true;
+            bfs.add(currentVertex);
+            for(int neighbourVertex: IntStream.range(0, graph[currentVertex].length)
+                                    .filter(vertex -> graph[currentVertex][vertex] == 1)
+                                    .boxed() // Convert to Integer stream
+                                    .toList() ){
+                 if(!visited[neighbourVertex]){
+                        nextLevel.add(neighbourVertex);
+                }
+            }
+        }
+
+        bfsTraversalRecursive_ver3(graph, visited, bfs, nextLevel);
     }
 
     public static ArrayList<ArrayList<Integer>> breadthFirstSearchNonRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges){
@@ -360,7 +383,8 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 //                bfs.add(vertex);         // for bfs only in ver 1
 //                visited[vertex] = true;  // for bfs only in ver 1
 //                bfsTraversalUsingRecursion_ver2(graph, visited, bfs, currentLevel);
-                bfsTraversalUsingRecursion_ver2(graph, visited, bfs, currentLevel);
+//                bfsTraversalRecursive_ver2(graph, visited, bfs, currentLevel);
+                bfsTraversalRecursive_ver3(graph, visited, bfs, currentLevel);
                 noOfDisconnectedComponents++;
                 result.add(new ArrayList<>(bfs));
                 bfs.clear();

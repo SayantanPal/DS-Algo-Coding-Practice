@@ -99,6 +99,22 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         }
     }
 
+    public static void dfsTraversalRecursive_ver3(int[][] graph, int currVertex, boolean[] visited, ArrayList<Integer> dfs) {
+
+        dfs.add(currVertex);
+        visited[currVertex] = true;
+
+        // find neighbour vertices of current vertex
+        for (int neighbourVertex : IntStream.range(0, graph[currVertex].length)
+                .filter(vertex -> graph[currVertex][vertex] == 1)
+                .boxed() // Convert to Integer stream
+                .toList()) {
+            if (!visited[neighbourVertex]) {  // traverse neighbour vertex as current vertex
+                dfsTraversalRecursive_ver3(graph, neighbourVertex, visited, dfs);
+            }
+        }
+    }
+
     public static ArrayList<ArrayList<Integer>> depthFirstSearchRecUsingAdjMatrix(int v, int e, ArrayList<ArrayList<Integer>> edges) {
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
@@ -114,7 +130,8 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
             if(!visited[vertex]) {
                 noOfDisconnectedComponents++;
 //                dfsTraversalRecursive_ver1(graph, vertex, visited, dfs);
-                dfsTraversalRecursive_ver2(graph, vertex, visited, dfs);
+//                dfsTraversalRecursive_ver2(graph, vertex, visited, dfs);
+                dfsTraversalRecursive_ver3(graph, vertex, visited, dfs);
                 result.add(new ArrayList<>(dfs));
                 dfs.clear();
             }

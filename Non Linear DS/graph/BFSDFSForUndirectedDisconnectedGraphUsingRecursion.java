@@ -466,8 +466,8 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         int noOfDisconnectedComponents = 0;
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
-            ArrayList<Integer> currentLevel = new ArrayList<>(Collections.singletonList(vertex));
             if(!visited[vertex]) {
+                ArrayList<Integer> currentLevel = new ArrayList<>(Collections.singletonList(vertex));
 //                currentLevel.add(vertex); // needs to be skipped if already initializing the list with vertex using Collections.singletonList(vertex)
 //                bfs.add(vertex);         // for bfs only in ver 1
 //                visited[vertex] = true;  // for bfs only in ver 1
@@ -495,8 +495,8 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
         int noOfDisconnectedComponents = 0;
         // traverse all unvisited vertices to not miss out on any isolated connected components
         for(int vertex = 0; vertex < v ; vertex++){
-            ArrayList<Integer> currentLevel = new ArrayList<>(Collections.singletonList(vertex));
             if(!visited[vertex]){
+                ArrayList<Integer> currentLevel = new ArrayList<>(Collections.singletonList(vertex));
 //                currentLevel.add(vertex);// needs to be skipped if already initializing the list with vertex using Collections.singletonList(vertex)
 //                bfs.add(vertex);        // for bfs only in ver 1
 //                visited[vertex] = true; // for bfs only in ver 1

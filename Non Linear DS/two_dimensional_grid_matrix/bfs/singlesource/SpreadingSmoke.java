@@ -1,4 +1,4 @@
-package two_dimensional_grid_matrix.bfs;
+package two_dimensional_grid_matrix.bfs.singlesource;
 
 import java.util.*;
 

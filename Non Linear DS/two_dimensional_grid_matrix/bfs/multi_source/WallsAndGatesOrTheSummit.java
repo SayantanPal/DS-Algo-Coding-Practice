@@ -15,7 +15,7 @@ public class WallsAndGatesOrTheSummit {
 
     public static void breadthFirstSearch(int[][] grid, int n, int m, ArrayList<int[]> currLevel){
 
-        if(currLevel.isEmpty()) return;
+        if(currLevel.isEmpty()) return; // very imp in case where 2 row 1 col array of [[2],[2]]; then return is needed
 
         ArrayList<int[]> nextLevel = new ArrayList<>();
 

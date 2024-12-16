@@ -26,8 +26,21 @@ public class ReplaceOWithX {
                 depthFirstSearch(matrix, n, m, nextRow, nextCol);
             }
         }
+    }
 
+    public static void depthFirstSearch_v2(char[][] matrix, int n, int m, int currRow, int currCol, boolean[][] visited){
 
+        int[] X = {0, 0, 1, -1};
+        int[] Y = {1, -1, 0, 0};
+
+        for(int i = 0; i < 4; i++){
+            int nextRow = currRow + X[i];
+            int nextCol = currCol + Y[i];
+            if(validTraversal(nextRow, nextCol, n, m) && !visited[nextRow][nextCol] && matrix[nextRow][nextCol] == 'O'){
+                visited[nextRow][nextCol] = true;
+                depthFirstSearch_v2(matrix, n, m, nextRow, nextCol, visited);
+            }
+        }
     }
 
     public static void replaceOWithX(char[][] matrix) {
@@ -87,6 +100,40 @@ public class ReplaceOWithX {
         }
     }
 
+    public static void replaceOWithX_v2(char matrix[][]) {
+        // write your code here
+
+        int n = matrix.length;
+        int m = matrix[0].length;
+        boolean[][] visited = new boolean[n][m];
+
+        for(int i = 0; i < n; i++){
+            if(matrix[i][0] == 'O'){
+                depthFirstSearch_v2(matrix, n, m, i, 0, visited);
+            }
+            if(matrix[i][m - 1] == 'O'){
+                depthFirstSearch_v2(matrix, n, m, i, m - 1, visited);
+            }
+        }
+
+        for(int j = 0; j < m; j++){
+            if(matrix[0][j] == 'O'){
+                depthFirstSearch_v2(matrix, n, m, 0, j, visited);
+            }
+            if(matrix[n - 1][j] == 'O'){
+                depthFirstSearch_v2(matrix, n, m, n - 1, j, visited);
+            }
+        }
+
+        for(int i = 1; i < n - 1; i++){
+            for(int j = 1; j < m - 1; j++){
+                if(!visited[i][j] && matrix[i][j] == 'O'){
+                    matrix[i][j] = 'X';
+                }
+            }
+        }
+    }
+
     public static void main(String[] args){
 
         int[] firstLine = InputUtils.readLineWithWhiteSpaceSeparater();
@@ -94,7 +141,7 @@ public class ReplaceOWithX {
         int m = firstLine[1];
 
         char[][] matrix = InputUtils.readCharMatrix(n , m);
-        replaceOWithX(matrix);
+        replaceOWithX_v2(matrix);
         PrintOutputUtils.print(matrix);
     }
 }

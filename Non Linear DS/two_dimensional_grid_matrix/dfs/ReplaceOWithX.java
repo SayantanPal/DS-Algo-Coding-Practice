@@ -1,7 +1,7 @@
 package two_dimensional_grid_matrix.dfs;
 
-import static util.InputUtils.readCharMatrix;
-import static util.InputUtils.readLineWithWhiteSpaceSeparater;
+import util.InputUtils;
+import util.PrintOutputUtils;
 
 // only the connected group of 0's connecting to any of 4 edges will remain 0
 // so that all the remaining disconnected group/cluster of 0's just can be converted to X
@@ -89,11 +89,12 @@ public class ReplaceOWithX {
 
     public static void main(String[] args){
 
-        int[] firstLine = readLineWithWhiteSpaceSeparater();
+        int[] firstLine = InputUtils.readLineWithWhiteSpaceSeparater();
         int n = firstLine[0];
         int m = firstLine[1];
 
-        char[][] matrix = readCharMatrix(n , m);
+        char[][] matrix = InputUtils.readCharMatrix(n , m);
         replaceOWithX(matrix);
+        PrintOutputUtils.print(matrix);
     }
 }

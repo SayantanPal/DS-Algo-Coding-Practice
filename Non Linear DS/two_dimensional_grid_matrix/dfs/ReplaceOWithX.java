@@ -7,6 +7,8 @@ import util.PrintOutputUtils;
 // so that all the remaining disconnected group/cluster of 0's just can be converted to X
 // that means only group of 0's surrounded by X in all 4 sides(up, down, left, right) will be converted to X
 
+
+// Link: https://www.naukri.com/code360/problems/replace-o-with-x_630517?leftPanelTabValue=PROBLEM&count=25&page=1&search=&sort_entity=order&sort_order=ASC
 public class ReplaceOWithX {
 
     public static boolean validTraversal(int r, int c, int n, int m){

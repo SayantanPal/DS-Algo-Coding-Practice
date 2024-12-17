@@ -9,22 +9,21 @@ import java.util.Queue;
 public class DataStructuresFromArray {
 
     public static BinaryTreeNode buildTree(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return null;
-        }
+        if (nums == null || nums.length == 0) return null;
+
         BinaryTreeNode root = new BinaryTreeNode(nums[0]);
         Queue<BinaryTreeNode> q = new LinkedList<>();
         q.add(root);
         int i = 1;
         while (i < nums.length) {
-            BinaryTreeNode curr = q.poll();
+            BinaryTreeNode currParentNode = q.poll();
             if (i < nums.length) {
-                curr.left = new BinaryTreeNode(nums[i++]);
-                q.add(curr.left);
+                currParentNode.left = new BinaryTreeNode(nums[i++]);
+                q.add(currParentNode.left);
             }
             if (i < nums.length) {
-                curr.right = new BinaryTreeNode(nums[i++]);
-                q.add(curr.right);
+                currParentNode.right = new BinaryTreeNode(nums[i++]);
+                q.add(currParentNode.right);
             }
         }
         return root;

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 // Link: https://www.naukri.com/code360/problems/walls-and-gates_1092887?interviewProblemRedirection=true&practice_topic%5B%5D=Depth-first%20Search&practice_topic%5B%5D=Breadth-first%20Search&difficulty%5B%5D=Easy&sort_entity=company_count&sort_order=DESC&leftPanelTabValue=PROBLEM
 // Link: https://www.naukri.com/code360/problems/the-summit_6227412?interviewProblemRedirection=true&page=2&practice_topic%5B%5D=Depth-first%20Search&practice_topic%5B%5D=Breadth-first%20Search&difficulty%5B%5D=Easy&sort_entity=company_count&sort_order=DESC&leftPanelTabValue=PROBLEM
-
+// Similar Problem: Rotten Oranges
 public class WallsAndGatesOrTheSummit {
 
     public static boolean validTraversal(int r, int c, int n, int m){

@@ -9,7 +9,9 @@ import util.PrintOutputUtils;
 
 
 // Link: https://www.naukri.com/code360/problems/replace-o-with-x_630517?leftPanelTabValue=PROBLEM&count=25&page=1&search=&sort_entity=order&sort_order=ASC
-public class ReplaceOWithX {
+// Link: https://leetcode.com/problems/surrounded-regions/
+// Similar Problem: NumberOfEnclaves
+public class SurroundedRegionsOrReplaceOWithX {
 
     public static boolean validTraversal(int r, int c, int n, int m){
         return (r >= 0 && r < n && c >=0 && c < m);

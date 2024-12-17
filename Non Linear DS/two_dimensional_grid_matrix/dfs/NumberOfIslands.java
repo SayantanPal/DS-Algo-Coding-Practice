@@ -2,7 +2,8 @@ package two_dimensional_grid_matrix.dfs;
 
 import java.util.*;
 
-// https://www.naukri.com/code360/problems/find-number-of-islands_630512?&interviewProblemRedirection=true&attempt_status=COMPLETED
+// Link: https://www.naukri.com/code360/problems/find-number-of-islands_630512?&interviewProblemRedirection=true&attempt_status=COMPLETED
+// Link: https://leetcode.com/problems/number-of-islands/description/
 public class NumberOfIslands {
 
     public static boolean validTraversal(int r, int c, int n, int m){

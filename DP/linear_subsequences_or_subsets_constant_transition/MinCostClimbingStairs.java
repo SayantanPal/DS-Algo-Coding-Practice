@@ -41,10 +41,28 @@ public class MinCostClimbingStairs {
         int[] dp = new int[n + 1];
         Arrays.fill(dp, -1);
 
+
         if(n == 0) return 0; // if there are at least one element i, then also i+1 counts as top
+        if(n == 1) return cost[1];
+
         dp[0] = 0;
         dp[1] = 0;
-        return minCostClimbingStairsTopDownMemorisation(n, cost, dp);
+//        return minCostClimbingStairsTopDownMemorisation(n, cost, dp);
+
+//        for(int currStep = 2; currStep <= n; currStep++){
+//            dp[currStep] = Math.min(dp[currStep - 1] + cost[currStep - 1], dp[currStep - 2] + cost[currStep - 2]);
+//        }
+//        return dp[n];
+
+        int secondLast = 0;
+        int last = 0;
+        int minCost = Integer.MAX_VALUE;
+        for(int currStep = 2; currStep <= n; currStep++){
+            minCost = Math.min(last + cost[currStep - 1], secondLast + cost[currStep - 2]);
+            secondLast = last;
+            last = minCost;
+        }
+        return minCost;
     }
 
 }

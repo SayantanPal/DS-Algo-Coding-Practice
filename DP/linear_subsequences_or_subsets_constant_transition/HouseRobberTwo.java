@@ -1,4 +1,4 @@
-package subsequences_or_subsets;
+package linear_subsequences_or_subsets_constant_transition;
 
 import java.util.ArrayList;
 

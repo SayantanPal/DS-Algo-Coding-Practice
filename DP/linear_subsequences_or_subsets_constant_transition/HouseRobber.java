@@ -1,15 +1,21 @@
-package subsequences_or_subsets;
+package linear_subsequences_or_subsets_constant_transition;
 
 // Link: https://www.naukri.com/code360/problems/house-robber_6211018?leftPanelTabValue=PROBLEM
+
+// max loot starting from first house to current House = max of
+// max loot starting from first house to house before prev(prev to prev) House i.e., current House Index - 2 + cost to loot current house(i.e., cost[currHouseIndex])
+// max loot starting from first house to prev House i.e., current House Index - 1
+
+
 public class HouseRobber {
 
-     public static int DPRec_v1(int i, int[] a){
+     public static int DPRec_v1(int currHouseIndex, int[] a){
 
-         if(i == 0) return a[0];
-         if(i == 1) return Math.max(a[0], a[1]);
+         if(currHouseIndex == 0) return a[0];
+         if(currHouseIndex == 1) return Math.max(a[0], a[1]);
 
 
-         return Math.max(DPRec_v1(i-1, a), DPRec_v1(i-2, a) + a[i]);
+         return Math.max(DPRec_v1(currHouseIndex - 1, a), DPRec_v1(currHouseIndex - 2, a) + a[currHouseIndex]);
      }
 
      public static int DPRecMem_v2(int i, int[] a, int[] dp){

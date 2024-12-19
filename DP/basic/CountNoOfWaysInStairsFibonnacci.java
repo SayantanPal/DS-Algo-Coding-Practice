@@ -6,9 +6,7 @@ import java.util.Arrays;
 public class CountNoOfWaysInStairsFibonnacci {
 
     public int countWaysTopDownRec(int currStep){ // TLE for n = 45 because overlapping subproblems are recalculated
-        if(currStep == 0) return 0;
-        if(currStep == 1) return 1;
-        if(currStep == 2) return 2;
+        if(currStep <= 2) return currStep;
 
         return countWaysTopDownRec(currStep - 1) + countWaysTopDownRec(currStep - 2);
     }

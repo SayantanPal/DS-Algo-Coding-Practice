@@ -41,6 +41,7 @@ public class MinCostClimbingStairs {
         int[] dp = new int[n + 1];
         Arrays.fill(dp, -1);
 
+        if(n == 0) return 0; // if there are at least one element i, then also i+1 counts as top
         dp[0] = 0;
         dp[1] = 0;
         return minCostClimbingStairsTopDownMemorisation(n, cost, dp);

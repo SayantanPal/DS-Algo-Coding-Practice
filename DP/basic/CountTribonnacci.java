@@ -2,7 +2,7 @@ package basic;
 
 import java.util.Arrays;
 
-// Link:
+// Link: https://leetcode.com/problems/n-th-tribonacci-number/
 public class CountTribonnacci {
 
     public int countTribonnacciTopDownRec(int currNum){ // TLE because overlapping subproblems are recalculated

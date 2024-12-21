@@ -1,7 +1,7 @@
 package linear_subsequences_or_subsets_constant_transition;
 
 // Link: https://leetcode.com/problems/min-cost-climbing-stairs/
-
+// Link: https://www.naukri.com/code360/problems/frog-jump_3621012
 
 // Problem states the cost of each ith step is the cost to reach 1 or 2 steps above
 

@@ -12,7 +12,9 @@ import java.util.Arrays;
 // Link: https://leetcode.com/problems/minimum-cost-for-tickets/description/
 // Note: The days array is sorted
 // Note: The cost of plans are of constant values and applicable for all booking days
-// Note: Booking on some ith day also includes ith day within valid travel period
+// Note: Booking on some ith day also includes travelling on ith day within valid travel period
+// Note: Booking happens prior to travel. So, Booking pointer will be always behind the travel pointer
+// Note: Goal is to find for the last travel day, not the last booking day
 class MinTicketCostToTravel {
 
 
@@ -142,7 +144,7 @@ class MinTicketCostToTravel {
 //        for(int i = 0; i < firstTravelDay; i++){
 //            dp[i] = 0;
 //        }
-        Arrays.fill(dp, 0, firstTravelDay, 0);
+//        Arrays.fill(dp, 0, firstTravelDay, 0); or Arrays.fill(dp, firstTravelDay - 30, firstTravelDay, 0);
 
         for(int currTravelDay = firstTravelDay; currTravelDay <= lastTravelDay; currTravelDay++) {
 

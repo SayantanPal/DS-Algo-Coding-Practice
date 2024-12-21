@@ -131,7 +131,39 @@ class MinTicketCostToTravel {
         int[] dp = new int[366];
         Arrays.fill(dp, -1);
 //        return minCostTicketsRecBottomUpMemorization(1, travelOrNotDays, costs, dp);
-        return minCostTicketsRecTopDownMemorization(days[days.length - 1], travelOrNotDays, costs, dp);
+//        return minCostTicketsRecTopDownMemorization(days[days.length - 1], travelOrNotDays, costs, dp);
+
+
+        // Bottom up Tabular Approach
+        int firstTravelDay = days[0];
+        int lastTravelDay = days[days.length - 1];
+
+        // base condition
+//        for(int i = 0; i < firstTravelDay; i++){
+//            dp[i] = 0;
+//        }
+        Arrays.fill(dp, 0, firstTravelDay, 0);
+
+        for(int currTravelDay = firstTravelDay; currTravelDay <= lastTravelDay; currTravelDay++) {
+
+            if(travelOrNotDays[currTravelDay] == 0){
+                dp[currTravelDay] = dp[currTravelDay - 1];
+            } else {
+
+                // travelling for 1 day
+                int option1 = (currTravelDay - 1 >= 0) ? costs[0] + dp[currTravelDay - 1] : costs[0];
+
+                // travelling for 7 days
+                int option2 = (currTravelDay - 7 >= 0) ? costs[1] + dp[currTravelDay - 7] : costs[1];
+
+                // travelling for 30 days
+                int option3 = (currTravelDay - 30 >= 0) ? costs[2] + dp[currTravelDay - 30] : costs[2];
+
+                dp[currTravelDay] = Math.min(option1, Math.min(option2, option3));
+            }
+        }
+
+        return dp[lastTravelDay];
 
     }
 

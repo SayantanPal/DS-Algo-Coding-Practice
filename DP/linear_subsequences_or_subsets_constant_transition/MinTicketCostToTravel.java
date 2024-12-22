@@ -1,6 +1,7 @@
 package linear_subsequences_or_subsets_constant_transition;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -20,6 +21,7 @@ import java.util.Queue;
 // Note: Goal is to find for the last travel day, not the last booking day
 class MinTicketCostToTravel {
 
+    public static HashSet<Integer> isTravelNeeded = new HashSet<>();
 
     // T(n): O(3^n) since checks all possibilities and recalculates overlapping subproblems without storing/caching
     // TLE
@@ -30,11 +32,16 @@ class MinTicketCostToTravel {
 
         // if on this currTravelDay, travelling happens or not
         // 0 means travelling not happening on this currTravelDay
+        // If we don't need to travel on this day, move on to next day.
         if(travelOrNotDays[currTravelDay] == 0)
             return minCostTicketsRecBottomUp(currTravelDay + 1, travelOrNotDays, costs);
 
-        // if travelling happens on this currTravelDay, then consider three options
+//        // If we don't need to travel on this day, move on to next day.
+//        if (!isTravelNeeded.contains(currTravelDay))
+//            return minCostTicketsRecBottomUp(currTravelDay + 1, travelOrNotDays, costs);
 
+
+        // if travelling happens on this currTravelDay, then consider three options
         // travelling for 1 day
         int option1 = costs[0] + minCostTicketsRecBottomUp(currTravelDay + 1, travelOrNotDays, costs);
 
@@ -44,6 +51,7 @@ class MinTicketCostToTravel {
         // travelling for 30 days
         int option3 = costs[2] + minCostTicketsRecBottomUp(currTravelDay + 30, travelOrNotDays, costs);
 
+        // return the cost with the minimum of the three options.
         return Math.min(option1, Math.min(option2, option3));
     }
 
@@ -56,11 +64,16 @@ class MinTicketCostToTravel {
 
         // if on this currTravelDay, travelling happens or not
         // 0 means travelling not happening on this currTravelDay
+        // If we don't need to travel on this day, move on to next day.
         if(travelOrNotDays[currTravelDay] == 0)
             return minCostTicketsRecTopDown(currTravelDay - 1, travelOrNotDays, costs);
 
-        // if travelling happens on this currTravelDay, then consider three options
+//        // If we don't need to travel on this day, move on to next day.
+//        if (!isTravelNeeded.contains(currTravelDay)) {
+//            return dp[currTravelDay] = minCostTicketsRecTopDown(currTravelDay - 1, travelOrNotDays, costs);
+//        }
 
+        // if travelling happens on this currTravelDay, then consider three options
         // travelling for 1 day
         int option1 = costs[0] + minCostTicketsRecTopDown(currTravelDay - 1, travelOrNotDays, costs);
 
@@ -70,6 +83,7 @@ class MinTicketCostToTravel {
         // travelling for 30 days
         int option3 = costs[2] + minCostTicketsRecTopDown(currTravelDay - 30, travelOrNotDays, costs);
 
+        // return the cost with the minimum of the three options.
         return Math.min(option1, Math.min(option2, option3));
     }
 
@@ -78,12 +92,18 @@ class MinTicketCostToTravel {
 
         // since given, at most, a day can be 365th day as year ends with 365 days
         if(currTravelDay > 365) return 0; // base condition
-        if(dp[currTravelDay] != -1) return dp[currTravelDay];
+        if(dp[currTravelDay] != -1) return dp[currTravelDay]; // If already calculated, return from here with the stored answer.
 
         // if on this currTravelDay, travelling happens or not
         // 0 means travelling not happening on this currTravelDay
+        // If we don't need to travel on this day, move on to next day.
         if(travelOrNotDays[currTravelDay] == 0)
             return dp[currTravelDay] = minCostTicketsRecBottomUpMemorization(currTravelDay + 1, travelOrNotDays, costs, dp);
+
+//        // If we don't need to travel on this day, move on to next day.
+//        if (!isTravelNeeded.contains(currTravelDay)) {
+//            return dp[currTravelDay] = minCostTicketsRecBottomUpMemorization(currTravelDay + 1, travelOrNotDays, costs, dp);
+//        }
 
         // if travelling happens on this currTravelDay, then consider three options
 
@@ -96,22 +116,58 @@ class MinTicketCostToTravel {
         // travelling for 30 days
         int option3 = costs[2] + minCostTicketsRecBottomUpMemorization(currTravelDay + 30, travelOrNotDays, costs, dp);
 
+        // Store the cost with the minimum of the three options.
         return dp[currTravelDay] = Math.min(option1, Math.min(option2, option3));
     }
 
+    // T(n): O(n = K) where K is the last day we need to travel, the last value in the array days
+    public static int minCostTicketsRecBottomUpMemorization_ver2(int currTravelDay, int[] days, int[] costs, int[] dp) {
+
+        // since given, at most, a day can be 365th day as year ends with 365 days
+        if(currTravelDay > days[days.length - 1]) return 0; // base condition. If we have iterated over travel days, return 0.
+        if(dp[currTravelDay] != -1) return dp[currTravelDay]; // If already calculated, return from here with the stored answer.
+
+
+        // If we don't need to travel on this day, move on to next day.
+        if (!isTravelNeeded.contains(currTravelDay)) {
+            return dp[currTravelDay] = minCostTicketsRecBottomUpMemorization(currTravelDay + 1, days, costs, dp);
+        }
+
+        // if travelling happens on this currTravelDay, then consider three options
+
+        // travelling for 1 day
+        int option1 = costs[0] + minCostTicketsRecBottomUpMemorization(currTravelDay + 1, days, costs, dp);
+
+        // travelling for 7 days
+        int option2 = costs[1] + minCostTicketsRecBottomUpMemorization(currTravelDay + 7, days, costs, dp);
+
+        // travelling for 30 days
+        int option3 = costs[2] + minCostTicketsRecBottomUpMemorization(currTravelDay + 30, days, costs, dp);
+
+        // Store the cost with the minimum of the three options.
+        return dp[currTravelDay] = Math.min(option1, Math.min(option2, option3));
+    }
+
+
+    // T(n): O(n = 365) = O(1) since max length of n can be 365 with possible days from 1 to 365th day in a year
     public static int minCostTicketsRecTopDownMemorization(int currTravelDay, int[] travelOrNotDays, int[] costs, int[] dp) {
 
         // since given, at min, a day can be 1st day as the day starts with day-1 and not day-0
         if(currTravelDay <= 0) return 0; // base condition
-        if(dp[currTravelDay] != -1) return dp[currTravelDay];
+        if(dp[currTravelDay] != -1) return dp[currTravelDay]; // If already calculated, return from here with the stored answer.
 
         // if on this currTravelDay, travelling happens or not
         // 0 means travelling not happening on this currTravelDay
+        // If we don't need to travel on this day, move on to next day.
         if(travelOrNotDays[currTravelDay] == 0)
             return dp[currTravelDay] = minCostTicketsRecTopDownMemorization(currTravelDay - 1, travelOrNotDays, costs, dp);
 
-        // if travelling happens on this currTravelDay, then consider three options
+//        // If we don't need to travel on this day, move on to next day.
+//        if (!isTravelNeeded.contains(currTravelDay)) {
+//            return dp[currTravelDay] = minCostTicketsRecTopDownMemorization(currTravelDay - 1, travelOrNotDays, costs, dp);
+//        }
 
+        // if travelling happens on this currTravelDay, then consider three options
         // travelling for 1 day
         int option1 = costs[0] + minCostTicketsRecTopDownMemorization(currTravelDay - 1, travelOrNotDays, costs, dp);
 
@@ -121,24 +177,37 @@ class MinTicketCostToTravel {
         // travelling for 30 days
         int option3 = costs[2] + minCostTicketsRecTopDownMemorization(currTravelDay - 30, travelOrNotDays, costs, dp);
 
+        // Store the cost with the minimum of the three options.
         return dp[currTravelDay] = Math.min(option1, Math.min(option2, option3));
     }
 
-    public static int minCostTickets(int[] days, int[] costs) {
-        int[] travelOrNotDays = new int[366];
-        for(int day: days){
-            travelOrNotDays[day] = 1;
-        }
-//        return minCostTicketsRecBottomUp(1, travelOrNotDays, costs);
-//        return minCostTicketsRecTopDown(days[days.length - 1], travelOrNotDays, costs);
 
-        int[] dp = new int[366];
-        Arrays.fill(dp, -1);
-//        return minCostTicketsRecBottomUpMemorization(1, travelOrNotDays, costs, dp);
-//        return minCostTicketsRecTopDownMemorization(days[days.length - 1], travelOrNotDays, costs, dp);
+    public static int minCostTicketsRecTopDownMemorization_ver2(int currTravelDay, int[] days, int[] costs, int[] dp) {
+
+        // since given, at min, a day can be 1st day as the day starts with day-1 and not day-0
+        if(currTravelDay <= 0) return 0; // base condition
+        if(dp[currTravelDay] != -1) return dp[currTravelDay]; // If already calculated, return from here with the stored answer.
+
+        // If we don't need to travel on this day, move on to next day.
+        if (!isTravelNeeded.contains(currTravelDay))
+            return dp[currTravelDay] = minCostTicketsRecTopDownMemorization_ver2(currTravelDay - 1, days, costs, dp);
 
 
-        // Bottom up Tabular Approach
+        // if travelling happens on this currTravelDay, then consider three options
+        // travelling for 1 day
+        int option1 = costs[0] + minCostTicketsRecTopDownMemorization_ver2(currTravelDay - 1, days, costs, dp);
+
+        // travelling for 7 days
+        int option2 = costs[1] + minCostTicketsRecTopDownMemorization_ver2(currTravelDay - 7, days, costs, dp);
+
+        // travelling for 30 days
+        int option3 = costs[2] + minCostTicketsRecTopDownMemorization_ver2(currTravelDay - 30, days, costs, dp);
+
+        // Store the cost with the minimum of the three options.
+        return dp[currTravelDay] = Math.min(option1, Math.min(option2, option3));
+    }
+
+    public static int minCostTicketsRecBottomUpTabularisation(int[] days, int[] travelOrNotDays, int[] costs, int[] dp) {
         int firstTravelDay = days[0];
         int lastTravelDay = days[days.length - 1];
 
@@ -150,24 +219,94 @@ class MinTicketCostToTravel {
 
         for(int currTravelDay = firstTravelDay; currTravelDay <= lastTravelDay; currTravelDay++) {
 
+            // If we don't need to travel on this day, the cost won't change.
             if(travelOrNotDays[currTravelDay] == 0){
                 dp[currTravelDay] = dp[currTravelDay - 1];
             } else {
+                // Buy a pass on this day, and move on to the next travel day.
 
                 // travelling for 1 day
-                int option1 = (currTravelDay - 1 >= 0) ? costs[0] + dp[currTravelDay - 1] : costs[0];
+//                int option1 = (currTravelDay - 1 >= 0) ? costs[0] + dp[currTravelDay - 1] : costs[0];
+                int option1 = dp[Math.max(0, currTravelDay - 1)] + costs[0];
 
                 // travelling for 7 days
-                int option2 = (currTravelDay - 7 >= 0) ? costs[1] + dp[currTravelDay - 7] : costs[1];
+//                int option2 = (currTravelDay - 7 >= 0) ? costs[1] + dp[currTravelDay - 7] : costs[1];
+                int option2 = dp[Math.max(0, currTravelDay - 7)] + costs[1];
 
                 // travelling for 30 days
-                int option3 = (currTravelDay - 30 >= 0) ? costs[2] + dp[currTravelDay - 30] : costs[2];
+//                int option3 = (currTravelDay - 30 >= 0) ? costs[2] + dp[currTravelDay - 30] : costs[2];
+                int option3 = dp[Math.max(0, currTravelDay - 30)] + costs[2];
 
+                dp[currTravelDay] = Math.min(option1, Math.min(option2, option3));
+            }
+        }
+        return dp[lastTravelDay];
+    }
+
+    public static int minCostTicketsRecBottomUpTabularisation_ver2(int[] days, int[] costs) {
+        int lastTravelDay = days[days.length - 1];
+        int[] dp = new int[lastTravelDay + 1];
+
+        // base condition
+//        Arrays.fill(dp, 0); // by default value is 0
+
+        int i = 0;
+        for(int currTravelDay = 1; currTravelDay <= lastTravelDay; currTravelDay++) {
+
+            // If we don't need to travel on this day, the cost won't change.
+            if(currTravelDay < days[i]){
+                dp[currTravelDay] = dp[currTravelDay - 1];
+            } else {
+                // Buy a pass on this day, and move on to the next travel day.
+
+                // travelling for 1 day
+                int option1 = dp[currTravelDay - 1] + costs[0];
+
+                // travelling for 7 days
+                int option2 = dp[Math.max(0, currTravelDay - 7)] + costs[1];
+
+                // travelling for 30 days
+                int option3 = dp[Math.max(0, currTravelDay - 30)] + costs[2];
+
+                i++;
+
+                // Store the cost with the minimum of the three options.
                 dp[currTravelDay] = Math.min(option1, Math.min(option2, option3));
             }
         }
 
         return dp[lastTravelDay];
+    }
+
+
+    public static int minCostTickets(int[] days, int[] costs) {
+        // Follow any of way 1 or 2 to keep track of which days to travel
+        // Way - 1
+        int[] travelOrNotDays = new int[366];
+        for(int day: days){
+            travelOrNotDays[day] = 1;
+        }
+        // Way - 2
+        // Mark the days on which we need to travel.
+        for (int day : days) {
+            isTravelNeeded.add(day);
+        }
+
+
+//        return minCostTicketsRecBottomUp(1, travelOrNotDays, costs);
+//        return minCostTicketsRecTopDown(days[days.length - 1], travelOrNotDays, costs);
+
+        int[] dp = new int[366];
+        Arrays.fill(dp, -1);
+//        return minCostTicketsRecBottomUpMemorization(1, travelOrNotDays, costs, dp);
+//        return minCostTicketsRecBottomUpMemorization_ver2(1, days, costs, dp);
+//        return minCostTicketsRecTopDownMemorization(days[days.length - 1], travelOrNotDays, costs, dp);
+//        return minCostTicketsRecTopDownMemorization_ver2(days[days.length - 1], days, costs, dp);
+
+
+        // Bottom up Tabular Approach
+//        return minCostTicketsRecBottomUpTabularisation(days, travelOrNotDays, costs, dp);
+        return minCostTicketsRecBottomUpTabularisation_ver2(days, costs);
     }
 
     public static int minimumCoins_v2(int n, int[] days, int[] cost) { // Little better than T(n): O(n)

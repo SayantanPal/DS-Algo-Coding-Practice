@@ -170,7 +170,7 @@ class MinTicketCostToTravel {
         return dp[lastTravelDay];
     }
 
-    public static int minimumCoins_v2(int n, int[] days, int[] cost) {
+    public static int minimumCoins_v2(int n, int[] days, int[] cost) { // Little better than T(n): O(n)
 
         // min cost will store the minimum coins required to complete the whole trip.
         int minCost = 0;

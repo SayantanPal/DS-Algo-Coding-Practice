@@ -1,3 +1,35 @@
+/*
+*A chocolate factory is packing chocolates into packets.
+* The chocolate packets here represent an array arr of N number of integer values.
+* The task is to find the empty packets(0) of chocolate and
+* push it to the end of the conveyor belt(array).
+*For Example:
+
+N=7 and arr = [4,5,0,1.9,0,5,0].
+There are 3 empty packets in the given set.
+* These 3 empty packets represented as O should be pushed towards the end of the array
+
+* Example 1:
+Input:
+7
+– Value of N
+[4,5,0,1,0,0,5] – Element of arr[O] to arr[N-1],While input each element is separated by newline
+
+* Output:
+4 5 1 9 5 0 0
+
+* Example 2:
+Input:
+6
+— Value of N.
+[6,0,1,8,0,2] – Element of arr[0] to arr[N-1], While input each element is separated by newline
+
+* Output:
+6 1 8 2 0 0
+* */
+
+
+
 public class MoveZerosToEndInPlaceMaintainingOrder {
 
     void pushZerosToEnd_v1(int[] arr) {
@@ -5,16 +37,19 @@ public class MoveZerosToEndInPlaceMaintainingOrder {
         int n = arr.length;
         int nonZeroIndex = 0;
         for(int i = 0; i < n; i++){
-            // whatever is not zero, keep on putting it to array
+            // nonZeroIndex will lag behind and i will move forward only when first 0 is encountered
+            // at that stage, non zero will point to latest encountered 0th index always
             if(arr[i] != 0){
                 arr[nonZeroIndex] = arr[i];
                 nonZeroIndex++;
             }
         }
 
-        // nonZeroIndex will point to last zero element if at least one non-zero is present and 0 occurs after the series of non 0 element
+        // if there was no non-zero element; all elements were 0, then nonZeroIndex = 0 at the end
+        // if there exists all non zero elements, then nonZeroIndex = n at the end
 
-        // when nonZeroIndex == 0, there was no non-zero element
+        // if at least one non-zero is present and 0 occurs after the series of non 0 element,
+        // nonZeroIndex will point to last zero element
         if(nonZeroIndex > 0 && nonZeroIndex < n){
             for(int i = nonZeroIndex; i < n; i++){
                 arr[i] = 0;
@@ -36,6 +71,8 @@ public class MoveZerosToEndInPlaceMaintainingOrder {
         int nonZeroIndex = 0;
         boolean isNonZeroPresent = false;
         for(int i = 0; i < n; i++){
+            // nonZeroIndex will lag behind and i will move forward only when first 0 is encountered
+            // at that stage, non zero will point to latest encountered 0th index always
             if(arr[i] != 0){
                 swap(arr, nonZeroIndex, i);
                 nonZeroIndex++;

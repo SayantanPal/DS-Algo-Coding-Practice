@@ -227,6 +227,7 @@ class MinTicketCostToTravel {
             if(weekpass.isEmpty()) //if(minCostOfLastBookingDayForWeeklyPass == -1)
                 minCostOfLastBookingDayForWeeklyPass = costOf7DayPassBookedOnCurrTravelDay; // since travel on current day mandatory hence, consider today's 7-day booking pass
 
+            // caching the 7-day pass booking cost if booked on today current travel day
             weekpass.add(new int[]{currBookingDayForNextTravelDay, costOf7DayPassBookedOnCurrTravelDay});
 
             // If no valid 30-day pass, take the current 30-day cost
@@ -234,6 +235,8 @@ class MinTicketCostToTravel {
             // when there exists no such prior booking date whose 30-day validity period covers current day
             if(monthpass.isEmpty()) // if(minCostOfLastBookingDayForMonthlyPass == -1)
                 minCostOfLastBookingDayForMonthlyPass = costOf30DayPassBookedOnCurrTravelDay; // since travel on current day mandatory hence, consider today's 30-day booking pass
+
+            // caching the 30-day pass booking cost if booked on today current travel day
             monthpass.add(new int[]{currBookingDayForNextTravelDay, costOf30DayPassBookedOnCurrTravelDay});
 
             // Updating minCost as min of today's travel with today's 1 day pass booking day, or (any prior day whose pass booking covers today as within valid day and if not, then today's 7-day and 30-day pass booking day)

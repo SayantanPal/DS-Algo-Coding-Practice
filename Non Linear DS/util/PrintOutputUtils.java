@@ -13,7 +13,7 @@ public class PrintOutputUtils {
             for(int j = 0; j < m; j++){
                 System.out.print(grid_matrix[i][j]);
                 if(j != m - 1)
-                    System.out.println(" ");
+                    System.out.print(" ");
             }
             System.out.println();
         }

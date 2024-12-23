@@ -32,7 +32,9 @@ public class MaxScoreWhichQuestionsToSolve {
             if(i + currSkipIndex + 1 <= n - 1){
                 additionalPoints = dp[i + currSkipIndex + 1];
             }
-            dp[i] = Math.max(currQuestionPoint + additionalPoints, nextQuestionPoint);
+            long option1 = currQuestionPoint + additionalPoints; // take
+            long option2 = nextQuestionPoint; // not take
+            dp[i] = Math.max(option1, option2);
         }
         return dp[0];
     }

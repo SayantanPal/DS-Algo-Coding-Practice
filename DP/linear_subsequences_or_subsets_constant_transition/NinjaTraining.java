@@ -14,22 +14,22 @@ public class NinjaTraining {
 //        System.out.println();
 //    }
 
-//    public static int[] ninjaTrainingBottomUpRec(int currDay, int n, int[][] points){
-//        if(currDay >= n) return new int[]{0, 0, 0};
-//        if(currDay <= 0) return points[0];
-//
-////        print(points[currDay]);
-//        // int option1ForRunning =  points[currDay][0] + points[currDay - 1][1] + points[currDay - 1][2];
-//        // int option2ForFighting = points[currDay][1] + points[currDay - 1][0] + points[currDay - 1][2];
-//        // int option3ForNewMoves = points[currDay][2] + points[currDay - 1][0] + points[currDay - 1][1];
-//
-//
-//        int option1ForRunning =  points[currDay][0] + Math.max(ninjaTrainingBottomUpRec(currDay - 1, n, points)[1], ninjaTrainingBottomUpRec(currDay - 1, n, points)[2]);
-//        int option2ForFighting = points[currDay][1] + Math.max(ninjaTrainingBottomUpRec(currDay - 1, n, points)[0], ninjaTrainingBottomUpRec(currDay - 1, n, points)[2]);
-//        int option3ForNewMoves = points[currDay][2] + Math.max(ninjaTrainingBottomUpRec(currDay - 1, n, points)[0], ninjaTrainingBottomUpRec(currDay - 1, n, points)[1]);
-//
-//        return new int[]{option1ForRunning, option2ForFighting, option3ForNewMoves};
-//    }
+    public static int[] ninjaTrainingBottomUpRec(int currDay, int n, int[][] points){
+        if(currDay >= n) return new int[]{0, 0, 0};
+        if(currDay <= 0) return points[0];
+
+//        print(points[currDay]);
+        // int option1ForRunning =  points[currDay][0] + points[currDay - 1][1] + points[currDay - 1][2];
+        // int option2ForFighting = points[currDay][1] + points[currDay - 1][0] + points[currDay - 1][2];
+        // int option3ForNewMoves = points[currDay][2] + points[currDay - 1][0] + points[currDay - 1][1];
+
+
+        int option1ForRunning =  points[currDay][0] + Math.max(ninjaTrainingBottomUpRec(currDay - 1, n, points)[1], ninjaTrainingBottomUpRec(currDay - 1, n, points)[2]);
+        int option2ForFighting = points[currDay][1] + Math.max(ninjaTrainingBottomUpRec(currDay - 1, n, points)[0], ninjaTrainingBottomUpRec(currDay - 1, n, points)[2]);
+        int option3ForNewMoves = points[currDay][2] + Math.max(ninjaTrainingBottomUpRec(currDay - 1, n, points)[0], ninjaTrainingBottomUpRec(currDay - 1, n, points)[1]);
+
+        return new int[]{option1ForRunning, option2ForFighting, option3ForNewMoves};
+    }
 
     public static int ninjaTrainingTopDownRec(int currDay, int lastTask, int[][] points){
         if(currDay < 0) return 0;

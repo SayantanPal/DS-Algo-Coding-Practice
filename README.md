@@ -42,7 +42,7 @@ Coding Practice for clearing Interviews
     
     int notTake = f(i-1, weight)
     
-    int take = 0 or Integer.MAX/MIN _VALUE // default
+    Initialise int take with 0 or Integer.MAX/MIN _VALUE // default
     
     if(weight >= weight_i)
         int take =  f(i-1 or i, weight - weight_i)

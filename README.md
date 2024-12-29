@@ -25,7 +25,7 @@ Coding Practice for clearing Interviews
           If not hard fast, then simply value of 0th element(irrespective of fulfill the target or not) or else 0 for both min/max or total ways
 
     ii) If min/max, mostly every counts of items are considered. So, do 1 + each recursive call and at the end of subset formation at base condition target == 0, return 0 always and return main logic as Math.min/max(take, notTake)
-       If count total ways, then count of 1 is needed at the end of subset formation. So, at the end of subset formation at base condition target == 0, return 1 to mark it as a possible valid subset and return main logic as take + notTake
+        If count total ways, then count of 1 is needed at the end of subset formation. So, at the end of subset formation at base condition target == 0, return 1 to mark it as a possible valid subset and return main logic as take + notTake
 
-In all the problems mostly, the values are given in terms of array
-and the partly forming weights are either separate weight array(Knapsack) or values itself(coin change) or index itself(rod cutting) 
+    In all the problems mostly, the values are given in terms of array
+    and the partly forming weights are either separate weight array(Knapsack) or values itself(coin change) or index itself(rod cutting) 

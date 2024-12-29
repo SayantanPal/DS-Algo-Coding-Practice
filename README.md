@@ -17,6 +17,7 @@ Coding Practice for clearing Interviews
 * Count Subset with Target Sum(values given array, each weight to reach target is values ie weight = values) - single supply of each item, hard fast to achieve the target, total ways/count
 
 * Note: General Thumb Rule of such problem:
+
     i) If infinite supply, during take each item, hold on to same index i after each take, and at base condition for last element check:
           If hard fast to reach the target check full condition if rem target % weight of 0th elem == 0(can fullfill the target or not), then only take all counts with rem target/weight of 0th elem, else if min/max then invalid state, for total ways 0
           If not hard fast, then simply rem target/weight of 0th elem(irrespective of fulfill the target or not)
@@ -32,15 +33,21 @@ Coding Practice for clearing Interviews
 
     
     // template with Pseudocode
+
     base condition when target == 0
+
     base condition when last index element ie i or ind == 0
+    
     (optional)handle dp cache array to return stored values to prevent re-computation for overlapping sub-problems
     
     int notTake = f(i-1, weight)
+    
     int take = 0 or Integer.MAX/MIN _VALUE // default
+    
     if(weight >= weight_i)
         int take =  f(i-1 or i, weight - weight_i)
-    
+
+
     return main function logic as sum or min/max of take, notTake
 
 *

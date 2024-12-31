@@ -28,9 +28,9 @@ Coding Practice for clearing Interviews
         ii) If min/max, mostly every counts of items are considered. So, do 1 + each recursive call and at the end of subset formation at base condition target == 0, return 0 always and consider default take value as either Integer MIN_VALUE or MAX_VALUE and return main logic as Math.min/max(take, notTake)
             If count total ways, then count of 1 is needed at the end of subset formation. So, at the end of subset formation at base condition target == 0, return 1 to mark it as a possible valid subset and consider default take value as 0 and return main logic as take + notTake
     
-        iii) During Min calculation, invalid states should be marked as 1000000000 and not Integer.MAX_VALUE since adding any element to Integer.MAX_VALUE will result in integer overflow
-             During Max calculation, invalid states should be marked as -1000000000 and not Integer.MIN_VALUE since adding any element to Integer.MIN_VALUE will result in integer underflow
-
+        iii) During Min calculation, in case of invalid state, returning invalid values should be marked as 1000000000 and not Integer.MAX_VALUE since adding any element to Integer.MAX_VALUE will result in integer overflow
+             During Max calculation, in case of invalid state, returning invalid values should be marked as -1000000000 and not Integer.MIN_VALUE since adding any element to Integer.MIN_VALUE will result in integer underflow
+            
         In all the problems mostly, the values are given in terms of array
         and the partly forming weights are either separate weight array(Knapsack) or values itself(coin change) or index itself(rod cutting) 
 
@@ -48,7 +48,7 @@ Coding Practice for clearing Interviews
     Initialise int take with 0 or Integer.MAX/MIN _VALUE // default
     
     if(weight >= weight_i)
-        int take =  f(i-1 or i, weight - weight_i)
+        int take =  f(i-1 or i, weight - weight_i) // hold to i or not
 
 
     return main function logic as sum or min/max of take, notTake

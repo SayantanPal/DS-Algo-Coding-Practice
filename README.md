@@ -9,12 +9,12 @@ Coding Practice for clearing Interviews
 * Minimum Ticket Pass Booking Cost to travel
 
 ## Dynamic Programming(DP) on every possible subsequences/subsets
-* 0/1 Knapsack(values given array, each weight to reach target given array) - single supply of each item, NOT hard fast to achieve the target but as much as possible, min/max
-* Unbounded Knapsack(values given array, each weight to reach target given array) - infinite supply of each item, NOT hard fast to achieve the target but as much as possible, min/max
-* Rod Cutting(values given array, each weight to reach target is index) - infinite supply of each item, hard fast to achieve the target, min/max
-* Coin Change With Min Coins(values given array, each weight to reach target is values ie weight = values) - infinite supply of each item, hard fast to achieve the target, min/max
-* Total Ways of Coin Change(values given array, each weight to reach target is values ie weight = values) - infinite supply of each item, hard fast to achieve the target, total ways/count
-* Count Subset with Target Sum(values given array, each weight to reach target is values ie weight = values) - single supply of each item, hard fast to achieve the target, total ways/count
+* 0/1 Knapsack(values given array, given array of each weight to reach target) - single supply of each item, NOT hard fast to achieve the target but as much as possible, min/max
+* Unbounded Knapsack(values given array, given array of each weight to reach target) - infinite supply of each item, NOT hard fast to achieve the target but as much as possible, min/max
+* Rod Cutting(values given array, each weight to reach target is index range) - infinite supply of each item, hard fast to achieve the target, min/max
+* Coin Change With Min Coins(values given array, each weight to reach target is values ie weight array = values array) - infinite supply of each item, hard fast to achieve the target, min/max
+* Total Ways of Coin Change(values given array, each weight to reach target is values ie weight array = values array) - infinite supply of each item, hard fast to achieve the target, total ways/count
+* Count Subset with Target Sum(values given array, each weight to reach target is values ie weight array = values array) - single supply of each item, hard fast to achieve the target, total ways/count
 
 * Note: General Thumb Rule of such problem:
 

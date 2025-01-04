@@ -1,4 +1,4 @@
-public class RotateArrayByDCyclicSteps {
+public class LeftRotateArrayByDCyclicSteps {
 
     static void reverseArray(int arr[], int startIndex, int endIndex) {
         // code here

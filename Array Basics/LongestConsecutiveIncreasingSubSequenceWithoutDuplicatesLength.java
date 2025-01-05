@@ -1,9 +1,7 @@
-import util.PrintOutputUtils;
-
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class LongestConsecutiveIncreasingSubSequenceLength {
+public class LongestConsecutiveIncreasingSubSequenceWithoutDuplicatesLength {
 
     public static int longestConsecutiveIncreasingWithSorting(int[] nums) {
 
@@ -72,6 +70,7 @@ public class LongestConsecutiveIncreasingSubSequenceLength {
 
          int longestConsecutiveSequence = 0;
          for(Integer num: set){
+             // if it crosses half length of the set, then it must be the longest increasing subsequence without duplicates
              if(longestConsecutiveSequence > set.size() / 2) return longestConsecutiveSequence;
              if(!set.contains(num - 1)){// this is the starting element of a sequence
                  int currentConsecutiveSequence = 1;
@@ -87,7 +86,7 @@ public class LongestConsecutiveIncreasingSubSequenceLength {
     }
 
     public static void main(String[] args) {
-        LongestConsecutiveIncreasingSubSequenceLength l = new LongestConsecutiveIncreasingSubSequenceLength();
+        LongestConsecutiveIncreasingSubSequenceWithoutDuplicatesLength l = new LongestConsecutiveIncreasingSubSequenceWithoutDuplicatesLength();
         int[] nums = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
         System.out.println(longestConsecutiveIncreasingWithSorting(nums));
         System.out.println(longestConsecutiveIncreasingWithSorting_ver2(nums));

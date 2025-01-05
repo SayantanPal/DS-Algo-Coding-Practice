@@ -97,9 +97,11 @@ public class MoveZerosToEndInPlaceMaintainingOrder {
     public static void main(String[] args){
 
         int[] arr = {4,5,0,1,0,0,5};
+
         pushZerosToEnd_v2(arr);
-        PrintOutputUtils.print(arr);
+        PrintOutputUtils.print(arr); // 4 5 1 5 0 0 0
+
         pushZerosToStart_v2(arr);
-        PrintOutputUtils.print(arr);
+        PrintOutputUtils.print(arr); // 0 0 0 4 5 1 5
     }
 }

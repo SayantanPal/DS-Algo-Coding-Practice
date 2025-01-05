@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class LongestLengthSubSequenceWithTargetSum {
+public class LongestLengthSubSequenceWithTargetSumIncludingNegatives {
 
     public int lenOfLongestSubarr(int[] arr, int k) {
         // code here

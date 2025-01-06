@@ -30,7 +30,7 @@ public class LongestLengthSubSequenceWithTargetSumIncludingNegatives {
                 maxLength = Math.max(maxLength, i+1);
             }
 
-            if(map.containsKey(cumulativeSum - targetSum)){
+            if(map.containsKey(cumulativeSum - targetSum)){ // cumulativeSum - targetSum is the index whose element contains the starting index of forming the target
                 maxLength = Math.max(maxLength, i - map.get(cumulativeSum - targetSum));
             }
         }

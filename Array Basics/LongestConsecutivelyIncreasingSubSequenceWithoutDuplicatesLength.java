@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class LongestConsecutiveIncreasingSubSequenceWithoutDuplicatesLength {
+public class LongestConsecutivelyIncreasingSubSequenceWithoutDuplicatesLength {
 
     public static int longestConsecutiveIncreasingWithSorting(int[] nums) {
 
@@ -86,9 +86,11 @@ public class LongestConsecutiveIncreasingSubSequenceWithoutDuplicatesLength {
     }
 
     public static void main(String[] args) {
-        LongestConsecutiveIncreasingSubSequenceWithoutDuplicatesLength l = new LongestConsecutiveIncreasingSubSequenceWithoutDuplicatesLength();
+        LongestConsecutivelyIncreasingSubSequenceWithoutDuplicatesLength l = new LongestConsecutivelyIncreasingSubSequenceWithoutDuplicatesLength();
         int[] nums = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
+        nums = new int[]{6, 7, 8, 3, 4, 5, 9, 10};
         System.out.println(longestConsecutiveIncreasingWithSorting(nums));
         System.out.println(longestConsecutiveIncreasingWithSorting_ver2(nums));
+        System.out.println(longestConsecutiveIncreasingWithoutSorting(nums));
     }
 }

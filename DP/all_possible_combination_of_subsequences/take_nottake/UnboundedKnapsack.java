@@ -1,4 +1,4 @@
-package all_possible_combination_of_subsequences;
+package all_possible_combination_of_subsequences.take_nottake;
 
 public class UnboundedKnapsack {
 

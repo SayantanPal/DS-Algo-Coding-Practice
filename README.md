@@ -1,7 +1,18 @@
 # DS-Algo-Coding-Practice
 Coding Practice for clearing Interviews
 
-## Dynamic Programming(DP) 
+Subsets - arr or string elements/items picked should be only from the ones contained in the parent arr/string but can be picked in any order of sequence, also can be randomly dispersed here and there in main parent array Eg: Parent/main Arr: {1,2,3} then {3, 1} is a subset since ordering does not matter. But, {1, 4} is not a subset since 4 is outside element of the main parent array
+
+SubSequences- Subset + ordering/sequence of elements should be maintained. Eg: Parent/main Arr: {1,2,3} then {1,3} is one subsequence, where ordering of 1 and 3 are maintained but any elements might be present in between. But {3, 1} is not a subsequence since ordering/sequence not maintained
+
+SubArray/SubString - SubSequences + no dispersion ie always together with no element in between. Eg:  Parent/main Arr: {1,2,3} then {1, 2} or {1, 2, 3} all are subarray but {1, 3} is not a subarray since without 2 in between, they are not consecutively placed
+
+Therefore,
+All Subarrays are subsequences and Subsets.
+All Subsequences are Subsets.
+But all subsets are not subsequences and all subsets or subsequences are not subarrays/substrings.
+
+## Dynamic Programming(DP) on linear transition
 * Minimum Cost of Climbing Stairs
 * House Robber
 * House Robber II

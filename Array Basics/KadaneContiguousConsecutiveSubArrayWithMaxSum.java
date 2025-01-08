@@ -1,4 +1,4 @@
-public class KadaneContiguousSubArrayWithMaxSum {
+public class KadaneContiguousConsecutiveSubArrayWithMaxSum {
 
     // arr: input array
     // Function to find the sum of contiguous subarray with maximum sum.

@@ -117,7 +117,7 @@ public class Basics {
     }
 
     public SLLNode reverseList(SLLNode head) {
-        if(head == null) return null;
+        if(head == null) return head;
 
         SLLNode prev = null;
         SLLNode curr = head;
@@ -133,6 +133,13 @@ public class Basics {
         return prev;
     }
 
+    public SLLNode reverseListRec(SLLNode head) {
+        if(head == null || head.next == null) return head;
 
-
+        SLLNode newHead = reverseListRec(head.next);
+        SLLNode smallerReversedLL = head.next; // initially head.next points to smaller subproblem which is already reversed
+        smallerReversedLL.next = head;
+        head.next = null;
+        return newHead;
+    }
 }

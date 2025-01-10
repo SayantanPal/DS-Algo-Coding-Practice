@@ -64,4 +64,10 @@ But all subsets are not subsequences and all subsets or subsequences are not sub
 
     return main function logic as sum or min/max of take, notTake
 
-*
+## LL
+In case of odd length LL, fast pointer point to last node, when we reach middle node with slow pointer. here fast.next == null when loop terminates
+In case of even length LL, fast pointer will never point to last node. rather it will point/jump straight from (prev to last node) to null. fast will never point to last node. Here fast == null when loop terminates -> here slow stops at m2. If we want slow to stop at m1, then check if fast.next.next == null
+
+Odd Length: first.next == null => slow points to middle node m
+Even Length: first.next.next == null => slow points to middle node m1
+             first == null => slow points to middle node m2

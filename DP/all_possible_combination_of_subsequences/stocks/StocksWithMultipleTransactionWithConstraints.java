@@ -1,6 +1,7 @@
 package all_possible_combination_of_subsequences.stocks;
 
 // Stocks - 2,3,4
+// k is single transaction pair - means one buy followed by one sell (B1,S1)
 public class StocksWithMultipleTransactionWithConstraints {
     public static int bottomUpRec(int i, boolean eligibleForBuy, int transactionFee, int k, int n, int[] prices){
 

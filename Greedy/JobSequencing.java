@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 
 import static util.PrintOutputUtils.print;
@@ -30,9 +29,10 @@ public class JobSequencing {
         // find the maximum deadline available for any job
         int maxDeadline = 0;
         for(int i = 0; i < deadline.length; i++){
-            if(maxDeadline < deadline[i]){
-                maxDeadline = deadline[i];
-            }
+            maxDeadline = Math.max(maxDeadline, deadline[i]);
+//            if(maxDeadline < deadline[i]){
+//                maxDeadline = deadline[i];
+//            }
         }
 
         // maximum no of days for which job will be assigned is the longest available deadline for job

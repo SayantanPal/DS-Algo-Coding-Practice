@@ -1,6 +1,6 @@
 package all_possible_combination_of_subsequences.take_nottake;
 
-public class CoinChangeWIthMinCoins {
+public class CoinChangeWithMinCoins {
 
     public static int topDownRec(int i, int[] num, int x){
         // since in each recursive step, we add one by one all the coins hence

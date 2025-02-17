@@ -12,6 +12,8 @@ public class CountNoOfWaysInStairsFibonnacci {
     }
 
     public int countWaysTopDownRecMemorization(int currStep, int[] dp){ // overlapping subproblems are stored in memory
+        if(currStep <= 2) return currStep;
+        
         if(dp[currStep] != -1) return dp[currStep];
 
         return dp[currStep]  = countWaysTopDownRecMemorization(currStep - 1, dp) + countWaysTopDownRecMemorization(currStep - 2, dp);

@@ -74,6 +74,59 @@ public class JobSequencing {
         return new ArrayList<>(Arrays.asList(assignedJobCounter, maxprofit));
     }
 
+    public static int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+
+        int n = startTime.length;
+        int[][] jobs = new int[n][4];
+
+        for(int i = 0; i < n; i++){
+            jobs[i][0] = startTime[i];
+            jobs[i][1] = endTime[i];
+            jobs[i][2] = profit[i];
+            jobs[i][3] = i + 1;
+        }
+
+        Arrays.sort(jobs, new Comparator<int[]>(){
+            public int compare(int[] a, int[] b){
+                return b[2] - a[2];
+            }
+        });
+
+        int max_endTime = Integer.MIN_VALUE;
+        for(int i = 0; i < n ; i++){
+            max_endTime = Math.max(max_endTime, endTime[i]);
+        }
+
+        int[] assignedJobs = new int[max_endTime];
+        Arrays.fill(assignedJobs, -1);
+
+        int assignedJobCounter = 0;
+        int maxProfit = 0;
+
+        for(int i = 0; i < n; i++){
+            int startDay = jobs[i][0] - 1;
+            int endDay = jobs[i][1] - 1;
+            boolean canBeAssigned = true;
+            for(int j = startDay; j < endDay; j++){
+                if(assignedJobs[j] != -1){
+                    canBeAssigned = false;
+                    break;
+                }
+            }
+            if(canBeAssigned){
+                for(int j = startDay; j <= endDay; j++){
+                    assignedJobs[j] = jobs[i][3];
+                }
+                assignedJobCounter++;
+                maxProfit += jobs[i][2];
+            }
+        }
+
+        print(assignedJobs);
+
+        return maxProfit;
+    }
+
     public static void main(String[] args){
         int[] id = {6, 3, 4, 2, 5, 8, 1, 7};
         int[] deadline = {2, 6, 6, 5, 4, 2, 4, 2};
@@ -82,9 +135,15 @@ public class JobSequencing {
 //        int[] deadline = {4, 1, 1, 1};
 //        int[] profit = {20, 10, 40, 30};
 
+        int[] startTime = {1,2,3,3};
+        int[] endTime = {3,4,5,6};
+        int[] profit2 = {50,10,40,70};
 
-        ArrayList<Integer> result = jobSequencing(id, deadline, profit);
-        System.out.println(result);
+//        ArrayList<Integer> result = jobSequencing(id, deadline, profit);
+//        System.out.println(result);
+
+        int maxProfit = jobScheduling(startTime, endTime, profit2);
+        System.out.println(maxProfit);
     }
 
 }

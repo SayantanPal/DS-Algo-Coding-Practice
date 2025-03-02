@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import static util.PrintOutputUtils.print;
 
+// https://www.naukri.com/code360/problems/ninja-s-training_3621003
 public class NinjaTraining {
 
 //    public static void print(int[] arr){
@@ -87,6 +88,27 @@ public class NinjaTraining {
         return dp[currDay][lastTask] = maxPoints;
     }
 
+    // Easy to understand
+    public static int ninjaTrainingTopDownRec3(int currDay, int lastActivity, int[][] points){
+        if(currDay < 0) return 0;
+
+        int takeRunningOption = 0;
+        int takeFightingOption = 0;
+        int takeMoveOption = 0;
+
+        // if running today, then on other day, consider max of only fighting and moving
+        if(lastActivity == 0)
+            takeRunningOption = points[currDay][0] + Math.max(ninjaTrainingTopDownRec3(currDay - 1, 1, points), ninjaTrainingTopDownRec3(currDay - 1, 2, points));
+        // if fighting today, then on other day, consider max of only running and moving
+        else if(lastActivity == 1)
+            takeFightingOption = points[currDay][1] + Math.max(ninjaTrainingTopDownRec3(currDay - 1, 0, points), ninjaTrainingTopDownRec3(currDay - 1, 2, points));
+        // if moving today, then on other day, consider max of only running and fighting
+        else if(lastActivity == 2)
+            takeMoveOption = points[currDay][2] + Math.max(ninjaTrainingTopDownRec3(currDay - 1, 0, points), ninjaTrainingTopDownRec3(currDay - 1, 1, points));
+
+        return Math.max(takeRunningOption, Math.max(takeFightingOption, takeMoveOption));
+    }
+
 
 
     public static int ninjaTraining(int n, int points[][]) {
@@ -115,6 +137,8 @@ public class NinjaTraining {
         System.out.println("print: ");
         print(dp);
         return dp[n - 1][3];
+
+//        return Math.max(ninjaTrainingTopDownRec3(n - 1, 0, points), Math.max(ninjaTrainingTopDownRec3(n - 1, 1, points), ninjaTrainingTopDownRec3(n - 1, 2, points)));
     }
 
 

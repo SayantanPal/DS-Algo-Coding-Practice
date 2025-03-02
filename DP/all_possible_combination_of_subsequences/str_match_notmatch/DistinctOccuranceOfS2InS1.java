@@ -1,5 +1,6 @@
 package all_possible_combination_of_subsequences.str_match_notmatch;
 
+// https://www.geeksforgeeks.org/problems/distinct-occurrences/1
 public class DistinctOccuranceOfS2InS1 {
     public static int topDownRecSubstring(String s1, String s2, int i, int j, int m) {
         // Base cases

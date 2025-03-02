@@ -1,5 +1,12 @@
 package all_possible_combination_of_subsequences.str_match_notmatch;
 
+
+// https://www.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1
+// https://www.geeksforgeeks.org/problems/longest-palindromic-subsequence-1612327878/1
+// https://www.geeksforgeeks.org/problems/form-a-palindrome1455/1
+// https://www.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1
+// https://www.geeksforgeeks.org/problems/shortest-common-supersequence0322/1
+
 public class LongestCommonSubStringAndSubSequences {
 
     static int ans = 0;

@@ -2,6 +2,10 @@ package all_possible_combination_of_subsequences.stocks;
 
 // Stocks - 2,3,4
 // k is single transaction pair - means one buy followed by one sell (B1,S1)
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
 public class StocksWithMultipleTransactionWithConstraints {
     public static int bottomUpRec(int i, boolean eligibleForBuy, int transactionFee, int k, int n, int[] prices){
 

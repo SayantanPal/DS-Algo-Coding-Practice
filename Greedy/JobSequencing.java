@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import static util.PrintOutputUtils.print;
 
+// https://www.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1
 public class JobSequencing {
 
     // Pre-requisites assumption: only 1 job can be performed in single day and one job at a time

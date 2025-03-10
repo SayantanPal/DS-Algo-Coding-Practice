@@ -14,7 +14,7 @@ public class JumpGame {
             }
             // else if we still have higher index element that can be reached crossing this deadlock index element, we ignore this deadlock index
             maxJump = Math.max(maxJump, maxJumpFromCurrentIndex); // Hold the maximum that can be reached from all previously encountered indexes
-            if(maxJump >= n - 1){ // the moment local maximum from any index rached or overexceeds array last element index
+            if(maxJump >= n - 1){ // the moment local maximum from any index reached or overexceeds array last element index
                 return true;
             }
         }

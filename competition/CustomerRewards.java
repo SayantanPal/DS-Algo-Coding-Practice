@@ -132,6 +132,81 @@ public class CustomerRewards {
         return countWinners;
     }
 
+    public static int countPossibleWinners21(int[] initialRewards) {
+        int n = initialRewards.length;
+        if (n == 1) return 1;
+
+        // Sort in ascending order (to evaluate rewards easily)
+        Arrays.sort(initialRewards);
+
+        // Create a max-heap to track the highest possible runner-up scores
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+        // Add all possible runner-up scores into the max-heap
+        for (int reward : initialRewards) {
+            pq.add(reward); // Maximum possible points as runner-up
+        }
+
+        int countWinners = 0;
+
+        for (int i = 0; i < n; i++) {
+            int winningReward = initialRewards[i] + n;
+
+            // Temporarily remove the ith player's max possible score since they are winning
+            pq.remove(initialRewards[i]);
+
+            // If the winning reward is greater than the highest remaining runner-up score, it's a valid win
+//            if (pq.isEmpty() || winningReward >= pq.peek() + (n - 1)) {
+            if (pq.isEmpty() ||  pq.peek() <= winningReward - (n - 1)) { // pq.peek() <= initialRewards[i] + 1
+                countWinners++;
+            }
+
+            // Restore the ith player's max possible score
+            pq.add(initialRewards[i]);
+        }
+
+        return countWinners;
+    }
+
+    /**
+     * If all the customers have unique or distinct initial rewards, then below solution works
+     * * Approach:
+     * * Since all initial rewards are guaranteed to be distinct, no two customers can have the same reward.
+     *
+     *
+     * * The customer with the highest initial reward at (n - 1) position will always win because even after adding (n - 1) to other customers,
+     * their final score can’t surpass the highest possible final reward of the highest initial reward customer at (n -1)th index + n rewards
+     *
+     *
+     * * The element at index (n - 2) may or may not win depending on the gap with the last element:
+     * If the gap between (n - 1) and (n - 2) is ≤ 1, both can win.
+     * If the gap is > 1, only the last element wins.
+     *
+     * * All elements before (n - 2):
+     * Any element starting from index (n - 3) will never win because adding (n - 1) to them would still make their score lower than the final score of the last element or second-to-last element.
+     * Therefore, you can skip checking all elements before (n - 2)
+     *
+     * 4. Start counting from the customer with the highest reward.
+     * Check if the gap between neighboring rewards is ≤ 1.
+     * If yes → that customer can be a winner too.
+     */
+
+    public static int countPossibleWinners23(int[] initialRewards) {
+        int n = initialRewards.length;
+        // the highest initial reward customer should always win
+        // since adding n - 1 to any other customer with lesser initial reward
+        // can make them higher than highest initial reward + n
+        int countWinners = 1;
+
+        // Sort in ascending order (to evaluate rewards easily)
+        Arrays.sort(initialRewards);
+
+        if(n > 1 && initialRewards[n - 1] - initialRewards[n - 2] <= 1){ // 1 or 0
+            countWinners++; // then only ith customer should win
+        }
+        return countWinners;
+    }
+
     public static int countPossibleWinners3(int[] initialRewards) {
 
         int n = initialRewards.length;
@@ -145,11 +220,11 @@ public class CustomerRewards {
 
         int countWinners = 0;
 
-        for (int reward : initialRewards) {
-            int winningReward = reward + n;
+        for (int i = 0; i < n; i++) {
+            int winningReward = initialRewards[i] + n;
 
             // Find the next greater element after (winningReward - (n - 1))
-            Integer higher = rewardsSet.higher(winningReward - (n - 1));
+            Integer higher = rewardsSet.higher(winningReward - (n - 1)); // rewardsSet.higher(initialRewards[i] + 1);
 
             // If no such element exists, this player can win
             if (higher == null) {
@@ -162,12 +237,23 @@ public class CustomerRewards {
 
     public static void main(String[] args) {
         int[] initialRewards = {5, 7, 9, 11};
-        System.out.println(countPossibleWinners2(initialRewards));
+        System.out.println(countPossibleWinners3(initialRewards));
 
         initialRewards = new int[]{8, 10, 9};
-        System.out.println(countPossibleWinners2(initialRewards));
+        System.out.println(countPossibleWinners3(initialRewards));
 
         initialRewards = new int[]{1, 3, 4};
-        System.out.println(countPossibleWinners2(initialRewards));
+        System.out.println(countPossibleWinners3(initialRewards));
+
+        // if all array values are unique and distinct, then below algo works without any PQ or TreeSet DS
+
+        initialRewards = new int[]{5, 7, 9, 11};
+        System.out.println(countPossibleWinners23(initialRewards));
+
+        initialRewards = new int[]{8, 10, 9};
+        System.out.println(countPossibleWinners23(initialRewards));
+
+        initialRewards = new int[]{1, 3, 4};
+        System.out.println(countPossibleWinners23(initialRewards));
     }
 }

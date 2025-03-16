@@ -111,17 +111,26 @@ public class ProductBatching {
     }
 
 
+
     public static int maximizeGroupsForShipment2(int[] products) {
+        System.out.println("\n\n**********************************************************");
+        System.out.println("\nProducts: " + Arrays.toString(products));
+
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         for (int product : products) {
             if (product > 0) {
                 pq.add(product);
             }
         }
-        int n = products.length;
-        int batchCount = 0;
 
-        for(int pick = 1; pick <= n; pick++){
+        int batchCount = 0;
+        int pick = 1;
+
+        while (true) {
+            if (pq.size() < pick) {
+                // Not enough distinct products left for this batch size
+                break;
+            }
 
             PriorityQueue<Integer> temp = new PriorityQueue<>(Collections.reverseOrder());
             boolean batchFormed = true;
@@ -160,24 +169,31 @@ public class ProductBatching {
     public static void main(String[] args) {
 
         int[] products = {2, 3, 1, 4, 2}; // output: 4
-        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+//        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+        System.out.println("\n\nTotal "+maximizeGroupsForShipment2(products)+" batch(es) can be prepared");
 
         products = new int[]{1, 2, 7}; // output: 3
-        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+//        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+        System.out.println("\n\nTotal "+maximizeGroupsForShipment2(products)+" batch(es) can be prepared");
 
         products = new int[]{1, 2, 8, 9}; // output: 4
-        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+//        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+        System.out.println("\n\nTotal "+maximizeGroupsForShipment2(products)+" batch(es) can be prepared");
 
         products = new int[]{1, 1, 1, 1, 1}; // output: 2
-        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+//        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+        System.out.println("\n\nTotal "+maximizeGroupsForShipment2(products)+" batch(es) can be prepared");
 
         products = new int[]{0, 0, 0, 0, 5}; // output: 1
-        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+//        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+        System.out.println("\n\nTotal "+maximizeGroupsForShipment2(products)+" batch(es) can be prepared");
 
         products = new int[]{0, 0, 0, 0, 0}; // output: 0
-        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+//        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+        System.out.println("\n\nTotal "+maximizeGroupsForShipment2(products)+" batch(es) can be prepared");
 
         products = new int[]{1, 2, 3, 4, 5}; // output: 5
-        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+//        System.out.println("\n\nTotal "+maximizeGroupsForShipment(products)+" batch(es) can be prepared");
+        System.out.println("\n\nTotal "+maximizeGroupsForShipment2(products)+" batch(es) can be prepared");
     }
 }

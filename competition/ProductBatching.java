@@ -119,26 +119,29 @@ public class ProductBatching {
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         for (int product : products) {
             if (product > 0) {
-                pq.add(product);
+                pq.add(product); // pq.offer(product);
             }
         }
 
         int batchCount = 0;
+
         int pick = 1;
+//        for(int pick = 1; pick <= pq.size(); pick++) {
+        while(pick <= pq.size()){
+//            if (pq.size() < pick) {
+//                // Not enough distinct products left for this batch size
+//                break;
+//            }
 
-        while (true) {
-            if (pq.size() < pick) {
-                // Not enough distinct products left for this batch size
-                break;
-            }
-
+            // List<Integer> store = new ArrayList<>();
             PriorityQueue<Integer> temp = new PriorityQueue<>(Collections.reverseOrder());
             boolean batchFormed = true;
 
             System.out.println("\nIn Batch: " + (batchCount + 1));
             System.out.println("Trying to pick " + pick + " distinct product(s) in this batch...");
 
-            for (int i = 0; i < pick; i++) {
+            // Execute tasks in each batch/cycle
+            for (int i = 1; i <= pick; i++) {
                 if (pq.isEmpty()) {
                     batchFormed = false;
                     break;
@@ -156,10 +159,10 @@ public class ProductBatching {
             }
 
             // Put remaining back into the queue
-            pq.addAll(temp);
-
-            batchCount++;
+            // Restore updated frequencies back to the heap
+            pq.addAll(temp); // store.forEach(pq::offer);
             pick++;
+            batchCount++;
             System.out.println("Remaining products after Batch " + batchCount + ": " + pq);
         }
 

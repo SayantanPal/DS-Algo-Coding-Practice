@@ -137,7 +137,7 @@ public class CustomerRewards {
         if (n == 1) return 1;
 
         // Sort in ascending order (to evaluate rewards easily)
-        Arrays.sort(initialRewards);
+//        Arrays.sort(initialRewards);
 
         // Create a max-heap to track the highest possible runner-up scores
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
@@ -244,6 +244,17 @@ public class CustomerRewards {
 
         initialRewards = new int[]{1, 3, 4};
         System.out.println(countPossibleWinners3(initialRewards));
+
+
+
+        initialRewards = new int[]{5, 7, 9, 11};
+        System.out.println(countPossibleWinners2(initialRewards));
+
+        initialRewards = new int[]{8, 10, 9};
+        System.out.println(countPossibleWinners2(initialRewards));
+
+        initialRewards = new int[]{1, 3, 4};
+        System.out.println(countPossibleWinners2(initialRewards));
 
         // if all array values are unique and distinct, then below algo works without any PQ or TreeSet DS
 

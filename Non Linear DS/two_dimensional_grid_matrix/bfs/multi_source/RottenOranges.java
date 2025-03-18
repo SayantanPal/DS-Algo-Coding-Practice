@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-// Link: https://www.naukri.com/code360/problems/rotting-oranges_701655?interviewProblemRedirection=true&practice_topic%5B%5D=Breadth-first%20Search&practice_topic%5B%5D=Depth-first%20Search&sort_entity=company_count&sort_order=DESC&leftPanelTabValue=SUBMISSION
+// Link: https://www.naukri.com/code360/problems/rotting-oranges_701655
 // Similar Problem: Walls And Gates or The Summit problem
 public class RottenOranges {
     public static boolean validTraversal(int r, int c, int n, int m){

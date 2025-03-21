@@ -1,4 +1,4 @@
-package GreedyWithMaxMinHeapPrioQ;
+package GreedyWithMaxMinHeapPrioQ.pattern3;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

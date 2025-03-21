@@ -1,4 +1,4 @@
-package GreedyWithMaxMinHeapPrioQ;
+package GreedyWithMaxMinHeapPrioQ.pattern2;
 
 import java.util.Arrays;
 import java.util.Collections;

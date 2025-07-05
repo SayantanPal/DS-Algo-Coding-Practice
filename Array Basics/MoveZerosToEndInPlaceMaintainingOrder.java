@@ -69,10 +69,19 @@ public class MoveZerosToEndInPlaceMaintainingOrder {
     public static void pushZerosToEnd_v2(int[] arr) {
         // code here
         int n = arr.length;
-        int nonZeroIndex = 0;
+        int nonZeroIndex = 0; // this freezes at the first encountered zero from the start left
         for(int i = 0; i < n; i++){
+            // X <-> Y
+
             // nonZeroIndex will lag behind and i will move rightward only when first 0 is encountered
             // at that stage, non zero will point to latest encountered 0th index always
+
+            // push/exchange the numbers from forward right to left non-zero boundary | X <- Y(always non-zero since if cond check)
+            // only when the number is + ve ie no scope of pushing zero to left from right
+
+            // exchange forward from left to right is always first immediately encountered zero | X(0 obv) -> Y
+            // since non zero will point to latest encountered 0th index always
+
             if(arr[i] != 0){ // i++ even when arr[i] is 0 or not 0 - does not matter
                 swap(arr, nonZeroIndex, i);
                 nonZeroIndex++;

@@ -5,7 +5,7 @@ package linear_subsequences_or_subsets_constant_transition;
 // max loot starting from first house to current House = max of
 // max loot starting from first house to house before prev(prev to prev) House i.e., current House Index - 2 + cost to loot current house(i.e., cost[currHouseIndex])
 // max loot starting from first house to prev House i.e., current House Index - 1
-
+// Neighbourhood Burglary Problem
 
 public class HouseRobber {
 

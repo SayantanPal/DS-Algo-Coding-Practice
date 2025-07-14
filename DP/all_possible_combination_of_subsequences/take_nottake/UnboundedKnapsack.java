@@ -1,5 +1,6 @@
 package all_possible_combination_of_subsequences.take_nottake;
 
+//Link: https://www.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1
 public class UnboundedKnapsack {
 
     public static int TopDownRec(int i, int[] weight, int[] value, int maxWeight){

@@ -1,0 +1,98 @@
+public class amazonMockTwo {
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+
+    class Result {
+
+        /*
+         * Complete the 'countGroups' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts STRING_ARRAY related as parameter.
+         */
+
+        public static int countGroups(List<String> related) {
+            // Write your code here
+            // List<List<String>> matrix = new ArrayList<>();
+            int n = related.size();
+            String[][] matrix = new String[n][n];
+            int i = 0;
+            for(String line: related){
+                System.out.println(line);
+                String[] l = line.split("");
+                for(int j = 0; j < l.length; j++){
+                    matrix[i][j] = l[j];
+                }
+                i++;
+            }
+
+            int notConnected = 0;
+            for(int k = 0; k < n; k++){
+                boolean connected = false;
+                for(int j = 0; j < n; j++){
+                    if(k!=j && matrix[k][j].equals("1")){
+                        connected = true;
+                    }
+                }
+                if(connected == false){
+                    notConnected++;
+                }
+            }
+            if(notConnected == n) return notConnected;
+            else return notConnected + 1;
+        }
+
+    }
+
+    public class Solution {
+        public static void main(String[] args) throws IOException {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+            int relatedCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+            List<String> related = IntStream.range(0, relatedCount).mapToObj(i -> {
+                        try {
+                            return bufferedReader.readLine();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    })
+                    .collect(toList());
+
+            int result = Result.countGroups(related);
+
+            bufferedWriter.write(String.valueOf(result));
+            bufferedWriter.newLine();
+
+            bufferedReader.close();
+            bufferedWriter.close();
+        }
+    }
+
+}
+
+1000001000
+        0100010001
+        0010100000
+        0001000000
+        0010100000
+        0100010000
+        1000001000
+        0000000100
+        0000000010
+        0100000001
+
+https://www.hackerrank.com/test/63ek10mhil5/questions

@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package DS;
 
 public class CustomHashSet<E> {
 

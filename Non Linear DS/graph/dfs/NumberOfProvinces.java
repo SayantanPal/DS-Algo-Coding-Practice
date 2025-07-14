@@ -1,4 +1,4 @@
-package graph;
+package graph.dfs;
 
 // Link: https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
 // Link: https://www.naukri.com/code360/problems/find-the-number-of-states_1377943?interviewProblemRedirection=true&practice_topic%5B%5D=Breadth-first%20Search&practice_topic%5B%5D=Depth-first%20Search&difficulty%5B%5D=Medium&sort_entity=company_count&sort_order=DESC&leftPanelTabValue=PROBLEM

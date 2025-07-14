@@ -50,4 +50,18 @@ public class ArrListBasics {
                 .filter(e -> e.getValue() > 1)
                 .forEach(e -> System.out.println(e.getKey() + " -> " + e.getValue()));
     }
+
+    public static void firstNonRepeatedElem(String[] args) {
+        List<String> list = Arrays.asList("a", "b", "c", "a", "b");
+        Map<String, Integer> countMap = new LinkedHashMap<>();
+        for (String s : list) {
+            countMap.put(s, countMap.getOrDefault(s, 0) + 1);
+        }
+        for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
+            if (entry.getValue() == 1) {
+                System.out.println("First non-repeated: " + entry.getKey());
+                break;
+            }
+        }
+    }
 }

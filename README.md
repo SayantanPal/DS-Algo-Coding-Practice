@@ -71,3 +71,61 @@ In case of even length LL, fast pointer will never point to last node. rather it
 Odd Length: first.next == null => slow points to middle node m
 Even Length: first.next.next == null => slow points to middle node m1
              first == null => slow points to middle node m2
+
+=-=-=-=-=-=-==-=-=-=-=-=-==-=-=-=-=-=-==-=-=-=-=-=-==-=-=-=-=-=-==-=-=-=-=-=-==-=-=-=-=-=-==-=-=-=-=-=-=
+Memory  - LRU Cache
+————————————————————————
+
+TRACKING(2 step process):
+======================
+
+// maintain access in tracker
+// - step a. move from earlier access order only for existing element
+if(tracker.contains(key)){
+removeInBetween(tracker, key);
+}
+// step-b. always add to end/rear for tracking the existing/non-existing element as recently accessed/used
+tracker.offer(key);
+
+-----------------------------------------------
+
+SILENT EVICTION:
+===============
+map.remove((Integer)tracker.remove());
+
+-----------------------------------------------
+
+GET(Retrieve)
+——————————
+-> not present in map, -1. (Return)
+TRACKING - NO
+SILENT EVICTION - NO
+CAPACITY CHECK - NO
+
+-> present in map
+TRACKING - YES (do tracking + return)
+SILENT EVICTION - NO
+CAPACITY CHECK - NO
+
+-----------------------------------------------
+
+PUT(Add)
+——————
+-> present in map
+SILENT EVICTION - NO
+CAPACITY CHECK - NO
+TRACKING - YES (common action)
+ADD to MAP - YES  (common action)
+
+-> not present in map (new elem)
+CAPACITY CHECK -
+|-> YES  -> SILENT EVICTION - YES
+|-> NO.  -> SILENT EVICTION - NO
+TRACKING - YES (common action)
+ADD to MAP - YES  (common action)
+
+Note:
+1. Tracking elem & ADD to map should come after checking the elem if present/not in map
+2. While doing Capacity checking, consider after you add the element (virtually ie. Using + 1) will it exceed the capacity or not
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

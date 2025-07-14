@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
+// Used in caching, duplicate detection, distributed systems.
+// Production Use: Deduplication of logs/messages before indexing in Elasticsearch.
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
 

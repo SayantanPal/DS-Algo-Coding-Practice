@@ -1,4 +1,4 @@
-
+package basic;
 /*
 Given an array prices[] of length n, representing the prices of the stocks on different days.
 *The task is to find the maximum profit possible by buying and selling the stocks on different days

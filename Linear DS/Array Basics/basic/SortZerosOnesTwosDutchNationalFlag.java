@@ -1,4 +1,4 @@
-/*
+package basic;/*
 * Airport security officials confiscated several items of the passengers at the security checkpoint.
 * All the items have been dumped into a huge box (array).
 * Each item possesses a certain amount of risk[0,1,2].

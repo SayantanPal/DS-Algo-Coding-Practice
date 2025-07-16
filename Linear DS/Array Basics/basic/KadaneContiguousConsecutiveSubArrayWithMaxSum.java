@@ -1,3 +1,5 @@
+package basic;
+
 public class KadaneContiguousConsecutiveSubArrayWithMaxSum {
 
     // arr: input array

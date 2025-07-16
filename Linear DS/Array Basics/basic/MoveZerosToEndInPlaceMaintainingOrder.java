@@ -1,4 +1,4 @@
-/*
+package basic;/*
 *A chocolate factory is packing chocolates into packets.
 * The chocolate packets here represent an array arr of N number of integer values.
 * The task is to find the empty packets(0) of chocolate and

@@ -1,3 +1,5 @@
+package basic;
+
 public class NextImmediatePermutationCyclic {
 
     public void swap(int[] arr, int i, int j){

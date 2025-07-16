@@ -1,3 +1,5 @@
+package basic;
+
 public class ReverseArrayInPlace {
 
     public void reverseArray(int arr[]) {

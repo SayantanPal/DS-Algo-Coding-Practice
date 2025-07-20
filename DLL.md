@@ -24,24 +24,24 @@ Asked by: Uber, Swiggy
 
 🔹 Intermediate-Level DLL Questions
 ------------------------------------
--> Check if a Doubly Linked List is a palindrome.
+-> A. Check if a Doubly Linked List is a palindrome.
 
 -> Use two pointers: head and tail.
 
 Asked by: Google, JPMorgan
 
--> Find pairs with a given sum in a sorted DLL.
+-> B. Find pairs with a given sum in a sorted DLL.
 
 Similar to 2-pointer approach in arrays.
 
 Asked by: PayPal, Barclays
 
--> Flatten a multilevel doubly linked list.
+-> C. Flatten a multilevel doubly linked list.
 Each node may have a child pointer pointing to a separate doubly linked list.
 
 Asked by: Amazon, Meta
 
--> Convert Binary Tree to Doubly Linked List.
+-> D. Convert Binary Tree to Doubly Linked List.
 In-order traversal-based conversion.
 
 Asked by: Microsoft, Netflix
@@ -50,23 +50,23 @@ Asked by: Microsoft, Netflix
 
 🔹 Advanced-Level DLL Questions
 ------------------------------
--> LRU Cache implementation using Doubly Linked List + HashMap.
+-> A. LRU Cache implementation using Doubly Linked List + HashMap.
 
 -> A classic design problem testing DLL and hash table combination.
 
 Asked by: Amazon, Google, Uber, PayPal
 
--> Design a data structure supporting O(1) insert, delete, and getRandom operations (with DLL & HashMap).
+-> B. Design a data structure supporting O(1) insert, delete, and getRandom operations (with DLL & HashMap).
 
 -> RandomizedSet/RandomizedCollection.
 Asked by: Facebook, JPMorgan
 
--> Implement an All O(1) Data Structure.
+-> C. Implement an All O(1) Data Structure.
 
 Maintains frequency of elements, requires DLL of frequency buckets.
 Asked by: Google, Meta
 
--> Copy a doubly linked list with random pointer.
+-> D. Copy a doubly linked list with random pointer.
 
 Variation of the deep copy with mapping.
 Asked by: Amazon, Swiggy, PayPal

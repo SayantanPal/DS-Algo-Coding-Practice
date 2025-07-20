@@ -168,4 +168,43 @@ public class DoublyLinkedList {
 
         return head;
     }
+
+
+    // Reversing Linked List via pointer manipulation
+    public static Node reverseDLL(Node head)
+    {
+        // Write your code here.
+        Node currentTraversal = head.next;
+
+        // this head will become tail node eventually with reversal
+        head.next = null;// earlier head prev was null. Now with reversal, head next is null
+        head.prev = currentTraversal; // earlier head next is current node. Now with reversal, head prev is current node
+
+
+
+        // Note: we have to perform this till end node where current is last node
+        // that means next node becomes null and consecutively the current node for next traversal becomes null
+        while(currentTraversal != null){
+            // hold ref to next node
+            // as reversal of prev & next ptr will forget the next node
+            Node nextNode = currentTraversal.next;
+
+            // Get prev node for pointer manipulation
+            Node prevNode = currentTraversal.prev;
+
+            // pointer manipulation between current & prev node
+            prevNode.prev = currentTraversal;
+            currentTraversal.next = prevNode;
+
+            if(nextNode == null){// at this point, current node is the last valid node in traversal and this will become head node
+                head = currentTraversal;
+            }
+
+            // make next node as current scann node for next itr
+            currentTraversal = nextNode;
+        }
+
+        return head;
+
+    }
 }

@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
+// Link: https://leetcode.com/problems/lru-cache/description/
 // https://medium.com/@shubhamvartak01/c0939a51a710
 // Optimized: HashMap + Doubly Linked List(DLL)
 class LRUCache {

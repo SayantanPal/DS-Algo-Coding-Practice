@@ -74,9 +74,12 @@ class LRUCacheUsingQueue {
     }
 
     public void put(int key, int value) {
-        if(!map.containsKey(key)){
-            // based on capacity check, do silent eviction
+        if(!map.containsKey(key)){ // new elem
+            // based on capacity check,
+            // if after adding the new elem, it exceeds the capacity
+            // note: we havn't added elem yet so far
             if(map.size() + 1 > capacity){
+                // do silent eviction
                 map.remove((Integer)tracker.remove());
             }
         }

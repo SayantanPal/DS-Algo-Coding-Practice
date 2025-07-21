@@ -1,3 +1,10 @@
+Concepts Learnt:
+-----------------
+1. Also for prev/next pointer access, check if the node obj on which prev/next is invoked is not null
+2. always update head/tail/curr pointer in each operation
+3. To make a node eligible for delete via gc from existing chain, the prev/next pointer of the node to be deleted should also need to be explicitly set to null
+
+============================================================================================
 🔹 Basic-Level DLL Questions
 ------------------------------
 Implement a Doubly Linked List from scratch.
@@ -51,23 +58,19 @@ Asked by: Microsoft, Netflix
 🔹 Advanced-Level DLL Questions
 ------------------------------
 -> A. LRU Cache implementation using Doubly Linked List + HashMap.
-
--> A classic design problem testing DLL and hash table combination.
+->    A classic design problem testing DLL and hash table combination.
 
 Asked by: Amazon, Google, Uber, PayPal
 
 -> B. Design a data structure supporting O(1) insert, delete, and getRandom operations (with DLL & HashMap).
-
 -> RandomizedSet/RandomizedCollection.
 Asked by: Facebook, JPMorgan
 
 -> C. Implement an All O(1) Data Structure.
-
 Maintains frequency of elements, requires DLL of frequency buckets.
 Asked by: Google, Meta
 
 -> D. Copy a doubly linked list with random pointer.
-
 Variation of the deep copy with mapping.
 Asked by: Amazon, Swiggy, PayPal
 

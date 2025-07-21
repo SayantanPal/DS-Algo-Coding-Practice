@@ -38,20 +38,7 @@ go -> fb -> (fb)   "forward" [2] | fb
 * we have to make sure in each operation we have to maintain current node also
 * */
 
-/**
- *
- * visit:
- *
- * curr node param arg
- * getch next node
- *
- * next node.prev = null;
- * new node = new node
- * new node.prev = curr
- * curr.next = new node
- */
-
-
+// Link: https://leetcode.com/problems/design-browser-history/
 class BrowserHistory {
 
     class Node{

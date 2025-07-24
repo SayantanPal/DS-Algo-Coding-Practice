@@ -1,3 +1,17 @@
+
+
+// RateLimiter: main class
+
+// LLD
+// TokenBucket: tracks tokens and refill rate
+// ScheduledExecutorService to refill tokens periodically
+// Thread-safety with AtomicInteger
+// Time-based refill logic
+
+// HLD
+// Redis-backed counters
+// Using Lua scripts to ensure atomicity
+// Horizontal scaling using a shared datastore
 class TockenBucketRateLimiter {
     private long lastRefillTime;
     private int capacity, tokens;

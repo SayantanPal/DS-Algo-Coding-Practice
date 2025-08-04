@@ -27,13 +27,14 @@ Java Concept: Use ConcurrentHashMap<String, Queue<Long>> to store timestamps of 
 // ScheduledExecutorService to refill tokens periodically
 // Thread-safety with AtomicInteger
 // Time-based refill logic
+// Goal: Limit each user to X requests per minute.
 
 // HLD
 // Redis-backed counters
 // Using Lua scripts to ensure atomicity
 // Horizontal scaling using a shared datastore
 class TockenBucketRateLimiter {
-    private long lastRefillTime;
+    private long lastRefillTimestamp;
     private int capacity, tokens;
     private final int refillRate;
 
@@ -41,7 +42,7 @@ class TockenBucketRateLimiter {
         this.capacity = capacity;
         this.refillRate = refillRate;
         this.tokens = capacity;
-        this.lastRefillTime = System.nanoTime();
+        this.lastRefillTimestamp = System.nanoTime();
     }
     public synchronized boolean allowRequest() {
         refill();
@@ -53,10 +54,10 @@ class TockenBucketRateLimiter {
     }
     private void refill() {
         long now = System.nanoTime();
-        int tokensToAdd = (int) ((now - lastRefillTime) / 1_000_000_000 * refillRate);
-        if (tokensToAdd > 0) {
-            tokens = Math.min(capacity, tokens + tokensToAdd);
-            lastRefillTime = now;
+        int refillTokensToAdd = (int) ((now - lastRefillTimestamp) / 1_000_000_000 * refillRate);
+        if (refillTokensToAdd > 0) {
+            tokens = Math.min(capacity, tokens + refillTokensToAdd);
+            lastRefillTimestamp = now;
         }
     }
 }

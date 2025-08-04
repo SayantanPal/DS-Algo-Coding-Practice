@@ -1,6 +1,6 @@
 
 
-// RateLimiter: main class
+// Live API Rate Limiter: main class
 
 /*
 * Problem Statement: You have a service that receives thousands of requests per second.
@@ -29,10 +29,15 @@ Java Concept: Use ConcurrentHashMap<String, Queue<Long>> to store timestamps of 
 // Time-based refill logic
 // Goal: Limit each user to X requests per minute.
 
-// HLD
-// Redis-backed counters
+// HLD/Distributed Version - "How would this work across 10+ servers?"
+// Redis-backed counters with INCR and EXPIRE
 // Using Lua scripts to ensure atomicity
 // Horizontal scaling using a shared datastore
+// TTLs to avoid memory buildup
+// Optional: Use Kafka or API Gateway for central control
+
+
+
 class TockenBucketRateLimiter {
     private long lastRefillTimestamp;
     private int capacity, tokens;

@@ -3,6 +3,7 @@ import java.util.Map;
 
 // Link: https://leetcode.com/problems/lru-cache/description/
 // https://medium.com/@shubhamvartak01/c0939a51a710
+// Companies - Adobe, Goldman Sachs
 // Optimized Approach - 1: HashMap + Doubly Linked List(DLL)
 // Optimized Approach - 2: Use LinkedHashMap with accessOrder=true
 class LRUCache {

@@ -10,7 +10,8 @@ class ProducerConsumer {
     private final int CAPACITY = 5;
 
     public synchronized void produce(int value) throws InterruptedException {
-        while (queue.size() == CAPACITY) wait();
+        while (queue.size() == CAPACITY) wait(); // Interviewer asked: “What happens if we don’t use wait() inside a while loop?”
+        // Answer: Spurious wakeups can happen. Using while ensures correctness.
         queue.offer(value); //  queue.add(value);
         System.out.println("Produced: " + value);
         notify();// notifyAll();

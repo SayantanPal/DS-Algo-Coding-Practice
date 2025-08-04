@@ -36,14 +36,15 @@ Java Concept: Use ConcurrentHashMap<String, Queue<Long>> to store timestamps of 
 // TTLs to avoid memory buildup
 // Optional: Use Kafka or API Gateway for central control
 
+// Per-user logic:
+// Map<String, TokenBucket> userLimits = new ConcurrentHashMap<>();
 
-
-class TockenBucketRateLimiter {
+class TokenBucketRateLimiter {
     private long lastRefillTimestamp;
     private int capacity, tokens;
     private final int refillRate;
 
-    public TockenBucketRateLimiter(int capacity, int refillRate) {
+    public TokenBucketRateLimiter(int capacity, int refillRate) {
         this.capacity = capacity;
         this.refillRate = refillRate;
         this.tokens = capacity;

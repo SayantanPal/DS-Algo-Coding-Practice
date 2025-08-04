@@ -3,7 +3,8 @@ import java.util.Map;
 
 // Link: https://leetcode.com/problems/lru-cache/description/
 // https://medium.com/@shubhamvartak01/c0939a51a710
-// Optimized: HashMap + Doubly Linked List(DLL)
+// Optimized Approach - 1: HashMap + Doubly Linked List(DLL)
+// Optimized Approach - 2: Use LinkedHashMap with accessOrder=true
 class LRUCache {
     class Node {
         int key, value;
@@ -46,4 +47,16 @@ class LRUCache {
         head.next = node;
     }
 }
+
+//class LRUCache extends LinkedHashMap<Integer, Integer> {
+//    private int capacity;
+//
+//    public LRUCache(int capacity) {
+//        super(capacity, 0.75f, true);
+//        this.capacity = capacity;
+//    }
+//    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+//        return size() > capacity;
+//    }
+//}
 

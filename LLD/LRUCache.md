@@ -20,3 +20,10 @@
    Because SLL can delete the very next node for a given 'to be deleted' node in O(1) time, not that exact given node
    since it needs full traversal from the beginning to get the very before node for that given 'to be deleted' node
    as it does not store/hold prev pointer for any node to traverse back.
+
+
+-> Another Approach?
+Use LinkedHashMap with accessOrder=true
+Follow-up: What if I don’t use LinkedHashMap?
+You’ll need a custom Doubly Linked List with a HashMap to store references. 
+More complex but more flexible.

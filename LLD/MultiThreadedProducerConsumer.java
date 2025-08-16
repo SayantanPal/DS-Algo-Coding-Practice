@@ -1,6 +1,11 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
+/*
+* Use ReentrantLock + Condition (Modern Java Alternative)
+* Use BlockingQueue — Java already has a built-in thread-safe queue (ArrayBlockingQueue) that handles all of this for you.
+* */
+
 // https://medium.com/@shubhamvartak01/c0939a51a710
 // Implement a thread-safe Multi-threaded producer-consumer using a bounded buffer Using wait/notify
 // You can create threads for produce() and consume() to test this.

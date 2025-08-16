@@ -5,6 +5,11 @@
 /*
 * Problem Statement: You have a service that receives thousands of requests per second.
 * You want to limit each user to 100 requests per minute.
+* “Let’s say you want to design an API rate limiter like
+* — max 5 requests per user per minute.”
+*
+* He chose a sliding window using Deque<Long> to store timestamps
+* and prune old requests.
  * */
 
 /*
@@ -29,12 +34,15 @@ Java Concept: Use ConcurrentHashMap<String, Queue<Long>> to store timestamps of 
 // Time-based refill logic
 // Goal: Limit each user to X requests per minute.
 
-// HLD/Distributed Version - "How would this work across 10+ servers?"
-// Redis-backed counters with INCR and EXPIRE
+// HLD/Distributed Version - "How would this work across 10+ servers?" //How will this scale to millions of users?
+//What if we want different rules for premium and free users?
+//Can Redis help? How? // Redis-backed counters with INCR and EXPIRE // He handled it well, suggested Redis SortedSet and Token Bucket algorithm.
 // Using Lua scripts to ensure atomicity
 // Horizontal scaling using a shared datastore
 // TTLs to avoid memory buildup
 // Optional: Use Kafka or API Gateway for central control
+
+
 
 // Per-user logic:
 // Map<String, TokenBucket> userLimits = new ConcurrentHashMap<>();

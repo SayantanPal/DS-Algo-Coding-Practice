@@ -1,5 +1,5 @@
 public class ThreadDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        BankAccount sbi = new BankAccount(100d);
 //        Runnable runnable = () -> {
 //            sbi.withdraw(50d);
@@ -11,11 +11,11 @@ public class ThreadDemo {
 //        t1.start();
 //        t2.start();
 
-//        ReentrantLockDemo rld = new ReentrantLockDemo();
-//        rld.outerMethod(); // Call the outer method which uses a reentrant lock
+        ReentrantLockDemo rld = new ReentrantLockDemo();
+        rld.outerMethod(); // Call the outer method which uses a reentrant lock
 
-        ReentrantLockDemo2 rld2 = new ReentrantLockDemo2();
-        rld2.outerMethod(); // Call the outer method which uses a reentrant lock
+//        ReentrantLockDemo2 rld2 = new ReentrantLockDemo2();
+//        rld2.outerMethod(); // Call the outer method which uses a reentrant lock
 
     }
 }

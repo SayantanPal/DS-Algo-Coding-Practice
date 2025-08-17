@@ -1,25 +1,29 @@
 import java.util.concurrent.locks.ReentrantLock;
 
-public class StarvationFixedWithFairLock {
+public class StarvationFixedWithFairLockDriverMain {
     // Fair lock: threads acquire lock in order of request
-    private static final ReentrantLock lock = new ReentrantLock(true); // fairness = true
+    private static final ReentrantLock lock = new ReentrantLock(false); // fairness = true
 
     public static void main(String[] args) {
+
+        SharedResource sharedResource = new SharedResource();
+
         // Starving thread
         Thread starvingThread = new Thread(() -> {
             while (true) {
-                lock.lock();
+//                lock.lock();
                 try {
                     System.out.println("✅\uD83D\uDD12" + Thread.currentThread().getName() + " Starving thread acquired the lock!");
-//                    break;
+                    sharedResource.accessResource(); // Access the shared resource
+//                    break; // if break applied, then only one time access by starving thread
                 } finally {
                     System.out.println("✅\uD83D\uDD12" + Thread.currentThread().getName() + " Starving thread released the lock!");
-                    lock.unlock();
+//                    lock.unlock();
                 }
             }
         }, "StarvingThread");
 
-        starvingThread.setPriority(Thread.MIN_PRIORITY); // Set high priority for the starving thread
+        starvingThread.setPriority(Thread.MIN_PRIORITY); // Set low priority for the starving thread
 
         // Starving thread
         // Donot use tryLock() here, as it may not simulate starvation
@@ -49,16 +53,17 @@ public class StarvationFixedWithFairLock {
         // Hogging threads
         Thread hoggingThread = new Thread(() -> {
             while (true) {
-                lock.lock();
+//                lock.lock();
                 try {
                     System.out.println("✅\uD83D\uDD12" + Thread.currentThread().getName() + " Hogging thread acquired the lock");
-                    Thread.sleep(200);
+                    sharedResource.accessResource(); // Access the shared resource
+                    Thread.sleep(0);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
 //                    break;
                 } finally {
                     System.out.println("✅\uD83D\uDD13" + Thread.currentThread().getName() + " Hogging thread released the lock!");
-                    lock.unlock();
+//                    lock.unlock();
                 }
             }
         }, "HoggingThread-1");

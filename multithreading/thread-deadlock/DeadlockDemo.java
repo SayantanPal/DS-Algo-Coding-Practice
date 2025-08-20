@@ -5,8 +5,12 @@ public class DeadlockDemo {
         Object lock2 = new Object();
 
         // Deadlock
-        //      - a. when one thread when already acquires 1 empty lock
-        //      - b. while acquiring that lock, it tries to acquire another lock which is already acquired by another thread
+        //      - a. Mutual Exclusion: Only 1 Thread can execute critical section of a shared resource at a given time
+        //      - b. Hold and Wait
+        //          - i. when one thread when already acquires 1 empty lock
+        //          - ii. While acquiring that lock, it tries to acquire another lock which is already acquired by another thread
+        //      - c. No Preemption: Assume once lock is acquired by a thread, it cannot be forcibly taken away from that thread
+        //.     - d. Circular Wait: Threads are waiting criss-cross for one other in a circular chain fashion
 
         Thread t1 = new Thread(() -> {
             // empty lock 1

@@ -1,4 +1,27 @@
 public class MainDemo {
+
+
+/*
+* Thread race/Data Race -
+* Lets say I have two thread t1 & t2 both accessing AtomicLong variable count.
+    Lets say thread t1 reads count and thread t2 was busy doing counter.increment() operation.
+    In such a scenario, either all of t2 has executed or none of it.
+    * Either thread t1 will win the race (it sees the initial value),
+    * or thread t2 will win the race (thread t1 sees the final value.)
+    * Unless you have provided some explicit means to force the threads to access the variable in a particular order,
+    * then there is no way to know who will win the race.
+
+* The situation you have described is called a "data race." Either thread A will win the race (it sees the initial value), or thread B will win the race (thread A sees the final value.) Unless you have provided some explicit means to force the threads to access the variable in a particular order, then there is no way to know who will win the race.
+
+    "Atomicity" means that thread t1 will either see the data as it was before the atomic operation,
+    * or it will see it after the operation is complete.
+    * Thread t1 can never see it in a half-way-done state.
+
+    A) Thread t1 see the previous value of count (because count is not yet updated)
+    Or
+    B) Thread t1 will wait until Thread t2 completes the operation and see the latest value.
+* */
+
     public static void main(String[] args) {
 
         Counter counter = new Counter(); // Create a shared counter object

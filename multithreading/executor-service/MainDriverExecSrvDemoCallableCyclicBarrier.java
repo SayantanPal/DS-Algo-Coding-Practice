@@ -6,49 +6,54 @@ public class MainDriverExecSrvDemoCallableCyclicBarrier {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
         List<Future<Integer>> result = new ArrayList<>();
-        ExecutorService executorService = Executors.newFixedThreadPool(20);
-        // Improper use of CyclicBarrier can easily cause deadlocks if threads are not enough.
-        // If you have fewer threads than the number of parties at the barrier, the program can deadlock.
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(10, () -> {
-            System.out.println("All tasks have reached the barrier, proceeding to final task.");
-        });
-        for(int i = 1; i <= 10; i++){
-            int finalI = i;
-            result.add(executorService.submit(() -> {
-                try {
-                    int r = factorial(finalI);
-                    System.out.println(Thread.currentThread().getName() +" is executing factorial of "+ finalI);
-//                    System.out.println("Factorial of " + finalI + " is: " + r);
-                    return r;
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }finally {
-                    cyclicBarrier.await();
-                }
-            }));
-        }
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
 
-        // blocking call to wait for the result
+        int totalTasks = 10;
+        int batchSize = 3;
+
+        for (int i = 1; i <= totalTasks; i += batchSize) {
+            int currentBatchSize = Math.min(batchSize, totalTasks - i + 1); // handle last batch
+            CyclicBarrier cyclicBarrier = new CyclicBarrier(currentBatchSize, () -> {
+                System.out.println("Batch of " + currentBatchSize + " tasks reached the barrier.");
+            });
+
+            for (int j = 0; j < currentBatchSize; j++) {
+                int taskNumber = i + j;
+                result.add(executorService.submit(() -> {
+                    try {
+                        int r = factorial(taskNumber);
+                        System.out.println(Thread.currentThread().getName() +
+                                " executed factorial of " + taskNumber);
+                        return r;
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    } finally {
+                        try {
+                            cyclicBarrier.await();
+                        } catch (InterruptedException | BrokenBarrierException e) {
+                            // Handle barrier failure gracefully
+                            System.err.println("Barrier broken for task " + taskNumber);
+                        }
+                    }
+                }));
+            }
+        }
 
         executorService.shutdown();
 
-        // when we are focused on selective result, we can directly access that particular future from the list
-        // but we need to use cyclic barrier here to ensure all the tasks are completed before we access the result
-        // if we are interested in the execution of all the tasks, we can use get() for all callable tasks and cyclic barrier is not required
         try {
-            System.out.println("Factorial of 5 is: " + result.get(4).get());
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
+            System.out.println("Factorial of 10 is: " + result.get(8).get());
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException("Error getting result", e);
         }
+
         System.out.println("Time taken: " + (System.currentTimeMillis() - startTime) + " ms");
     }
 
     public static int factorial(int n) throws InterruptedException {
         Thread.sleep(3000); // Simulating a long computation
         int p = 1;
-        for(int i = 1; i <= n; i++){
+        for (int i = 1; i <= n; i++) {
             p *= i;
         }
         return p;

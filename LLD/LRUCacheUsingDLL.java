@@ -2,8 +2,9 @@ import java.util.*;
 
 public class LRUCacheUsingDLL {
     private int capacity;
-    private Map<Integer, Node> map;
+    private Map<Integer, Node> map; // Use a HashMap for key-value storage.
 
+    // Maintain order using a Doubly Linked List.
     class Node{
         int key,val;
         Node prev, next;
@@ -64,26 +65,6 @@ public class LRUCacheUsingDLL {
     }
 
     private void insertNodeAtTail(Node node){
-//        // when there are some node present in the list
-//        if(tail != null)
-//        {
-//            tail.next = node;
-//            node.prev = tail;
-//        }
-//        else {
-//            // when there are no node present in the list then head and tail refer to this node only
-//            if(head == null) {
-//                head = node;
-//            }
-//            else{
-//
-//            }
-//            node.prev = null;
-//        }
-//
-//        node.next = null;
-//        tail = node;
-
          if(tail == null) {
              if(head == null) {
                  head = tail = node;

@@ -1,8 +1,17 @@
 #### LRU Cache
+-> Goal: Create a class with 
+            get(key) 
+            and put(key, value) 
+that supports O(1) access and eviction based on usage.
+
+On get(), move the node to front.
+On put(), if capacity is full, evict the last node (least used).
+
 -> When we use HashMap with DLL for maintaining tracking, then it is most optimal
 -> Why tracking using DLL is the most optimum??
--> HashMap: 
--> DLL: With the power of prev & next node, 
+-> HashMap: Use a HashMap for key-value storage.
+-> DLL: Maintain order using a Doubly Linked List.
+        With the power of prev & next node, 
         we can directly hit a node in between series of nodes in a DLL 
         and we can delete that particular node. This takes O(1) time complexity.
 
@@ -27,3 +36,14 @@ Use LinkedHashMap with accessOrder=true
 Follow-up: What if I don’t use LinkedHashMap?
 You’ll need a custom Doubly Linked List with a HashMap to store references. 
 More complex but more flexible.
+
+
+Thread-Safe LRU Cache
+----------------------
+Wrap logic inside synchronized methods.
+Use ReentrantLock for more control.
+Or go smart: LinkedHashMap + Collections.synchronizedMap() (basic safety).
+
+Tip:
+In banking systems, cache management is critical 
+— especially when dealing with trading engines and live data streams.

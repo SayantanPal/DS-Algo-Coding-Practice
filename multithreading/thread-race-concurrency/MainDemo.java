@@ -25,6 +25,117 @@ public class MainDemo {
     public static void main(String[] args) {
 
         Counter counter = new Counter(); // Create a shared counter object
+//        showRaceBetweenWriteOnlyThreads(counter);
+//        showROThReadingThLclCachedValsFromCounter (counter);
+//        showRWThReadingThLclCachedValsFromCounter(counter);
+        showRWThReadingRAMDirectSharedValsFromCounterVolatile(new CounterVolatile());
+    }
+
+    public static void showRWThReadingRAMDirectSharedValsFromCounterVolatile(CounterVolatile counter){
+        Runnable readOnlyRunnable = () -> {
+            try {
+                Thread.sleep(1); // Introduce a small delay to increase the chance of stale reads
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(Thread.currentThread().getName() + " reading value: " + counter.getCount());
+        };
+
+        Runnable writeOnlyRunnable = () -> {
+            // Slow down the write operation so readers might catch earlier value mid-update.
+            // intentionally making the writing thread take longer to finish its work,
+            // so that reading threads get a chance to observe the value of a shared variable
+            // while it's still being modified — and before the final value is reached.
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+//            counter.increment();
+            counter.count = 7;
+            System.out.println(Thread.currentThread().getName() + " incrementing value of counter to: " + counter.getCount());
+        };
+
+        // 5 read only threads reading counter value with some delay
+        // Repeat the test multiple times so stale reads are more likely to show.
+        // Run in a loop to increase the chance of reordering/stale reads.
+        Thread[] readOnlyThreads = new Thread[5];
+        for(int i = 1; i<=5; i++){
+            readOnlyThreads[i - 1]= new Thread(readOnlyRunnable, "Read-Only-Thread-"+i);
+        }
+
+        // 1 write thread incrementing counter 10 times with some delay
+        Thread writeOnlyThread = new Thread(writeOnlyRunnable, "Write-Only-Thread");
+
+        for(int i = 1; i<=5; i++){
+            readOnlyThreads[i - 1].start();
+        }
+        writeOnlyThread.start();
+   }
+
+    // Scenario - Multiple Read One Write without using Volatile
+    public static void showRWThReadingThLclCachedValsFromCounter(Counter counter){
+        Runnable readOnlyRunnable = () -> {
+            try {
+                Thread.sleep(1); // Introduce a small delay to increase the chance of stale reads
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(Thread.currentThread().getName() + " reading value: " + counter.getCount());
+        };
+
+        Runnable writeOnlyRunnable = () -> {
+            // Slow down the write operation so readers might catch earlier value mid-update.
+            // intentionally making the writing thread take longer to finish its work,
+            // so that reading threads get a chance to observe the value of a shared variable
+            // while it's still being modified — and before the final value is reached.
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            counter.increment();
+            System.out.println(Thread.currentThread().getName() + " incrementing value of counter to: " + counter.getCount());
+        };
+
+        // 5 read only threads reading counter value with some delay
+        // Repeat the test multiple times so stale reads are more likely to show.
+        // Run in a loop to increase the chance of reordering/stale reads.
+        Thread[] readOnlyThreads = new Thread[5];
+        for(int i = 1; i<=5; i++){
+            readOnlyThreads[i - 1]= new Thread(readOnlyRunnable, "Read-Only-Thread-"+i);
+        }
+
+        // 1 write thread incrementing counter 10 times with some delay
+        Thread writeOnlyThread = new Thread(writeOnlyRunnable, "Write-Only-Thread");
+
+        for(int i = 1; i<=5; i++){
+            readOnlyThreads[i - 1].start();
+        }
+        writeOnlyThread.start();
+    }
+
+    public static void showROThReadingThLclCachedValsFromCounter(Counter counter){
+        Runnable readOnlyRunnable = () -> {
+            System.out.println(Thread.currentThread().getName() + " reading value: " + counter.getCount());
+        };
+
+        Thread[] readOnlyThreads = new Thread[12];
+        for(int i = 1; i<=12; i++){
+            readOnlyThreads[i - 1]= new Thread(readOnlyRunnable, "Read-Only-Thread-"+i);
+            readOnlyThreads[i - 1].start();
+        }
+
+        for(int i = 1; i<=12; i++) {
+            try {
+                readOnlyThreads[i - 1].join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static void showRaceBetweenWriteOnlyThreads(Counter counter){
         MyThreadRace t1 = new MyThreadRace(counter); // Create first thread
         MyThreadRace t2 = new MyThreadRace(counter); // Create second thread
         MyThreadRace t3 = new MyThreadRace(counter); // Create second thread
@@ -75,5 +186,7 @@ public class MainDemo {
         }
 
         System.out.println("Final counter value: " + counter.getCount()); // Print the final value of the counter
+
     }
+
 }

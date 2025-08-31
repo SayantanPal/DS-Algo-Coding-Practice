@@ -56,7 +56,7 @@ class LRUCache {
 //        super(capacity, 0.75f, true);
 //        this.capacity = capacity;
 //    }
-//    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+//    protected boolean removeOldestEntry(Map.Entry<Integer, Integer> eldest) {
 //        return size() > capacity;
 //    }
 //}

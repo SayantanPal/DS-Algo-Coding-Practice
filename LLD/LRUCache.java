@@ -49,15 +49,3 @@ class LRUCache {
     }
 }
 
-//class LRUCache extends LinkedHashMap<Integer, Integer> {
-//    private int capacity;
-//
-//    public LRUCache(int capacity) {
-//        super(capacity, 0.75f, true);
-//        this.capacity = capacity;
-//    }
-//    protected boolean removeOldestEntry(Map.Entry<Integer, Integer> eldest) {
-//        return size() > capacity;
-//    }
-//}
-

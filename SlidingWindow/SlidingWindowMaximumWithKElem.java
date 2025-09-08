@@ -4,7 +4,7 @@ import java.util.LinkedList;
 // Problem: Sliding Window Maximum with K elements
 // I/P: nums = [1,3,-1,-3,5,3,6,7], k = 3
 // O/P: [3,3,5,5,6,7]
-// Efficient Solution: Use Deque to store useful elements in current window.
+// Efficient Solution: Use Deque to store useful elements in current window for O(n) solution
 
 public class SlidingWindowMaximumWithKElem {
     public int[] maxSlidingWindow(int[] nums, int k) {

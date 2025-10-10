@@ -1,6 +1,3 @@
-import java.util.LinkedList;
-import java.util.Queue;
-
 /*
 * Use ReentrantLock + Condition (Modern Java Alternative)
 * Use BlockingQueue — Java already has a built-in thread-safe queue (ArrayBlockingQueue) that handles all of this for you.
@@ -43,7 +40,7 @@ That’s why we always re-check the condition after waking up, using a while loo
         // P.N.: (but for the very first time, when the thread is waiting for CPU time but not using explicitly wait(), then the thread will get 1st turn even if not notified to wake up by other thread)
     // add notify - other thread will wake up/start
 
-class MultiThreadedProducerConsumer2 {
+class MultiThreadedProducerConsumerBasic {
     // bounded shared buffer used by both producers and consumers
     private int data;
     private boolean available = false;

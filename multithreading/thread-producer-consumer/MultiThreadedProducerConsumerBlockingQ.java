@@ -3,7 +3,7 @@ import java.util.concurrent.BlockingQueue;
 
 
 // Use BlockingQueue — Java already has a built-in thread-safe queue (ArrayBlockingQueue) that handles all of this for you.
-
+// // 👉 The interviewer was checking if he knew modern concurrency utilities instead of just wait() and notify().
 public class MultiThreadedProducerConsumerBlockingQ {
     private final int CAPACITY = 5;
     BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(CAPACITY);

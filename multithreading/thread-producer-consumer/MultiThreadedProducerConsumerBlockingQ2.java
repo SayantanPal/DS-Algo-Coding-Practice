@@ -45,10 +45,10 @@ public class MultiThreadedProducerConsumerBlockingQ2 {
         BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(5);
         Runnable producerRunnable = () -> {
             try {
-                for (int i = 1; i <= 5; i++) {
+                for (int i = 1; i <= 10; i++) {
                     System.out.println("Produced: " + i);
                     queue.put(i); // waits if queue is full
-                    Thread.sleep(500);
+//                    Thread.sleep(500);
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

@@ -7,7 +7,7 @@ public class MainDriver {
         Thread producerThread = new Thread(() -> {
             for(int i = 1; i <= 10; i++){
                 try {
-                    pcbq.produce(i);
+                    pc.produce(i);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -17,7 +17,7 @@ public class MainDriver {
         Thread consumerThread = new Thread(() -> {
             for(int i = 1; i <= 10; i++){
                 try {
-                    pcbq.consume();
+                    pc.consume();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

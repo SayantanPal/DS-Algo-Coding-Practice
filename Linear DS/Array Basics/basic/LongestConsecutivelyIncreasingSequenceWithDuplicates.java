@@ -2,6 +2,8 @@ package basic;
 
 import java.util.*;
 
+// Link: https://neetcode.io/problems/longest-consecutive-sequence?list=blind75
+
 public class LongestConsecutivelyIncreasingSequenceWithDuplicates {
 
     public static int longestConsecutiveSeqWithEachOccuranceTrackingForDuplicates(int[] nums) {

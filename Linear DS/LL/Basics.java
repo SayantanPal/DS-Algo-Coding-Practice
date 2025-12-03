@@ -88,6 +88,19 @@ public class Basics {
         return null;
     }
 
+    public static SLLNode findMiddleNode(SLLNode head) {
+        if(head == null || head.next == null) return head;
+        SLLNode slow = head;
+        SLLNode fast = head;
+
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
 // Event queue that starts reprocessing old events due to misconfigured pointers.
     public static SLLNode detectCycleUsingFloydCycleOrTortoiseHare(SLLNode head) {
         //Your code goes here
@@ -96,7 +109,7 @@ public class Basics {
         SLLNode fast = head;
 
         boolean hasCycle = false;
-        while(fast != null && fast.next != null){
+        while(fast != null && fast.next != null){ // in case of cyclic LL, this condition will never fail
             slow = slow.next;
             fast = fast.next.next;
             if(slow == fast){

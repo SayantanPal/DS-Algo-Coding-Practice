@@ -43,13 +43,13 @@ public class DataStructuresFromArray {
         return graph;
     }
 
-    public static int[][] buildGraphAsAdjMatrix(int v, ArrayList<ArrayList<Integer>> edges, boolean bidirectional) {
+    public static int[][] buildGraphAsAdjMatrix(int v, ArrayList<ArrayList<Integer>> edges, boolean isBidirectional) {
         // create adj undirected graph
         int[][] graph = new int[v][v];
 
         for(ArrayList<Integer> edge: edges){
             graph[edge.get(0)][edge.get(1)] = 1; // u -> v'
-            if(bidirectional) // for undirected graph
+            if(isBidirectional) // for undirected graph
                 graph[edge.get(1)][edge.get(0)] = 1; // v' -> u
         }
         return graph;

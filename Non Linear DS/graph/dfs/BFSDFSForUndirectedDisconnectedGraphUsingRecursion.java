@@ -17,6 +17,12 @@ Sample Output 1:
 3 4
 * */
 
+// Practice Link: https://workat.tech/problem-solving/practice/dfs-of-cyclic-graph/editorial
+// Practice Link: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
+
+// Practice Link: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
+// Practice Link: https://workat.tech/problem-solving/practice/bfs-of-graph
+
 public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
     public static void dfsTraversalRecursive_v1(ArrayList<ArrayList<Integer>> graph, boolean[] visited, ArrayList<Integer> dfs, int currVertex){
@@ -441,11 +447,13 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
         // find neighbour vertices of vertices in current level
         for(int currentVertex: currentLevel){
-            visited[currentVertex] = true;
-            bfs.add(currentVertex);
-            for(int neighbourVertex : graph.get(currentVertex)){
-                if(!visited[neighbourVertex]){
-                    nextLevel.add(neighbourVertex);
+            if(!visited[currentVertex]) { // IMP for this implementation when start vertex is not visited and not preloaded into buffer before firing this rec method
+                visited[currentVertex] = true;
+                bfs.add(currentVertex);
+                for (int neighbourVertex : graph.get(currentVertex)) {
+                    if (!visited[neighbourVertex]) {
+                        nextLevel.add(neighbourVertex);
+                    }
                 }
             }
         }

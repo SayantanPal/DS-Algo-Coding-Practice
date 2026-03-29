@@ -12,9 +12,19 @@ All Subarrays are subsequences and Subsets.
 All Subsequences are Subsets.
 But all subsets are not subsequences and all subsets or subsequences are not subarrays/substrings.
 
+## JAVA HACKS FOR OPTIMISATION
+* In 2D Arrays, for ASC order SORT, use: Arrays.sort(input2DArr, (a, b) -> a[0] - b[0]); faster than: Arrays.sort(input2DArr, Comparator.comparingInt( (int[] input1DArr) -> input1DArr[0]));
+
+
+## GOLDEN RULES OF THUMB FOR INTERVIEWS
+* When tracking occurance:
+  - Fixed/small charset (26 letters, 128 ASCII, 10 digits) → frequency array (even at the cost of multiple pass is more preferrable) over HashMap
+  - Unknown/large key space (strings, arbitrary integers, objects) → HashMap over frequency array
+  - Prefer HashMap/freq arr over HashSet when we can harness the extra power of associated index with the elem either to shift pointers directly or to return indexes(eg: Two Sum, Longest Substr without Repeating Chars)
+
 ## Dynamic Programming(DP) on linear transition
 * Minimum Cost of Climbing Stairs
-* House Robber
+* House Robbers
 * House Robber II
 * Maximum Score which Questions to solve
 * Minimum Ticket Pass Booking Cost to travel

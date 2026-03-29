@@ -50,7 +50,8 @@ public class Basics {
     }
 
     SLLNode removeTail_v2(SLLNode head){
-        if(head == null || head.next == null) return head;
+        if(head == null) return head;
+        if(head.next == null) return head = null;
 
         SLLNode curr = head;
         while(curr.next.next != null){
@@ -68,8 +69,10 @@ public class Basics {
         // approach: if input node is to be deleted,
         // make/clone current input node as next node with data copy
         // drop the next node since current node already behaves as next node
-        node.data = node.next.data;
-        node.next = node.next.next;
+        if(node.next != null) {
+            node.data = node.next.data;
+            node.next = node.next.next;
+        }
     }
 
     public static SLLNode detectCycleUsingHashing(SLLNode head) {
@@ -88,6 +91,7 @@ public class Basics {
         return null;
     }
 
+    // for arr: [1, 2, 3 , 4], it will return 3 as middle element/node
     public static SLLNode findMiddleNode(SLLNode head) {
         if(head == null || head.next == null) return head;
         SLLNode slow = head;

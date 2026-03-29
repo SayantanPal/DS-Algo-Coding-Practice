@@ -365,12 +365,16 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
                 while(!stack.isEmpty()) {
                     int currVertex = stack.pop();
-                    visited[currVertex] = true;
-                    dfs.add(currVertex);
+                    if(!visited[currVertex]) {
+                        visited[currVertex] = true;
+                        dfs.add(currVertex);
 
-                    for(int neighbourVertex : graph.get(currVertex).reversed()){
-                        if(!visited[neighbourVertex]){
-                            stack.push(neighbourVertex);
+                        for (int neighbourVertex : graph.get(currVertex).reversed()) {
+//                    for(int i = graph.get(currVertex).size() - 1; i >= 0 ; i--){
+//                        int neighbourVertex = graph.get(currVertex).get(i);
+                            if (!visited[neighbourVertex]) {
+                                stack.push(neighbourVertex);
+                            }
                         }
                     }
                 }
@@ -402,12 +406,14 @@ public class BFSDFSForUndirectedDisconnectedGraphUsingRecursion {
 
                 while(!q.isEmpty()) {
                     int currVertex = q.poll();
-                    visited[currVertex] = true;
-                    bfs.add(currVertex);
+                    if(!visited[currVertex]) {
+                        visited[currVertex] = true;
+                        bfs.add(currVertex);
 
-                    for(int neighbourVertex: graph.get(currVertex)){
-                        if(!visited[neighbourVertex]){
-                            q.add(neighbourVertex);
+                        for (int neighbourVertex : graph.get(currVertex)) {
+                            if (!visited[neighbourVertex]) {
+                                q.add(neighbourVertex);
+                            }
                         }
                     }
                 }

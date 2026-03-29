@@ -16,7 +16,7 @@ import java.util.TreeSet;
  * until the one in last place gets 1 point.
  *
  * Given an integer array initialRewards of length ‘n’, representing the initial reward points of the customer initially before the final tournament.
- * Find the number of such customers ‘i' (1 <= i <= n) such that, if the ith customer wins the final tournament, i.e., they would have the highest total points.
+ * Find the number of such customers ‘i' (1 <= i <= n) such that, when the ith customer wins the final tournament(gets rewarded with n points), he/she would have the highest total points(ie greater than or equal to the total points achieved by others) among that distribution.
  * Note: The total points for a customer are calculated as the sum of their initialRewards points and the points they would receive from the final tournament (with the winner receiving ‘n’ points)
  *
  *
@@ -70,6 +70,9 @@ import java.util.TreeSet;
  * Customer 4th is wins only then 11+4 = 15 is the highest total points
  */
 
+// Concept: If we need to test if the final tournament winning customer is having highest point in the distribution
+// we need to test if the final tournament winning customer final total points is greater than or equal to total points of  final-tourament runner-up customer (highest point earning customer from the crowd after excluding winning customer) ie initial point of second highest point earning cust + (n-1)
+
 public class CustomerRewards {
 
 
@@ -120,12 +123,14 @@ public class CustomerRewards {
         int countWinners = 0;
 
         for (int i = 0; i < n; i++) {
+
+            // If ith customer wins in final tournament
             int winningReward = initialRewards[i] + n;
 
             // Temporarily remove the ith player's max possible score since they are winning
             pq.remove(initialRewards[i] + (n - 1));
 
-            // If the winning reward is greater than the highest remaining runner-up score, it's a valid win
+            // Concept: If the winning reward is greater than the highest remaining runner-up score, it's a valid win
             if (pq.isEmpty() || winningReward >= pq.peek()) {
                 countWinners++;
             }

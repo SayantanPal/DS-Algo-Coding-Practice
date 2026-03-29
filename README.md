@@ -19,8 +19,18 @@ But all subsets are not subsequences and all subsets or subsequences are not sub
 ## GOLDEN RULES OF THUMB FOR INTERVIEWS
 * When tracking occurance:
   - Fixed/small charset (26 letters, 128 ASCII, 10 digits) → frequency array (even at the cost of multiple pass is more preferrable) over HashMap
+    - use:
+        int[] freq = new int[26];                                                                                                                                               
+        for (char c : wordStr.toCharArray()) freq[c - 'a']++;
   - Unknown/large key space (strings, arbitrary integers, objects) → HashMap over frequency array
   - Prefer HashMap/freq arr over HashSet when we can harness the extra power of associated index with the elem either to shift pointers directly or to return indexes(eg: Two Sum, Longest Substr without Repeating Chars)
+
+## REMEMBER SHORTCUTS:
+- Set<Integer> set = new HashSet<>(Arrays.asList(/* nums boxed */));
+- map.computeIfPresent(key, v -> new ArrayList<>().add(num);
+- lookUpMap.put(key,lookUpMap.getOrDefault(key, 0) + 1)
+- string.length() vs arr.length vs list.size()
+
 
 ## Dynamic Programming(DP) on linear transition
 * Minimum Cost of Climbing Stairs

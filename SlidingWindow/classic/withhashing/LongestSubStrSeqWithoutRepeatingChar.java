@@ -1,4 +1,4 @@
-package withhashing;
+package classic.withhashing;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -52,6 +52,7 @@ public class LongestSubStrSeqWithoutRepeatingChar {
             }
             map.put(c, right);
             maxLen = Math.max(maxLen, right - left + 1);
+            right++;
         }
         return maxLen;
     }

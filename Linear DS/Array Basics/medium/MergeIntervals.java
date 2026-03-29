@@ -5,10 +5,13 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+// Link: https://leetcode.com/problems/merge-intervals/
 // Problem: 2-D Array
 public class MergeIntervals {
 
     public int[][] merge(int[][] intervals) {
+        // after sorting as per start time, all possible overlapping intervals will be adjacent or grouped together
+        // because of strictness constraint: for each interval, [startTime < endTime]
         Arrays.sort(intervals, (a, b) -> a[0] - b[0]); // more optimal than Arrays.sort(intervals, Comparator.comparingInt( (int[] interval) -> interval[0]));
         List<int[]> result = new ArrayList<>();
         int i = 0;
@@ -20,8 +23,8 @@ public class MergeIntervals {
             // when current interval end time is greater than or equals the start time of other interval, overlapping happens
             // then merge all overlapping intervals
             // the output of single merged intervals will have end time as the longest end time among all of the overlapping intervals
-            while(j < intervals.length && endTime >= intervals[j][0]){ // if overlapping interval
-                endTime = Math.max(endTime, intervals[j][1]);
+            while(j < intervals.length && endTime >= intervals[j][0]){ // find overlapping interval
+                endTime = Math.max(endTime, intervals[j][1]); // merged interval end time: longest end time of all overlapping intervals
                 j++;
             }
             result.add(new int[]{startTime, endTime});

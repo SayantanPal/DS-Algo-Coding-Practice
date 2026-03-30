@@ -3,6 +3,8 @@ package basic;
 import java.util.HashMap;
 import java.util.Map;
 
+// Link: https://www.naukri.com/code360/problems/longest-subset-zero-sum_920321?leftPanelTabValue=PROBLEM
+// Constraint: Array members can be negative as well
 public class LongestLengthSubSequenceWithTargetSumIncludingNegatives {
 
     public int lenOfLongestSubarr(int[] arr, int k) {
@@ -38,6 +40,19 @@ public class LongestLengthSubSequenceWithTargetSumIncludingNegatives {
         }
 
         return maxLength;
+    }
+
+    // sliding window works only when all +ve nos
+    public int lenOfLongestSubarr2(int[] arr, int target) {
+        int left = 0, sum = 0, minLen = Integer.MAX_VALUE;
+        for (int right = 0; right < arr.length; right++) {
+            sum += arr[right];           // expand
+            while (sum >= target) {       // shrink while valid
+                minLen = Math.min(minLen, right - left + 1);
+                sum -= arr[left++];
+            }
+        }
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
     }
 
 }

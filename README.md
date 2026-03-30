@@ -26,12 +26,17 @@ But all subsets are not subsequences and all subsets or subsequences are not sub
   - Prefer HashMap/freq arr over HashSet when we can harness the extra power of associated index with the elem either to shift pointers directly or to return indexes(eg: Two Sum, Longest Substr without Repeating Chars)
 * Optimization Problem: When all possible subset(where order or sequence need NOT to be maintained) combinations -> mostly DP
 * Optimization Problem: When all subsequence or subarray -> mostly Sliding Window
+  - BUT for summation optimization problem, sliding window only works for all numbers are among 0 or +ve nos.
+  - in case if there is -ve no, the sliding window logic breaks
+  - prefix sum + hashmap is best for solving such problems
 
 ## REMEMBER SHORTCUTS:
 - Set<Integer> set = new HashSet<>(Arrays.asList(/* nums boxed */));
 - map.computeIfPresent(key, v -> new ArrayList<>().add(num);
 - lookUpMap.put(key,lookUpMap.getOrDefault(key, 0) + 1)
 - string.length() vs arr.length vs list.size()
+- char[] c = wordStr.toCharArray() whereas wordStr = new String(c)
+- for nums as new Integer[], then only HashSet<Integer> set = new HashSet<>(Arrays.asList(nums));
 
 
 ## Dynamic Programming(DP) on linear transition

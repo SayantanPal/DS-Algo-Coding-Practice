@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
+/*
+ * Given an unsorted array of integers,
+ * find the length of the longest sequence of consecutive numbers.
+ * */
 // Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 public class LongestSubStrSeqWithoutRepeatingChar {
 
@@ -16,18 +19,15 @@ public class LongestSubStrSeqWithoutRepeatingChar {
 
         while(right < s.length()){
             char currChar = s.charAt(right);
-            if(set.contains(currChar)){
-                // Shrink the window one character at a time from the left, removing from HashSet until the duplicate is gone
-                // Stale entries in the set needs to be cleared iteratively
-                while(set.contains(currChar)){
-                    set.remove(s.charAt(left));
-                    left++;
-                }
-            } else {
-                set.add(currChar);
-                maxLen = Math.max(maxLen, right - left + 1);
-                right++;
+            // Shrink the window one character at a time from the left, removing from HashSet until the duplicate is gone
+            // Stale entries in the set needs to be cleared iteratively
+            while(set.contains(currChar)){
+                set.remove(s.charAt(left));
+                left++;
             }
+            set.add(currChar);
+            maxLen = Math.max(maxLen, right - left + 1);
+            right++;
         }
         return maxLen;
     }

@@ -1,5 +1,7 @@
 
 // Link: https://leetcode.com/problems/merge-sorted-array/description/
+// Problem: Given two sorted arrays nums1 (size m+n with trailing zeros) and nums2 (size n), merge nums2 into nums1 in-place, sorted.
+// Hint: Hint: Merge from the end, not the beginning. That way you don't overwrite unprocessed elements.
 public class Day12MergeSortedArr {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int k = (m + n) - 1;

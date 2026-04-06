@@ -1,8 +1,7 @@
-package basic;
+package basic.hashingpower;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 // Used in caching, duplicate detection, distributed systems.

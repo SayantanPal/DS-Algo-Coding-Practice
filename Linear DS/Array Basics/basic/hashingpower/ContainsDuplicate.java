@@ -1,3 +1,5 @@
+package basic.hashingpower;
+
 import java.util.HashSet;
 import java.util.Set;
 

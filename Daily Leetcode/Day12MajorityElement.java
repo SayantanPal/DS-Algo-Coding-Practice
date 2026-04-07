@@ -10,11 +10,7 @@ public class Day12MajorityElement {
         Map<Integer, Integer> lookUp = new HashMap<>();
         int n = nums.length;
         for(int i = 0; i < n; i++){
-            if(!lookUp.containsKey(nums[i])){
-                lookUp.put(nums[i], 1);
-            }else{
-                lookUp.put(nums[i], lookUp.get(nums[i]) + 1);
-            }
+            lookUp.put(nums[i], lookUp.getOrDefault(nums[i], 0) + 1);
             if(lookUp.get(nums[i]) >= (n/2) + 1){
                 return nums[i];
             }

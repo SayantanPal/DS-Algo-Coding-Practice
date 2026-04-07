@@ -38,6 +38,37 @@ But all subsets are not subsequences and all subsets or subsequences are not sub
 - char[] c = wordStr.toCharArray() whereas wordStr = new String(c)
 - for nums as new Integer[], then only HashSet<Integer> set = new HashSet<>(Arrays.asList(nums));
 
+## KMP + LPS
+KMP (pattern search in text):
+- Build LPS array of pattern only → O(m) space
+- Scan through text using two pointers + LPS for fallback
+- Text is never stored or copied — just read character by character
+- Total space: O(m) where m = pattern length
+
+LPS alone (computing prefix-suffix for a string):
+- You build LPS array for that string itself → O(n) space
+- Without LPS, when a mismatch happens at position j in the pattern, you go back to the beginning of the pattern and move one position forward in the text.   
+- With LPS, you skip to LPS[j-1] in the pattern — you already know those characters match.
+- Total space: O(n) where n = string length
+
+KMP with LPS:
+    - O(n + m) — never backtracks in the text
+
+So when people say KMP is space-efficient for pattern matching, it's because:
+- Pattern is typically small (say 10 chars)
+- Text can be huge (say 1GB file)
+- You only need O(m) = O(10) extra space, not O(n) = O(1GB)
+
+LPS is closer to: An automaton / state machine. Each index is a state, and on mismatch you follow failure links to a previous state. 
+That's why KMP is often taught as a finite automaton.
+
+
+## Dynamic Programming(DP)
+* 1. Optimal Substructure — optimal solution to the problem contains optimal solutions to subproblems
+* 2. Overlapping Subproblems — same subproblems are solved repeatedly
+
+  Without overlapping subproblems, it's just regular recursion (divide and conquer). 
+  Without optimal substructure, you can't build the final answer from subproblem answers.
 
 ## Dynamic Programming(DP) on linear transition
 * Minimum Cost of Climbing Stairs

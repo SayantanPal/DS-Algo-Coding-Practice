@@ -1,0 +1,8 @@
+  1. ~/dsa-plan.md — The 54-week master plan. What problem to solve each day. I read from it, never modify it.
+  2. ~/dsa-progress-log.md — Your daily log. I update it after every session — stats, solve times, approaches, notes, competency map, streak, pace tracker.
+  3. Memory files (in ~/.claude/projects/.../memory/) — Persist across conversations. Your profile, prep plan overview, communication preferences. So when you start a new
+  chat session, I already know who you are and where you are in the plan.
+
+ Plus the two new ones created :
+  4. ~/lld-plan.md — 24-week LLD plan (starts Week 17)
+  5. ~/hld-plan.md — 23-week HLD plan (starts Week 28)

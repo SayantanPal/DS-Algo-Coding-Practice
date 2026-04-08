@@ -1,6 +1,20 @@
 # DS-Algo-Coding-Practice
 Coding Practice for clearing Interviews
 
+# Floor of a number when div by 200:
+Given by: (A >= 0) ? (A / 200): ( (A % 200) == 0 ? (A / 200) : (A / 200) - 1 )
+
+only 1 edge cond:
+if(A < 0 && A%200 !=0)
+    return (A/200) - 1
+return (A/200)
+
+
+# Ceil of a number when div by 20-0:
+if(A >= 0 && A%200 !=0)
+    return (A/200) + 1
+return (A/200)
+
 Subsets - arr or string elements/items picked should be only from the ones contained in the parent arr/string but can be picked in any order of sequence, also can be randomly dispersed here and there in main parent array Eg: Parent/main Arr: {1,2,3} then {3, 1} is a subset since ordering does not matter. But, {1, 4} is not a subset since 4 is outside element of the main parent array
 
 SubSequences- Subset + ordering/sequence of elements should be maintained. Eg: Parent/main Arr: {1,2,3} then {1,3} is one subsequence, where ordering of 1 and 3 are maintained but any elements might be present in between. But {3, 1} is not a subsequence since ordering/sequence not maintained

@@ -60,6 +60,9 @@ KMP (pattern search in text):
 - Total space: O(m) where m = pattern length
 
 LPS alone (computing prefix-suffix for a string):
+- LPS[i] denotes the number of character matching from the start of string and it denotes the index at which character might have chance to break and test it in current iteration
+- at index i, LPS[i-1] denotes that LPS[i-1] characters have been matched already till this index ie characters from index 0 to index (LPS[i] - 1) matches from the start
+- at index i, LPS[i] can have max value: LPS[i-1] + 1 and min value: 0
 - You build LPS array for that string itself → O(n) space
 - Without LPS, when a mismatch happens at position j in the pattern, you go back to the beginning of the pattern and move one position forward in the text.   
 - With LPS, you skip to LPS[j-1] in the pattern — you already know those characters match.

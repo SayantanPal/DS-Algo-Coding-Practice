@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Link: https://leetcode.com/problems/majority-element/description/
-public class Day12MajorityElement {
+public class Day12MajorityElementNBy2BoyerMooreVotingAlgo {
 
 
     //Overkill - HashMap

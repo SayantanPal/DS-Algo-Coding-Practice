@@ -5,26 +5,34 @@ Coding Practice for clearing Interviews
 Given by: (A >= 0) ? (A / 200): ( (A % 200) == 0 ? (A / 200) : (A / 200) - 1 )
 
 only 1 edge cond:
-if(A < 0 && A%200 !=0)
+if(A < 0 && A%200 !=0) // for a -ve no when not fully divisible, take one step lower for floor
     return (A/200) - 1
 return (A/200)
 
 
-# Ceil of a number when div by 20-0:
-if(A >= 0 && A%200 !=0)
+# Ceil of a number when div by 200:
+if(A >= 0 && A%200 !=0) // for a +ve no when not fully divisible, take 1 step higher for ceil
     return (A/200) + 1
 return (A/200)
 
 Subsets - arr or string elements/items picked should be only from the ones contained in the parent arr/string but can be picked in any order of sequence, also can be randomly dispersed here and there in main parent array Eg: Parent/main Arr: {1,2,3} then {3, 1} is a subset since ordering does not matter. But, {1, 4} is not a subset since 4 is outside element of the main parent array
-
 SubSequences- Subset + ordering/sequence of elements should be maintained. Eg: Parent/main Arr: {1,2,3} then {1,3} is one subsequence, where ordering of 1 and 3 are maintained but any elements might be present in between. But {3, 1} is not a subsequence since ordering/sequence not maintained
-
 SubArray/SubString - SubSequences + no dispersion ie always together with no element in between. Eg:  Parent/main Arr: {1,2,3} then {1, 2} or {1, 2, 3} all are subarray but {1, 3} is not a subarray since without 2 in between, they are not consecutively placed
 
 Therefore,
 All Subarrays are subsequences and Subsets.
 All Subsequences are Subsets.
 But all subsets are not subsequences and all subsets or subsequences are not subarrays/substrings.
+
+# 2 Pointer vs SLIDING WINDOW
+Whenever there is sequence mentioned where ordering matters, these algorithms favour
+Sliding Window will never work if the array contains any negative elements
+
+# Unique/Missing/Duplicate Elements
+XOR operation works for single unique element
+For multiple duplicates, in second iteration while iterating:
+    - if lexicographically smaller unique element is priority, then iterate frequency array or hashmap
+    - if first encountered index or say ordering is priority, then iterate original source array or string
 
 ## JAVA HACKS FOR OPTIMISATION
 * In 2D Arrays, for ASC order SORT, use: Arrays.sort(input2DArr, (a, b) -> a[0] - b[0]); faster than: Arrays.sort(input2DArr, Comparator.comparingInt( (int[] input1DArr) -> input1DArr[0]));

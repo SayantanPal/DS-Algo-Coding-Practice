@@ -1,5 +1,5 @@
 // Link: https://leetcode.com/problems/maximum-product-subarray/description/
-public class Day13MaxProductSubArrKadane {
+public class Day13MaxProductSubArrKadaneAlgo {
 
     public int maxProduct(int[] nums) {
         int minBeforeCurrentIndex = nums[0];

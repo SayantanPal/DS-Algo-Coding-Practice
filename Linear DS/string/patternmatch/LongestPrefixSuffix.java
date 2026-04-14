@@ -24,15 +24,23 @@ public class LongestPrefixSuffix {
             lps[i] = x + 1;
         }
 
+        for(int i = 0; i < lps.length; i++){
+            System.out.print(lps[i] + ",");
+        }
+
         if(lps[n-1] == 0){
             return "-1";
         }
-
 
         String lpsStr = "";
         for(int i = n - lps[n-1]; i < n; i++){
             lpsStr+=str.charAt(i);
         }
         return lpsStr;
+    }
+
+    public static void main(String[] args){
+        String str = "sad#sadbutsad";
+        longestPrefixSuffix(str);
     }
 }

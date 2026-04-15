@@ -51,6 +51,16 @@ For multiple duplicates, in second iteration while iterating:
   - BUT for summation optimization problem, sliding window only works for all numbers are among 0 or +ve nos.
   - in case if there is -ve no, the sliding window logic breaks
   - prefix sum + hashmap is best for solving such problems
+* Multiple passes or tight loops → toCharArray() -> then indexed access v/s. Single pass on a short string → charAt() is fine.
+  charAt(i) — method call with bounds checking on every invocation
+  toCharArray()[i] — one upfront array copy, then direct array index access (no bounds check overhead per access)
+   For a single pass, negligible difference. For multiple passes over the same string, toCharArray() wins because:
+     1. Array access is a raw memory offset — fastest possible
+     2. No method call overhead per character
+     3. Better CPU cache locality (contiguous memory)
+* String concatenation within nested loops is heavy. Instead use StringBuffer or StringBuilder to create string and then convert back using .toString()
+
+
 
 ## REMEMBER SHORTCUTS:
 - Set<Integer> set = new HashSet<>(Arrays.asList(/* nums boxed */));

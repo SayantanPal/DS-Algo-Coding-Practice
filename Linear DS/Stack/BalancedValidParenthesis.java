@@ -1,12 +1,11 @@
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 /*
 * Coding: Write a method to detect if a given string has balanced parentheses — {}, [], and ()
 * */
 // Link: https://leetcode.com/problems/valid-parentheses/
-public class BalancedParenthesis {
+public class BalancedValidParenthesis {
     private boolean isMatching(char open, char close) {
         return (open == '(' && close == ')') ||
                 (open == '[' && close == ']') ||

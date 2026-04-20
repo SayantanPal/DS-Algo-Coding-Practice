@@ -2,9 +2,17 @@ package patternmatch;
 
 // Link: https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
 // T(n) = O(n*m)
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Rule:
+// Sliding window = useful when order doesn't matter (anagrams, sums, frequencies). Sliding window shines when you're tracking aggregate properties across the window (frequency counts, sums, max/min)
+// Direct comparison = better when order matters (exact match). For exact positional matching, direct char-by-char comparison
+//  with early exit wins.
 public class FindSinglePatternSearchSubstringUsingSlidingWindow {
 
-    // Slowest - 164ms Runtime
+    // Slowest:Worst - 164ms Runtime
     public int strStr_v0(String text, String searchSubStr) {
         int n = text.length(), m = searchSubStr.length();
         int i = 0, j = 0;
@@ -24,7 +32,7 @@ public class FindSinglePatternSearchSubstringUsingSlidingWindow {
         return -1;
     }
 
-    // Slow - 143ms Runtime
+    // Slow:Worse - 143ms Runtime
     public int strStr_v1(String text, String searchSubStr) {
         int n = text.length(), m = searchSubStr.length();
         int i = 0, j = 0;
@@ -45,11 +53,43 @@ public class FindSinglePatternSearchSubstringUsingSlidingWindow {
         return -1;
     }
 
+    // comment outs are for anagram checking where sequence doesnot matter
+    public int strStr(String s, String p) {
+        int left = 0, right = 0;
+        List<Integer> result = new ArrayList<>();
+        // int[] wFreq = new int[26];
+        // int[] pFreq = new int[26];
+
+        // for (char c : p.toCharArray()) {
+        //     pFreq[c - 'a']++;
+        // }
+
+        char[] sArr = s.toCharArray();
+
+        while(right < sArr.length){
+            while(right - left + 1 > p.length()){
+                // wFreq[sArr[left] - 'a']--;
+                left++;
+            }
+            // wFreq[sArr[right] - 'a']++;
+            if((right - left + 1) == p.length()
+                    && s.substring(left, right + 1).equals(p)){ //&& Arrays.equals(wFreq, pFreq)){
+                result.add(left);
+            }
+            right++;
+        }
+        if(result.isEmpty()){
+            return -1;
+        }
+        return result.get(0);
+    }
+
     // Better among sliding window -  1ms Runtime
-    public int strStr_v2(String text, String searchSubStr) {
+    public int strStr_v3(String text, String searchSubStr) {
         int n = text.length(), m = searchSubStr.length();
         int i = 0, j = 0;
         while(i < n){
+            // // direct comparison with early exit
             while((j < m) && (i <= n - m) && (text.charAt(i + j) == searchSubStr.charAt(j))){
                 j++;
             }
@@ -63,12 +103,13 @@ public class FindSinglePatternSearchSubstringUsingSlidingWindow {
         return -1;
     }
 
-    // Better among sliding window - 1ms runtime
-    public int strStr_v3(String text, String searchSubStr) {
+    // Best among sliding window - 1ms runtime
+    public int strStr_v4(String text, String searchSubStr) {
         int n = text.length(), m = searchSubStr.length();
         int i = 0;
         while(i < n){
             int j = 0;
+            // direct comparison with early exit
             while((j < m) && (i <= n - m) && (text.charAt(i + j) == searchSubStr.charAt(j))){
                 j++;
             }

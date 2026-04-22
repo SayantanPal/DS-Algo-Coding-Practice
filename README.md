@@ -15,6 +15,16 @@ if(A >= 0 && A%200 !=0) // for a +ve no when not fully divisible, take 1 step hi
     return (A/200) + 1
 return (A/200)
 
+# RAW CPU POWER - in case of single digit integer parsing from character
+if Character.isDigit(str.charAt(i)), int digit = str.charAt(i) - '0' performs better than int digit = Integer.parseInt(str.charAt(i))
+USE Integer.parseInt with >1 digit len String like Integer.parseInt(str.substring(i, j));
+
+# RAW CPU POWER - 
+str.toCharArray()[i] performs better than str.charAt(i);
+but preserving str outperforms in some cases when benefit of 
+    - str.substring(i,j) can be used as faster alternate to for loop over char array 
+    - str.equals(str0) can be used as faster alternative than Array.equals(str.toCharArray(), str0.toCharArray())
+
 Subsets - arr or string elements/items picked should be only from the ones contained in the parent arr/string but can be picked in any order of sequence, also can be randomly dispersed here and there in main parent array Eg: Parent/main Arr: {1,2,3} then {3, 1} is a subset since ordering does not matter. But, {1, 4} is not a subset since 4 is outside element of the main parent array
 SubSequences- Subset + ordering/sequence of elements should be maintained. Eg: Parent/main Arr: {1,2,3} then {1,3} is one subsequence, where ordering of 1 and 3 are maintained but any elements might be present in between. But {3, 1} is not a subsequence since ordering/sequence not maintained
 SubArray/SubString - SubSequences + no dispersion ie always together with no element in between. Eg:  Parent/main Arr: {1,2,3} then {1, 2} or {1, 2, 3} all are subarray but {1, 3} is not a subarray since without 2 in between, they are not consecutively placed
@@ -64,7 +74,8 @@ For multiple duplicates, in second iteration while iterating:
 
 ## REMEMBER SHORTCUTS:
 - Set<Integer> set = new HashSet<>(Arrays.asList(/* nums boxed */));
-- map.computeIfPresent(key, v -> new ArrayList<>().add(num);
+- map.computeIfPresent(key, v -> new ArrayList<>().add(num); // when needed to create a entry on missing
+- map.getOrDefault(key, <default_val>); // when needed to get a entry on missing
 - lookUpMap.put(key,lookUpMap.getOrDefault(key, 0) + 1)
 - string.length() vs arr.length vs list.size()
 - char[] c = wordStr.toCharArray() whereas wordStr = new String(c)

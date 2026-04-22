@@ -233,3 +233,6 @@ Note:
 2. While doing Capacity checking, consider after you add the element (virtually ie. Using + 1) will it exceed the capacity or not
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+# PRACTICE PROBLEMS MINES:
+https://www.geeksforgeeks.org/explore?page=1&sortBy=submissions

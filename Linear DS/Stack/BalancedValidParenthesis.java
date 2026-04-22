@@ -34,6 +34,6 @@ public class BalancedValidParenthesis {
             else if (c == '[') stack.push(']');
             else if (stack.isEmpty() || stack.pop() != c) return false;
         }
-        return stack.isEmpty();
+        return stack.isEmpty(); // this check is needed when input is for ex say: ({[
     }
 }

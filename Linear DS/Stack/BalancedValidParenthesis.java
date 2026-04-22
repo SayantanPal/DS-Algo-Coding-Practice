@@ -5,6 +5,7 @@ import java.util.Deque;
 * Coding: Write a method to detect if a given string has balanced parentheses — {}, [], and ()
 * */
 // Link: https://leetcode.com/problems/valid-parentheses/
+// link: https://www.geeksforgeeks.org/problems/parenthesis-checker2744/1
 public class BalancedValidParenthesis {
     private boolean isMatching(char open, char close) {
         return (open == '(' && close == ')') ||

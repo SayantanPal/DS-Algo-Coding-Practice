@@ -20,16 +20,16 @@ public class EncoderDecoderString {
         List<String> result = new ArrayList<>();
         int i = 0;
         while (i < str.length()) {
-            int hashIdx = str.indexOf('#', i);
-            int len = Integer.parseInt(str.substring(i, hashIdx));
+            int hashIdx = str.indexOf('#', i); // immediate index of # after each ith index;
+            int len = Integer.parseInt(str.substring(i, hashIdx)); // in case of multiple digit length, hashIndex -1 points to last index of length
+            // hashIndex points to hashindex; actual string starts from index hashIndex + 1 till the earlier-recorded length of string
             result.add(str.substring(hashIdx + 1, hashIdx + 1 + len));
             i = hashIdx + 1 + len;
         }
         return result;
+        // in case if the return type as String[] being asked
+        // return decodedStrList.toArray(new String[0]);//decodedStrList.stream().toArray(String[]::new);
     }
-
-
-
 
 
     public static final String EMPTY_STRING = "EMPTY_STRING";

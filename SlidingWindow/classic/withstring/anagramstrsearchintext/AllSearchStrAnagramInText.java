@@ -1,4 +1,4 @@
-package classic.withstring;
+package classic.withstring.anagramstrsearchintext;
 
 import java.util.ArrayList;
 import java.util.Arrays;

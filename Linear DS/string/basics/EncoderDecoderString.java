@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Link: https://neetcode.io/problems/string-encode-and-decode/question
+// Link: https://www.geeksforgeeks.org/problems/encode-and-decode-strings/1
 public class EncoderDecoderString {
 
     public String encode_v2(List<String> strs) {

@@ -9,11 +9,26 @@ if(A < 0 && A%200 !=0) // for a -ve no when not fully divisible, take one step l
     return (A/200) - 1
 return (A/200)
 
-
 # Ceil of a number when div by 200:
 if(A >= 0 && A%200 !=0) // for a +ve no when not fully divisible, take 1 step higher for ceil
     return (A/200) + 1
 return (A/200)
+
+# MATHS - Calculate Length of a number by iteratively trimmming out last digit and get the last digit for every trimmed number
+while(N > 0){
+    N /= 10; // N gets trimmed out from the last digit
+}
+
+# RAW CPU POWER - 
+ONLY When base is bounded AND ONLY if numbers are +ve(non-neg) like a)-d):
+a) lowercase strings where possible chars are 26 ie base 26, 
+b) ascii where possible chars are 128 ie base 128, 
+c) numbers within some positive range say from 0<=num<=1000 ie base = 1001
+d) binary nos where base is 2
+
+Use: boolean[] array as a lookUp or int[] array as a frequency/occurance count rather over a HashSet
+because Indexed access is much more faster than Hash collision
+
 
 # RAW CPU POWER - in case of single digit integer parsing from character
 if Character.isDigit(str.charAt(i)), int digit = str.charAt(i) - '0' performs better than int digit = Integer.parseInt(str.charAt(i))
@@ -71,6 +86,17 @@ For multiple duplicates, in second iteration while iterating:
 * String concatenation within nested loops is heavy. Instead use StringBuffer or StringBuilder to create string and then convert back using .toString()
 
 
+## JAVA LANGUAGE SPECIFIC
+A. Convert List of Integers List<Integer> list to int[] array(comes with Stream performance Overhead):
+list
+    .stream()
+    .mapToInt(i -> i) // .mapToInt(Integer::intValue)
+    .toArray();
+
+B. Convert List of String List<String> list to String[] array(comes with Stream performance Overhead):
+list
+    // .stream()
+    .toArray(new String[0]); //.toArray(String[]::new);
 
 ## REMEMBER SHORTCUTS:
 - Set<Integer> set = new HashSet<>(Arrays.asList(/* nums boxed */));

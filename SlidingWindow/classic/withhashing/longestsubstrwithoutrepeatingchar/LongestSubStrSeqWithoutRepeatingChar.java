@@ -1,4 +1,4 @@
-package classic.withhashing;
+package classic.withhashing.longestsubstrwithoutrepeatingchar;
 
 import java.util.HashMap;
 import java.util.HashSet;

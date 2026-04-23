@@ -1,4 +1,4 @@
-/*
+package validcustomexpression;/*
 * Given a string that contains only three characters: {, }, and *. A * can represent either a {, a }, or an empty string.
 * Write a function to check if the expression is valid.
 *

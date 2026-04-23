@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+// Link: https://leetcode.com/problems/intersection-of-two-arrays/
 public class IntersectionOfTwoArrays {
 
     public int[] intersection(int[] nums1, int[] nums2) {

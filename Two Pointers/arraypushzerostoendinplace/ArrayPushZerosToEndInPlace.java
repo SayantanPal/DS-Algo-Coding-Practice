@@ -1,3 +1,5 @@
+package arraypushzerostoendinplace;
+
 public class ArrayPushZerosToEndInPlace {
 
     public static void pushZerosToEndInPlace(int[] arr) {

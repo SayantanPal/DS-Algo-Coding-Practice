@@ -1,3 +1,5 @@
+package checkvalidstringpalindrome;
+
 // Link: https://leetcode.com/problems/valid-palindrome/
 public class CheckStrPalindromeExceptNonAlphaNumericChar {
     public boolean isPalindrome(String s) {

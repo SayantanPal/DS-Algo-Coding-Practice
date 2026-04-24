@@ -1,3 +1,5 @@
+package hashmap;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +33,7 @@ public class IntersectionOfTwoArraysWithDuplicates {
     // since input nos are in bounded range from 0 to 1000,
     // replacing hashmap with freq array is faster
     public int[] intersect_optimized(int[] nums1, int[] nums2) {
-        int[] lookUp = new int[1001]; //HashMap<Integer, Integer> lookUp = new HashMap<>();
+        int[] lookUp = new int[1001]; //hashmap<Integer, Integer> lookUp = new hashmap<>();
         for(int i: nums1){
             lookUp[i]++; // lookUp.put(i, lookUp.getOrDefault(i, 0) + 1);
         }

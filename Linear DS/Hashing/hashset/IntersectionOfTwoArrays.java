@@ -1,3 +1,5 @@
+package hashset;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -30,7 +32,7 @@ public class IntersectionOfTwoArrays {
 
     // ONLY IF range is bounded, say from 0 to some 10^9 - 1
     public int[] intersection_v2(int[] nums1, int[] nums2) {
-        boolean[] lookUp = new boolean[1001]; // Set<Integer> lookUp = new HashSet<>();
+        boolean[] lookUp = new boolean[1001]; // Set<Integer> lookUp = new hashset<>();
         for(int i: nums1){
             lookUp[i] = true; // lookUp.add(i);
         }

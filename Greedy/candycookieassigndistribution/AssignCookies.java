@@ -1,3 +1,5 @@
+package candycookieassigndistribution;
+
 import java.util.Arrays;
 
 // https://leetcode.com/problems/assign-cookies/

@@ -11,7 +11,7 @@ So, the smallest prime no is 2
 # System.out.println("123" + 4 + 5); => 12345 // it is always read for left to right maintaining BODMAS rule. String at the beginning shows concatenation
 # System.out.println(4 + 5 + "123"); => 9123
 
-# Integer(default non decimal no.) < Long < Float < Double (default decimal no.)
+# Integer(32-bit default non decimal no. with capacity range of 10^9) < Long (64-bit capacity range: 9.22 x 10^18) < Float (32-bit capacity range: 3 x 10^38)  < Double (64-bit default decimal no. with capacity range: 1.7 x 10^308)
 NOTE: that's why for long and float, we explicitly mention 
     Float => 0.5f or (float) a where a = 0.5
     Long => 5L or (long) b where b = 5
@@ -25,8 +25,8 @@ NOTE: that's why for long and float, we explicitly mention
 int a = 10^5;
 int b = 10^5;
 
-long result = a*b; // -> Garbage value because int*int is done by temporary CPU int container and outside the range of int gives garbage val
-long result = (long)(a*b); // -> same, only type casting after garbage value calc
+long result = a * b; // -> Garbage value because int*int is done by temporary CPU int container and outside the range of int gives garbage val
+long result = (long)(a * b); // -> same, only type casting after garbage value calc
 long result = (long)a * b; // -> correct because
 
 # Floor of a number when div by 200:
@@ -47,6 +47,15 @@ while(N > 0){
     N /= 10; // N gets trimmed out from the last digit
 }
 
+# Good Basic Introductory Exercise-
+1. Floor of a number when div by 200, where the number can be positive or negative as well
+2. Ceil of a number when div by 200, where the number can be positive or negative as well
+3. Check length of a number and also if a number is palindrome or not, given number can be negative as well
+4. Print no of days for a given month in non-leap year
+5. Code LCM and GCD/HCF separately both without using one another by formula
+6. Code Even and Odd number and a multiple of a number,say M(given) in a series of numbers from 1 to N(given) where worst case time complexity is less than O(N) in both case
+7. Check a number prime or not with average time complexity less than O(N) [ particularly/specifically for composite numbers]
+
 # RAW CPU POWER - 
 ONLY When base is bounded AND ONLY if numbers are +ve(non-neg) like a)-d):
 a) lowercase strings where possible chars are 26 ie base 26, 
@@ -56,7 +65,6 @@ d) binary nos where base is 2
 
 Use: boolean[] array as a lookUp or int[] array as a frequency/occurance count rather over a HashSet
 because Indexed access is much more faster than Hash collision
-
 
 # RAW CPU POWER - in case of single digit integer parsing from character
 if Character.isDigit(str.charAt(i)), int digit = str.charAt(i) - '0' performs better than int digit = Integer.parseInt(str.charAt(i))

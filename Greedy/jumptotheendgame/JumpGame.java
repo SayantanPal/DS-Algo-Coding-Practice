@@ -1,4 +1,23 @@
+package jumptotheendgame;
+import java.util.ArrayList;
+
 public class JumpGame {
+
+    public static boolean jump_to_the_end(ArrayList<Integer> nums) {
+        // Set the initial destination to the last index in the array.
+        int destination = nums.size() - 1;
+        // Traverse the array in reverse to see if the destination can be reached by
+        // earlier indexes.
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            // If we can reach the destination from the current index, set this index as
+            // the new destination.
+            if (i + nums.get(i) >= destination) {
+                destination = i;
+            }
+        }
+        // If the destination is index 0, we can jump to the end from index 0.
+        return destination == 0;
+    }
 
     public static boolean canJump(int[] nums) {
 

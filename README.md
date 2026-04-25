@@ -84,7 +84,8 @@ For multiple duplicates, in second iteration while iterating:
      2. No method call overhead per character
      3. Better CPU cache locality (contiguous memory)
 * String concatenation within nested loops is heavy. Instead use StringBuffer or StringBuilder to create string and then convert back using .toString()
-
+* Remember for Queues(FIFO):
+  * [LHS] FRONT/HEAD/FIRST(delete/dequeue/poll/pollFirst/pop/remove/removeFirst) <<<---- REAR/TAIL/BACK/LAST(insert/enqueue) [RHS]
 
 ## JAVA LANGUAGE SPECIFIC
 A. Convert List of Integers List<Integer> list to int[] array(comes with Stream performance Overhead):

@@ -3,7 +3,7 @@ package withhashing;
 import java.util.HashMap;
 import java.util.Map;
 
-// Link:
+// Link: https://leetcode.com/problems/subarray-sum-equals-k/
 public class AllPossibleSubarraySumEqualsK {
 
     public int subarraySum(int[] nums, int k) {

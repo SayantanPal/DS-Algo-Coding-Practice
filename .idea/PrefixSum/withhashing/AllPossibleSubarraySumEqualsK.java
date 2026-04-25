@@ -3,7 +3,8 @@ package withhashing;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SubarraySumEqualsK {
+// Link:
+public class AllPossibleSubarraySumEqualsK {
 
     public int subarraySum(int[] nums, int k) {
         Map<Integer, Integer> lookUp = new HashMap<>();

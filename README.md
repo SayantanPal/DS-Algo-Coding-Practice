@@ -1,6 +1,34 @@
 # DS-Algo-Coding-Practice
 Coding Practice for clearing Interviews
 
+# Eligible Divisor of a number N ranges between 1 to N
+# Prime No - Number that has EXACTLY 2 distinct divisors
+NOTE: Wrong defination is "A number that is only fully/completely/perfectly divided by 1 and itself.". 
+Contradiction is 1. 1 is a no which is divisible by 1 and itself but 1 is NOT a prime No.
+So, as per the correct defination, 1 has 2 divisors which are same, that does not account EXACTLY 2 divisors
+So, the smallest prime no is 2
+
+# System.out.println("123" + 4 + 5); => 12345 // it is always read for left to right maintaining BODMAS rule. String at the beginning shows concatenation
+# System.out.println(4 + 5 + "123"); => 9123
+
+# Integer(default non decimal no.) < Long < Float < Double (default decimal no.)
+NOTE: that's why for long and float, we explicitly mention 
+    Float => 0.5f or (float) a where a = 0.5
+    Long => 5L or (long) b where b = 5
+
+# <Bigger Type> = < Smaller Val> // implicit type-casting
+# <Smaller Type> = <Bigger Type Val> // explicit type-casting
+
+# Operand_1 OPERATOR Operand_2 -> here either Operand_1 or Operand_2 can be of bigger datatype for the output to be also of same bigger datatype
+
+
+int a = 10^5;
+int b = 10^5;
+
+long result = a*b; // -> Garbage value because int*int is done by temporary CPU int container and outside the range of int gives garbage val
+long result = (long)(a*b); // -> same, only type casting after garbage value calc
+long result = (long)a * b; // -> correct because
+
 # Floor of a number when div by 200:
 Given by: (A >= 0) ? (A / 200): ( (A % 200) == 0 ? (A / 200) : (A / 200) - 1 )
 

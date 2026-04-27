@@ -12,7 +12,8 @@ public class TopKFreqElements {
             freqLookUp.put(num, freqLookUp.getOrDefault(num, 0) + 1);
         }
 
-
+        // in case of all unique element in nums array in worst case,
+        // count of elements = length of nums array
         List<Integer>[] freqBucket = new List[nums.length + 1]; //array of lists
 
         // for multiple elements having same occurance,

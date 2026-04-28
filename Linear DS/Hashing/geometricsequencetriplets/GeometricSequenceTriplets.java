@@ -1,4 +1,4 @@
-package geometricsequencetriplets.GeometricSequenceTriplets;
+package geometricsequencetriplets;
 
 import java.util.ArrayList;
 import java.util.HashMap;

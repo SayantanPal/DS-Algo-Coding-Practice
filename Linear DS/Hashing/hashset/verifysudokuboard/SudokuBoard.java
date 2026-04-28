@@ -1,4 +1,4 @@
-package withloop.verifysudokuboard;
+package hashset.verifysudokuboard;
 
 import java.util.ArrayList;
 import java.util.HashSet;

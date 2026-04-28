@@ -47,6 +47,66 @@ while(N > 0){
     N /= 10; // N gets trimmed out from the last digit
 }
 
+
+# CHECK INTEGER OVERFLOW CONDITION
+ a = <some_computation>
+overflow condition: <some_computation> > Integer.MAX_VALUE
+
+eg: some_computation: reverseX*10 + lastDigit,
+you should check before computation happens => if( reverseX < ( Integer.MAX_VALUE - lastDigit)/10 )
+
+# DECIMAL POINT PRECISION
+
+all numbers except 1/2, 1/(2^2), 1/(2^3), 1/(2^n), will have decimal point precision issue.
+
+eg: 
+
+double a  = 0.4, b = 0.4;
+if(a + b == 0.8){ // 0.8 has default decimal datatype as double
+    System.out.println(true);
+}else{
+    System.out.println(false); // answer is false since 0.4 is not a denominator in the multiple or power of 2
+}
+
+
+
+// REMEDY 1 - 
+
+boolean isEqual(double a, double b) {                                                                                                                                 
+    double epsilon = 1e-9; // double — 64-bit, ~15-16 decimal digits precision → 1e-9 is safe                                                                                                                                                          
+    return Math.abs(a - b) < epsilon; // float — 32-bit, ~6-7 decimal digits precision → 1e-6 is appropriate                                                                                                                                              
+}
+
+boolean isEqual(float a, float b) {                                                                                                                                   
+    float epsilon = 1e-6f;                                                                                                                                                          
+    return Math.abs(a - b) < epsilon;                                                                                                                                               
+}
+
+double a = 0.4;                                                                                                                                                                     
+double b = 0.4;                                                                                                                                                                     
+double sum = a + b;
+
+if(isEqual(sum, 0.8, 1e-9)){
+    System.out.println(true); // answer is true
+}else{
+    System.out.println(false);
+}
+
+
+// REMEDY 2 - widely used in financial systems
+import java.math.BigDecimal;
+
+BigDecimal a = new BigDecimal("0.4");                                                                                                                                               
+BigDecimal b = new BigDecimal("0.4");
+BigDecimal target = new BigDecimal("0.8");
+
+if(a.add(b).compareTo(target) == 0){ // compareTo instead of equals — because equals also checks scale (0.8 vs 0.80 would be false with equals)
+    System.out.println(true); // answer is true
+}else{
+    System.out.println(false);
+}
+
+
 # Good Basic Introductory Exercise-
 1. Floor of a number when div by 200, where the number can be positive or negative as well
 2. Ceil of a number when div by 200, where the number can be positive or negative as well

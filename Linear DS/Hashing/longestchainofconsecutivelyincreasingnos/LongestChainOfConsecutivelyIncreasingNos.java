@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 // Link: https://leetcode.com/problems/longest-consecutive-sequence/
+// Link: https://www.naukri.com/code360/problems/longest-consecutive-sequence_759408?leftPanelTabValue=PROBLEM
 public class LongestChainOfConsecutivelyIncreasingNos {
 
     public int longest_chain_of_consecutive_numbers_brute_force(ArrayList<Integer> nums) {

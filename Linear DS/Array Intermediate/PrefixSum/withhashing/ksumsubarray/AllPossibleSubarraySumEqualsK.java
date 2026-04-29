@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Link: https://leetcode.com/problems/subarray-sum-equals-k/
+// link: https://www.geeksforgeeks.org/problems/subarrays-with-sum-k/1
 public class AllPossibleSubarraySumEqualsK {
 
     public int k_sum_subarrays(ArrayList<Integer> nums, int k) {

@@ -2,6 +2,7 @@ package hashmap;
 import java.util.*;
 
 // Link: https://leetcode.com/problems/top-k-frequent-elements/
+// link: https://www.geeksforgeeks.org/problems/subarrays-with-sum-k/1
 public class TopKFreqElements {
 
     public int[] topKFrequent(int[] nums, int k) {

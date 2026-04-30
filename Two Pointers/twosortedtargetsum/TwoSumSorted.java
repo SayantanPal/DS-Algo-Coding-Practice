@@ -7,15 +7,15 @@ public class TwoSumSorted {
         int[] result = new int[2];
         int n = numbers.length;
 
-        int slow = 0, fast = n - 1;
-        while(slow < fast){
-            if(numbers[slow] + numbers[fast] > target){
-                fast--;
-            }else if(numbers[slow] + numbers[fast] < target){
-                slow++;
+        int left = 0, right = n - 1;
+        while(left < right){
+            if(numbers[left] + numbers[right] > target){
+                right--;
+            }else if(numbers[left] + numbers[right] < target){
+                left++;
             }else{
-                result[0] = slow + 1;
-                result[1] = fast + 1;
+                result[0] = left + 1;
+                result[1] = right + 1;
                 break;
             }
         }

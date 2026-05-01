@@ -1,6 +1,15 @@
 # DS-Algo-Coding-Practice
 Coding Practice for clearing Interviews
 
+# DIVISORS -> 
+    All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'
+
+# FACTORS ->
+    DIVISORs that can perfectly/fully/completely divide (without leaving any remainder i.e., 0 remainder) a number n
+
+# MULTIPLES ->
+    Possible Dividends that can be perfectly/fully/completely divided (without leaving any remainder i.e., 0 remainder) by any number as divisor.
+
 # Eligible Divisor of a number N ranges between 1 to N
 # Prime No - Number that has EXACTLY 2 distinct divisors
 NOTE: Wrong defination is "A number that is only fully/completely/perfectly divided by 1 and itself.". 

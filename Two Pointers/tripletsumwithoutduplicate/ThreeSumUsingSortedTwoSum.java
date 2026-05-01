@@ -1,4 +1,4 @@
-package threesumusingsortedtwosum;
+package tripletsumwithoutduplicate;
 
 import java.util.ArrayList;
 import java.util.Arrays;

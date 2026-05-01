@@ -10,7 +10,10 @@ import java.util.List;
 // Or you sort each triplet before adding to the Set → you're sorting anyway
 //  n log n you "save" costs you 50x in constant factor overhead from hashing and duplicate management
 
-
+/**
+ * Key concept: Sort + fix one element + two pointers on the rest. Skip duplicates to avoid duplicate triplets.
+ * This is a top FAANG interview question. Think of it as: for each nums[i], solve Two Sum II on the remaining sorted array. Handle duplicate skipping carefully.
+ */
 // Link: https://leetcode.com/problems/3sum/
 public class ThreeSumUsingSortedTwoSum {
 

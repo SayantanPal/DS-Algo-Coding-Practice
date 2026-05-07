@@ -155,8 +155,11 @@ All Subsequences are Subsets.
 But all subsets are not subsequences and all subsets or subsequences are not subarrays/substrings.
 
 # 2 Pointer vs SLIDING WINDOW
-Whenever there is sequence mentioned where ordering matters, these algorithms favour
-Sliding Window will never work if the array contains any negative elements
+* Whenever there is sequence mentioned where ordering matters, these algorithms favour
+
+* Sliding Window will never work if the array contains any negative elements
+Why: The window shrink relies on a monotonic property — "expanding right pointer towards right increases some quantity along with the window size, shrinking left pointer from left to right decreases same quantity along with the window size." 
+* With negatives, removing an element from left could behave/result in opposite way - say, left pointer shrinking increase the sum, and right pointer expanding could decrease it. You lose the guarantee that shrinking helps.
 
 # Unique/Missing/Duplicate Elements
 XOR operation works for single unique element

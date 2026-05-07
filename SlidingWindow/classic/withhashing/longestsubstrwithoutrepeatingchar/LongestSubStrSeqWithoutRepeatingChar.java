@@ -106,11 +106,13 @@ public class LongestSubStrSeqWithoutRepeatingChar {
         int maxLen = 0;
         while(right < sArr.length){
             char charAtRight = sArr[right];
+            // till the time, we reach only single char occurance at right
+            // we keep on evicting the right-character from left which is duplicated somewhere in between
             while(freq[charAtRight] > 0){
                 char charAtLeft = sArr[left];
                 freq[charAtLeft]--;
                 left++; // shrink to index after duplicate char at left
-            }
+            } //  loop ends when we have shrinked the window into a size where there is no duplicate right-character in between
             freq[charAtRight]++;
             right++;
             maxLen = Math.max(maxLen, right - left);

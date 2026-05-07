@@ -170,7 +170,6 @@ For multiple duplicates, in second iteration while iterating:
 ## JAVA HACKS FOR OPTIMISATION
 * In 2D Arrays, for ASC order SORT, use: Arrays.sort(input2DArr, (a, b) -> a[0] - b[0]); faster than: Arrays.sort(input2DArr, Comparator.comparingInt( (int[] input1DArr) -> input1DArr[0]));
 
-
 ## GOLDEN RULES OF THUMB FOR INTERVIEWS
 * When tracking occurance:
   - Fixed/small charset (26 letters, 128 ASCII, 10 digits) → frequency array (even at the cost of multiple pass is more preferrable) over HashMap
@@ -193,7 +192,9 @@ For multiple duplicates, in second iteration while iterating:
      3. Better CPU cache locality (contiguous memory)
 * String concatenation within nested loops is heavy. Instead use StringBuffer or StringBuilder to create string and then convert back using .toString()
 * Remember for Queues(FIFO):
-  * [LHS] FRONT/HEAD/FIRST(delete/dequeue/poll/pollFirst/pop/remove/removeFirst) <<<---- REAR/TAIL/BACK/LAST(insert/enqueue) [RHS]
+  -[LHS] FRONT/HEAD/FIRST(delete/dequeue/poll/pollFirst/pop/remove/removeFirst) <<<---- REAR/TAIL/BACK/LAST(insert/enqueue) [RHS]
+* Frequency Bucket works faster than HashMap only when the numbers are strictly in range between [0, (2^31 - 1) ] or [0, 10^9]
+* Never use Sliding window for arrays containing -ve nos.
 
 ## JAVA LANGUAGE SPECIFIC
 A. Convert List of Integers List<Integer> list to int[] array(comes with Stream performance Overhead):

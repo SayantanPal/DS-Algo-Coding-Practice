@@ -22,9 +22,9 @@ public class AllSearchStrAnagramInText {
             while(right - left + 1 > p.length()){
                 wFreq[sArr[left] - 'a']--;
                 left++;
-            }
+            } // loop ends the moment (right - left + 1) == p.length()
             wFreq[sArr[right] - 'a']++;
-            if((right - left + 1) == p.length() && Arrays.equals(wFreq, pFreq)){
+            if(Arrays.equals(wFreq, pFreq)){
                 result.add(left);
             }
             right++;

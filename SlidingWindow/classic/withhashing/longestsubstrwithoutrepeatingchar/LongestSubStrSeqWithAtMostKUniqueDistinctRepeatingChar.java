@@ -1,6 +1,8 @@
 package classic.withhashing.longestsubstrwithoutrepeatingchar;
 
 // Link: https://www.naukri.com/code360/problems/distinct-characters_2221410?leftPanelTabValue=PROBLEM
+// LC #340 — Longest Substring with At Most K Distinct Characters (premium, but very common in FAANG interviews)
+// LC #159 — Longest Substring with At Most Two Distinct Characters (premium, simpler version of #340)
 public class LongestSubStrSeqWithAtMostKUniqueDistinctRepeatingChar {
 
     public int longestAtMostKUniqueDistinctUniqueChars(String s, int k) {

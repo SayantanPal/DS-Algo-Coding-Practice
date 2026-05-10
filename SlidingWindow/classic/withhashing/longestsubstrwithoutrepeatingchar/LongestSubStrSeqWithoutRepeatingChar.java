@@ -8,7 +8,7 @@ import java.util.Set;
  * Given an unsorted array of integers,
  * find the length of the longest sequence of consecutive numbers.
  * */
-// Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+// Link: LC #3 — https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 public class LongestSubStrSeqWithoutRepeatingChar {
 
     public int lengthOfLongestSubstring(String s) {

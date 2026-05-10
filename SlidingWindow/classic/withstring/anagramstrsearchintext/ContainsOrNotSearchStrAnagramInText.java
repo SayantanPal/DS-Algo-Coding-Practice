@@ -2,7 +2,7 @@ package classic.withstring.anagramstrsearchintext;
 
 import java.util.Arrays;
 
-// Link: https://leetcode.com/problems/permutation-in-string/
+// Link:  LC #567 — https://leetcode.com/problems/permutation-in-string/
 public class ContainsOrNotSearchStrAnagramInText {
     // s1 => search string
     // s2 => big text string

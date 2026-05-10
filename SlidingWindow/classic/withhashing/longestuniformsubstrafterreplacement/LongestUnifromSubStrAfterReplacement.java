@@ -1,7 +1,7 @@
 package classic.withhashing.longestuniformsubstrafterreplacement;
 import java.util.HashMap;
 
-// Link: https://leetcode.com/problems/longest-repeating-character-replacement/
+// Link: LC #424 — https://leetcode.com/problems/longest-repeating-character-replacement/
 public class LongestUnifromSubStrAfterReplacement {
     public int longest_uniform_substring_after_replacements(String s, int k) {
         HashMap<Character, Integer> freqs = new HashMap<>();

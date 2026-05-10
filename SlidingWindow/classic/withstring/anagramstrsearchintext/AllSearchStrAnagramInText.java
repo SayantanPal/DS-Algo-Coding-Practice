@@ -6,6 +6,8 @@ import java.util.List;
 
 // Link: https://leetcode.com/problems/find-all-anagrams-in-a-string/
 public class AllSearchStrAnagramInText {
+    // s => big text string
+    // p=> search string
     public List<Integer> findAnagrams(String s, String p){
         int left = 0, right = 0;
         List<Integer> result = new ArrayList<>();

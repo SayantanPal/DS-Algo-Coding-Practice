@@ -1,7 +1,7 @@
 
 // Link: https://leetcode.com/problems/minimum-size-subarray-sum/description/
 // Constraint: Array must contain all +ve (non -ve) numbers
-public class SlidingWindowMinimumWithKSum {
+public class SlidingWindowMinSizeWithTargetSum {
 
     public int minSubArrayLen(int target, int[] nums) {
         int n = nums.length;

@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 // Link: https://leetcode.com/problems/permutation-in-string/
 public class ContainsOrNotSearchStrAnagramInText {
+    // s1 => search string
+    // s2 => big text string
     public boolean checkInclusion(String s1, String s2) {
         int[] freqS1 = new int[26];
         int[] freqS2 = new int[26];

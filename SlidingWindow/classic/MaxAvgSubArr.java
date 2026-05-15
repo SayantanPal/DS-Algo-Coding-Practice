@@ -24,4 +24,19 @@ public class MaxAvgSubArr {
 
     // Using Fixed Length sliding window - faster
     // to-do
+    public double findMaxAverage_v2(int[] nums, int k) {
+        double sum = 0;
+        double maxSum = -1000000.0; //Double.NEGATIVE_INFINITY;
+        for(int i = 0; i < k; i++){
+            sum += nums[i];
+        }
+        // Math.max() call with doubles has overhead
+        if(sum > maxSum) maxSum = sum; //maxSum = Math.max(maxSum, sum);
+        for(int i = k; i < nums.length; i++){
+            sum += nums[i] - nums[i - k];
+            // Math.max() call with doubles has overhead
+            if(sum > maxSum) maxSum = sum; //maxSum = Math.max(maxSum, sum);
+        }
+        return maxSum/k; //Only divide to double at the return
+    }
 }

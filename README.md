@@ -192,7 +192,14 @@ For multiple duplicates, in second iteration while iterating:
      3. Better CPU cache locality (contiguous memory)
 * String concatenation within nested loops is heavy. Instead use StringBuffer or StringBuilder to create string and then convert back using .toString()
 * Remember for Queues(FIFO):
-  -[LHS] FRONT/HEAD/FIRST(delete/dequeue/poll/pollFirst/pop/remove/removeFirst) <<<---- REAR/TAIL/BACK/LAST(insert/enqueue) [RHS]
+  -[LHS] FRONT/HEAD/FIRST(delete/dequeue/poll/pollFirst/pop/remove/removeFirst) <<<---- REAR/TAIL/BACK/LAST(insert/enqueue/add/offer) [RHS]
+* Queue: FIFO only — remove from FRONT/HEAD/FIRST, add at BACK/TAIL/REAR/LAST.
+* Queue:   [front] → → → [back]                                                                                                                                                       
+            remove        add
+* Deque (double-ended queue): Add or remove from both ends — front and back.
+* Deque:   [front] ← → [back]                                                                                                                                                         
+         add/remove   add/remove
+* Monotonic deque = a technique/pattern using a deque where you maintain elements in strictly increasing or decreasing order.
 * Frequency Bucket works faster than HashMap only when the numbers are strictly in range between [0, (2^31 - 1) ] or [0, 10^9]
 * Never use Sliding window for arrays containing -ve nos.
 
@@ -244,6 +251,30 @@ So when people say KMP is space-efficient for pattern matching, it's because:
 LPS is closer to: An automaton / state machine. Each index is a state, and on mismatch you follow failure links to a previous state. 
 That's why KMP is often taught as a finite automaton.
 
+## Sliding Window
+* 1. Fixed Sliding window is performance-wise faster than variable sliding window
+* 2. Fixed Sliding window can only be used when window size is defined
+* 3. In fixed Sliding Window, if window shifts only 1 step at a time, then instead of while loop to shrink/squeeze the window, we can shrink1 step using if condition
+* 4. For fixed Sliding window, ith pointer at RHS with (i - K + 1) at the LHS forms the window of size K. So, element at (i - k)th index is the element getting kicked out in each sliding window unit slide-step
+* 5. For variable sliding window, slow pointer points to (i - K + 1)th index while fast pointer points to ith index
+
+- LC #3 — Longest Substring Without Repeating Characters (variable window, uniqueness constraint)
+- LC #209 — Minimum Size Subarray Sum (variable window, sum threshold)
+- LC #424 — Longest Repeating Character Replacement (variable window, max freq tracking)
+- LC #567 — Permutation in String (fixed window, freq match)
+- LC #438 — Find All Anagrams in a String (fixed window, freq match)
+- LC #76 — Minimum Window Substring (variable window, freq satisfaction counter)
+
+Medium:
+- LC #1004 — Max Consecutive Ones III (binary array, but same "replacement" logic as #424)
+- LC #1208 — Get Equal Substrings Within Budget (variable window, cost threshold)
+- LC #1493 — Longest Subarray of 1's After Deleting One Element
+- LC #340 — Longest Substring with At Most K Distinct Characters (premium, but very common in FAANG interviews)
+- LC #159 — Longest Substring with At Most Two Distinct Characters (premium, simpler version of #340)
+
+Hard:
+- LC #30 — Substring with Concatenation of All Words (fixed window + word-level freq matching — harder version of #567)
+- LC #395 — Longest Substring with At Least K Repeating Characters (tricky — sliding window with unique char constraint)
 
 ## Dynamic Programming(DP)
 * 1. Optimal Substructure — optimal solution to the problem contains optimal solutions to subproblems

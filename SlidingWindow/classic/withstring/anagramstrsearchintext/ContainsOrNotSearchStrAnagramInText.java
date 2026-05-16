@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class ContainsOrNotSearchStrAnagramInText {
     // s1 => search string
     // s2 => big text string
-    public boolean checkInclusion(String s1, String s2) {
+    public boolean checkInclusionUsingVariableSlidingWindow(String s1, String s2) {
         int[] freqS1 = new int[26];
         int[] freqS2 = new int[26];
         int subStrLen = s1.length();
@@ -30,7 +30,7 @@ public class ContainsOrNotSearchStrAnagramInText {
     }
 
     // v2 => string converted to character array for raw cpu power
-    public boolean checkInclusion_v2(String s1, String s2) {
+    public boolean checkInclusionUsingVariableSlidingWindow_v2(String s1, String s2) {
         int[] freqS1 = new int[26];
         int[] freqS2 = new int[26];
 
@@ -55,6 +55,33 @@ public class ContainsOrNotSearchStrAnagramInText {
             }
             fast++;
         }
+        return false;
+    }
+
+    // When window size is defined, Fixed Sliding window is Fastest
+    public boolean checkInclusionUsingFixedSlidingWindow(String s1, String s2) {
+        int[] freqS1 = new int[26];
+        int[] freqS2 = new int[26];
+
+        char[] s1Arr = s1.toCharArray();
+        char[] s2Arr = s2.toCharArray();
+
+        int subStrLen = s1Arr.length;
+
+        for(int i = 0; i < subStrLen; i++){
+            freqS1[s1Arr[i] - 'a']++;
+        }
+
+        for(int i = 0; i < s2Arr.length; i++){
+            freqS2[s2Arr[i] - 'a']++;
+            if(i - subStrLen >= 0){
+                freqS2[s2Arr[i - subStrLen] - 'a']--;
+            }
+            if(Arrays.equals(freqS1, freqS2)){
+                return true;
+            }
+        }
+
         return false;
     }
 }

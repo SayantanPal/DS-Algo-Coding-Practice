@@ -1,3 +1,4 @@
+package classic;
 
 // Link: https://leetcode.com/problems/minimum-size-subarray-sum/description/
 // Constraint: Array must contain all +ve (non -ve) numbers

@@ -153,8 +153,8 @@ public class LongestSubStrSeqWithoutRepeatingChar {
                 left++; // shrink to index after duplicate char at left
             } //  loop ends when we have shrinked the window into a size where there is no duplicate right-character in between
             freq[charAtRight]++;
+            maxLen = Math.max(maxLen, right - left + 1);
             right++;
-            maxLen = Math.max(maxLen, right - left);
         }
         return maxLen;
     }

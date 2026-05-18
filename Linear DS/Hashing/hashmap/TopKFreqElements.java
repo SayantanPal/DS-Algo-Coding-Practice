@@ -55,7 +55,10 @@ public class TopKFreqElements {
     }
 
     // NOTE: IF SORTED ORDERING OF ELEMENTS HAVING SAME FREQ DO MATTER, THEN
-    public ArrayList<Integer> topKFreq_withSortedElem(int[] arr, int k) {
+    // USES Bucket Sort + TreeMap: O(n + d log d + k): faster when k is close to d
+    // In case of equal freq elem, elem with higher value is prioritized.
+    // Link: https://www.geeksforgeeks.org/problems/top-k-frequent-elements-in-array/
+    public ArrayList<Integer> topKFreq_withOutputInSortedOrder_usingtset(int[] arr, int k) {
         // Code here
 
         Map<Integer, Integer> freqLookUp = new HashMap<>();
@@ -93,7 +96,45 @@ public class TopKFreqElements {
         }
 
         return result;
+    }
 
+    // Link: https://www.geeksforgeeks.org/problems/top-k-frequent-elements-in-array/1
+    // In case of equal freq elem, elem with higher value is prioritized
+    // USES PQ: O(n + d log k + k log k) : faster when k << d because log k < log d, and you only process d elements with a small heap.
+    public ArrayList<Integer> topKFreq_withOutputInSortedOrder_usingpq(int[] arr, int k) {
+        // Code here
+
+        Map<Integer, Integer> freqLookUp = new HashMap<>();
+
+        // num: freq => 1:1
+        for(int i = 0; i<arr.length; i++){
+            freqLookUp.put(arr[i], freqLookUp.getOrDefault(arr[i], 0) + 1);
+        }
+
+        // for non-equal freq, min heap property order
+        // for equal freq, smaller array elem value prioritized to be evicted first
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b) -> freqLookUp.get(a) != freqLookUp.get(b) ? freqLookUp.get(a) - freqLookUp.get(b): a - b);
+
+        int counter = 0;
+        for(int num: freqLookUp.keySet()){
+            if(counter < k){
+                minHeap.offer(num);
+                counter++;
+            }else{
+                if( (freqLookUp.get(num) > freqLookUp.get(minHeap.peek()))
+                        || (freqLookUp.get(num).equals(freqLookUp.get(minHeap.peek())) && num > minHeap.peek()) // for equal freq, smaller array elem value prioritized to be evicted first
+                ){
+                    minHeap.poll();
+                    minHeap.offer(num);
+                }
+            }
+        }
+        ArrayList<Integer> result = new ArrayList<>(minHeap);
+
+        // for non-equal freq, descending order
+        // for equal freq, higher array elem value prioritized to be outputted first
+        result.sort((a,b) -> freqLookUp.get(b) != freqLookUp.get(a) ? freqLookUp.get(b) - freqLookUp.get(a): b - a);
+        return result;
     }
 
 }

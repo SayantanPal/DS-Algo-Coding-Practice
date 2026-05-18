@@ -50,6 +50,31 @@ public class TwoSum {
         return new int[]{-1, -1};
     }
 
+
+    // Link: https://www.naukri.com/code360/problems/two-sum_839653?leftPanelTabValue=PROBLEM
+    public record Pair<K, V>(K key, V value) {}
+    public static ArrayList<Pair<Integer, Integer>> findAllTwoSumsAtDiffIndexContainingDuplicateElem(ArrayList<Integer> arr, int target, int n) {
+        // Write your code here.
+        ArrayList<Pair<Integer, Integer>> result = new ArrayList<>();
+        Map<Integer, Integer> lookUp = new HashMap<>();
+        for(int i = 0; i < arr.size(); i++){
+            if(lookUp.containsKey(target - arr.get(i))){
+                result.add(new Pair(arr.get(i), target - arr.get(i)));
+                if(lookUp.get(target - arr.get(i)) > 1){
+                    lookUp.put(target - arr.get(i), lookUp.get(target - arr.get(i)) - 1);
+                }else if(lookUp.get(target - arr.get(i)) == 1){
+                    lookUp.remove(target - arr.get(i));
+                }
+            }else{
+                lookUp.put(arr.get(i), lookUp.getOrDefault(arr.get(i), 0) + 1);
+            }
+        }
+        if(result.isEmpty()){
+            result.add(new Pair(-1, -1));
+        }
+        return result;
+    }
+
     /*
     * Given an array arr[] of integers and another integer target.
     * Determine if there exist two distinct indices such that the sum of their elements is equal to the target.

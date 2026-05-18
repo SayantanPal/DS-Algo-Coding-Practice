@@ -70,6 +70,49 @@ public class SudokuBoard {
         return true;
     }
 
+    public boolean isValidSudoku_optimized_single_pass(char[][] board) {
+
+        // Each row must contain the digits 1-9 without repetition.
+        // Each column must contain the digits 1-9 without repetition.
+        boolean[][][] boxLookUp = new boolean[3][3][10]; //Set<Character> boxLookUp = new HashSet<>();
+
+        for(int i = 0; i < board.length; i++){
+
+            boolean[] rowLookUp = new boolean[10]; //Set<Character> rowLookUp = new HashSet<>();
+            boolean[] colLookUp = new boolean[10]; //Set<Character> colLookUp = new HashSet<>();
+
+            for(int j = 0; j < board[i].length; j++){
+
+                if(board[i][j] != '.'){
+                    if(rowLookUp[board[i][j] - '0'] // (rowLookUp.contains(board[i][j])
+                        // || board[i][j] - '0' < 1 || board[i][j] - '0' > 9
+                    ){
+                        return false;
+                    }
+                    rowLookUp[board[i][j] - '0'] = true; //rowLookUp.add(board[i][j]);
+                }
+
+                if(board[j][i] != '.'){
+                    if(colLookUp[board[j][i] - '0'] // (colLookUp.contains(board[j][i])
+                        // || board[j][i] - '0' < 1 || board[j][i] - '0' > 9
+                    ){
+                        return false;
+                    }
+                    colLookUp[board[j][i] - '0'] = true; //colLookUp.add(board[j][i]);
+                }
+
+                if(board[i][j] != '.'){
+                    if(boxLookUp[i/3][j/3][board[i][j] - '0']){
+                        return false;
+                    }
+                    boxLookUp[i/3][j/3][board[i][j] - '0'] = true;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public boolean verify_sudoku_board(ArrayList<ArrayList<Integer>> board) {
         // Create hash sets for each row, column, and subgrid to keep track of numbers
         // previously seen on any given row, column, or subgrid.

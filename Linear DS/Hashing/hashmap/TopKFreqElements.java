@@ -3,6 +3,7 @@ import java.util.*;
 
 // Link: https://leetcode.com/problems/top-k-frequent-elements/
 // link: https://www.geeksforgeeks.org/problems/subarrays-with-sum-k/1
+// Constraint: Array elem can be -ve as well.
 public class TopKFreqElements {
 
     // NOTE: BELOW ONLY WORKS IF ORDERING OF ELEMENTS HAVING SAME FREQ DOES NOT MATTER

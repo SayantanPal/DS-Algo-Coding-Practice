@@ -224,6 +224,12 @@ list
 - char[] c = wordStr.toCharArray() whereas wordStr = new String(c)
 - for nums as new Integer[], then only HashSet<Integer> set = new HashSet<>(Arrays.asList(nums));
 
+## PQ
+.offer()/.add()
+.poll()/.deque()
+.peek()/.front()
+.remove()
+
 ## KMP + LPS
 KMP (pattern search in text):
 - Build LPS array of pattern only → O(m) space

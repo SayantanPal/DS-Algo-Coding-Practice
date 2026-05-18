@@ -1,8 +1,6 @@
 package basic.hashingpower;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 // Used in caching, duplicate detection, distributed systems.
 // Production Use: Deduplication of logs/messages before indexing in Elasticsearch.
@@ -51,6 +49,24 @@ public class TwoSum {
         }
         return new int[]{-1, -1};
     }
+
+    /*
+    * Given an array arr[] of integers and another integer target.
+    * Determine if there exist two distinct indices such that the sum of their elements is equal to the target.
+    * */
+    // Link: https://www.geeksforgeeks.org/problems/key-pair5616/1
+    boolean isTwoSumEqualsTargetPresent(int arr[], int target) {
+        // code here
+        Set<Integer> lookUp = new HashSet<>();
+        for(int i = 0; i < arr.length; i++){
+            if(lookUp.contains(target - arr[i])){
+                return true;
+            }
+            lookUp.add(arr[i]);
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) {
         int[] nums = {3,2,4};

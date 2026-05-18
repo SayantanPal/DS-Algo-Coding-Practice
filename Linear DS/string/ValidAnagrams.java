@@ -37,4 +37,24 @@ public class ValidAnagrams {
         for (int f : freq) if (f != 0) return false;
         return true;
     }
+
+    public static boolean areAnagrams_v2(String s1, String s2) {
+        // code here
+        int[] freq = new int[26];
+
+        char[] s1CharArr = s1.toCharArray();
+        char[] s2CharArr = s2.toCharArray();
+
+        if(s1CharArr.length != s2CharArr.length) return false;
+
+        for(int i = 0; i < s1CharArr.length; i++){
+            freq[s1CharArr[i] - 'a']++;
+            freq[s2CharArr[i] - 'a']--;
+        }
+        for(int frequency: freq){
+            if(frequency != 0) return false;
+        }
+        return true;
+    }
+
 }

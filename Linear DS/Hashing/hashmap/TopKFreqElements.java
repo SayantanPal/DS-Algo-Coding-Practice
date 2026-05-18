@@ -5,6 +5,7 @@ import java.util.*;
 // link: https://www.geeksforgeeks.org/problems/subarrays-with-sum-k/1
 public class TopKFreqElements {
 
+    // NOTE: BELOW ONLY WORKS IF ORDERING OF ELEMENTS HAVING SAME FREQ DOES NOT MATTER
     public int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> freqLookUp = new HashMap<>();
 
@@ -52,4 +53,47 @@ public class TopKFreqElements {
 
         return result;
     }
+
+    // NOTE: IF SORTED ORDERING OF ELEMENTS HAVING SAME FREQ DO MATTER, THEN
+    public ArrayList<Integer> topKFreq_withSortedElem(int[] arr, int k) {
+        // Code here
+
+        Map<Integer, Integer> freqLookUp = new HashMap<>();
+
+        // num: freq => 1:1
+        for(int i = 0; i<arr.length; i++){
+            freqLookUp.put(arr[i], freqLookUp.getOrDefault(arr[i], 0) + 1);
+        }
+
+
+        @SuppressWarnings("unchecked")
+        Set<Integer>[] freqBucket = new TreeSet[arr.length + 1];
+
+        // freq: num => 1 : n
+        for(int freq: freqLookUp.keySet()){
+            if(freqBucket[freqLookUp.get(freq)] == null){
+                freqBucket[freqLookUp.get(freq)] = new TreeSet<>((a,b) -> (b - a));
+            }
+            freqBucket[freqLookUp.get(freq)].add(freq);
+        }
+
+        ArrayList<Integer> result = new ArrayList<>();
+
+        int counter = 0;
+
+        for(int i = freqBucket.length - 1; i >= 0; i--){
+            if(freqBucket[i] != null){
+                for(int elem: freqBucket[i]){
+                    result.add(elem);
+                    counter++;
+                    if(counter == k) break;
+                }
+            }
+            if(counter == k) break;
+        }
+
+        return result;
+
+    }
+
 }

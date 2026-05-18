@@ -194,8 +194,8 @@ For multiple duplicates, in second iteration while iterating:
 * Remember for Queues(FIFO):
   -[LHS] FRONT/HEAD/FIRST(delete/dequeue/poll/pollFirst/pop/remove/removeFirst) <<<---- REAR/TAIL/BACK/LAST(insert/enqueue/add/offer) [RHS]
 * Queue: FIFO only — remove from FRONT/HEAD/FIRST, add at BACK/TAIL/REAR/LAST.
-* Queue:   [front] → → → [back]                                                                                                                                                       
-            remove        add
+  * Queue:   [front/head/first] ← ← ← [back/rear/tail/last]                                                                                                                                                       
+                   remove                      add
 * Deque (double-ended queue): Add or remove from both ends — front and back.
 * Deque:   [front] ← → [back]                                                                                                                                                         
          add/remove   add/remove

@@ -23,7 +23,7 @@ public class ContiguousLongestBinaryArray {
             currPrefixSum += nums[i];
             if(lookUp.containsKey(currPrefixSum - targetSum)){
                 // if from ith index to jth index, the prefix sum diff matches k, then elements between index i+1 to jth index equals target sum
-                maxLen = Math.max(maxLen, i - lookUp.get(currPrefixSum - targetSum));
+                maxLen = Math.max(maxLen, i - lookUp.get(currPrefixSum - targetSum));// or (i - (lookUp.get(currPrefixSum - targetSum) + 1 ) + 1 )
             }
             // donot update duplicate currprefix Sum with higher index in case if lower index already present to have naturally more longer length
             if(!lookUp.containsKey(currPrefixSum)){

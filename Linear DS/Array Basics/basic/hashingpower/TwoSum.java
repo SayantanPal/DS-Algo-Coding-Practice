@@ -60,12 +60,13 @@ public class TwoSum {
         for(int i = 0; i < arr.size(); i++){
             if(lookUp.containsKey(target - arr.get(i))){
                 result.add(new Pair(arr.get(i), target - arr.get(i)));
+                // once current pair contributes to match finding, reduce the count of other existing pair
                 if(lookUp.get(target - arr.get(i)) > 1){
                     lookUp.put(target - arr.get(i), lookUp.get(target - arr.get(i)) - 1);
                 }else if(lookUp.get(target - arr.get(i)) == 1){
                     lookUp.remove(target - arr.get(i));
                 }
-            }else{
+            }else{ // once current pair contributes to match finding, also do not consider current pair anymore
                 lookUp.put(arr.get(i), lookUp.getOrDefault(arr.get(i), 0) + 1);
             }
         }

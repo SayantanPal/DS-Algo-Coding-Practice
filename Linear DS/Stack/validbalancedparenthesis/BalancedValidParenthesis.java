@@ -29,6 +29,25 @@ public class BalancedValidParenthesis {
         return stack.isEmpty();
     }
 
+    public static boolean isValidParenthesis_v1(String s) {
+        // Write your code here.
+        Deque<Character> stack = new ArrayDeque<>();
+        char[] sArr = s.toCharArray();
+        for(int i = 0; i < sArr.length; i++){
+            if(!stack.isEmpty()){
+                if(sArr[i] == ')' && stack.peekFirst() == '('){
+                    stack.pop(); continue;
+                }else if(sArr[i] == '}' && stack.peekFirst() == '{'){
+                    stack.pop(); continue;
+                }else if(sArr[i] == ']' && stack.peekFirst() == '['){
+                    stack.pop(); continue;
+                }
+            }
+            stack.push(sArr[i]);
+        }
+        return stack.isEmpty();
+    }
+
     public boolean isBalanced_v2(String str) {
         Deque<Character> stack = new ArrayDeque<>();
         for (char c : str.toCharArray()) {

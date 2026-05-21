@@ -46,6 +46,8 @@ Note: Ensure there is a space character (' ') at the end of the line.
 * */
 public class WavePattern {
 
+
+
     public static void main(String[] args) {
         // YOUR CODE GOES HERE
         // Please take input and print output to standard input/output (stdin/stdout)

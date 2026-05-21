@@ -199,6 +199,12 @@ For multiple duplicates, in second iteration while iterating:
 * Deque (double-ended queue): Add or remove from both ends — front and back.
 * Deque:   [front] ← → [back]                                                                                                                                                         
          add/remove   add/remove
+* When using Deque as a stack:
+    - push() → push() (or offerFirst())
+    - pop() → pop() (or pollFirst())
+    - peek() → peek() (or peekFirst())
+* Dequeue as Stack:   [front/head/first] ←➔ ←➔ ←➔ [back/rear/tail/last]                                                                                                                                                       
+                           remove/add                      
 * Monotonic deque = a technique/pattern using a deque where you maintain elements in strictly increasing or decreasing order.
 * Frequency Bucket works faster than HashMap only when the numbers are strictly in range between [0, (2^31 - 1) ] or [0, 10^9]
 * Never use Sliding window for arrays containing -ve nos.

@@ -5,10 +5,12 @@ package basic.uniqueduplicatemajority;
 Note: It is guaranteed that there is a repeating element present in the array.
 * */
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class FindDuplicateWithVariations {
+public class FindAndContainsDuplicateWithVariations {
     /*
     * * array of size n contains elements within range [1, n-1]
      * contsraint: which contains 1 extra duplicate number(no missing number)
@@ -59,5 +61,31 @@ public class FindDuplicateWithVariations {
             lookUp.add(num);
         }
         return false;
+    }
+
+    // when both duplicate and missing element
+    // Link: https://www.geeksforgeeks.org/problems/find-missing-and-repeating2512/1
+    ArrayList<Integer> findTwoElement(int arr[]) {
+        // code here
+        long n = arr.length;
+        int actualSum = 0;
+        for(int i = 0; i < n; i++){
+            actualSum += arr[i];
+        }
+        int duplicateNo = 0;
+        for(int i = 0; i < n; i++){
+            if(arr[Math.abs(arr[i]) - 1] < 0){
+                duplicateNo = Math.abs(arr[i]);
+                break;
+            }
+            arr[Math.abs(arr[i]) - 1] = -arr[Math.abs(arr[i]) - 1];
+        }
+
+        long sum = n*(n+1) / 2;
+        // System.out.println(sum);
+        // System.out.println(actualSum);
+        // System.out.println(duplicateNo);
+        int missing =  (int)(sum - (actualSum - duplicateNo));
+        return new ArrayList<>(List.of(duplicateNo, missing));
     }
 }

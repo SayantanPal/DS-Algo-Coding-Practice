@@ -208,6 +208,10 @@ For multiple duplicates, in second iteration while iterating:
 * Monotonic deque = a technique/pattern using a deque where you maintain elements in strictly increasing or decreasing order.
 * Frequency Bucket works faster than HashMap only when the numbers are strictly in range between [0, (2^31 - 1) ] or [0, 10^9]
 * Never use Sliding window for arrays containing -ve nos.
+* Monotonic stack is the optimal Data-structure which gives:
+    - Next greater/smaller to the immediate right (NEVER extreme right)
+    - Previous greater/smaller to the immediate left (NEVER extreme left)
+
 
 ## JAVA LANGUAGE SPECIFIC
 A. Convert List of Integers List<Integer> list to int[] array(comes with Stream performance Overhead):

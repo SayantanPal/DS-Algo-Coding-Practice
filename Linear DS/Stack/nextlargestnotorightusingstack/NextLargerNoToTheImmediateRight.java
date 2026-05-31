@@ -5,7 +5,7 @@ import java.util.Deque;
 import java.util.Stack;
 
 // Link: https://leetcode.com/problems/next-greater-element-i/
-public class NextLargestNoToTheRight {
+public class NextLargerNoToTheImmediateRight {
 
     // for all +ve numbers series, say, a,b,c,d,e => if for example, for any element arr[i] = d, d > e, then for all elements to the right of d can be safely eliminated,
     // because for all future numbers to the left of say, elem d, their largest number to the right can never be the smaller numbers to the right of d. So, at that point, d becomes eligible as one of the members to the right larger than those smaller numbers

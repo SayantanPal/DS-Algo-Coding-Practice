@@ -11,13 +11,7 @@ Return the maximum possible profit.
 * Problem Constraints: 0 <= A.size() <= 700000
 1 <= A[i] <= 107
 
-
-
-
-
 Input Format: The first and the only argument is an array of integers, A.
-
-
 Output Format: Return an integer, representing the maximum possible profit.
 *
 * */

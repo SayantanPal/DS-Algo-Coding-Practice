@@ -30,6 +30,8 @@ NOTE: that's why for long and float, we explicitly mention
 
 # Operand_1 OPERATOR Operand_2 -> here either Operand_1 or Operand_2 can be of bigger datatype for the output to be also of same bigger datatype
 
+# For uninititalized method-local variables having primitive datatype, there is compile-time error
+# While for uninititalized class-level member variables having primitive datatype, there is default value. (say example, with int variable, default value initialized is 0)
 
 int a = 10^5;
 int b = 10^5;
@@ -124,6 +126,8 @@ if(a.add(b).compareTo(target) == 0){ // compareTo instead of equals — because 
 5. Code LCM and GCD/HCF separately both without using one another by formula
 6. Code Even and Odd number and a multiple of a number,say M(given) in a series of numbers from 1 to N(given) where worst case time complexity is less than O(N) in both case
 7. Check a number prime or not with average time complexity less than O(N) [ particularly/specifically for composite numbers]
+8. 0 mod(%) any No = 0 mathematically, which also proves mathematically 0 mod(%) 2 = 0 which makes 0 mathematically an EVEN NUMBER
+9. 1 mod(%) any No ( except 1) = 1 ( ONLY 1 mod(%) 1 = 0)
 
 # RAW CPU POWER - 
 ONLY When base is bounded AND ONLY if numbers are +ve(non-neg) like a)-d):

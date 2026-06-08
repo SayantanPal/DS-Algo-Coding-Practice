@@ -1,3 +1,5 @@
+package classic.fixedslidingwindow;
+
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -7,7 +9,7 @@ import java.util.LinkedList;
 // Efficient Solution: Use Deque to store useful elements in current window for O(n) solution
 
 // Leetcode: https://leetcode.com/problems/sliding-window-maximum/
-public class SlidingWindowMaximumWithKElem {
+public class MaxElemOfSubArrWithKElemLenWindow {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
         int[] result = new int[n - k + 1]; // Non-overlapping window -> n/k; since overlapping window -> n - k + 1

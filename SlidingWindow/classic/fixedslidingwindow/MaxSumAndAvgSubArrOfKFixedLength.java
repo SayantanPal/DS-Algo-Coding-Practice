@@ -22,8 +22,7 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
         return maxSum/k;
     }
 
-    // Using Prefix Sum: TC: O(N + N - K); SC = O(N)
-    public long maxSumUsingPrefixSum(int[] A, int K) {
+    public long maxSumUsingPrefixSum_v1(int[] A, int K) {
         int n = A.length;
         long[] prefixSum = new long[n];
 
@@ -32,11 +31,36 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
             prefixSum[i] = prefixSum[i - 1] + A[i];
         }
 
-        long maxSum = 0;
+        long maxSum = Long.MIN_VALUE;
+        int i = 0;
+        int j = K - 1;
+
+        // calculate for each pair of indices
+        while (j < n) {
+            maxSum = Math.max(maxSum, prefixSum[j] - (i == 0 ? 0 : prefixSum[i - 1]));
+            i++;
+            j++;
+        }
+
+        return maxSum;
+    }
+
+    // Using Prefix Sum: TC: O(N + N - K); SC = O(N)
+    public long maxSumUsingPrefixSum_v2(int[] A, int K) {
+        int n = A.length;
+        long[] prefixSum = new long[n];
+
+        prefixSum[0] = A[0];
+        for(int i = 1; i < n; i++){
+            prefixSum[i] = prefixSum[i - 1] + A[i];
+        }
+
+        long maxSum = Long.MIN_VALUE;
         maxSum = Math.max(maxSum, prefixSum[0 + K - 1] - 0);
         for(int i = 1; i < n - K + 1; i++){
             maxSum = Math.max(maxSum, prefixSum[i + K - 1] - prefixSum[i - 1]); // (i == 0 ? 0 : prefixSum[i - 1])
         }
+
         return maxSum;
     }
 
@@ -48,7 +72,7 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
             currSum += A[i];
         }
 
-        long maxSum = 0;
+        long maxSum = Long.MIN_VALUE;
         maxSum = Math.max(maxSum, currSum);
 
         for(int i = K; i < n; i++){

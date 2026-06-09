@@ -22,7 +22,7 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
         return maxSum/k;
     }
 
-    // Using Prefix Sum: TC: O(N + N - K + 2); SC = O(N)
+    // Using Prefix Sum: TC: O(N + N - K); SC = O(N)
     public long maxSumUsingPrefixSum(int[] A, int K) {
         int n = A.length;
         long[] prefixSum = new long[n];

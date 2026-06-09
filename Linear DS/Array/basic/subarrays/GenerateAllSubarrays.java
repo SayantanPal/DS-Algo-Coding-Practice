@@ -1,4 +1,4 @@
-package basic;
+package basic.subarrays;
 /*
 * You are given an array A of N integers.
 * Return a 2D array consisting of all the subarrays of the array

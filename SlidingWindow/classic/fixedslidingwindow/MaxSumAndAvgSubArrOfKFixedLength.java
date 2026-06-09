@@ -31,11 +31,12 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
             prefixSum[i] = prefixSum[i - 1] + A[i];
         }
 
-        long maxSum = Long.MIN_VALUE;
+        long maxSum = -1000000; //Double.NEGATIVE_INFINITY;
         int i = 0;
         int j = K - 1;
 
         // calculate for each pair of indices
+        // here N-k iterations
         while (j < n) {
             maxSum = Math.max(maxSum, prefixSum[j] - (i == 0 ? 0 : prefixSum[i - 1]));
             i++;
@@ -55,7 +56,7 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
             prefixSum[i] = prefixSum[i - 1] + A[i];
         }
 
-        long maxSum = Long.MIN_VALUE;
+        long maxSum = -1000000; //Double.NEGATIVE_INFINITY;
         maxSum = Math.max(maxSum, prefixSum[0 + K - 1] - 0);
         for(int i = 1; i < n - K + 1; i++){
             maxSum = Math.max(maxSum, prefixSum[i + K - 1] - prefixSum[i - 1]); // (i == 0 ? 0 : prefixSum[i - 1])
@@ -65,14 +66,38 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
     }
 
     // Using Fixed Sliding Window: TC: O( K + ( (N - 1) - K + 1) = O(N); SC = O(1)
-    public long maxSumUsingFixedSlidingWindow(int[] A, int K) {
+    public long maxSumUsingFixedSlidingWindow_v1(int[] A, int K) {
+        int n = A.length;
+        long currSum = 0;
+        int i = 0;
+        int j = K - 1;
+        for(int k = i; k <= j; k++){
+            currSum += A[k];
+        }
+
+        long maxSum = -1000000;
+        j++;
+        i++;
+
+        // here N-k iterations
+        while (j < n) {
+            currSum += A[j] - A[i - 1];
+            maxSum = Math.max(maxSum, currSum);
+            i++;
+            j++;
+        }
+        return maxSum;
+    }
+
+    // Using Fixed Sliding Window: TC: O( K + ( (N - 1) - K + 1) = O(N); SC = O(1)
+    public long maxSumUsingFixedSlidingWindow_v2(int[] A, int K) {
         int n = A.length;
         long currSum = 0;
         for(int i = 0; i < K; i++){
             currSum += A[i];
         }
 
-        long maxSum = Long.MIN_VALUE;
+        long maxSum = -1000000;
         maxSum = Math.max(maxSum, currSum);
 
         for(int i = K; i < n; i++){
@@ -83,9 +108,10 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
         return maxSum;
     }
 
+
     // Using Fixed Length sliding window - faster: TC: O( K + ( (N - 1) - K + 1) = O(N); SC = O(1)
     // to-do
-    public double findMaxAverageUsingFixedSlidingWindow(int[] nums, int k) {
+    public double findMaxAverageUsingFixedSlidingWindow_v2(int[] nums, int k) {
         double sum = 0;
         double maxSum = -1000000.0; //Double.NEGATIVE_INFINITY;
         for(int i = 0; i < k; i++){
@@ -100,6 +126,4 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
         }
         return maxSum/k; //Only divide to double at the return
     }
-
-
 }

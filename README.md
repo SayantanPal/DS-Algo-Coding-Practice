@@ -79,8 +79,6 @@ if(a + b == 0.8){ // 0.8 has default decimal datatype as double
     System.out.println(false); // answer is false since 0.4 is not a denominator in the multiple or power of 2
 }
 
-
-
 // REMEDY 1 - 
 
 boolean isEqual(double a, double b) {                                                                                                                                 
@@ -117,6 +115,17 @@ if(a.add(b).compareTo(target) == 0){ // compareTo instead of equals — because 
     System.out.println(false);
 }
 
+
+# STRING
+String upperCase = "";
+upperCase += (char)(A.charAt(i) - 'a' + 'A');
+String lowerCase = "";
+lowerCase+= (char)((A.charAt(i) - 'A') + 'a');
+
+modified += String.valueOf((char)A.charAt(i)) + (A.charAt(i) - 'a' + 1);
+OR
+modified += (char)A.charAt(i)
+modified += A.charAt(i) - 'a' + 1;
 
 # Good Basic Introductory Exercise-
 1. Floor of a number when div by 200, where the number can be positive or negative as well

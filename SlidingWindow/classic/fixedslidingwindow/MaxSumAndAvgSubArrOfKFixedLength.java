@@ -121,6 +121,7 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
         if(sum > maxSum) maxSum = sum; //maxSum = Math.max(maxSum, sum);
         for(int i = k; i < nums.length; i++){
             sum += nums[i] - nums[i - k];
+            // length of subarray currently being scanned is [i - k + 1 to i]
             // Math.max() call with doubles has overhead
             if(sum > maxSum) maxSum = sum; //maxSum = Math.max(maxSum, sum);
         }

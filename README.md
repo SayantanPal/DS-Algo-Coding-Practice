@@ -127,6 +127,18 @@ OR
 modified += (char)A.charAt(i)
 modified += A.charAt(i) - 'a' + 1;
 
+'A' => 65
+'Z' => 90 ( = 65 + 26 -1)
+
+'a' => 97
+'z' => 122 ( = 97 + 26 -1)
+
+'0' => 48
+'9' => 57
+
+Diff between 'A' to 'a' => 32 and from 'a' to 'A' => -32
+same follows till 'z'/'Z'
+
 # Good Basic Introductory Exercise-
 1. Floor of a number when div by 200, where the number can be positive or negative as well
 2. Ceil of a number when div by 200, where the number can be positive or negative as well

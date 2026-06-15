@@ -18,6 +18,61 @@ B = [ [1, 4],
 * */
 public class FindPrefixSumForQueries {
 
+    public void calculateSumOfEachSubArrayUsingPrefixSum(int[] A){
+        int n = A.length;
+        int[] prefixSum = new int[n];
+        prefixSum[0] = A[0];
+        for(int i = 1; i < n; i++){
+            prefixSum[i] = prefixSum[i - 1] + A[i];
+        }
+
+        for(int i = 0; i < n; i++){
+            for(int j = i; j < n; j++){
+                int sumOfSubArr = 0;
+                if(i == 0){
+                    sumOfSubArr = prefixSum[j];
+                }else{
+                    sumOfSubArr = prefixSum[j]  - prefixSum[i - 1] ;
+                }
+                System.out.println("From index : " + i + " to index: " + j + ", the sum of subarray is: "+ sumOfSubArr);
+            }
+        }
+    }
+
+    public int calculateTotalSumOfAllSubArraysUsingPrefixSum(int[] A){
+        int n = A.length;
+        int[] prefixSum = new int[n];
+        prefixSum[0] = A[0];
+        for(int i = 1; i < n; i++){
+            prefixSum[i] = prefixSum[i - 1] + A[i];
+        }
+
+        int totalSum = 0;
+        for(int i = 0; i < n; i++){
+            for(int j = i; j < n; j++){
+                int sumOfSubArr = 0;
+                if(i == 0){
+                    sumOfSubArr = prefixSum[j];
+                }else{
+                    sumOfSubArr = prefixSum[j]  - prefixSum[i - 1] ;
+                }
+                totalSum += sumOfSubArr;
+            }
+        }
+
+        return totalSum;
+    }
+
+    public int calculateTotalSumOfAllSubArraysUsingPatternObservation(int[] A){
+        int n = A.length;
+        int totalSum = 0;
+        for(int i = 0; i < n; i++){
+            totalSum += A[i] * (n - 1)*(i + 1); // A[i] appears previously i*(n-1) of times for i prev indexes as starting index  and during its own turn 1 more time with ith element as starting index
+        }
+
+        return totalSum;
+    }
+
     public int[] sumOfEvenIndexedElements(int[] A, int[][] B) {
         int n = A.length;
         int[] prefixSum = new int[n];

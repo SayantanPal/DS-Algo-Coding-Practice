@@ -44,6 +44,7 @@ public class LongestCommonPrefixViaVerticalColumnarScan {
     // Alternate: use substring() instead of Stringbuilder
     // Same runtime as that of previous
     public String longestCommonPrefix_v2_1(String[] strs) {
+        if(strs.length == 0) return "";
         for(int i = 0; i < strs[0].length(); i++){
             char a = strs[0].charAt(i);
             for(int j = 1; j < strs.length; j++){

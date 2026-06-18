@@ -1,7 +1,4 @@
 package medium.ExpansionAroundIndex;
-
-
-
 public class LengthOfLongestConsecutiveOnesWithAtMostOneReplace {
 
     public int findMaxLenOfConsecutiveOnesWithAtMostOneReplace(String A) {

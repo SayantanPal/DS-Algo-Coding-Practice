@@ -2,9 +2,9 @@ package medium.ExpansionAroundIndex;
 
 
 
-public class LengthOfLongestConsecutiveOnesWithAtMostOneSwapping {
+public class LengthOfLongestConsecutiveOnesWithAtMostOneReplace {
 
-    public int findMaxLenOfConsecutiveOnesWithAtMostOneSwap(String A) {
+    public int findMaxLenOfConsecutiveOnesWithAtMostOneReplace(String A) {
         int noOfOnes = 0;
         for(int i = 0; i < A.length(); i++){
             if(A.charAt(i) == '1'){
@@ -39,12 +39,9 @@ public class LengthOfLongestConsecutiveOnesWithAtMostOneSwapping {
                 // might be uneven radius
                 // window: l = '1' <-<-<- '0' ->->-> r = '1'
 
-                // if we run out of all ones while expanding,
-                if(noOfOnes == l + r){
-                    maxLen = Math.max(maxLen, l + r); // we swap center '0' with either of extreme l or r ends - '1'
-                }else{ // if we have extra 1's remaining outside l<->r window
-                    maxLen = Math.max(maxLen, l + r + 1); // then swap center 0 from the extra pool of '1'
-                }
+                // we replace only one middle '0' with '1'
+                maxLen = Math.max(maxLen, l + r + 1); // then swap center 0 from the extra pool of '1'
+
             }
         }
         return maxLen;

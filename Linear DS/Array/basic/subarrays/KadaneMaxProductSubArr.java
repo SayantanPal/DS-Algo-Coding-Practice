@@ -1,4 +1,4 @@
-package basic;
+package basic.subarrays;
 
 // Link: https://leetcode.com/problems/maximum-product-subarray/description/
 public class KadaneMaxProductSubArr {

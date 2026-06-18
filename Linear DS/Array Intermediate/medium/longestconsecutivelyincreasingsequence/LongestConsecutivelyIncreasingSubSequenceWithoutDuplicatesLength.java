@@ -1,4 +1,4 @@
-package basic;
+package medium.longestconsecutivelyincreasingsequence;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package basic;
+package basic.subarrays;
 
 public class MaxContiguousSubarraySumCircular {
     public int maxSubarraySumCircular(int[] nums) {

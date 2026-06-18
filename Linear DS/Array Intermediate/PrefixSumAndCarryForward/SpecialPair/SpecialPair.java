@@ -1,4 +1,4 @@
-package SpecialSubsequences;
+package SpecialPair;
 
 /*
 * You have given a string A having Uppercase English letters.
@@ -6,7 +6,7 @@ package SpecialSubsequences;
 * So, Find count of pairs of {'A','G'} such that index of A is less than index of G
 *
 * */
-public class SpecialSubsequences {
+public class SpecialPair {
     public static long findSpecialSubsequences(String A) {
         long countPairs = 0, countA = 0;
         for(char c: A.toCharArray()){

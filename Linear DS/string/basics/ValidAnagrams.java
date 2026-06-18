@@ -1,8 +1,11 @@
 package basics;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // Link: https://leetcode.com/problems/valid-anagram/description/
 public class ValidAnagrams {
-    public boolean isAnagram(String s, String t) {
+    public boolean isAnagram3(String s, String t) {
         int[] freq = new int[26];
 
         for(char c: s.toCharArray()){
@@ -16,6 +19,59 @@ public class ValidAnagrams {
             if(f!=0){
                 return false;
             }
+        }
+        return true;
+    }
+
+    // HashMap
+    public boolean isAnagram(String s, String t) {
+        Map<Character, Integer> lookUp = new HashMap<>();
+
+        for(int i = 0; i < s.length(); i++){
+            lookUp.put(s.charAt(i), lookUp.getOrDefault(s.charAt(i), 0) + 1);
+        }
+
+        for(int i = 0; i < t.length(); i++){
+            // case: when t is superset of s
+            if(lookUp.getOrDefault(t.charAt(i), 0) == 0){
+                return false;
+            } else if(lookUp.get(t.charAt(i)) == 1){
+                lookUp.remove(t.charAt(i));
+            } else{
+                lookUp.put(t.charAt(i), lookUp.get(t.charAt(i)) - 1);
+            }
+        }
+        // to check case if s contains extra chars than t, where after checking out t, s still has extra char left
+        // that means to check case: when s is superset of t
+        return lookUp.isEmpty();
+    }
+
+    // optimal solution: int[26] frequency array— since it's only lowercase English letters
+    // Takeaway: When the charset is fixed/small (lowercase letters, digits, ASCII), prefer frequency array over HashMap even at the cost of multiple pass.
+    // Same O(n) complexity but way faster in practice due to no hash collisions or boxing overhead. - HashMap: Autoboxing char → Character, hash computation, bucket lookup, collision handling, Integer boxing for values. All this per character.
+    public boolean isAnagram2(String s, String t) {
+        int[] freq = new int[26];
+        for (char c : s.toCharArray()) freq[c - 'a']++;
+        for (char c : t.toCharArray()) freq[c - 'a']--;
+        for (int f : freq) if (f != 0) return false;
+        return true;
+    }
+
+    public static boolean areAnagrams_v2(String s1, String s2) {
+        // code here
+        int[] freq = new int[26];
+
+        char[] s1CharArr = s1.toCharArray();
+        char[] s2CharArr = s2.toCharArray();
+
+        if(s1CharArr.length != s2CharArr.length) return false;
+
+        for(int i = 0; i < s1CharArr.length; i++){
+            freq[s1CharArr[i] - 'a']++;
+            freq[s2CharArr[i] - 'a']--;
+        }
+        for(int frequency: freq){
+            if(frequency != 0) return false;
         }
         return true;
     }

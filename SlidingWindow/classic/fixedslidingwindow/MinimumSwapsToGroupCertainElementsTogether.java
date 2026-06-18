@@ -23,7 +23,7 @@ Example Output
 Output 1: 2
 Output 2: 1
 * */
-public class MinimumSwaps {
+public class MinimumSwapsToGroupCertainElementsTogether {
     public int findMinSwaps(int[] A, int B) {
 
         int n = A.length;

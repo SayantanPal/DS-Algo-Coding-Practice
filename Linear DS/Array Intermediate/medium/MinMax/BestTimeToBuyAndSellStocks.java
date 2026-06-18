@@ -1,4 +1,4 @@
-package MinMax;
+package medium.MinMax;
 
 /*
 * Problem Description

@@ -1,3 +1,5 @@
+package longestpalindromicsubstring;
+
 // Link: https://leetcode.com/problems/longest-palindromic-substring/
 public class LongestPalindromicSubstringByManacherAlgo {
 

@@ -1,4 +1,4 @@
-package basic;
+package medium.majorityelement;
 
 import java.util.HashMap;
 import java.util.Map;

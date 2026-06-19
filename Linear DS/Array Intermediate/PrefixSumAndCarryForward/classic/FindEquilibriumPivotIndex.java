@@ -17,7 +17,8 @@ Your task is to find the equilibrium index of the given array: The equilibrium i
 * Output 2: -1
 *
 * */
-public class FindEquilibriumIndex {
+// Link: https://leetcode.com/problems/find-pivot-index/description/
+public class FindEquilibriumPivotIndex {
     public static int findEquilibriumIndex(int[] A) {
         int n = A.length;
 

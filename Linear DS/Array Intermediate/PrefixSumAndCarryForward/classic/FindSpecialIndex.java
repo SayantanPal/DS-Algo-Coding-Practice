@@ -4,6 +4,7 @@ package classic;
 * Problem Description: Given an array, arr[] of size N, the task is to find the count of array indices such that removing an element from these indices makes the sum of even-indexed and odd-indexed array elements equal.
 * */
 // Pre-requisite: FindPrefixSumForQueries
+// Link: https://leetcode.com/problems/ways-to-make-a-fair-array/
 public class FindSpecialIndex {
 
     public int solve(int[] A) {

@@ -1,5 +1,7 @@
 package classic;
 
+import java.util.ArrayList;
+
 /*
 * Problem Description
 
@@ -49,6 +51,36 @@ public class PickFromBothSides {
             maxSum = Math.max(maxSum, prefixSumLeftToRight[a - 1] + prefixSumRightToLeft[(n - 1) - b + 1]);
         }
         maxSum = Math.max(maxSum, prefixSumRightToLeft[(n - 1) - B + 1]);
+
+        return maxSum;
+    }
+
+    public int solve_v2(ArrayList<Integer> A, int B) {
+        int n = A.size();
+        int k = B;
+        int[] prefixSum = new int[n];
+        prefixSum[0] = A.get(0);
+        for(int i = 1; i < n; i++){
+            prefixSum[i] = prefixSum[i - 1] + A.get(i);
+        }
+        int maxSum = Integer.MIN_VALUE;
+
+        // pick nothing from left + pick last k from right
+        if(k == n){
+            maxSum = Math.max(maxSum, prefixSum[n - 1]);
+        }else{
+            maxSum = Math.max(maxSum, prefixSum[n - 1] - prefixSum[n - 1 - k]);
+        }
+        for(int i = 1; i < k; i++){
+            int pickFromLeft = i;
+            int pickFromRight = k - pickFromLeft;
+
+            int sumFromLeft = prefixSum[pickFromLeft - 1];
+            int sumFromRight = prefixSum[n - 1] - prefixSum[n - 1 - pickFromRight];
+            maxSum = Math.max(maxSum, sumFromLeft + sumFromRight);
+        }
+        // pick last k from left + pick nothing from right
+        maxSum = Math.max(maxSum, prefixSum[k - 1]);
 
         return maxSum;
     }

@@ -25,8 +25,8 @@ Remove 0 elements from front and 3 elements from the back.
 *
 * Output Format: Return an integer denoting the maximum possible sum of elements you removed.
 * */
+// Link: https://www.interviewbit.com/problems/pick-from-both-sides/
 public class PickFromBothSides {
-
     public int solve(int[] A, int B) {
         int n = A.length;
         int[] prefixSumLeftToRight = new int[n];
@@ -67,14 +67,18 @@ public class PickFromBothSides {
 
         // pick nothing from left + pick last k from right
         if(k == n){
-            maxSum = Math.max(maxSum, prefixSum[n - 1]);
-        }else{
-            maxSum = Math.max(maxSum, prefixSum[n - 1] - prefixSum[n - 1 - k]);
+            return prefixSum[n - 1]; // all elements picked, return all sum
+        }else if(k == 0){ // no elements picked, return 0
+            return 0;
         }
+        maxSum = Math.max(maxSum, prefixSum[n - 1] - prefixSum[n - 1 - k]);
         for(int i = 1; i < k; i++){
             int pickFromLeft = i;
             int pickFromRight = k - pickFromLeft;
 
+            // when pickFromLeft is picked from left and pickFromRight is picked from right
+            // left part sum between index 0 -> index (pickFromLeft - 1)
+            // right part sum between index (n - pickFromRight) -> index (n - 1)
             int sumFromLeft = prefixSum[pickFromLeft - 1];
             int sumFromRight = prefixSum[n - 1] - prefixSum[n - 1 - pickFromRight];
             maxSum = Math.max(maxSum, sumFromLeft + sumFromRight);

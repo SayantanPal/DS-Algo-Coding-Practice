@@ -90,8 +90,8 @@ public class LongestConsecutivelyIncreasingSequenceWithDuplicates {
     }
 
     // Most Optimal
-    public static int longestConsecutiveMostOptimized(){
-        Set<Integer> set = new HashSet<>(Arrays.asList(/* nums boxed */));
+    public static int longestConsecutiveMostOptimized(List<Integer> nums){
+        Set<Integer> set = new HashSet<>(nums);
         int maxLen = 0;
 
         // iterate over set instead of the original array

@@ -28,7 +28,7 @@ NOTE: that's why for long and float, we explicitly mention
 # <Bigger Type> = < Smaller Val> // implicit type-casting
 # <Smaller Type> = <Bigger Type Val> // explicit type-casting
 
-# Operand_1 OPERATOR Operand_2 -> here either Operand_1 or Operand_2 can be of bigger datatype for the output to be also of same bigger datatype
+# <Operand_1> OPERATOR <Operand_2> => here either <Operand_1> or <Operand_2> can be of bigger datatype for the output to be also of same bigger datatype
 
 # For uninititalized method-local variables having primitive datatype, there is compile-time error
 # While for uninititalized class-level member variables having primitive datatype, there is default value. (say example, with int variable, default value initialized is 0)

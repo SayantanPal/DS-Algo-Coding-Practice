@@ -1,4 +1,6 @@
-package basic;/*
+package basic.movezeros;
+import util.PrintOutputUtils;
+/*
 *A chocolate factory is packing chocolates into packets.
 * The chocolate packets here represent an array arr of N number of integer values.
 * The task is to find the empty packets(0) of chocolate and
@@ -28,9 +30,18 @@ Input:
 6 1 8 2 0 0
 * */
 
+// GOLDEN HACKS - Always remember:
+// 1. if the zeros needs to be clubbed together either right or left pole/corners, this automatically means, non-zero elements are clubbed together either on opposite poles/corners
+// 2. Sequencing matters for non-zero elements, NEVER for zero elements as they are look-alike.
+// 3. Whose sequencing matters, that needs to be preserved -
+//      - a. so always use fast pointer to point to non-zeros while sequentially it traverses one by one maintaining order and slow pointer preserves the order of non-zero elements
+//      - b. when asked to move zero to right -> indirectly means move non-zero to left side(0th index) -> start slow and first pointer from left, where slow will sequentially club all non-zeros to accumulate clubbed zeros at right end.
+//      - c. when asked to move zero to left -> indirectly means move non-zero to right side(n - 1 th index) -> start slow and first pointer from right, where slow will sequentially club all non-zeros to accumulate clubbed zeros at left end.
 
-import util.PrintOutputUtils;
-
+// Link: https://www.interviewbit.com/problems/move-zeroes/
+//       https://www.naukri.com/code360/problems/interview-shuriken-41-move-zeroes-to-end_240143
+//       https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1
+//       https://www.naukri.com/code360/problems/move-zeros-to-left_1094877?leftPanelTabValue=PROBLEM
 public class MoveZerosToEndInPlaceMaintainingOrder {
 
     public static void pushZerosToEnd_v1(int[] arr) {

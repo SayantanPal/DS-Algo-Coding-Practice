@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Link: https://www.naukri.com/code360/problems/longest-subset-zero-sum_920321?leftPanelTabValue=PROBLEM
+//       https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1
 // Constraint: Array members can be negative as well
 public class LongestLengthSubSequenceWithTargetSumIncludingNegatives {
 

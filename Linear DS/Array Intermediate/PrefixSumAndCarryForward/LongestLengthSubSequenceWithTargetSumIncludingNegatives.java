@@ -40,17 +40,54 @@ public class LongestLengthSubSequenceWithTargetSumIncludingNegatives {
         return maxLength;
     }
 
-    // sliding window works only when all +ve nos
-    public int lenOfLongestSubarr2(int[] arr, int target) {
-        int left = 0, sum = 0, minLen = Integer.MAX_VALUE;
-        for (int right = 0; right < arr.length; right++) {
-            sum += arr[right];           // expand
-            while (sum >= target) {       // shrink while valid
-                minLen = Math.min(minLen, right - left + 1);
-                sum -= arr[left++];
+    public int longestSubarrayV2(int[] arr, int k) {
+        Map<Integer, Integer> prefixSum = new HashMap<>();
+
+        // either use technique a or b
+        prefixSum.put(0, -1); // technique a
+        // OR
+        //  technique b inside loop
+        /*
+        if(cumulativeSum == targetSum){
+            maxLength = Math.max(maxLength, i+1);
+        }*/
+
+        int currPrefixSum = 0;
+        int maxLen = 0;
+        for(int i = 0; i < arr.length; i++){
+            currPrefixSum += arr[i];
+            // rightPrefixSum - leftPrefixSum = target sum k
+            // you cannot scan right index because at ith step, future is not visited or traced out yet - only left sum is traced out and becomes past history to refer
+            // so, leftPrefixSum = rightPrefixSum - target sum k
+            if(prefixSum.containsKey(currPrefixSum - k)){
+                // subarray ranges from index (prefixSum.get(currPrefixSum - k) + 1) to i
+                maxLen = Math.max(maxLen, i - (prefixSum.get(currPrefixSum - k) + 1) + 1);
+            }
+
+            if (!prefixSum.containsKey(currPrefixSum)) { // if it contains curr prefix sum at much lower indexes, then do not overwrite so that greedily algorithm can pick the same sum achieved from compartively lower index to get longer length
+                prefixSum.put(currPrefixSum, i);
             }
         }
-        return minLen == Integer.MAX_VALUE ? 0 : minLen;
+        return maxLen;
+    }
+
+    // sliding window works only when all +ve nos
+    // Take violating example: 10, 5, 2, 7, 1, -10
+    // once target becomes greater, window starts sqeezing out ignoring the possibility of future negative value which could have nullified higher curr cumulative sum value
+    public int lenOfLongestSubarr2(int[] arr, int target) {
+        int sum = 0;
+        int maxLen = 0;
+        int left = 0;
+        for(int right = 0; right < arr.length; right++){
+            sum += arr[right];
+            while(sum > target){
+                sum -= arr[left++];
+            }
+            if(sum == target){
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+        }
+        return maxLen;
     }
 
 }

@@ -65,7 +65,7 @@ public class LongestLengthSubSequenceWithTargetSumIncludingNegatives {
                 maxLen = Math.max(maxLen, i - (prefixSum.get(currPrefixSum - k) + 1) + 1);
             }
 
-            if (!prefixSum.containsKey(currPrefixSum)) { // if it contains curr prefix sum at much lower indexes, then do not overwrite so that greedily algorithm can pick the same sum achieved from compartively lower index to get longer length
+            if (!prefixSum.containsKey(currPrefixSum)) { // if it contains curr prefix sum at much lower indexes, then do not overwrite so that greedily algorithm can pick the same sum achieved from comparatively lower index to get longer length
                 prefixSum.put(currPrefixSum, i);
             }
         }

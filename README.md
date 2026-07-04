@@ -195,6 +195,9 @@ For multiple duplicates, in second iteration while iterating:
 ## JAVA HACKS FOR OPTIMISATION
 * In 2D Arrays, for ASC order SORT, use: Arrays.sort(input2DArr, (a, b) -> a[0] - b[0]); faster than: Arrays.sort(input2DArr, Comparator.comparingInt( (int[] input1DArr) -> input1DArr[0]));
 
+## JAVA LANG SPECIFIC
+Arrays.sort(Arrays.stream(arr).boxed().toArray( Integer[]::new ), Collections.reverseOrder()); //  descending order sorting
+
 ## GOLDEN RULES OF THUMB FOR INTERVIEWS
 * When tracking occurance:
   - Fixed/small charset (26 letters, 128 ASCII, 10 digits) → frequency array (even at the cost of multiple pass is more preferrable) over HashMap

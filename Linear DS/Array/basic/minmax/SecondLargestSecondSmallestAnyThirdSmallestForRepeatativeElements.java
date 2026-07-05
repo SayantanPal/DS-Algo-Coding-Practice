@@ -122,8 +122,8 @@ public class SecondLargestSecondSmallestAnyThirdSmallestForRepeatativeElements {
         int n = arr.length;
         if(n < 2) return -1;
 
-        int largest = -1;
-        int secondLargest = -1;
+        int largest = -1; // if arr[i] range starts from 0, else take it as Integer.MIN_VALUE
+        int secondLargest = -1; // if arr[i] range starts from 0, else take it as Integer.MIN_VALUE
 
         for(int i = 0; i < n; i++){
             if(arr[i] > largest){

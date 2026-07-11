@@ -58,4 +58,17 @@ public class BalancedValidParenthesis {
         }
         return stack.isEmpty(); // this check is needed when input is for ex say: ({[
     }
+
+    public boolean isBalanced_v3(String str) {
+        Deque<Character> stack = new ArrayDeque<>();
+        for (char c : str.toCharArray()) {
+            if(!stack.isEmpty()) {
+                if (c == ')' && stack.pop() != '(') return false;
+                else if (c == '}' && stack.pop() != '{') return false;
+                else if (c == ']' && stack.pop() != '[') return false;
+            }
+            stack.push(c);
+        }
+        return stack.isEmpty(); // this check is needed when input is for ex say: ({[
+    }
 }

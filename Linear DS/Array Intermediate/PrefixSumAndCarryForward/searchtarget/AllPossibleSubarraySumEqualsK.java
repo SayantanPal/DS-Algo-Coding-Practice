@@ -1,4 +1,4 @@
-package classic;
+package searchtarget;
 
 import java.util.ArrayList;
 import java.util.HashMap;

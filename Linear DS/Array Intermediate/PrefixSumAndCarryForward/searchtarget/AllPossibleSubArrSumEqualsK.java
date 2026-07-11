@@ -6,9 +6,9 @@ import java.util.Map;
 
 // Link: https://leetcode.com/problems/subarray-sum-equals-k/
 // link: https://www.geeksforgeeks.org/problems/subarrays-with-sum-k/1
-public class AllPossibleSubarraySumEqualsK {
+public class AllPossibleSubArrSumEqualsK {
 
-    public int k_sum_subarrays(ArrayList<Integer> nums, int k) {
+    public int subarraySum(ArrayList<Integer> nums, int k) {
         int n = nums.size();
         int count = 0;
         // Populate the prefix sum array, setting its first element to 0.
@@ -28,27 +28,27 @@ public class AllPossibleSubarraySumEqualsK {
         return count;
     }
 
-    public int subarraySum(int[] nums, int k) {
+    public int subarraySum_v2(int[] nums, int k) {
         Map<Integer, Integer> prefixSumMap = new HashMap<>();
 
         // Initialize the map with 0 to handle subarrays that sum to 'k' from the start of the array.
         prefixSumMap.put(0, 1);
         int countSubArrays = 0;
-        int cumulative_current_sum = 0;
+        int currPrefixSum = 0;
         for(int num: nums){
             // Update the running prefix sum by adding the current number
-            cumulative_current_sum += num;
+            currPrefixSum += num;
 
             // If a subarray with sum 'k' exists, increment 'count' by the number of times it has been found.
-            // subarrays having pairs at star and end terminals - Pair => LHS:(cumulative_current_sum - k) and RHS: cumulative_current_sum
+            // subarrays having pairs at star and end terminals - Pair => LHS:(currPrefixSum - k) and RHS: currPrefixSum
             // between these pair the sum exists
-            if(prefixSumMap.containsKey(cumulative_current_sum - k)){
-                // count of such sum formation between (cumulative_current_sum - k) and cumulative_current_sum
-                // depends on count of subarray or how many subarray that can form (cumulative_current_sum - k)
-                // for each cumulative_current_sum(RHS pair), there can be multiple such (cumulative_current_sum - k)(LHS pairs)
+            if(prefixSumMap.containsKey(currPrefixSum - k)){
+                // count of such sum formation between (currPrefixSum - k) and currPrefixSum
+                // depends on count of subarray or how many subarray that can form (currPrefixSum - k)
+                // for each currPrefixSum(RHS pair), there can be multiple such (currPrefixSum - k)(LHS pairs)
                 // count of subarrays look like
-                //  [(cumulative_current_sum - k)_1 -> cumulative_current_sum], [(cumulative_current_sum - k)_2 -> cumulative_current_sum], [(cumulative_current_sum - k)_3 -> cumulative_current_sum] and so on and so forth...
-                countSubArrays+= prefixSumMap.get(cumulative_current_sum - k);
+                //  [(currPrefixSum - k)_1 -> currPrefixSum], [(currPrefixSum - k)_2 -> currPrefixSum], [(currPrefixSum - k)_3 -> currPrefixSum] and so on and so forth...
+                countSubArrays+= prefixSumMap.get(currPrefixSum - k);
             }
 
             // Store the 'currPrefixSum' value in the hash map.
@@ -56,7 +56,7 @@ public class AllPossibleSubarraySumEqualsK {
             // also track curr_prefix_sum as RHS Pair at current state in case if it becomes eligible LHS Pair for some other pair
             // say for k = 4, LHS curr_prefix_sum - k can be 3 and curr_prefix_sum can be 7 and
             // this 7 can also be LHS curr_prefix_sum - k when curr_prefix_sum = 11 where again the k = 4
-            prefixSumMap.put(cumulative_current_sum, prefixSumMap.getOrDefault(cumulative_current_sum, 0) + 1);
+            prefixSumMap.put(currPrefixSum, prefixSumMap.getOrDefault(currPrefixSum, 0) + 1);
         }
         return countSubArrays;
     }

@@ -13,10 +13,10 @@ public class RunningSumOf1DArray {
 
     public int[] runningSum_v2(int[] nums) {
         int[] prefixSum = new int[nums.length];
-        int currSum = 0;
+        int currPrefixSum = 0;
         for(int i = 0; i < nums.length; i++){
-            currSum += nums[i];
-            prefixSum[i] = currSum;
+            currPrefixSum += nums[i];
+            prefixSum[i] = currPrefixSum;
         }
         return prefixSum;
     }

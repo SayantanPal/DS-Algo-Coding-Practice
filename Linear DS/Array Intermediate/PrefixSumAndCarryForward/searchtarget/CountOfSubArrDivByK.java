@@ -14,10 +14,10 @@ public class CountOfSubArrDivByK {
         int[] countRemOfK = new int[k];
         countRemOfK[0] = 1; // empty prefix — handles subarrays divisible by K starting from index 0
         int countSubArr = 0;
-        int currSum = 0;
+        int currPrefixSum = 0;
         for(int i = 0; i < n; i++){
-            currSum += nums[i];
-            int remainderOfK = ((currSum % k) + k) % k;
+            currPrefixSum += nums[i];
+            int remainderOfK = ((currPrefixSum % k) + k) % k;
             // if(countRemOfK.containsKey(remainderOfK)){
             //     countSubArr += countRemOfK.get(remainderOfK);
             // }

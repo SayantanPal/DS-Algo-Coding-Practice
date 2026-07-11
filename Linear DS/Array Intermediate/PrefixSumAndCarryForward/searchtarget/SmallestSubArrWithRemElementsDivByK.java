@@ -16,19 +16,19 @@ public class SmallestSubArrWithRemElementsDivByK {
         int n = nums.length;
         long totalSum = 0;
         for(int i = 0; i < n; i++) totalSum+= nums[i];
-        int target = (int)(totalSum % k);
-        if (target == 0) return 0;
+        int rangedTotalSum = (int)(totalSum % k);
+        if (rangedTotalSum == 0) return 0;
 
 
         HashMap<Integer, Integer> indexForPrevPair = new HashMap<>(); //int[] indexForPrevPair = new int[p];
         int minLen = n;
         // Arrays.fill(indexForPrevPair, -2);
         indexForPrevPair.put(0, -1); // indexForPrevPair[0] = -1; // empty prefix — handles subarrays divisible by K starting from index 0
-        long currSum = 0;
+        long currPrefixSum = 0;
         for(int i = 0; i < n; i++){
-            currSum += nums[i];
-            int rangedCurrSum = (int)(currSum % k);
-            int normalizedRemainder = ( ( (rangedCurrSum - target) % k) + k) % k; // modular equation with proper negative normalization
+            currPrefixSum += nums[i];
+            int rangedCurrSum = (int)(currPrefixSum % k);
+            int normalizedRemainder = ( ( (rangedCurrSum - rangedTotalSum) % k) + k) % k; // modular equation with proper negative normalization
             if(indexForPrevPair.containsKey(normalizedRemainder))
                 minLen = Math.min(minLen, i - indexForPrevPair.get(normalizedRemainder));
             indexForPrevPair.put(rangedCurrSum, i); // indexForPrevPair[rangedCurrSum] = i;

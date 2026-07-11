@@ -14,13 +14,13 @@ public class CountOfSubArrEqualsK {
         Map<Integer, Integer> lookUp = new HashMap<>();
         lookUp.put(0, 1);
         int result = 0;
-        int cum_curr_sum = 0;
+        int currPrefixSum = 0;
         for(int num: nums){
-            cum_curr_sum += num;
-            if(lookUp.containsKey(cum_curr_sum - k)){
-                result+= lookUp.get(cum_curr_sum - k);
+            currPrefixSum += num;
+            if(lookUp.containsKey(currPrefixSum - k)){
+                result+= lookUp.get(currPrefixSum - k);
             }
-            lookUp.put(cum_curr_sum, lookUp.getOrDefault(cum_curr_sum, 0) + 1);
+            lookUp.put(currPrefixSum, lookUp.getOrDefault(currPrefixSum, 0) + 1);
         }
         return result;
     }

@@ -10,6 +10,9 @@ A subarray is defined as a contiguous block of elements in the array.
 * */
 
 // Link: https://leetcode.com/problems/make-sum-divisible-by-p/description/
+// constraint: length of smallest subarray that can be removed can be 0
+// constraint: whole array cannot be removed
+// constraint: array elements can be negative
 public class SmallestSubArrWithRemElementsDivByK {
 
     public int minSubarray(int[] nums, int k) {
@@ -17,7 +20,7 @@ public class SmallestSubArrWithRemElementsDivByK {
         long totalSum = 0;
         for(int i = 0; i < n; i++) totalSum+= nums[i];
         int rangedTotalSum = (int)(totalSum % k);
-        if (rangedTotalSum == 0) return 0;
+        if (rangedTotalSum == 0) return 0; // length of smallest subarray that can be removed can be 0
 
 
         HashMap<Integer, Integer> indexForPrevPair = new HashMap<>(); //int[] indexForPrevPair = new int[p];
@@ -33,6 +36,6 @@ public class SmallestSubArrWithRemElementsDivByK {
                 minLen = Math.min(minLen, i - indexForPrevPair.get(normalizedRemainder));
             indexForPrevPair.put(rangedCurrSum, i); // indexForPrevPair[rangedCurrSum] = i;
         }
-        return minLen == n ? -1 : minLen;
+        return minLen == n ? -1 : minLen; // whole array cannot be removed
     }
 }

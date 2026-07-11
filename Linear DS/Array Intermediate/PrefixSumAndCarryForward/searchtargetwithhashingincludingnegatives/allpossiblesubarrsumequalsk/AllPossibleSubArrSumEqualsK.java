@@ -1,4 +1,4 @@
-package searchtarget;
+package searchtargetwithhashingincludingnegatives.allpossiblesubarrsumequalsk;
 
 import java.util.ArrayList;
 import java.util.HashMap;

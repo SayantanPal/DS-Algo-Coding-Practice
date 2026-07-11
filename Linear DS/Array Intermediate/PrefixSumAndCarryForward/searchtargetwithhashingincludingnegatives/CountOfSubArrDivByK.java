@@ -1,4 +1,4 @@
-package searchtarget;
+package searchtargetwithhashingincludingnegatives;
 
 // Link: https://leetcode.com/problems/subarray-sums-divisible-by-k/
 

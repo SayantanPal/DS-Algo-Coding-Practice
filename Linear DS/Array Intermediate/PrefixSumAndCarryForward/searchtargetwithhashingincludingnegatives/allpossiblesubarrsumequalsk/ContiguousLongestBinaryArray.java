@@ -1,4 +1,4 @@
-package withhashing.ksumsubarray;
+package searchtargetwithhashingincludingnegatives.allpossiblesubarrsumequalsk;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -6,7 +6,7 @@ import java.util.Map;
 
 // Link: https://leetcode.com/problems/subarray-sum-equals-k/
 // link: https://www.geeksforgeeks.org/problems/subarrays-with-sum-k/1
-public class AllPossibleSubArrSumEqualsK {
+public class CountOfAllPossibleSubArrSumEqualsK {
 
     public int subarraySum(ArrayList<Integer> nums, int k) {
         int n = nums.size();

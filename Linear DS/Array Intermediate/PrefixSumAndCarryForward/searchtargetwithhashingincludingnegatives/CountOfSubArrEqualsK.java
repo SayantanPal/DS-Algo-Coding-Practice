@@ -1,27 +1,23 @@
 package searchtargetwithhashingincludingnegatives;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
-/*
- *
- *
- *
- * */
-// Link: https://leetcode.com/problems/subarray-sum-equals-k/
 public class CountOfSubArrEqualsK {
-    public int subarraySum(int[] nums, int k) {
-        Map<Integer, Integer> lookUp = new HashMap<>();
-        lookUp.put(0, 1);
-        int result = 0;
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        int n = nums.length;
+        // arrays are possible when array elements are guranteed to be non-negative
+        // in case if the array elem happens to be negative, then negative sum cannot be stored in array indexes
+        int[] prefixSumLookUp = new int[n + 1]; // when array filled with all 1's, sum will overshoot the index
+        prefixSumLookUp[0] = 1;
         int currPrefixSum = 0;
-        for(int num: nums){
-            currPrefixSum += num;
-            if(lookUp.containsKey(currPrefixSum - k)){
-                result+= lookUp.get(currPrefixSum - k);
+        int countSubArr = 0;
+        for(int i = 0; i < n; i++){
+            currPrefixSum += nums[i];
+            if(currPrefixSum >= goal){ // eliminating the possibility of negative sum because all array elems in given prob are only positive
+                countSubArr += prefixSumLookUp[currPrefixSum - goal];
             }
-            lookUp.put(currPrefixSum, lookUp.getOrDefault(currPrefixSum, 0) + 1);
+            prefixSumLookUp[currPrefixSum]++;
         }
-        return result;
+        return countSubArr;
     }
 }

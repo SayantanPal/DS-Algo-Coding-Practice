@@ -2,7 +2,11 @@ package searchtargetwithhashingincludingnegatives.allpossiblesubarrsumequalsk;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+* Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of 0 and 1.
+*
+* Convert all 0's to -1 so that all +1 and -1 sums up to give a targest sum of 0 of max Len
+* */
 // Link: https://leetcode.com/problems/contiguous-array/
 public class ContiguousLongestBinaryArray {
 

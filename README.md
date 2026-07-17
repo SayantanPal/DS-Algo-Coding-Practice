@@ -1,6 +1,14 @@
 # DS-Algo-Coding-Practice
 Coding Practice for clearing Interviews
 
+# BIT-WISE 
+For any number n
+* To isolate the LSB(Lowest Significant Bit ie. rightmost bit) which is set to 1: n & (-n)
+  Ex1: n = 01100, then after extracting first bit 1 from right to left, extract is 100 i.e., 00100
+  Ex2: n = 101000, then after extracting first bit 1 from right to left, extract is 1000 i.e., 001000
+* To check if n is power of 2: if(n & (n-1) == 0)
+*  n + (n & -n) does to a run of 1s — clears the lowest run and sets the next bit
+
 # DIVISORS -> 
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'
 

@@ -1,6 +1,22 @@
 # DS-Algo-Coding-Practice
 Coding Practice for clearing Interviews
 
+# TLE - usually 1 sec of execution on cloud servers
+* Assume 1 iteration takes on an avg ~10 instructions
+* Assume ~10^8 iterations typically run on cloud coding judge servers in 1 sec
+
+| Time Complexity[ Big(O)] | Bigger Input Size[N] | Iterations       | Exec. Time            |
+|--------------------------|----------------------|------------------|-----------------------|
+| O(N)                     | 10^8                 | 10^8             | 1 sec                 |
+| O(N^2)                   | 10^8                 | 10^(8x2) = 10^16 | 10^8 sec              |
+| O(N)                     | 10^18                | 10^18            | 10^10 sec = 317 years |
+| O(Sqrt(N))               | 10^18                | 10^9             | 10^2 sec = 100 sec    |
+
+* Precedence of time complexity:
+  O(log(k)N) < O(Sqrt(N)) or O(N^(1/2)) < O(N) 
+  < O(NlogN) < O(NSqrt(N))< O(N^2) < O(N^3)
+  < O(2^N) < O(N!) < O(N^N) 
+
 # BIT-WISE 
 For any number n
 * To isolate the LSB(Lowest Significant Bit ie. rightmost bit) which is set to 1: n & (-n)

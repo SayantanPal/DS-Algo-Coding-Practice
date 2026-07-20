@@ -19,11 +19,24 @@ Coding Practice for clearing Interviews
 
 # BIT-WISE 
 For any number n
+* For counting no of 1's or set bits in binary representation of n in O(N = 32 or 64) ~ O(1) const TC for 32 or 64 bit
+  * Use in-built Integer.bitCount(n) [SWAR/POPCNT algo] 
+  * OR Use while(n != 0) (n = n & n-1) // count - remove the lowest SET bit one-by-one [Brian Kernighan]
+* Use [num & (1 << bit_position_from_right)] to check if that particular bit_position_from_right contains 1 or not.
+  * if(num & (1 << bit_position_from_right) != 0), that means bit_position_from_right contains '1' in binary representation of decimal no. num
 * To isolate the LSB(Lowest Significant Bit i.e., rightmost bit) which is set to 1: n & (-n)
   Ex1: n = 01100, then after extracting first bit 1 from right to left, extract is 100 i.e., 00100
   Ex2: n = 101000, then after extracting first bit 1 from right to left, extract is 1000 i.e., 001000
-* To check if n is power of 2: if(n & (n-1) == 0)
+* To check if n is power of 2: if( (n & (n - 1)) == 0)
 * n + (n & -n) does to a run of 1s — clears the lowest run and sets the next bit
+* Even/Odd depends only on the last bit - 
+  For even no, last bit is 0 whereas for odd it is 1, 
+  ie. if (n & (1 << 0) == 1){ //OR if(n & 1 == 1) // means last bit is 1, then n & (1 << 0) equals 1 i.e., the no is odd
+        // 'n' is Odd No.
+}
+* XOR captures differing bits: (a + b) mod 2 is exactly the same as (a ^ b), and last bit of (a + b) and (a ^ b) are always identical & last bit only reveals even/odd parity of a number -> so, (a + b) and (a ^ b) always have the same parity (i.e.,it means they're either both even or both odd, never one even and one odd). Difference between nos with same parity is always even
+* XOR behaves like addition without carry - so for last bit (i.e., bit wih position 0), addition and XOR give the same result
+* odd + even = odd; even + even = even; so while adding even no. parity is preserved - first operand is invariant
 
 # DIVISORS -> 
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'

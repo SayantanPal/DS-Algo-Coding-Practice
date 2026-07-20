@@ -332,6 +332,10 @@ So when people say KMP is space-efficient for pattern matching, it's because:
 LPS is closer to: An automaton / state machine. Each index is a state, and on mismatch you follow failure links to a previous state. 
 That's why KMP is often taught as a finite automaton.
 
+## SUBARRAYS
+No. or count of subarrays starting with index i = (n - i)
+No. or count of subarrays index i has appeared for all previous i no. of indexes ( starting from index 0 to i-1, each as starting index) =  i [for each of prev 0 to i-1 index] * (n - i) [count of times ith element appears in each of the subarrays with starting index as previous index before ith index]
+
 ## Sliding Window
 * 1. Fixed Sliding window is performance-wise faster than variable sliding window
 * 2. Fixed Sliding window can only be used when window size is defined

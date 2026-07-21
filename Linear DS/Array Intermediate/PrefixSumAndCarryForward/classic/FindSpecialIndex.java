@@ -38,4 +38,39 @@ public class FindSpecialIndex {
 
         return counter;
     }
+
+    public int solve2(int[] A) {
+
+        int n = A.length;
+
+        int[] evenIndxPrefixSum = new int[n];
+        int[] oddIndxPrefixSum = new int[n];
+
+        evenIndxPrefixSum[0] = A[0];
+        oddIndxPrefixSum[0] = 0;
+
+        for(int i = 1; i < n; i++){
+            if(i%2 == 0){
+                evenIndxPrefixSum[i] = evenIndxPrefixSum[i - 1] + A[i];
+                oddIndxPrefixSum[i] = oddIndxPrefixSum[i - 1];
+            }else{
+                evenIndxPrefixSum[i] = evenIndxPrefixSum[i - 1];
+                oddIndxPrefixSum[i] = oddIndxPrefixSum[i - 1] + A[i];
+            }
+        }
+
+        int count = 0;
+        for(int i = 0; i < n; i++){
+            if(i == 0){
+                if(oddIndxPrefixSum[n - 1] - oddIndxPrefixSum[i] == evenIndxPrefixSum[n - 1] - evenIndxPrefixSum[i]){
+                    count++;
+                }
+            }else{
+                if(evenIndxPrefixSum[i - 1] + (oddIndxPrefixSum[n - 1] - oddIndxPrefixSum[i]) == oddIndxPrefixSum[i - 1] + (evenIndxPrefixSum[n - 1] - evenIndxPrefixSum[i])){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }

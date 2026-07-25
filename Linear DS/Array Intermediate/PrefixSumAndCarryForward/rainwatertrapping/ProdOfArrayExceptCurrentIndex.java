@@ -1,4 +1,4 @@
-package classic;
+package rainwatertrapping;
 
 import java.util.Arrays;
 

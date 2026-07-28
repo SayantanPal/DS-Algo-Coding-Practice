@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Link: https://leetcode.com/problems/spiral-matrix/
-public class PrintSpiralMatrix {
+public class SpiralMatrixTraversal {
 
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> result = new ArrayList<Integer>();

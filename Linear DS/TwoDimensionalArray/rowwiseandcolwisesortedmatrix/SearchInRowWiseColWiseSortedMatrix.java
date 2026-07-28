@@ -1,5 +1,6 @@
+package rowwiseandcolwisesortedmatrix;
 
-// Link: https://leetcode.com/problems/search-a-2d-matrix/
+// Link: https://leetcode.com/problems/search-a-2d-matrix-ii/description/
 public class SearchInRowWiseColWiseSortedMatrix {
     /*
     * Concept: if rows and cols are both sorted, then bottom right is the maximum element and top left is the minimum element

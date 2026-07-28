@@ -27,14 +27,17 @@ public class MinimumSwapsToGroupCertainElementsTogether {
     public int findMinSwaps(int[] A, int B) {
 
         int n = A.length;
+
+        // First, count how many elements are <= B. Call it k. That's the window size — in the final array, these elements must occupy some contiguous window of length k.
         int noOfElemsLessOrEqB = 0;
         for(int i = 0; i < n; i++){
-            if(A[i] <= B)
+            if(A[i] <= B) // group elements less than or equal to B together
                 noOfElemsLessOrEqB++;
         }
 
         // System.out.println("noOfElemsLessOrEqB: " + noOfElemsLessOrEqB);
 
+        //  Now it's a fixed-size sliding window of length k. For each window position, how many elements inside are > B? Those are the ones that need to be swapped out.
         // To Keep noOfElemsLessOrEqB together, think of a sliding window of size noOfElemsLessOrEqB
         // where task is to find or count the no of elements greater than B to find out how many elements to swap
         // now for a fixed size window of length noOfElemsLessOrEqB, find which window has min no of such elements greater than B

@@ -5,7 +5,7 @@ package medium.majorityelement;
 *
 * Problem Description
 
-You're given a read-only array of N integers. Find out if any integer occurs more than N/3 times in the array in linear time and constant additional space.
+You're given a read-only array of N integers. Find out if any integer occurs strictly more than N/3 times in the array in linear time and constant additional space.
 If so, return the integer. If not, return -1.
 
 If there are multiple solutions, return any one.
@@ -58,7 +58,8 @@ public class MajorityElementNBy3ExtensionOfBoyerMooreVotingAlgo {
         count1 = 0; count2 = 0;
         for(int i = 0; i < A.length; i++){
             if(A[i] == candidate1) count1++;
-            else if(A[i] == candidate2) count2++;
+            else if(A[i] == candidate2) count2++; // else if is mandatory :  Verification double-counting when both candidates are the same: If firstCandidate == secondCandidate (can happen when array has one dominant element), your second pass counts the same element in both counters (since you use two separate ifs, not if/else if). You'd add it to the result twice. Guard against adding duplicates — either use else if in the verification pass, or check firstCandidate != secondCandidate before adding the second.
+
         }
 
         if(count1 > A.length/3){

@@ -60,6 +60,20 @@ public class MoveZerosToEndInPlaceMaintainingOrder {
         }
     }
 
+    public void pushZerosToEnd_v3(int[] arr) {
+        // code here
+        int nonZerosPtr = 0;
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] != 0){
+                int temp = arr[i];
+                arr[i] = 0; // explicitly set it to 0 instead of swap
+                arr[nonZerosPtr] = temp; // dont toggle position with previous step; else it overrides final answer with 0 when i == non zero index
+                nonZerosPtr++;
+            }
+        }
+
+    }
+
     public static void pushZerosToStart_v2(int[] arr) {
         // code here
         int n = arr.length;

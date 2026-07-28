@@ -1,6 +1,23 @@
 package basic.minmax;
 
+// Link: https://leetcode.com/problems/increasing-triplet-subsequence/
 public class CountNoOfTriplets {
+    public boolean increasingTripletPresent(int[] nums) {
+        int secondSmallestNo = Integer.MAX_VALUE, smallestNo = Integer.MAX_VALUE;
+        int secondSmallestIndex = -1, smallestIndex = -1;
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] <= smallestNo){
+                smallestNo = nums[i];
+                smallestIndex = i;
+            }else if(nums[i] != smallestNo && nums[i] <= secondSmallestNo){
+                secondSmallestNo = nums[i];
+                secondSmallestIndex = i;
+            }else{
+                return true;
+            }
+        }
+        return false;
+    }
 
     public int findCountTripletsUsingBruteForce(int[] A) {
         int n = A.length;

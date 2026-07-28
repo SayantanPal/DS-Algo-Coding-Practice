@@ -3,6 +3,13 @@ package classic;
 
 // Link: https://leetcode.com/problems/flip-string-to-monotone-increasing/
 public class MinSwapsToFlipBinaryStrToMonotonicallyIncreasing {
+
+    /*
+    * for every index: take it as a possible pivot point of 0's on left and 1's on right after flipping
+    * so, before flipping, 1's on the left and 0's on the right are the possible left and right costs for each index i
+    * left cost of flipping 1's to 0's can range from 0 to i - 1 whereas right cos of flipping 0's to 1's can range from i to n - 1
+    * alternatively left can also range from 0 to i whereas right as i+1 to n-1
+    * */
     public int minFlipsMonoIncr(String s) {
         char[] sArr = s.toCharArray();
         int n = sArr.length;

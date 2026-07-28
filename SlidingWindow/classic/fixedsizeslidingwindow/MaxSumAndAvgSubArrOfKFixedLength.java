@@ -1,4 +1,4 @@
-package classic.fixedslidingwindow;
+package classic.fixedsizeslidingwindow;
 
 // Link: https://leetcode.com/problems/maximum-average-subarray-i/
 public class MaxSumAndAvgSubArrOfKFixedLength {

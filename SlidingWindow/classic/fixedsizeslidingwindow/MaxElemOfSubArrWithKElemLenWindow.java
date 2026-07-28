@@ -1,4 +1,4 @@
-package classic.fixedslidingwindow;
+package classic.fixedsizeslidingwindow;
 
 import java.util.Deque;
 import java.util.LinkedList;

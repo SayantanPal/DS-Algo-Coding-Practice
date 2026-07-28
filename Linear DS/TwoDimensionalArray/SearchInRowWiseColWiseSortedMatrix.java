@@ -1,6 +1,9 @@
 
 // Link: https://leetcode.com/problems/search-a-2d-matrix/
 public class SearchInRowWiseColWiseSortedMatrix {
+    /*
+    * Concept: if rows and cols are both sorted, then bottom right is the maximum element and top left is the minimum element
+    * */
     public boolean searchMatrix(int[][] matrix, int target) {
         int n = matrix.length;
         int m = matrix[0].length;

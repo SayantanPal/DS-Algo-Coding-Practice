@@ -1,4 +1,4 @@
-package classic.fixedslidingwindow;
+package classic.fixedsizeslidingwindow;
 
 /*
 * Problem Description

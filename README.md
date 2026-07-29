@@ -230,10 +230,13 @@ For multiple duplicates, in second iteration while iterating:
     - if first encountered index or say ordering is priority, then iterate original source array or string
 
 ## JAVA HACKS FOR OPTIMISATION
-* In 2D Arrays, for ASC order SORT, use: Arrays.sort(input2DArr, (a, b) -> a[0] - b[0]); faster than: Arrays.sort(input2DArr, Comparator.comparingInt( (int[] input1DArr) -> input1DArr[0]));
+* In 2D Arrays, for ASC order SORT, use: Arrays.sort(input2DArr, (a, b) -> a[0] - b[0]); faster than: Arrays.sort(input2DArr, Comparator.comparingInt( (int[] input2DArr) -> input2DArr[0]));
 
 ## JAVA LANG SPECIFIC
-Arrays.sort(Arrays.stream(arr).boxed().toArray( Integer[]::new ), Collections.reverseOrder()); //  descending order sorting
+* Arrays.sort(Arrays.stream(arr).boxed().toArray( Integer[]::new ), Collections.reverseOrder()); //  descending order sorting
+
+* To convert list of integer array to list of list:
+* List<int[]> result = new ArrayList<>(); -> result.add(new int[]{x, y}); -> int[][] result2 = result.toArray(new int[result.size()][]);
 
 ## GOLDEN RULES OF THUMB FOR INTERVIEWS
 * When tracking occurance:

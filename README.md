@@ -279,7 +279,7 @@ For multiple duplicates, in second iteration while iterating:
 * Monotonic stack is the optimal Data-structure which gives:
     - Next greater/smaller to the immediate right (NEVER extreme right)
     - Previous greater/smaller to the immediate left (NEVER extreme left)
-
+* Square Matrix of even length does not contain any centre element whereas square matrix of odd length contains exactly 1 center element which is matrix[n/2][n/2]. Non square matrix of higher Rows contains single column at center and non-square matrix of higher columns contains single row at center
 
 ## JAVA LANGUAGE SPECIFIC
 A. Convert List of Integers List<Integer> list to int[] array(comes with Stream performance Overhead):

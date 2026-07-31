@@ -1,7 +1,7 @@
 package advanced;
 
 // Link: https://leetcode.com/problems/first-missing-positive/description/
-public class FirstMissingPositiveNaturalNos {
+public class FirstMissingPositiveNaturalNosAmongPosNegZero {
     public int firstMissingPositive(int[] A) {
         int n = A.length;
         for(int i = 0; i < n; i++){

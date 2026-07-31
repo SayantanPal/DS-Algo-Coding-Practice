@@ -43,10 +43,9 @@ For any number n
 
 * To check if n is power of 2: if( (n & (n - 1)) == 0)
 * n + (n & -n) does to a run of 1s — clears the lowest run and sets the next bit
-* 
 * XOR captures differing bits: (a + b) mod 2 is exactly the same as (a ^ b), and last bit of (a + b) and (a ^ b) are always identical & last bit only reveals even/odd parity of a number -> so, (a + b) and (a ^ b) always have the same parity (i.e.,it means they're either both even or both odd, never one even and one odd). Difference between nos with same parity is always even
 * XOR behaves like addition without carry - so for last bit (i.e., bit wih position 0), addition and XOR give the same result
-* odd + even = odd; even + even = even; so while adding even no. parity is preserved - first operand is invariant
+* odd + even = odd; even + even = even and odd + odd = even; so while adding even no. parity is preserved - first operand is invariant
 
 # DIVISORS -> 
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'

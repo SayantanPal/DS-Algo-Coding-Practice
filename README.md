@@ -19,21 +19,31 @@ Coding Practice for clearing Interviews
 
 # BIT-WISE 
 For any number n
+* Use [num | (1 << bit_position_from_right)] to SET bit to 1 ie whatever bit is in bit_position_from_right will be set to 1
+* Use [num ^ (1 << bit_position_from_right)] to TOGGLE ( SET to UNSET and UNSET to SET)  bit to 1 ie whatever bit is in bit_position_from_right will be toggled (0 to 1 and vice-versa)
+* Use [num & (1 << bit_position_from_right)] to CHECK if that particular bit_position_from_right contains 1 (SET BIT) or not. if(num & (1 << bit_position_from_right) != 0 OR > 0), that means bit_position_from_right contains '1' in binary representation of decimal no. num
+  * Even/Odd depends only on the last bit -
+    For even no, last bit is 0 whereas for odd it is 1,
+    ie. if (n & (1 << 0) == 1 OR != 0 OR > 0){ //OR if(n & 1 == 1) // means last bit is 1, then n & (1 << 0) equals 1 i.e., the no is odd
+        // 'n' is Odd No.
+    }
+* Use [num & (1 << bit_position_from_right)] > 0 to check if the bit is SET. If Set, then you can UNSET using TOGGLE [num ^ (1 << bit_position_from_right)] from 1 back to 0
+* Integer has 32 bits while Byte has 8 bits, short has 16 bits and Long has 64 bits.
+* (n << i) in binary representation is same as n x (2^i) in decimal whereas  (n >> i) is same as n / (2^i)
+* Similarly, a += (2^i) is same as a |= (1 << i)
+* To isolate/trim out the LSB(Lowest Significant Bit i.e., rightmost bit) which is set to 1: n & (-n)
+  Ex1: n = 01100, then after extracting till first bit 1 is encountered from right to left, extract answer is 100 i.e., 00100 and 01 is isolated out
+  Ex2: n = 101000, then after extracting till first bit 1 is encountered from right to left, extract answer is 1000 i.e., 001000 and 10 is isolated out
+
 * For counting no of 1's or set bits in binary representation of n in O(N = 32 or 64) ~ O(1) const TC for 32 or 64 bit
-  * Use in-built Integer.bitCount(n) [SWAR/POPCNT algo] 
+  * Use in-built Integer.bitCount(n) [SWAR/POPCNT algo]
   * OR Use while(n != 0) (n = n & n-1) // count - remove the lowest SET bit one-by-one [Brian Kernighan]
-* Use [num & (1 << bit_position_from_right)] to check if that particular bit_position_from_right contains 1 or not.
-  * if(num & (1 << bit_position_from_right) != 0), that means bit_position_from_right contains '1' in binary representation of decimal no. num
-* To isolate the LSB(Lowest Significant Bit i.e., rightmost bit) which is set to 1: n & (-n)
-  Ex1: n = 01100, then after extracting first bit 1 from right to left, extract is 100 i.e., 00100
-  Ex2: n = 101000, then after extracting first bit 1 from right to left, extract is 1000 i.e., 001000
+  * for all bit pos from i = 0(left) to 31(till right,say,for int datatype), if at ith pos the bit is set, 
+    then increment countOfSetBit or countOfOne ie if(n & (1 << i)) > 0 or != 0 or == 1, countOfSetBit++;
+
 * To check if n is power of 2: if( (n & (n - 1)) == 0)
 * n + (n & -n) does to a run of 1s — clears the lowest run and sets the next bit
-* Even/Odd depends only on the last bit - 
-  For even no, last bit is 0 whereas for odd it is 1, 
-  ie. if (n & (1 << 0) == 1){ //OR if(n & 1 == 1) // means last bit is 1, then n & (1 << 0) equals 1 i.e., the no is odd
-        // 'n' is Odd No.
-}
+* 
 * XOR captures differing bits: (a + b) mod 2 is exactly the same as (a ^ b), and last bit of (a + b) and (a ^ b) are always identical & last bit only reveals even/odd parity of a number -> so, (a + b) and (a ^ b) always have the same parity (i.e.,it means they're either both even or both odd, never one even and one odd). Difference between nos with same parity is always even
 * XOR behaves like addition without carry - so for last bit (i.e., bit wih position 0), addition and XOR give the same result
 * odd + even = odd; even + even = even; so while adding even no. parity is preserved - first operand is invariant

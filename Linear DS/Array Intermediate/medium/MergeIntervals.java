@@ -18,7 +18,7 @@ public class MergeIntervals {
         int currEndTime = intervals[0][1];
 
         for(int i = 1; i < intervals.length; i++){
-            if(currEndTime >= intervals[i][0]){
+            if(intervals[i][0] <= currEndTime){
                 currEndTime = Math.max(intervals[i][1], currEndTime);
             }else{
                 result.add(new int[]{currStartTime, currEndTime});
@@ -43,7 +43,7 @@ public class MergeIntervals {
             if(currStartTime == -1){
                 currStartTime = intervals[i][0];
                 currEndTime = intervals[i][1];
-            }else if(currEndTime >= intervals[i][0]){ // if intervals[0][1] >= newInterval[0]
+            }else if(intervals[i][0] <= currEndTime){ // if intervals[0][1] >= newInterval[0]
                 currEndTime = Math.max(intervals[i][1], currEndTime);
             }else{
                 result.add(new int[]{currStartTime, currEndTime});
@@ -65,7 +65,7 @@ public class MergeIntervals {
         int currEndTime = intervals[0][1];
 
         for (int i = 0; i < intervals.length; i++) {
-            if (currEndTime >= intervals[i][0]) {
+            if (intervals[i][0] <= currEndTime) {
                 currEndTime = Math.max(intervals[i][1], currEndTime);
             } else {
                 result.add(new int[]{currStartTime, currEndTime});
@@ -251,7 +251,92 @@ public class MergeIntervals {
         return result.toArray(new int[result.size()][]);
     }
 
+    public int[][] insert_v3(int[][] intervals, int[] newInterval) {
+        List<int[]> result = new ArrayList<>();
 
+        int i = 1;
+        int n = intervals.length;
+
+        if (n == 0) {
+            result.add(newInterval);
+            return result.toArray(new int[result.size()][]);
+        }
+
+        int currStartTime = intervals[0][0];
+        int currEndTime = intervals[0][1];
+
+        // While 1: merge overlapping intervals that are entirely before newInterval
+        while(i < n && newInterval[0] > intervals[i][1]){ // till new interval start time becomes greater than existing intervals end time, continue skipping
+            if(intervals[i][0] <= currEndTime){ // if upcoming element start time is less than equal the current end time - then clear overlap
+                currEndTime = Math.max(currEndTime, intervals[i][1]);
+            }else{
+                result.add(new int[]{currStartTime, currEndTime});
+                currStartTime = intervals[i][0];
+                currEndTime = intervals[i][1];
+            }
+            i++;
+        }
+
+        // stop when new interval start time becomes less than existing intervals end time
+        // check for the possibility of overlap
+
+        // That last merged "before" interval never gets handled. It could either:
+        // a. Be entirely before newInterval → should be added to result
+        // OR b. Overlap with newInterval → should be merged into it
+
+        // Flush the last "before" merged interval
+        // But check: does it overlap with newInterval?
+        // You need to flush or merge it before resetting to newInterval.
+        if (currEndTime < newInterval[0]) {
+            // tracked interval is entirely before newInterval
+            result.add(new int[]{currStartTime, currEndTime});
+            currStartTime = newInterval[0];
+            currEndTime = newInterval[1];
+        } else if (newInterval[1] < currStartTime) {
+            // newInterval is entirely before tracked interval
+            result.add(newInterval);
+            // currStart/currEnd stay as-is, will be handled by while 2 or flushed after
+        } else {
+            // genuine overlap — merge
+            // It overlaps with newInterval — absorb newInterval into it
+            currStartTime = Math.min(currStartTime, newInterval[0]);
+            currEndTime = Math.max(currEndTime, newInterval[1]);
+        }
+
+        // While 2: merge intervals that overlap with the (now merged) newInterval
+        while(i < n && currEndTime >= intervals[i][0]){
+            currStartTime = Math.min(currStartTime, intervals[i][0]);
+            currEndTime = Math.max(currEndTime, intervals[i][1]);
+            i++;
+        }
+        result.add(new int[]{currStartTime, currEndTime});
+
+        // stop when new interval end time is less than existing intervals start time
+
+        // While 3 reuses currStartTime/currEndTime from while 2 — but that interval was already added to result right before while 3.
+        // So if while 3's first element doesn't overlap, you get a double-add of the while 2 result.
+        // You need to reset currStart/currEnd to intervals[i] at the start of while 3.
+
+        // While 3: merge remaining overlapping intervals (entirely after)
+        if(i < n){
+            currStartTime = intervals[i][0];
+            currEndTime = intervals[i][1];
+            i++;
+
+            while(i < n){ // till new interval start time becomes greater than intervals end time, continue skipping
+                if(intervals[i][0] <= currEndTime){ // if upcoming element start time is less than equal the current end time - then clear overlap
+                    currEndTime = Math.max(currEndTime, intervals[i][1]);
+                }else{
+                    result.add(new int[]{currStartTime, currEndTime});
+                    currStartTime = intervals[i][0];
+                    currEndTime = intervals[i][1];
+                }
+                i++;
+            }
+            result.add(new int[]{currStartTime, currEndTime});
+        }
+        return result.toArray(new int[result.size()][]);
+    }
 
     public int[][] merge(int[][] intervals) {
         // after sorting as per start time, all possible overlapping intervals will be adjacent or grouped together

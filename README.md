@@ -22,11 +22,16 @@ For any number n
 * Use [num | (1 << bit_position_from_right)] to SET bit to 1 ie whatever bit is in bit_position_from_right will be set to 1
 * Use [num ^ (1 << bit_position_from_right)] to TOGGLE ( SET to UNSET and UNSET to SET)  bit to 1 ie whatever bit is in bit_position_from_right will be toggled (0 to 1 and vice-versa)
 * Use [num & (1 << bit_position_from_right)] to CHECK if that particular bit_position_from_right contains 1 (SET BIT) or not. if(num & (1 << bit_position_from_right) != 0 OR > 0), that means bit_position_from_right contains '1' in binary representation of decimal no. num
-  * Even/Odd depends only on the last bit -
-    For even no, last bit is 0 whereas for odd it is 1,
+  * Even/Odd depends only on the last rightmost LSB bit-
+    For even no, last rightmost LSB bit is 0 whereas for odd it is 1,
     ie. if (n & (1 << 0) == 1 OR != 0 OR > 0){ //OR if(n & 1 == 1) // means last bit is 1, then n & (1 << 0) equals 1 i.e., the no is odd
         // 'n' is Odd No.
     }
+  * Reason: 
+    * apart from bit position 0 (rightmost position), no other powers of 2 gives odd numbers ie. except 2^0, all other powers of 2 is even.
+    * Only 2^0 = 1 is odd while remaining all bit position from bit pos 1 to (max_bit_capacity - 1) is even, and even + odd( which is 1 here) always leads to an odd numebr
+    * whereas if 0th bit position is unset ie 0 on rightmost LSB bit position 0, sums of all even from bit pos 1 to (max_bit_capacity - 1) is always even
+  
 * Use [num & (1 << bit_position_from_right)] > 0 to check if the bit is SET. If Set, then you can UNSET using TOGGLE [num ^ (1 << bit_position_from_right)] from 1 back to 0
 * Integer has 32 bits while Byte has 8 bits, short has 16 bits and Long has 64 bits.
 * (n << i) in binary representation is same as n x (2^i) in decimal whereas  (n >> i) is same as n / (2^i)

@@ -33,7 +33,7 @@ For any number n
     * whereas if 0th bit position is unset ie 0 on rightmost LSB bit position 0, sums of all even from bit pos 1 to (max_bit_capacity - 1) is always even
   
 * Use [num & (1 << bit_position_from_right)] > 0 to check if the bit is SET. If Set, then you can UNSET using TOGGLE [num ^ (1 << bit_position_from_right)] from 1 back to 0
-* Integer has 32 bits while Byte has 8 bits, short has 16 bits and Long has 64 bits.
+* Integer has 32 bits while Byte has 8 bits, short has 16 bits and Long has 64 bits. 1 << 31 is Integer.MIN_VALUE and (num & (1 << 31)) produces a negative number
 * (n << i) in binary representation is same as n x (2^i) in decimal whereas  (n >> i) is same as n / (2^i)
 * Similarly, a += (2^i) is same as a |= (1 << i)
 * To isolate/trim out the LSB(Lowest Significant Bit i.e., rightmost bit) which is set to 1: n & (-n)

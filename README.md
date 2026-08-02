@@ -17,7 +17,7 @@ Coding Practice for clearing Interviews
   < O(NlogN) < O(NSqrt(N))< O(N^2) < O(N^3)
   < O(2^N) < O(N!) < O(N^N) 
 
-# BIT-WISE 
+# BIT-WISE OPERATOR MANIPULATION
 For any number n
 * Use [num | (1 << bit_position_from_right)] to SET bit to 1 ie whatever bit is in bit_position_from_right will be set to 1
 * Use [num ^ (1 << bit_position_from_right)] to TOGGLE ( SET to UNSET and UNSET to SET)  bit to 1 ie whatever bit is in bit_position_from_right will be toggled (0 to 1 and vice-versa)
@@ -53,7 +53,8 @@ For any number n
 * odd + even = odd; even + even = even and odd + odd = even; so while adding even no. parity is preserved - first operand is invariant
 * If A is a binary bit, then A | (either A or 0), A & (either A or 1), A ^ 0 always leads to A
 * Only A & 0 and A ^ A always leads to 0
-* A | 1 leads to 1
+* A | 1 always leads to 1
+* num *= 2 is equivalent to num <<= 1 (left shift operator) while num /= 2 is equivalent to num >>= 1 
 
 # DIVISORS -> 
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'

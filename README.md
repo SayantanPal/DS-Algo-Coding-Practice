@@ -54,7 +54,18 @@ For any number n
 * If A is a binary bit, then A | (either A or 0), A & (either A or 1), A ^ 0 always leads to A
 * Only A & 0 and A ^ A always leads to 0
 * A | 1 always leads to 1
-* num *= 2 is equivalent to num <<= 1 (left shift operator) while num /= 2 is equivalent to num >>= 1 
+* num *= 2 is equivalent to num <<= 1 (left shift operator) while num /= 2 is equivalent to num >>= 1
+* if no of operations allowed is [a. multipled by 2 along b. +1 operation] for 0 -> n  or [a. divide by 2 along b. +1 operation] for n -> 0,
+  ❯ formula is : Total cost/steps = (count no. of bits) for the *2 operations + (count np. of set bits) for the +1 operations
+* if no of operations allowed is [a. multipled by 2 along b. +1 operation] for 1 -> n  or [a. divide by 2 along b. +1 operation] for n -> 1,
+    ❯ formula is : Total cost/steps = (count no. of bits - 1) for the *2 operations + (count no. of set bits - 1) for the +1 operations
+* if the no of operations allowed is [a. multipled by 2 along b. +1 operation c. -1 operation] for n -> 1 or 1 -> n, always greedily via bit checking logic from n to 1, decide to 
+  * If n is even → only one choice: n/2 (right shift)
+  * If n is odd → you must choose +1 or -1. Look at the last two bits:
+    - If last two bits are 11 → prefer +1 (creates trailing zeros, more divisions)
+    - If last two bits are 01 → prefer -1 (directly makes it even)
+  * One exception to rule 2: when n == 3, prefer -1 (3 → 2 → 1 is shorter than 3 → 4 → 2 → 1)
+
 
 # DIVISORS -> 
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'

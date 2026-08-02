@@ -53,6 +53,7 @@ For any number n
 * odd + even = odd; even + even = even and odd + odd = even; so while adding even no. parity is preserved - first operand is invariant
 * If A is a binary bit, then A | (either A or 0), A & (either A or 1), A ^ 0 always leads to A
 * Only A & 0 and A ^ A always leads to 0
+* A | 1 leads to 1
 
 # DIVISORS -> 
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'

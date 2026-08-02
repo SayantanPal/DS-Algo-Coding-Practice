@@ -51,6 +51,8 @@ For any number n
 * XOR captures differing bits: (a + b) mod 2 is exactly the same as (a ^ b), and last bit of (a + b) and (a ^ b) are always identical & last bit only reveals even/odd parity of a number -> so, (a + b) and (a ^ b) always have the same parity (i.e.,it means they're either both even or both odd, never one even and one odd). Difference between nos with same parity is always even
 * XOR behaves like addition without carry - so for last bit (i.e., bit wih position 0), addition and XOR give the same result
 * odd + even = odd; even + even = even and odd + odd = even; so while adding even no. parity is preserved - first operand is invariant
+* If A is a binary bit, then A | (either A or 0), A & (either A or 1), A ^ 0 always leads to A
+* Only A & 0 and A ^ A always leads to 0
 
 # DIVISORS -> 
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'

@@ -91,9 +91,9 @@ NOTE: that's why for long and float, we explicitly mention
 int a = 10^5;
 int b = 10^5;
 
-long result = a * b; // -> Garbage value because int*int is done by temporary CPU int container and outside the range of int gives garbage val
+long result = a * b; // -> Garbage value because int*int = 10^10 which exceeds 10^9 integer range is done by temporary CPU int container and outside the range of int gives garbage val
 long result = (long)(a * b); // -> same, only type casting after garbage value calc
-long result = (long)a * b; // -> correct because
+long result = (long)a * b; // -> (long)a * b or a * b(long) either one is correct because before operation datatype conversation already happens
 
 # Floor of a number when div by 200:
 Given by: (A >= 0) ? (A / 200): ( (A % 200) == 0 ? (A / 200) : (A / 200) - 1 )
@@ -122,7 +122,6 @@ eg: some_computation: reverseX*10 + lastDigit,
 you should check before computation happens => if( reverseX < ( Integer.MAX_VALUE - lastDigit)/10 )
 
 # DECIMAL POINT PRECISION
-
 all numbers except 1/2, 1/(2^2), 1/(2^3), 1/(2^n), will have decimal point precision issue.
 
 eg: 

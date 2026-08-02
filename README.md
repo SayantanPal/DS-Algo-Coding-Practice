@@ -21,7 +21,7 @@ Coding Practice for clearing Interviews
 For any number n
 * Use [num | (1 << bit_position_from_right)] to SET bit to 1 ie whatever bit is in bit_position_from_right will be set to 1
 * Use [num ^ (1 << bit_position_from_right)] to TOGGLE ( SET to UNSET and UNSET to SET)  bit to 1 ie whatever bit is in bit_position_from_right will be toggled (0 to 1 and vice-versa)
-* Use [num & (1 << bit_position_from_right)] to CHECK if that particular bit_position_from_right contains 1 (SET BIT) or not. if(num & (1 << bit_position_from_right) != 0 OR > 0), that means bit_position_from_right contains '1' in binary representation of decimal no. num
+* Use [num & (1 << bit_position_from_right)] to CHECK if that particular bit_position_from_right contains 1 (SET BIT) or not. if(num & (1 << bit_position_from_right) != 0), that means bit_position_from_right contains '1' in binary representation of decimal no. num
   * Even/Odd depends only on the last rightmost LSB bit-
     For even no, last rightmost LSB bit is 0 whereas for odd it is 1,
     ie. if (n & (1 << 0) == 1 OR != 0 OR > 0){ //OR if(n & 1 == 1) // means last bit is 1, then n & (1 << 0) equals 1 i.e., the no is odd

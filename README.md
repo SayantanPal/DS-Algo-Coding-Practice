@@ -4,6 +4,7 @@ Coding Practice for clearing Interviews
 # TLE - usually 1 sec of execution on cloud servers
 * Assume 1 iteration takes on an avg ~10 instructions
 * Assume ~10^8 iterations typically run on cloud coding judge servers in 1 sec
+* Anything taking greater than 10^8 sec is Time Limit Exceeded (TLE).
 
 | Time Complexity[ Big(O)] | Bigger Input Size[N] | Iterations       | Exec. Time            |
 |--------------------------|----------------------|------------------|-----------------------|

@@ -84,7 +84,7 @@ For any number n
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'
 
 # FACTORS ->
-    DIVISORs that can perfectly/fully/completely divide (without leaving any remainder i.e., 0 remainder) a number n
+    ONLY DIVISORs that can perfectly/fully/completely divide (without leaving any remainder i.e., 0 remainder) a number n
 
 # MULTIPLES ->
     Possible Dividends that can be perfectly/fully/completely divided (without leaving any remainder i.e., 0 remainder) by any number as divisor.
@@ -93,8 +93,18 @@ For any number n
 # Prime No - Number that has EXACTLY 2 distinct divisors
 NOTE: Wrong defination is "A number that is only fully/completely/perfectly divided by 1 and itself.". 
 Contradiction is 1. 1 is a no which is divisible by 1 and itself but 1 is NOT a prime No.
-So, as per the correct defination, 1 has 2 divisors which are same, that does not account EXACTLY 2 divisors
+So, as per the correct definition, 1 has 2 divisors which are same, that does not account EXACTLY 2 divisors
 So, the smallest prime no is 2
+
+* LCM(A, B) means a smallest number M exists such that M % A == M % B == 0. In case when A,B are co-prime to each other, then M = LCM(A, B) = A x B
+* All possible multiples of A and B ie A % M = B % M = 0 lies between LCM(A, B) to inf * LCM(A, B)
+* All possible common divisors of A and B lies between 1 to GCD(A, B)
+* When two numbers A, B are co-prime(no shared prime factors), 1 and they individually can fully divide them and ONLY 1 can fully divide BOTH of them - that means there is no other common factor apart from 1 since A != B. So, GCD(A, B) when A!= B and A and B are coprime is 1
+* As A * B = LCM(A, B) * GCD(A, B). When GCD or HCF of 2 co-prime is 1, then A * B = LCM(A, B).
+* For any number A < M, A % M is always A
+* For any number A > M, A % M ranges between [0, M-1]
+* (A + B + C + ...) % M NOT always equals (A % M ) + (B % M) + (C % M) + ...
+
 
 # System.out.println("123" + 4 + 5); => 12345 // it is always read for left to right maintaining BODMAS rule. String at the beginning shows concatenation
 # System.out.println(4 + 5 + "123"); => 9123

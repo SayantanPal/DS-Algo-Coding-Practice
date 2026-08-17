@@ -82,10 +82,13 @@ For any number n
     Diff b/w even & odd is always odd
 
 # DIVISORS -> 
-    All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'
+    All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'. All B in A/B and B lies between (0 to A)
 
 # FACTORS ->
-    ONLY DIVISORs that can perfectly/fully/completely divide (without leaving any remainder i.e., 0 remainder) a number n
+    ONLY DIVISORs that can perfectly/fully/completely divide (without leaving any remainder i.e., 0 remainder) a number n. All B in A/B and B lies between (0 to A) and A%B == 0
+
+# PRIME FACTORS ->
+    ONLY FACTORs that are prime numbers. All B in A/B and B lies between (0 to A) and A%B == 0 and ONLY B % B == 0 and B % 1 == 0
 
 # MULTIPLES ->
     Possible Dividends that can be perfectly/fully/completely divided (without leaving any remainder i.e., 0 remainder) by any number as divisor.

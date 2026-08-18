@@ -54,6 +54,31 @@ public class IntersectionOfTwoArraysWithAndWithoutDuplicates {
         return result2;
     }
 
+    public int[] intersectWithDuplicates_optimized_2(int[] nums1, int[] nums2) {
+        int n = nums1.length;
+        int m = nums2.length;
+        List<Integer> ans = new ArrayList<>();
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for(int i: nums1){
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        for(int i: nums2){
+            if(map.containsKey(i)){
+                if(map.get(i) == 0)
+                    map.remove(i);
+                else{
+                    map.put(i, map.get(i) - 1);
+                    ans.add(i);
+                }
+            }
+        }
+
+        return ans.stream().mapToInt(Integer::intValue).toArray();
+    }
+
     // Link: https://leetcode.com/problems/intersection-of-two-arrays/
     public int[] intersectionWithoutDuplicates(int[] nums1, int[] nums2) {
         // Set<Integer> lookUp = new HashSet<>();

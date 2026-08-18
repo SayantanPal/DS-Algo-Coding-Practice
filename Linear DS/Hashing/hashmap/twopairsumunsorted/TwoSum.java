@@ -2,11 +2,23 @@ package hashmap.twopairsumunsorted;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 // Used in caching, duplicate detection, distributed systems.
 // Production Use: Deduplication of logs/messages before indexing in Elasticsearch.
 public class TwoSum {
+    public boolean doesTwoSumExist(int A, int[] B) {
+        HashSet<Integer> set = new HashSet<>();
+        for(int i = 0; i < B.length; i++){
+            if(set.contains(A - B[i])){
+                return true;
+            }
+            set.add(B[i]);
+        }
+        return false;
+    }
+
     public static int[] twoSum(int[] nums, int target) {
 
         Map<Integer, Integer> map = new HashMap<>();
@@ -26,6 +38,20 @@ public class TwoSum {
 
         }
         return new int[]{-1, -1};
+    }
+
+    public int countTwoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int MOD = 1000000007;
+        int countPairs = 0;
+        for(int i = 0; i < nums.length; i++){
+            if(map.containsKey(target - nums[i])){
+                countPairs += (map.get(target - nums[i]) % MOD);
+                countPairs %= MOD;
+            }
+            map.put(nums[i], (map.getOrDefault(nums[i], 0) + 1) % MOD);
+        }
+        return countPairs;
     }
 
     public static int[] twoSumWithDuplicates(int[] nums, int target) {

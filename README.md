@@ -303,9 +303,10 @@ For multiple duplicates, in second iteration while iterating:
   - Prefer HashMap/freq arr over HashSet when we can harness the extra power of associated index with the elem either to shift pointers directly or to return indexes(eg: Two Sum, Longest Substr without Repeating Chars)
 * Optimization Problem: When all possible subset(where order or sequence need NOT to be maintained) combinations -> mostly DP
 * Optimization Problem: When all subsequence or subarray -> mostly Sliding Window
-  - BUT for summation optimization problem, sliding window only works for all numbers are among 0 or +ve nos.
+  - BUT for summation optimization problem, sliding window only works for all numbers which falls in range [0, +inf] ie for non-negative nos
   - in case if there is -ve no, the sliding window logic breaks
   - prefix sum + hashmap is best for solving such problems
+* For SubArrays/Subsequence/Substring, NEVER think of sorting - sorting distorts the whole arrangement sequence of these
 * Multiple passes or tight loops → toCharArray() -> then indexed access v/s. Single pass on a short string → charAt() is fine.
   charAt(i) — method call with bounds checking on every invocation
   toCharArray()[i] — one upfront array copy, then direct array index access (no bounds check overhead per access)

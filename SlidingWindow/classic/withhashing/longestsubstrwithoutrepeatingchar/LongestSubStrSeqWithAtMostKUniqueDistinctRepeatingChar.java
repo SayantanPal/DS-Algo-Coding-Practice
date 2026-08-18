@@ -15,18 +15,18 @@ public class LongestSubStrSeqWithAtMostKUniqueDistinctRepeatingChar {
         int maxLen = -1;
 
         while(right < sArr.length){
-            while(distinctChars > k){
+            while(distinctChars > k){ // shrink window when more than k distinct/unique repeating chars
                 sCharFreq[sArr[left] - 'a']--;
                 if(sCharFreq[sArr[left] - 'a'] == 0){
                     distinctChars--;
                 }
                 left++;
             }
-            if(sCharFreq[sArr[right] - 'a'] == 0){
+            if(sCharFreq[sArr[right] - 'a'] == 0){ // track distinct/unique repeating chars
                 distinctChars++;
             }
             sCharFreq[sArr[right] - 'a']++;
-            if(distinctChars <= k){
+            if(distinctChars <= k){ // only for exactly k distinct/unique repeating chars
                 maxLen = Math.max(maxLen, right - left + 1);
             }
             right++;

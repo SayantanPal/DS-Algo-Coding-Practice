@@ -1,6 +1,7 @@
 package classic.withhashing.longestsubstrwithoutrepeatingchar;
 
 //Link: https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
+// CONSTRAINT: 1 <= nums[i] <= 10^8
 public class MaxSumOfDistinctSubArrWithKElemLenWindow {
     public long maximumSubarraySum_v2(int[] nums, int k) {
         long sum = 0;

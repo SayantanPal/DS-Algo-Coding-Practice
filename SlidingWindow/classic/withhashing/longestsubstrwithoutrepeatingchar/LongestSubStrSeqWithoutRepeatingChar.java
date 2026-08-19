@@ -128,6 +128,21 @@ public class LongestSubStrSeqWithoutRepeatingChar {
         return maxLen;
     }
 
+    public int lengthOfLongestSubstring_v3_hashset(String s) {
+        int left = 0;
+        HashSet<Character> asciiLookUp = new HashSet<>();
+        int maxLen = -1;
+        for(int right = 0; right < s.length(); right++){
+            while(asciiLookUp.contains(s.charAt(right))){
+                asciiLookUp.remove(s.charAt(left));
+                left++;
+            }
+            asciiLookUp.add(s.charAt(right));
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        return maxLen;
+    }
+
     // Optimizations - character array instead of string which is faster with indexed access compared to charAt
     // Optimizations - Using frequency array with indexed access much faster than hash set with hash collision
     // Use-case - On LC-sized inputs (string length ~10^4-10^5), freq array wins because the constant factor of HashMap is huge.

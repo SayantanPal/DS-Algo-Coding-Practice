@@ -2,8 +2,8 @@ package classic.fixedsizeslidingwindow;
 
 import java.util.HashMap;
 
+// Link: https://www.geeksforgeeks.org/problems/count-distinct-elements-in-every-window/1
 public class CountDistinctNumbersInFixedSlidingWindow {
-
     public int[] dNums(int[] A, int B) {
         HashMap<Integer, Integer> unique = new HashMap<>();
         int n = A.length;

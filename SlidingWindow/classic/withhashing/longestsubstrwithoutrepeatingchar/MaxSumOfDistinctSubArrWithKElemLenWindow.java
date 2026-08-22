@@ -1,8 +1,29 @@
 package classic.withhashing.longestsubstrwithoutrepeatingchar;
 
-//Link: https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
+// Link: https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
+// Link: https://www.hellointerview.com/learn/code/sliding-window/maximum-sum-of-subarrays-of-size-k
+// Link: https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1
 // CONSTRAINT: 1 <= nums[i] <= 10^8
 public class MaxSumOfDistinctSubArrWithKElemLenWindow {
+
+    // Fixed Sliding window
+    public Integer maximumSubarraySum_v3(int[] nums, Integer k) {
+        // Your code goes here
+        int sum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        for(int i = 0; i < k; i++){
+            sum += nums[i];
+        }
+        maxSum = Math.max(maxSum, sum);
+
+        for(int i = k; i < nums.length; i++){
+            sum += nums[i] - nums[i - k];
+            maxSum = Math.max(maxSum, sum);
+        }
+        return maxSum;
+    }
+
+    // Variable sliding window
     public long maximumSubarraySum_v2(int[] nums, int k) {
         long sum = 0;
         int[] freq = new int[100001];

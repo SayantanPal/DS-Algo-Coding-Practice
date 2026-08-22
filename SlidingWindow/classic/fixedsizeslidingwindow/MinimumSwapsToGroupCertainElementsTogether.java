@@ -23,6 +23,7 @@ Example Output
 Output 1: 2
 Output 2: 1
 * */
+// Link: https://www.geeksforgeeks.org/problems/minimum-swaps-required-to-bring-all-elements-less-than-or-equal-to-k-together4847/1
 public class MinimumSwapsToGroupCertainElementsTogether {
     public int findMinSwaps(int[] A, int B) {
 

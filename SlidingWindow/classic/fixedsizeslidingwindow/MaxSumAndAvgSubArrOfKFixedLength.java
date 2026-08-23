@@ -1,6 +1,8 @@
 package classic.fixedsizeslidingwindow;
 
 // Link: https://leetcode.com/problems/maximum-average-subarray-i/
+// Link: https://www.hellointerview.com/learn/code/sliding-window/maximum-sum-of-subarrays-of-size-k
+// Link: https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1
 public class MaxSumAndAvgSubArrOfKFixedLength {
 
     // Using Variable Length Sliding Window

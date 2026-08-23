@@ -8,7 +8,8 @@ import java.util.LinkedList;
 // O/P: [3,3,5,5,6,7]
 // Efficient Solution: Use Deque to store useful elements in current window for O(n) solution
 
-// Leetcode: https://leetcode.com/problems/sliding-window-maximum/
+// Link: https://leetcode.com/problems/sliding-window-maximum/
+// Link: https://neetcode.io/problems/sliding-window-maximum
 public class MaxElemOfSubArrWithKElemLenWindow {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;

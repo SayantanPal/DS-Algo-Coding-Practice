@@ -9,7 +9,7 @@ Return the number of nice sub-arrays.
 *
 * */
 // Link: https://leetcode.com/problems/count-number-of-nice-subarrays/
-public class CountOfSubArrHavingKOdd {
+public class CountOfSubArrHavingKOddElemCnt {
     public int numberOfSubarrays(int[] nums, int k) {
         int n = nums.length;
         HashMap<Integer, Integer> prefixSumLookUp = new HashMap<>(); //int[] prefixSumLookUp = new int[5000000001];

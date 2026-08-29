@@ -1,7 +1,7 @@
 package basic.subarrays;
 
 // Link: https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/
-public class LengthOfLongestConsecutiveOnesWithAtMostOneReplace {
+public class LengthOfLongestConsecutiveOnesWithAtMostOneCharElemDelete {
 
     public int findMaxLenOfConsecutiveOnesWithAtMostOneReplace_v2(int[] nums) {
         int maxLen = 0;
@@ -65,7 +65,7 @@ public class LengthOfLongestConsecutiveOnesWithAtMostOneReplace {
                 // window: l = '1' <-<-<- '0' ->->-> r = '1'
 
                 // we replace only one middle '0' with '1'
-                maxLen = Math.max(maxLen, l + r + 1); // then swap center 0 from the extra pool of '1'
+                maxLen = Math.max(maxLen, l + r); // then delete center 0 from the extra pool of '1'
 
             }
         }

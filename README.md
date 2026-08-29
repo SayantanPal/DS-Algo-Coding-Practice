@@ -79,7 +79,8 @@ For any number n
   * One exception to rule 2: when n == 3, prefer -1 (3 → 2 → 1 is shorter than 3 → 4 → 2 → 1)
 
 # EVEN/ODD -> 
-    Diff b/w even & odd is always odd
+    Diff b/w even & odd is always odd ie ODD - EVEN = ODD; EVEN - ODD = ODD
+    Only (Even - Even) or (Odd - Odd) results in even
 
 # DIVISORS -> 
     All numbers that can divide a number are eligible divisors eg: from 1 to n for a number 'n'. All B in A/B and B lies between (0 to A)

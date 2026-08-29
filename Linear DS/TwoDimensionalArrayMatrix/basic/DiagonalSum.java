@@ -24,4 +24,21 @@ public class DiagonalSum {
 
         return sumOfDiagonal;
     }
+
+    public int diagonalSum_v2(int[][] mat) {
+        int diagonalSum = 0;
+        int n = mat.length;
+        for(int i = 0; i < n; i++){
+            diagonalSum += mat[i][i];
+        }
+
+        int i = 0, j = n - 1;
+        while(i < n && j >= 0){
+            if(i != j) diagonalSum += mat[i][j];
+            i++;
+            j--;
+        }
+
+        return diagonalSum;
+    }
 }

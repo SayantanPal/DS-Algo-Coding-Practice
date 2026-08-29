@@ -16,11 +16,9 @@ public class CountOfSubArrHavingKOddElemCnt {
 
         prefixSumLookUp.put(0, 1); // 0 odd numbers seen so far before starting to visit
 
-        int currPrefixSum = 0;
         int countOdd = 0;
         int countSubArr = 0;
         for(int i = 0; i < nums.length; i++){
-            currPrefixSum += nums[i];
             if(nums[i]%2 != 0)
                 countOdd++;
             if(prefixSumLookUp.containsKey(countOdd - k))//if(countOdd >= k)

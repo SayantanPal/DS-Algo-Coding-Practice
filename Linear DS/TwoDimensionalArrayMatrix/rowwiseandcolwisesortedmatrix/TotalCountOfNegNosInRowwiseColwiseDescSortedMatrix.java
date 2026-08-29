@@ -1,7 +1,7 @@
 package rowwiseandcolwisesortedmatrix;
 
 // Link: https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
-public class TotalCountOfNegNosInRowwiseColwiseSortedMatrix {
+public class TotalCountOfNegNosInRowwiseColwiseDescSortedMatrix {
     public int countNegatives(int[][] grid) {
         int n = grid.length;
         int m = grid[0].length;

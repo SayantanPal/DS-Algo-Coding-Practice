@@ -47,4 +47,24 @@ public class MinSwapsToFlipBinaryStrToMonotonicallyIncreasing {
         minCost =  Math.min(minCost, prefixFromLeftCountOfOne[n - 1] + 0);
         return minCost;
     }
+
+    public int minFlipsMonoIncr_v2(String s) {
+        char[] sArr = s.toCharArray();
+        int n = sArr.length;
+        int[] prefixSumOfZeros = new int[n];
+        int count = 0;
+        for(int i = 0; i < n; i++){
+            if(sArr[i] == '0') count++;
+            prefixSumOfZeros[i] = count;
+        }
+        int minFlips = n;
+        minFlips = Math.min(minFlips, prefixSumOfZeros[n - 1] - prefixSumOfZeros[0]);
+        for(int i = 1; i < n; i++){
+            // No of Ones from 0 to i - 1 + No of Zeros frpm i + 1 to n - 1
+            // ignore i in calculation since this never hampers the series of 0 to 1
+            int prefixSumOfOnes = ((i - 1) + 1) - prefixSumOfZeros[i - 1];
+            minFlips = Math.min(minFlips, prefixSumOfOnes + prefixSumOfZeros[n - 1] - prefixSumOfZeros[i]);
+        }
+        return minFlips;
+    }
 }

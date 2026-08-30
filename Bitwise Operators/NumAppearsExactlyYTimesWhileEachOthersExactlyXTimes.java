@@ -1,7 +1,7 @@
 
-public class NumAppearsYTimesWhileEachOthersXTimes {
+public class NumAppearsExactlyYTimesWhileEachOthersExactlyXTimes {
 
-    public int findNumOccuringYTimesWhileEachOtherXTimes(int[] A, int X, int Y) {
+    public int findNumOccuringExactlyYTimesWhileEachOtherExactlyXTimes(int[] A, int X, int Y) {
         int number = 0;
         // for each bit pos
         for(int bitPos = 0; bitPos < 32; bitPos++){

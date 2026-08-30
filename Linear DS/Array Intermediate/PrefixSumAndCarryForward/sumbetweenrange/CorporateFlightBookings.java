@@ -11,14 +11,15 @@ public class CorporateFlightBookings {
         int[] answerPrefixSum = new int[n]; // startingFlightIndex -> endingFlightIndex well within n
         int noOfQueries = bookings.length;
         for(int i = 0; i < noOfQueries; i++){
-            // Think each flight like a container that can hold ceetain seatCnt without bothering about overexceeding seat count since no max flight seat count capacity constraint mentioned for the flights
+            // Think each flight like a container that can hold certain seatCnt without bothering about over-exceeding seat count since no max flight seat count capacity constraint mentioned for the flights
             int startingFlightIndex = bookings[i][0] - 1; // Given inputs are 1-based indexing. so map into 0-based indexing
             int endingFlightIndex = bookings[i][1] - 1; // Given inputs are 1-based indexing. so map into 0-based indexing
             int seatCntForAllFlightsInRange = bookings[i][2];
 
             answerPrefixSum[startingFlightIndex] += seatCntForAllFlightsInRange;
-            // below except when endingFlightIndex is the last flight
-            // because seats cnt hold till including endingFlightIndex
+            // seats are hold till endingFlightIndex
+            // exception case is when endingFlightIndex is the last flight
+            // because seats cnt are hold till including endingFlightIndex
             // and there is no flight index after endingFlightIndex to drop seat count and counterbalance
             if(endingFlightIndex + 1 < n)
                 answerPrefixSum[endingFlightIndex + 1] -= seatCntForAllFlightsInRange;

@@ -26,6 +26,8 @@ Remove 0 elements from front and 3 elements from the back.
 * Output Format: Return an integer denoting the maximum possible sum of elements you removed.
 * */
 // Link: https://www.interviewbit.com/problems/pick-from-both-sides/
+// Link: https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/
+// Link: https://www.naukri.com/code360/problems/remove-k-corner-elements_2105451?leftPanelTabValue=PROBLEM
 public class PickFromBothSides {
     public int solve(int[] A, int B) {
         int n = A.length;
@@ -87,5 +89,50 @@ public class PickFromBothSides {
         maxSum = Math.max(maxSum, prefixSum[k - 1]);
 
         return maxSum;
+    }
+
+    static int kCornerElements(int n, int k, ArrayList<Integer> arr) {
+        // Write your code here.
+        int[] prefixSum = new int[n];
+        prefixSum[0] = arr.get(0);
+        for(int i = 1; i < n; i++){
+            prefixSum[i] = prefixSum[i - 1] + arr.get(i);
+        }
+        int maxSum = 0;
+        // pick nothing from left + pick last k from right
+        if(k == n) return 0; // all elements picked, return sum 0
+        else if(k == 0) return prefixSum[n - 1]; // no elements picked return all remaining sum
+        maxSum = Math.max(maxSum, prefixSum[n - 1 - k]);
+        for(int i = 1; i < k; i++){
+            int pickFromLeft = i;
+            int pickFromRight = k - pickFromLeft;
+
+            // when pickFromLeft is picked from left and pickFromRight is picked from right
+            // middle sum between index pickFromLeft -> index (n - 1 - pickFromRight)
+            maxSum = Math.max(maxSum, prefixSum[n - pickFromRight - 1] -  prefixSum[pickFromLeft - 1]);
+        }
+        // pick last k from left + pick nothing from right
+        maxSum = Math.max(maxSum, prefixSum[n - 1] - prefixSum[k - 1]);
+
+        return maxSum;
+    }
+
+    public int maxScore(int[] cardPoints, int k) {
+        int n = cardPoints.length;
+        int[] prefixSumPoints = new int[n];
+        prefixSumPoints[0] = cardPoints[0];
+        for(int i = 1; i < n ; i++){
+            prefixSumPoints[i] = prefixSumPoints[i - 1] + cardPoints[i];
+        }
+        if(n == k) return prefixSumPoints[n - 1];
+        int maxScore = Integer.MIN_VALUE;
+        maxScore = Math.max(maxScore, prefixSumPoints[n - 1] - prefixSumPoints[n - 1 - k]);
+        for(int i = 1; i < k; i++){
+            int pickFromLeft = i;
+            int pickFromRight = k - pickFromLeft;
+            maxScore = Math.max(maxScore, prefixSumPoints[pickFromLeft - 1] + prefixSumPoints[n - 1] - prefixSumPoints[n - 1 - pickFromRight]);
+        }
+        maxScore = Math.max(maxScore, prefixSumPoints[k - 1]);
+        return maxScore;
     }
 }

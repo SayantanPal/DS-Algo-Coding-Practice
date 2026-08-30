@@ -78,6 +78,13 @@ For any number n
     - If last two bits are 01 → prefer -1 (directly makes it even)
   * One exception to rule 2: when n == 3, prefer -1 (3 → 2 → 1 is shorter than 3 → 4 → 2 → 1)
 
+# K-Elem Window ->
+    * Left Index = ((n - 1) - k + 1) = (n - k) TO Right Index = (n - 1). ie L = n - k whereas R = n - 1
+    * Window Length/Size is: R - L + 1 = (n - 1) - (n - k) + 1 = k
+    * In fixed sliding window, the i ranges from i = 0 to i < n - k + 1 ( <= n - k) which is equivalent to i = 0 to n - k
+    Eg: Left Index 5 (= 7 - 3 + 1) TO Right Index 7 has window size indexes [5, 6, 7] k = 3 (=  7 - 5 + 1 = 3)
+    
+
 # EVEN/ODD -> 
     Diff b/w even & odd is always odd ie ODD - EVEN = ODD; EVEN - ODD = ODD
     Only (Even - Even) or (Odd - Odd) results in even

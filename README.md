@@ -18,6 +18,24 @@ Coding Practice for clearing Interviews
   < O(NlogN) < O(NSqrt(N))< O(N^2) < O(N^3)
   < O(2^N) < O(N!) < O(N^N) 
 
+# Java Primitive Data Types — Range Reference
+
+| Type     | Size              | Min                          | Max                          |
+|----------|-------------------|------------------------------|------------------------------|
+| `byte`   | 1 byte (8 bits)   | -2^7 = -128                  | 2^7 - 1 = 127               |
+| `char`   | 2 bytes (16 bits) | 0                            | 2^16 - 1 = 65,535           |
+| `short`  | 2 bytes (16 bits) | -2^15 = -32,768              | 2^15 - 1 = 32,767           |
+| `int`    | 4 bytes (32 bits) | -2^31 ≈ -2.1 billion         | 2^31 - 1 ≈ 2.1 billion      |
+| `long`   | 8 bytes (64 bits) | -2^63                        | 2^63 - 1 ≈ 9.2 × 10^18     |
+| `float`  | 4 bytes (32 bits) | ≈ -3.4 × 10^38              | ≈ 3.4 × 10^38               |
+| `double` | 8 bytes (64 bits) | ≈ -1.7 × 10^308             | ≈ 1.7 × 10^308              |
+
+## Quick Mnemonics
+
+- `int` → ~2 billion (10^9)
+- `long` → ~9.2 × 10^18
+- `float`/`double` trade exactness for range (floating point precision issues)
+
 # BIT-WISE OPERATOR MANIPULATION
 * LSB => First SET bit position starting from bit position index 0 towards -> MAX BIT Upper range limit
 * MSB => Last SET bit position (or FIRST encountered bit position from bit position index MAX BIT Upper range limit towards -> 0)
@@ -351,13 +369,16 @@ For multiple duplicates, in second iteration while iterating:
 * Square Matrix of even length does not contain any centre element whereas square matrix of odd length contains exactly 1 center element which is matrix[n/2][n/2]. Non square matrix of higher Rows contains single column at center and non-square matrix of higher columns contains single row at center
 
 ## JAVA LANGUAGE SPECIFIC
-A. Convert List of Integers List<Integer> list to int[] array(comes with Stream performance Overhead):
-list
+A. Convert List of Integers List<Integer> list or Integer[] array -> int[] array(comes with Stream performance Overhead):
+list/Arrays
     .stream()
     .mapToInt(i -> i) // .mapToInt(Integer::intValue)
     .toArray();
 
-B. Convert List of String List<String> list to String[] array(comes with Stream performance Overhead):
+B. Convert int[] -> Integer[]
+Integer[] B = Arrays.stream(A).boxed().toArray(Integer[]::new);
+
+C. Convert List of String List<String> list -> String[] array(comes with Stream performance Overhead):
 list
     // .stream()
     .toArray(new String[0]); //.toArray(String[]::new);

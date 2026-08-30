@@ -2,23 +2,33 @@ package sumbetweenrange;
 
 // Link: https://leetcode.com/problems/corporate-flight-bookings/
 // Link: https://www.naukri.com/code360/problems/corporate-flight-bookings_1466958?leftPanelTabValue=PROBLEM
+
+// Each Flight has same seat capacity and the given input does not require checking against any seat capacity limit because inputs are trusted well within seat capacity constraints
+// Bookings array contains 'q' no of queries which asks for adding seats for each flight from range bookings[i] to bookings[j]
+// The flight index mentioned in each bookings[i] queries are well within ranges [1, n]
 public class CorporateFlightBookings {
     public int[] corpFlightBookings(int[][] bookings, int n) {
-        int[] seatsPrefixSum = new int[n];
-        for(int i = 0; i < bookings.length; i++){
-            int startingFlight = bookings[i][0] - 1;
-            int endingFlight = bookings[i][1] - 1;
-            int seatCount = bookings[i][2];
+        int[] answerPrefixSum = new int[n]; // startingFlightIndex -> endingFlightIndex well within n
+        int noOfQueries = bookings.length;
+        for(int i = 0; i < noOfQueries; i++){
+            // startingFlightIndex, endingFlightIndex BOTH 1-based indexing
+            // Think each flight like a container that can hold ceetain seatCnt without bothering about overexceeding seat count since no max flight seat count capacity constraint mentioned for the flights
+            int startingFlightIndex = bookings[i][0]; startingFlightIndex--;
+            int endingFlightIndex = bookings[i][1]; endingFlightIndex--;
+            int seatCntForAllFlightsInRange = bookings[i][2];
 
-            seatsPrefixSum[startingFlight] += seatCount;
-
-            if(endingFlight < n - 1){
-                seatsPrefixSum[endingFlight + 1] -= seatCount;
-            }
+            answerPrefixSum[startingFlightIndex] += seatCntForAllFlightsInRange;
+            // below except when endingFlightIndex is the last flight
+            // because seats cnt hold till including endingFlightIndex
+            // and there is no flight index after endingFlightIndex to drop seat count and counterbalance
+            if(endingFlightIndex + 1 < n)
+                answerPrefixSum[endingFlightIndex + 1] -= seatCntForAllFlightsInRange;
         }
+
         for(int i = 1; i < n; i++){
-            seatsPrefixSum[i] += seatsPrefixSum[i - 1];
+            answerPrefixSum[i] += answerPrefixSum[i - 1];
         }
-        return seatsPrefixSum;
+
+        return answerPrefixSum;
     }
 }

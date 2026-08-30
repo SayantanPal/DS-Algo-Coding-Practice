@@ -15,7 +15,7 @@ public class SubArrayORANDXOR {
         long totalSubarrays = (long) n * (n + 1) / 2;
         long answer = 0;
         for (int bitPos = 0; bitPos < 32; bitPos++) {
-            long zeroSubarrays = 0;
+            long zeroSubarrays = 0; // total no of subsets or subarrays with all unset bits
             long runLength = 0;
             for (int j = 0; j < n; j++) {
                 if ((A[j] & (1 << bitPos)) == 0) {
@@ -25,8 +25,9 @@ public class SubArrayORANDXOR {
                     runLength = 0;
                 }
             }
+            // total no of subsets with at least One SET bit
             long setSubarrays = totalSubarrays - zeroSubarrays;
-            answer += setSubarrays * (1L << bitPos);
+            answer += setSubarrays * (1L << bitPos); // sum value = count of set bit subarr x contribution of SET bit per subarr
             answer %= MOD;
         }
         return (int) answer;
@@ -49,6 +50,7 @@ public class SubArrayORANDXOR {
                     runLength = 0;
                 }
             }
+            // total no of subsets with all SET bits
             answer += oneSubarrays * (1L << bitPos);
             answer %= MOD;
         }
@@ -80,10 +82,10 @@ public class SubArrayORANDXOR {
             int prefixOnes = 0;
             for (int j = 0; j < n; j++) {
                 if ((A[j] & (1 << bitPos)) != 0) prefixOnes++;
-                if (prefixOnes % 2 == 0) {
+                if (prefixOnes % 2 == 0) { // when even, it pairs with off
                     oddSubarrays += oddCount; // even - odd = odd
                     evenCount++;
-                } else {
+                } else { // when odd, it pairs with even
                     oddSubarrays += evenCount; // odd - even = odd
                     oddCount++;
                 }

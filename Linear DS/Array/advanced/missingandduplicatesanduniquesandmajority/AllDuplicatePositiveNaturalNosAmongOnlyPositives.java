@@ -1,4 +1,4 @@
-package advanced.missingandduplicates;
+package advanced.missingandduplicatesanduniquesandmajority;
 
 import java.util.ArrayList;
 import java.util.List;

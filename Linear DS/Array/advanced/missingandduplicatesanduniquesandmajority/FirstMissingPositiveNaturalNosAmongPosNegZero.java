@@ -1,4 +1,4 @@
-package advanced.missingandduplicates;
+package advanced.missingandduplicatesanduniquesandmajority;
 
 // Link: https://leetcode.com/problems/first-missing-positive/description/
 public class FirstMissingPositiveNaturalNosAmongPosNegZero {

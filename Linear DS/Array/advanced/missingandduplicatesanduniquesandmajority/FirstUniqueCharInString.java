@@ -1,4 +1,4 @@
-package basic.uniqueduplicatemajority;
+package advanced.missingandduplicatesanduniquesandmajority;
 
 // Link: https://leetcode.com/problems/first-unique-character-in-a-string/description/
 public class FirstUniqueCharInString {

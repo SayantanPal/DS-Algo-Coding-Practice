@@ -1,4 +1,4 @@
-package basic.uniqueduplicatemajority;
+package advanced.missingandduplicatesanduniquesandmajority;
 
 import java.util.HashMap;
 import java.util.Map;

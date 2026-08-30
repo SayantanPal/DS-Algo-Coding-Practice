@@ -1,32 +1,23 @@
-package basic.uniqueduplicatemajority;
-
-/*
-* Given an array arr[] of size n, filled with numbers from 1 to n-1 in random order. The array has only one repetitive element. Your task is to find the repetitive element.
-Note: It is guaranteed that there is a repeating element present in the array.
-* */
+package advanced.missingandduplicatesanduniquesandmajority;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FindAndContainsDuplicateWithVariations {
-    /*
-    * * array of size n contains elements within range [1, n-1]
-     * contsraint: which contains 1 extra duplicate number(no missing number)
-     * Duplicate here means ONLY 1 repeating char(not more than 1)
-    * */
-    // Link: https://www.geeksforgeeks.org/problems/find-repetitive-element-from-1-to-n-1/1
-    public int findDuplicate(int[] arr) {
-        // code here
-        int n = arr.length;
 
-        int duplicateNo = 0;
-        for(int i = 0; i < n; i++){
-            duplicateNo ^= i;
-            duplicateNo ^= arr[i];
+public class SingleUniqueNonDuplicateNo {
+
+    // Link: https://leetcode.com/problems/single-number/
+    // concept: a^a = 0 while a^0 = a
+    // same element nullifies out in bitwise XOR
+    // Link: https://www.geeksforgeeks.org/problems/find-repetitive-element-from-1-to-n-1/1
+    public int singleNumberAmongTwins(int[] nums) {
+        int result = 0;
+        for(int num: nums){
+            result ^= num;
         }
-        return duplicateNo;
+        return result;
     }
 
     // Link: https://leetcode.com/problems/find-the-duplicate-number/
@@ -87,5 +78,19 @@ public class FindAndContainsDuplicateWithVariations {
         // System.out.println(duplicateNo);
         int missing =  (int)(sum - (actualSum - duplicateNo));
         return new ArrayList<>(List.of(duplicateNo, missing));
+    }
+
+    public int singleNumberAmongTriples(int[] nums) {
+        int ans = 0;
+        for(int i = 0; i < 32; i++){
+            int cntSetBits = 0;
+            for(int j = 0; j < nums.length; j++){
+                if( (nums[j] & (1 << i)) != 0 ) cntSetBits++;
+            }
+            if(cntSetBits % 3 == 1){
+                ans |= (1 << i);
+            }
+        }
+        return ans;
     }
 }

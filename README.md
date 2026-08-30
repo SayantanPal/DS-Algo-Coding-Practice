@@ -77,6 +77,8 @@ For any number n
     - If last two bits are 11 → prefer +1 (creates trailing zeros, more divisions)
     - If last two bits are 01 → prefer -1 (directly makes it even)
   * One exception to rule 2: when n == 3, prefer -1 (3 → 2 → 1 is shorter than 3 → 4 → 2 → 1)
+  * (A OR B) = (A XOR B) + 2 * (A AND B)
+    ie (A | B) = (A ^ B) + 2 * (A & B)
 
 # K-Elem Window ->
     * Left Index = ((n - 1) - k + 1) = (n - k) TO Right Index = (n - 1). ie L = n - k whereas R = n - 1

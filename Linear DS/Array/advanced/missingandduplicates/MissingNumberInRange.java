@@ -1,3 +1,5 @@
+package advanced.missingandduplicates;
+
 // Link: https://leetcode.com/problems/missing-number/
 public class MissingNumberInRange {
 

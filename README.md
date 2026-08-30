@@ -15,7 +15,7 @@ Coding Practice for clearing Interviews
 
 * Precedence of time complexity:
   O(log(k)N) < O(Sqrt(N)) or O(N^(1/2)) < O(N) 
-  < O(NlogN) < O(NSqrt(N))< O(N^2) < O(N^3)
+  < O(NlogN) < O(NSqrt(N)) < O(N^2) < O(N^3)
   < O(2^N) < O(N!) < O(N^N) 
 
 # Java Primitive Data Types — Range Reference

@@ -19,8 +19,11 @@ Coding Practice for clearing Interviews
   < O(2^N) < O(N!) < O(N^N) 
 
 # BIT-WISE OPERATOR MANIPULATION
-For any number n
-* Min no of bits used to represent n is : Math.floor(log(base-2)n) + 1
+* LSB => First SET bit position starting from bit position index 0 towards -> MAX BIT Upper range limit
+* MSB => Last SET bit position (or FIRST encountered bit position from bit position index MAX BIT Upper range limit towards -> 0)
+  
+* For any number n
+  * Min no of bits used to represent n is : Math.floor(log(base-2)n) + 1
 * Use [num | (1 << bit_position_from_right)] to SET bit to 1 ie whatever bit is in bit_position_from_right will be set to 1
 * Use [num ^ (1 << bit_position_from_right)] to TOGGLE ( SET to UNSET and UNSET to SET)  bit to 1 ie whatever bit is in bit_position_from_right will be toggled (0 to 1 and vice-versa)
 * Use [num & (1 << bit_position_from_right)] to CHECK if that particular bit_position_from_right contains 1 (SET BIT) or not. 

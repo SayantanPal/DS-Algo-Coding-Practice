@@ -129,4 +129,28 @@ public class MaxSumAndAvgSubArrOfKFixedLength {
         }
         return maxSum/k; //Only divide to double at the return
     }
+
+    public int findSubArrWithLeastAvg(int[] nums, int k) {
+        long sum = 0;
+        int n = nums.length;
+        for(int i = 0; i < k; i++){
+            sum += nums[i];
+        }
+        // double minAvg = sum/B;
+        long minSum = sum;
+        int startingIndex = 0;
+        for(int i = k; i < n; i++){
+            sum += nums[i] - nums[i - k];
+            // double avg = sum/B;
+            // if(avg < minAvg){
+            //     minAvg = avg;
+            //     startingIndex = i;
+            // }
+            if(sum < minSum){ // if sum is less, avg is also less since window size is constant k
+                startingIndex = i - k + 1;
+                minSum = sum;
+            }
+        }
+        return startingIndex;
+    }
 }

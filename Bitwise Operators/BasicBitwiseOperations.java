@@ -32,4 +32,12 @@ public class BasicBitwiseOperations {
         return num;
     }
 
+    // TC = O(N + log(2)(Max_Elem))
+    public int getMaxPossibleMSBForAllArrElem(int[] A){
+        int maxElem = Integer.MIN_VALUE;
+        for(int i = 0; i < A.length; i++){
+            maxElem = Math.max(maxElem, A[i]);
+        }
+        return (int)Math.floor(Math.log(maxElem)/Math.log(2)) + 1;
+    }
 }

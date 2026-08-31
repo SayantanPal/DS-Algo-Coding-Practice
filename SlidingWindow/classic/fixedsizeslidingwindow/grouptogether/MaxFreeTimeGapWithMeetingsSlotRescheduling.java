@@ -1,4 +1,4 @@
-package classic.fixedsizeslidingwindow;
+package classic.fixedsizeslidingwindow.grouptogether;
 
 // Link: https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/description/
 public class MaxFreeTimeGapWithMeetingsSlotRescheduling {

@@ -1,4 +1,4 @@
-package classic.fixedsizeslidingwindow;
+package classic.fixedsizeslidingwindow.cost;
 
 // Link: https://leetcode.com/problems/grumpy-bookstore-owner/description/
 // grumpy[] binary array stores the default behaviour of bookshop owner where 1 being grumpy and 0 being not-grumpy

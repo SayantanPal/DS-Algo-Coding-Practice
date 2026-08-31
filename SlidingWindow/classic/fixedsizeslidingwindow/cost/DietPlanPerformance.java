@@ -1,4 +1,4 @@
-package classic.fixedsizeslidingwindow.easy;
+package classic.fixedsizeslidingwindow.cost;
 
 /*
 * A dieter consumes calories[i] calories on the i-th day.

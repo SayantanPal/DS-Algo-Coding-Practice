@@ -1,4 +1,4 @@
-package classic.fixedsizeslidingwindow;
+package classic.fixedsizeslidingwindow.easy;
 
 // Link: https://leetcode.com/problems/maximum-average-subarray-i/
 // Link: https://www.hellointerview.com/learn/code/sliding-window/maximum-sum-of-subarrays-of-size-k

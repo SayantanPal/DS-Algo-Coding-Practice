@@ -1,4 +1,4 @@
-package classic.fixedsizeslidingwindow;
+package classic.fixedsizeslidingwindow.grouptogether;
 
 /*
 * Problem Description
@@ -24,6 +24,9 @@ Output 1: 2
 Output 2: 1
 * */
 // Link: https://www.geeksforgeeks.org/problems/minimum-swaps-required-to-bring-all-elements-less-than-or-equal-to-k-together4847/1
+// Link: https://www.geeksforgeeks.org/problems/minimum-swaps-required-to-group-all-1s-together2451/1
+//       https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/description/
+//       https://www.naukri.com/code360/problems/group-all-1-s-together_1171155
 public class MinimumSwapsToGroupCertainElementsTogether {
     public int findMinSwaps(int[] A, int B) {
 
@@ -65,5 +68,28 @@ public class MinimumSwapsToGroupCertainElementsTogether {
             minSwapCount = Math.min(minSwapCount, swapCount);
         }
         return minSwapCount;
+    }
+
+    public int minSwapsToGroupAllOnesTogether(int[] arr) {
+        // code here
+        int noOfOnes = 0;
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] == 1) noOfOnes++;
+        }
+        if(noOfOnes == 0) return -1;
+        int countSwaps = 0;
+        int minSwaps = Integer.MAX_VALUE;
+        int windowSize = noOfOnes;
+
+        for(int i = 0; i < windowSize; i++){
+            if(arr[i] == 0) countSwaps++;
+        }
+        minSwaps = Math.min(minSwaps, countSwaps);
+        for(int i = windowSize; i < arr.length; i++){
+            if(arr[i - windowSize] == 0) countSwaps--;
+            if(arr[i] == 0) countSwaps++;
+            minSwaps = Math.min(minSwaps, countSwaps);
+        }
+        return minSwaps ;
     }
 }

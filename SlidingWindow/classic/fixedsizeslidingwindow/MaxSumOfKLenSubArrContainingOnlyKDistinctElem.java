@@ -21,14 +21,18 @@ public class MaxSumOfKLenSubArrContainingOnlyKDistinctElem {
         }
 
         for(int i = k; i < nums.length; i++){
+            // Shrink the window
             if(map.containsKey(nums[i - k])){
                 map.put(nums[i - k], map.get(nums[i - k]) - 1L);
                 if(map.get(nums[i - k]) == 0L){
                     map.remove(nums[i - k]);
                 }
             }
+            // expand the window
             map.put(nums[i], map.getOrDefault(nums[i], 0L) + 1L);
             sum += nums[i] - nums[i - k];
+
+            // when total keys in hashmap equals k distinct element count
             if(map.size() == k){
                 maxSum = Math.max(maxSum, sum);
             }

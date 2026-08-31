@@ -6,7 +6,7 @@ package classic.fixedsizeslidingwindow;
 // Goal is to try to find a fixed window of size consecutive minutes where
 // inside the window when the owner is expected to remain grumpy will trick secretly to act non-grumpy for satisfying/recovering more customers which might be lost due to default behaviour
 // and we need to find such window where the count of customers being satisfied ie customer satisfaction  is maximised
-public class GrumpyBookstoreOwner {
+public class MaxCustSatisfactionGrumpyBookstoreOwner {
 
     public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
         int n = customers.length;

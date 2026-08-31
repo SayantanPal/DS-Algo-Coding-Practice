@@ -2,6 +2,7 @@ package classic.fixedsizeslidingwindow;
 
 // Link: https://leetcode.com/problems/grumpy-bookstore-owner/description/
 // grumpy[] binary array stores the default behaviour of bookshop owner where 1 being grumpy and 0 being not-grumpy
+// when grumpy[i] -> 0 => customers unsatisfied; when grumphy[i] -> 1 => customers satisfied
 // Goal is to try to find a fixed window of size consecutive minutes where
 // inside the window when the owner is expected to remain grumpy will trick secretly to act non-grumpy for satisfying/recovering more customers which might be lost due to default behaviour
 // and we need to find such window where the count of customers being satisfied ie customer satisfaction  is maximised

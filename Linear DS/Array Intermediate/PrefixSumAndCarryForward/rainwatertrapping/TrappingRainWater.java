@@ -1,7 +1,7 @@
 package rainwatertrapping;
 
 // Link: https://leetcode.com/problems/trapping-rain-water/
-public class TrappingRainWater {
+public class TrappingRainWater{
 
     public int trapRainwater_usingPrefixSum(int[] height) {
         int n = height.length;

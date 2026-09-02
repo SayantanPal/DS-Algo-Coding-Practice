@@ -6,12 +6,12 @@ Coding Practice for clearing Interviews
 * Assume ~10^8 iterations typically run on cloud coding judge servers in 1 sec
 * Anything taking greater than 10^8 sec is Time Limit Exceeded (TLE).
 
-| Time Complexity[ Big(O)] | Bigger Input Size[N] | Iterations       | Exec. Time            |
-|--------------------------|----------------------|------------------|-----------------------|
-| O(N)                     | 10^8                 | 10^8             | 1 sec                 |
-| O(N^2)                   | 10^8                 | 10^(8x2) = 10^16 | 10^8 sec              |
-| O(N)                     | 10^18                | 10^18            | 10^10 sec = 317 years |
-| O(Sqrt(N))               | 10^18                | 10^9             | 10^2 sec = 100 sec    |
+| Time Complexity[ Big(O)] | Bigger Input Size[N] | Iterations       | Exec. Time                  |
+|--------------------------|----------------------|------------------|-----------------------------|
+| O(N)                     | 10^8                 | 10^8             | 1 sec                       |
+| O(N^2)                   | 10^8                 | 10^(8x2) = 10^16 | 10^8 sec                    |
+| O(N)                     | 10^18                | 10^18            | 10^10 sec = 317 years (TLE) |
+| O(Sqrt(N))               | 10^18                | 10^9             | 10^2 sec = 100 sec          |
 
 * Precedence of time complexity:
   O(log(k)N) < O(Sqrt(N)) or O(N^(1/2)) < O(N) 
@@ -361,8 +361,8 @@ For multiple duplicates, in second iteration while iterating:
     - pop() → pop() (or pollFirst())
     - peek() → peek() (or peekFirst())
 * Dequeue as Stack:   [front/head/first] ←➔ ←➔ ←➔ [back/rear/tail/last]                                                                                                                                                       
-                           remove/add                      
-* Monotonic deque = a technique/pattern using a deque where you maintain elements in strictly increasing or decreasing order.
+                           remove        ←➔ ←➔ ←➔         add                      
+* Monotonic deque = a technique/pattern using a deque where you maintain elements in strictly increasing or decreasing order(like either one side of mountain/hill slope from peak to base).
 * Frequency Bucket works faster than HashMap only when the numbers are strictly in range between [0, (2^31 - 1) ] or [0, 10^9]
 * Never use Sliding window for arrays containing -ve nos.
 * Monotonic stack is the optimal Data-structure which gives:

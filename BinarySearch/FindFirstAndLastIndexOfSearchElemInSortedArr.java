@@ -19,7 +19,7 @@ public class FindFirstAndLastIndexOfSearchElemInSortedArr {
             int mid = left + (right - left)/2;
             if(nums[mid] == target){ // continue moving till mid index element is target
                 // don't stop when equals
-                firstOccurance = mid; // hold the last recently encountered search elem while moving towards left
+                firstOccurance = mid; // hold the latest recently encountered search elem while moving towards left
                 right = mid - 1; // keep on moving towards left
             }else if(nums[mid] > target){ // target < nums[mid]
                 upperBound = mid;
@@ -36,7 +36,7 @@ public class FindFirstAndLastIndexOfSearchElemInSortedArr {
         while(left <= right){
             int mid = left + (right - left)/2;
             if(nums[mid] == target){ // continue moving till mid index element is target
-                lastOccurance = mid; // hold the last recently encountered search elem while moving towards right
+                lastOccurance = mid; // hold the latest recently encountered search elem while moving towards right
                 left = mid + 1; // keep on moving towards right
             }else if(nums[mid] > target){
 //                upperBound = mid;

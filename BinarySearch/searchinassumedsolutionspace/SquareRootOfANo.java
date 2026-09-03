@@ -1,3 +1,4 @@
+package searchinassumedsolutionspace;
 
 // Link: https://leetcode.com/problems/sqrtx/
 public class SquareRootOfANo {

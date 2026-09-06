@@ -1,4 +1,4 @@
-package minimizethemaximumlimit;
+package MinimizeTheMaximumLimitInPartitionDistribution;
 
 /*
 * Problem Description

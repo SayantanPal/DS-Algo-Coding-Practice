@@ -1,4 +1,4 @@
-package basic;
+package classic;
 /*
 * Farmer and the cows
 *

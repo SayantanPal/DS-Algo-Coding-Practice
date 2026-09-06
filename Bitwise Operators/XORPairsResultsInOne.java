@@ -9,6 +9,7 @@ Can you solve the task given by Dr. Benjamin?
 Please read the examples given below for better understanding of the problem.
 HINT : Look at the binary representation of given numbers
 *
+*
 Problem Constraints:
 * -----------------
 * 1 <= N <= 4 * 10^4
@@ -16,6 +17,42 @@ Problem Constraints:
 1 <= Q <= 100
 0 < B[i] < 32
 *
+* Input Format
+First argument contains an array A.
+Second argument contains an array B.
+
+Output Format
+Return an array of integers containing answer to all the queries.
+
+
+Example Input
+Input 1:
+A = [1, 2, 3]
+B = [0, 1]
+
+*
+Input 2:
+A = [2, 4, 7, 11]
+B = [3]
+
+Example Output
+Output 1: [2, 2]
+Output 2: [3]
+
+
+Example Explanation
+Explanation 1:
+Query with index = 0 means we have to find the total pairs whose XOR have 'index' bit set.
+The corresponding pairs are [[1, 2], [2, 3]].
+
+
+Query with index = 1 means we have to find the total pairs whose XOR have 'index' bit set.
+The corresponding pairs are [[1, 2], [1, 3]].
+
+Explanation 2:
+Query with index = 3 means we have to find the total pairs whose XOR have 'index' bit set.
+The corresponding pairs are [[2, 11], [4, 11], [7, 11]].
+
 * */
 
 public class XORPairsResultsInOne {

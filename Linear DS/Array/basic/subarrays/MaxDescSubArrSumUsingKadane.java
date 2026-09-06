@@ -13,12 +13,23 @@ Problem Constraints
 0 <= A[i] <= 10^5
 Sum of all elements of A <= 10^9
 *
-Input Format
-* -----------------
-First argument A is an array of integers.
-Output Format
-Return an integer denoting maximum possible sum of a subarray with strictly decreasing weight!
+Input Format: First argument A is an array of integers.
+Output Format: Return an integer denoting maximum possible sum of a subarray with strictly decreasing weight!
 *
+* Example Input
+Input 1: A = [3, 2, 1]
+Input 2: A = [3, 3, 5, 0, 1]
+
+
+Example Output
+Output 1: 6
+Output 2: 5
+
+
+Example Explanation
+Example 1: We can take the subarray indexed [0-2] which are in decreasing order the sum the elements are 3+2+1=6.
+Example 2: We can take the subarray indexed [2-3] which are in decreasing order the sum of the elements are 5+0=5.
+
 * */
 
 // Constraint: All array elements are +ve

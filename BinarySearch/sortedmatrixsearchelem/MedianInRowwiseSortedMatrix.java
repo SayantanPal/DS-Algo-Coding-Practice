@@ -1,6 +1,7 @@
 package sortedmatrixsearchelem;
 
-public class MedianInRowwiseAndColwiseSortedMatrix {
+// median is N*M/2 + 1 because as per problem constraints, N*M is guranteed to be odd. The problem guarantees this, so you never hit the even case
+public class MedianInRowwiseSortedMatrix {
 
     // Row Level Binary Search in Row-wise sorted matrix
     public int findUpperBoundSmallerThanOrEqualToSearchElem(int[][] matrix, int rowNo, int searchElem){
@@ -41,7 +42,10 @@ public class MedianInRowwiseAndColwiseSortedMatrix {
         }
         int n = A.length;
         int m = A[0].length;
+        // since n*m is guranteed to be odd that's why
         int countGreaterThanOrEqualToMedian = n*m/2 + 1; // how many elements median is greater than or equal to - n*m/2 + 1
+
+
         int l = minElem, r = maxElem;
         int median = -1;
         while(l <= r){
@@ -56,6 +60,28 @@ public class MedianInRowwiseAndColwiseSortedMatrix {
                 l = midSearchElem + 1;
             }
         }
+
+        // if either of n or m is even, then n*m is even
+        // then
+        /*
+        l = minElem; r = maxElem;
+        countGreaterThanOrEqualToMedian = n*m/2;
+        int median2 = -1;
+        while(l <= r){
+            int midSearchElem = l + (r - l)/2;
+            if(findTotalElemGtMedian(A, midSearchElem) == countGreaterThanOrEqualToMedian){
+                median2 = midSearchElem;
+                r = midSearchElem - 1;
+            }else if(findTotalElemGtMedian(A, midSearchElem) > countGreaterThanOrEqualToMedian){
+                median = midSearchElem;
+                r = midSearchElem - 1;
+            }else if(findTotalElemGtMedian(A, midSearchElem) < countGreaterThanOrEqualToMedian){
+                l = midSearchElem + 1;
+            }
+        }
+        return (median + median2)/2;
+        */
+
         return median;
     }
 }

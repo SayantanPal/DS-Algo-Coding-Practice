@@ -30,6 +30,14 @@ public class FindFirstAndLastIndexOfSearchElemInSortedArr {
             }
         }
 
+        // Upper Bound of a search element says how many elements in array is <= search element
+        // Or search element is >= how many array elements
+        // No of elements smaller than or equal to search element is given by the upper bound of the search element which is the index of same search element(if present) or immediate greater element than search elem
+
+        // (Array length - upper bound) gives search element is < how many array elements
+
+        // count of duplicate search element is given by (Upper Bound - Lower Bound)
+
         // find last occurance of search element when present in duplicate
         int lastOccurance = -1;
         left = 0; right = n - 1;

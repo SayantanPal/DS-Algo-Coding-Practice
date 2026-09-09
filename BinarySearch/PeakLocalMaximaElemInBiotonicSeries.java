@@ -10,14 +10,14 @@ public class PeakLocalMaximaElemInBiotonicSeries {
         int result = 0;
         while(l <= r){
             int mid = l + (r - l)/2;
-            boolean leftSmaller = (mid == 0 || nums[mid] > nums[mid - 1]);
-            boolean rightSmaller = (mid == n - 1 || nums[mid] > nums[mid + 1]);
-            if(leftSmaller && rightSmaller){ // when larger than both left and right neighbour
+            boolean isLargerThanLeft = (mid == 0 || nums[mid] > nums[mid - 1]);
+            boolean isLargerThanRight = (mid == n - 1 || nums[mid] > nums[mid + 1]);
+            if(isLargerThanLeft && isLargerThanRight){ // when larger than BOTH left and right neighbour
                 return mid; //nums[mid];
-            }else if( !leftSmaller ){
+            }else if( !isLargerThanLeft ){ // when not larger than left, then move left to find more large
                 result = mid; //nums[mid];
                 r = mid - 1; // move left further till left neighbour is larger (left is same or not smaller)
-            }else if( !rightSmaller ){
+            }else if( !isLargerThanRight ){ // when not larger than right, then move right to find more larger
                 result = mid; //nums[mid];
                 l = mid + 1; // move right further till right neighbour is larger (right is same or not smaller)
             }

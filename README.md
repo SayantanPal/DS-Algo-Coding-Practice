@@ -583,3 +583,114 @@ Note:
 
 # PRACTICE PROBLEMS MINES:
 https://www.geeksforgeeks.org/explore?page=1&sortBy=submissions
+
+Matrix-
+------
+
+Sorted Matrix Search
+- LC 74 — Search a 2D Matrix (row-sorted, binary search)
+- LC 240 — Search a 2D Matrix II (row+col sorted, staircase search)
+- LC 378 — Kth Smallest Element in a Sorted Matrix
+
+Perimeter / Neighbor Counting
+- LC 463 — Island Perimeter
+- LC 1030 — Matrix Cells in Distance Order
+
+Spiral / Order Traversal
+- LC 54 — Spiral Matrix
+- LC 59 — Spiral Matrix II
+- LC 885 — Spiral Matrix III
+- LC 498 — Diagonal Traverse
+- LC 1424 — Diagonal Traverse II
+
+Rotation / Transpose
+- LC 48 — Rotate Image
+- LC 867 — Transpose Matrix
+
+Simulation / In-place Marking
+- LC 73 — Set Matrix Zeroes
+- LC 289 — Game of Life
+- LC 36 — Valid Sudoku
+- LC 766 — Toeplitz Matrix
+
+Path / DP on Matrix
+- LC 64 — Minimum Path Sum
+- LC 62 — Unique Paths
+- LC 63 — Unique Paths II
+- LC 221 — Maximal Square
+- LC 1277 — Count Square Submatrices with All Ones
+- LC 304 — Range Sum Query 2D (prefix sum)
+
+
+Fixed Sliding Window-
+---------------------
+LC - 1652  Defuse the Bomb
+LC - 1343  Number of Sub-arrays of Size K..
+2134  - Minimum Swaps to Group All 1's Together II.
+
+643, 1343, 1456, 1052, 1423, 3439
+LC 239 — Sliding Window Maximum → Monotonic Queue
+LC 480 — Sliding Window Median → Median DS
+LC 2653 — Sliding Subarray Beauty → Order statistic
+LC 3318 — Find X-Sum of All K-Long Subarrays I
+
+Window + state - + basic frequency DS array -max/min score  -HashMap / Set
+1100, 438, 567, 2461, 1461
+
+1100  - K-Length Substrings With No Repeated Characters  - int[26]
+2461  - Maximum Sum of Distinct Subarrays With Length K - HashMap
+1461 - Check If a String Contains All Binary Codes of Size K - HashSet
+438 - Find All Anagrams in a String - int[26]
+567 - Permutation in String - int[26]
+
+Comparator-
+-----------
+
+Custom Sort / Comparator Problems on LeetCode:
+
+Sort by Single Computed Value
+- LC 973 — K Closest Points to Origin (sort by distance)
+- LC 1046 — Last Stone Weight (sort by weight)
+- LC 252 — Meeting Rooms (sort by start time)
+- LC 253 — Meeting Rooms II (sort by start time)
+- LC 56 — Merge Intervals (sort by start)
+- LC 57 — Insert Interval
+- LC 435 — Non-overlapping Intervals (sort by end time)
+- LC 452 — Minimum Number of Arrows to Burst Balloons (sort by end)
+
+Sort by Multiple Keys
+- LC 179 — Largest Number (custom string comparator)
+- LC 1356 — Sort Integers by The Number of 1 Bits (bit count, then value)
+- LC 1636 — Sort Array by Increasing Frequency (frequency asc, value desc)
+- LC 2191 — Sort the Jumbled Numbers (mapped value)
+- LC 791 — Custom Sort String
+
+Sort to Enable Greedy
+- LC 455 — Assign Cookies (sort both arrays)
+- LC 870 — Advantage Shuffle (sort to greedily match)
+- LC 948 — Bag of Tokens (sort to greedy play)
+- LC 1029 — Two City Scheduling (sort by cost difference)
+- LC 135 — Candy (sort-based approach possible)
+
+Sort Pairs / Tuples
+- LC 937 — Reorder Data in Log Files (multi-rule comparator)
+- LC 539 — Minimum Time Difference (sort circular times)
+- LC 274 — H-Index (sort descending)
+- LC 324 — Wiggle Sort II
+
+Priority Queue with Custom Comparator
+- LC 347 — Top K Frequent Elements (max/min heap by frequency)
+- LC 692 — Top K Frequent Words (frequency then lexicographic)
+- LC 767 — Reorganize String (max heap by count)
+- LC 1353 — Maximum Number of Events That Can Be Attended (min heap by end day)
+
+Start with 56, 179, 937, 1029 — these force you to think carefully about comparator logic. Then move to the priority queue ones.
+
+Binary Search-
+--------------
+Koko Eating Bananas (LC 875) — binary search on rate instead of partition
+Minimize Max Distance to Gas Station (LC 774) — binary search on decimal answer
+Maximum Distance Between a Pair of Values (LC 1855)
+Maximize Minimum Value After Rearrangement (LC 1968)
+
+

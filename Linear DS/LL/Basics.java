@@ -28,6 +28,69 @@ public class Basics {
         return head = curr;
     }
 
+    SLLNode insertBeforeIndex(SLLNode head, int data, int toBeInsertedBeforeIndex) {
+        // code here
+        SLLNode newNode = new SLLNode(data);
+        if(head == null){ // insert at head
+            return head = newNode;
+        }
+        if(toBeInsertedBeforeIndex == 0){ // insert left to existing head
+            newNode.next = head;
+            return head = newNode;
+        }
+
+        // insert after current index node starting from head
+        SLLNode curr = head;
+        int i = 0;
+        //  before target index, the index at which needs to be inserted is (toBeInsertedBeforeIndex - 2)
+        while(curr.next != null && i < toBeInsertedBeforeIndex - 1){ // at end of loop, curr points to toBeInsertedBeforeIndex - 1 ie 1 node index before toBeInsertedBeforeIndex
+            curr = curr.next;
+            i++;
+        }
+        SLLNode nextListNodeChain = curr.next;
+        curr.next = newNode;
+        newNode.next = nextListNodeChain;
+        return head;
+    }
+
+    SLLNode deleteAtIndex_v2(SLLNode head, int toBeDeletedIndex) {
+        if(head == null) return null;
+        if(toBeDeletedIndex == 0){
+            head = head.next;
+            return head;
+        }
+        SLLNode curr = head;
+        int i = 0;
+
+        // go one step before index 'toBeDeletedIndex' where toBeDeletedIndex is to be deleted
+        while(curr.next != null && i < toBeDeletedIndex - 1){ // at end of loop, curr points to toBeDeletedIndex - 1 ie 1 node index before toBeDeletedIndex
+            curr = curr.next;
+            i++;
+        }
+        curr.next = curr.next.next;
+        return head;
+    }
+
+
+    SLLNode deleteAtIndex(SLLNode head, int toBeDeletedIndex) {
+        if(head == null) return null;
+        if(toBeDeletedIndex == 0){
+            head = head.next;
+            return head;
+        }
+        SLLNode curr = head;
+        SLLNode prev = null;
+        int i = 0;
+        // go one step before index 'toBeDeletedIndex' so that on exiting loop, curr points at 'toBeDeletedIndex' and prev points 1 node index before 'toBeDeletedIndex'
+        while(curr.next != null && i < toBeDeletedIndex){
+            prev = curr;
+            curr = curr.next;
+            i++;
+        }
+        prev.next = curr.next;
+        return head;
+    }
+
 
 
     SLLNode removeHead(SLLNode head) {

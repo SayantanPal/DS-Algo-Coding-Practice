@@ -1,4 +1,4 @@
-package nextlargestnotorightusingstack;
+package immediatelargerorsmalleronleftorright;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -51,10 +51,12 @@ public class BalancedValidParenthesis {
     public boolean isBalanced_v2(String str) {
         Deque<Character> stack = new ArrayDeque<>();
         for (char c : str.toCharArray()) {
-            if (c == '(') stack.push(')');
-            else if (c == '{') stack.push('}');
-            else if (c == '[') stack.push(']');
-            else if (stack.isEmpty() || stack.pop() != c) return false;
+            if(!stack.isEmpty()) {
+                if (c == ')' && stack.pop() != '(') return false;
+                else if (c == '}' && stack.pop() != '{') return false;
+                else if (c == ']' && stack.pop() != '[') return false;
+            }
+            stack.push(c);
         }
         return stack.isEmpty(); // this check is needed when input is for ex say: ({[
     }
@@ -62,12 +64,10 @@ public class BalancedValidParenthesis {
     public boolean isBalanced_v3(String str) {
         Deque<Character> stack = new ArrayDeque<>();
         for (char c : str.toCharArray()) {
-            if(!stack.isEmpty()) {
-                if (c == ')' && stack.pop() != '(') return false;
-                else if (c == '}' && stack.pop() != '{') return false;
-                else if (c == ']' && stack.pop() != '[') return false;
-            }
-            stack.push(c);
+            if (c == '(') stack.push(')');
+            else if (c == '{') stack.push('}');
+            else if (c == '[') stack.push(']');
+            else if (stack.isEmpty() || stack.pop() != c) return false;
         }
         return stack.isEmpty(); // this check is needed when input is for ex say: ({[
     }

@@ -1,11 +1,9 @@
 package immediatelargerorsmalleronleftorright;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.Stack;
 
 // Link:
-public class NextSmallerNoToTheImmediateLeft {
+public class NextGreaterNoToTheImmediateLeft {
 
     public ArrayList<Integer> next_smaller_number_to_the_left(ArrayList<Integer> nums) {
         ArrayList<Integer> res = new ArrayList<>();
@@ -16,11 +14,11 @@ public class NextSmallerNoToTheImmediateLeft {
         }
 
         for (int i = 0; i < nums.size(); i++) {
-            // keep on searching smaller no than current num[i] in stack
-            // the moment we find a number which is < current num[i], we stop
-            // that means we keep on popping while stack elements are >= current num[i]
-            while (!stack.isEmpty() && stack.peek() >= nums.get(i)) {
-                stack.pop();
+            // keep on searching greater no than current num[i] in stack
+            // the moment we find a number which is <= current num[i], we stop
+            // that means we keep on popping while stack elements are <= current num[i]
+            while (!stack.isEmpty() && stack.peek() <= nums.get(i)) {
+                stack.pop(); // keep on popping all smaller number
             }
             // Record the current value's next largest number, which is at the top of the
             // stack. If the stack is empty, record -1.

@@ -167,17 +167,21 @@ long result = (long)(a * b); // -> same, only type casting after garbage value c
 long result = (long)a * b; // -> (long)a * b or a * b(long) either one is correct because before operation datatype conversation already happens
 
 # Floor of a number when div by 200:
+General formula: floor(a / b) = (a >= 0) ? (a / b) : ( (a % b == 0) ? (a / b) : (a / b) - 1 )
 Given by: (A >= 0) ? (A / 200): ( (A % 200) == 0 ? (A / 200) : (A / 200) - 1 )
-
 only 1 edge cond:
 if(A < 0 && A%200 !=0) // for a -ve no when not fully divisible, take one step lower for floor
     return (A/200) - 1
 return (A/200)
+Use: Math.floorDiv(a, b)
 
 # Ceil of a number when div by 200:
+General formula: ceil(a / b) = (a >= 0) ? ( (a + b - 1) / b) : ( (a % b == 0) ? ( (a + b - 1) / b ) : (a / b) + 1 );
+Given by: (A >= 0) ? ( (A + 200 - 1) / 200 ): ( (A % 200) == 0 ? ( (A + 200 - 1) / 200 ) : (A / 200) + 1 )
 if(A >= 0 && A%200 !=0) // for a +ve no when not fully divisible, take 1 step higher for ceil
     return (A/200) + 1
 return (A/200)
+Use: Math.ceilDiv(a, b)
 
 # MATHS - Calculate Length of a number by iteratively trimmming out last digit and get the last digit for every trimmed number
 while(N > 0){

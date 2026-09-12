@@ -49,8 +49,9 @@ public class NextLargerNoToTheImmediateRight {
         // Find the next largest number of each element, starting with the rightmost
         // element.
         for (int i = nums.size() - 1; i >= 0; i--) {
-            // Pop values from the top of the stack until the current value's next largest
-            // number is at the top.
+            // keep on searching greater no than current num[i] in stack
+            // the moment we find a number which is > current num[i], we stop
+            // that means we keep on popping while stack elements are <= current num[i]
             while (!stack.isEmpty() && stack.peek() <= nums.get(i)) {
                 stack.pop();
             }

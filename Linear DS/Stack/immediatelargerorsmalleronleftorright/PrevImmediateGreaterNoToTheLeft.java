@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 // Link:
-public class NextGreaterNoToTheImmediateLeft {
+public class PrevImmediateGreaterNoToTheLeft {
 
-    public ArrayList<Integer> next_smaller_number_to_the_left(ArrayList<Integer> nums) {
+    public ArrayList<Integer> previous_immediate_smaller_number_to_the_left(ArrayList<Integer> nums) {
         ArrayList<Integer> res = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
         // Initialize result list with zeros.

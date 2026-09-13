@@ -5,9 +5,29 @@ import java.util.Deque;
 import java.util.Stack;
 
 // Link:
-public class NextSmallerNoToTheImmediateLeft {
+public class PreviousImmediateSmallerNoToTheLeft {
 
-    public ArrayList<Integer> next_smaller_number_to_the_left(ArrayList<Integer> nums) {
+
+    public int[] previous_immediate_smaller_number_to_the_left(int[] A) {
+
+        Deque<Integer> prevImmediateSmallerOnLeft = new ArrayDeque<>();
+
+        int[] prevImmediateSmallerOnLeftArr = new int[A.length]; // left wall
+
+        for(int i = 0; i < A.length; i++){
+            // Try to find the previous immediate smaller element on left
+            // Note down the index for previous immediate smaller element on left as index of left wall
+            while(!prevImmediateSmallerOnLeft.isEmpty() && A[prevImmediateSmallerOnLeft.peek()] >= A[i]){
+                prevImmediateSmallerOnLeft.pop();
+            }
+            prevImmediateSmallerOnLeftArr[i] = prevImmediateSmallerOnLeft.isEmpty() ? -1: prevImmediateSmallerOnLeft.peek();
+            prevImmediateSmallerOnLeft.push(i);
+        }
+
+        return prevImmediateSmallerOnLeftArr;
+    }
+
+    public ArrayList<Integer> previous_immediate_smaller_number_to_the_left(ArrayList<Integer> nums) {
         ArrayList<Integer> res = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
         // Initialize result list with zeros.

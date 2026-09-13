@@ -10,6 +10,8 @@ public class MinStackUsingArray {
         if(tos == MAX_STACK_SIZE) return; // check overflow
         tos++;
         stackImpl[tos] = x;
+
+        // below extra for min stack impl
         minElem = Math.min(minElem, x);
         minElemTracker[tos] = minElem;
     }
@@ -21,6 +23,8 @@ public class MinStackUsingArray {
     public void pop() {
         if(isEmpty()) return; // check underflow
         tos--; // delete the element
+
+        // below extra for min stack impl
         if(isEmpty()) minElem = Integer.MAX_VALUE; // reset the tracker that no min elem visited yet
         else minElem = minElemTracker[tos]; // reset the tracker to the current min elem post deletion
     }

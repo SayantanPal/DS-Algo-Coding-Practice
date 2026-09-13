@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 // Link:
-public class PrevImmediateGreaterNoToTheLeft {
+public class PreviousImmediateGreaterNoToTheLeft {
 
     public ArrayList<Integer> previous_immediate_smaller_number_to_the_left(ArrayList<Integer> nums) {
         ArrayList<Integer> res = new ArrayList<>();

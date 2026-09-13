@@ -8,22 +8,20 @@ import java.util.Stack;
 public class PreviousImmediateSmallerNoToTheLeft {
 
 
-    public int[] previous_immediate_smaller_number_to_the_left(int[] A) {
-
-        Deque<Integer> prevImmediateSmallerOnLeft = new ArrayDeque<>();
+    public static int[] previous_immediate_smaller_number_to_the_left(int[] A) {
+        Deque<Integer> prevImmediateSmallerOnLeftIndex = new ArrayDeque<>();
 
         int[] prevImmediateSmallerOnLeftArr = new int[A.length]; // left wall
 
         for(int i = 0; i < A.length; i++){
             // Try to find the previous immediate smaller element on left
             // Note down the index for previous immediate smaller element on left as index of left wall
-            while(!prevImmediateSmallerOnLeft.isEmpty() && A[prevImmediateSmallerOnLeft.peek()] >= A[i]){
-                prevImmediateSmallerOnLeft.pop();
+            while(!prevImmediateSmallerOnLeftIndex.isEmpty() && A[prevImmediateSmallerOnLeftIndex.peek()] >= A[i]){
+                prevImmediateSmallerOnLeftIndex.pop(); // pop out all in between larger or equal elements
             }
-            prevImmediateSmallerOnLeftArr[i] = prevImmediateSmallerOnLeft.isEmpty() ? -1: prevImmediateSmallerOnLeft.peek();
-            prevImmediateSmallerOnLeft.push(i);
+            prevImmediateSmallerOnLeftArr[i] = prevImmediateSmallerOnLeftIndex.isEmpty() ? -1: prevImmediateSmallerOnLeftIndex.peek();
+            prevImmediateSmallerOnLeftIndex.push(i);
         }
-
         return prevImmediateSmallerOnLeftArr;
     }
 

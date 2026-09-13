@@ -1,5 +1,68 @@
 package classic.fixedsizeslidingwindow;
 
+
+/*
+* Q. Parking Ice Cream Truck
+Problem Description
+
+Imagine you're an ice cream truck driver in a beachside town. The beach is divided into several sections, and each section has varying numbers of beachgoers wanting ice cream given by the array of integers A.
+For simplicity, let's say the beach is divided into 8 sections. One day, you note down the number of potential customers in each section: [5, 12, 3, 4, 8, 10, 2, 7]. This means there are 5 people in the first section, 12 in the second, and so on.
+You can only stop your truck in B consecutive sections at a time because of parking restrictions. To maximize sales, you want to park where the most customers are clustered together.
+For all B consecutive sections, identify the busiest stretch to park your ice cream truck and serve the most customers. Return an array C, where C[i] is the busiest section in each of the B consecutive sections. Refer to the given example for clarity.
+NOTE: If B > length of the array, return 1 element with the max of the array.
+
+Problem Constraints: 1 <= |A|, B <= 106
+
+Input Format:
+The first argument given is the integer array A.
+The second argument given is the integer B.
+
+Output Format: Return an array C, where C[i] is the maximum value from A[i] to A[i+B-1].
+
+
+
+Example Input
+
+Input 1:
+ A = [1, 3, -1, -3, 5, 3, 6, 7]
+ B = 3
+
+Input 2:
+ A = [1, 2, 3, 4, 2, 7, 1, 3, 6]
+ B = 6
+
+
+Example Output
+Output 1: [3, 3, 5, 5, 6, 7]
+
+* Output 2: [7, 7, 7, 7]
+
+
+Example Explanation
+Explanation 1:
+
+ Window position     | Max
+ --------------------|-------
+ [1 3 -1] -3 5 3 6 7 | 3
+ 1 [3 -1 -3] 5 3 6 7 | 3
+ 1 3 [-1 -3 5] 3 6 7 | 5
+ 1 3 -1 [-3 5 3] 6 7 | 5
+ 1 3 -1 -3 [5 3 6] 7 | 6
+ 1 3 -1 -3 5 [3 6 7] | 7
+Explanation 2:
+
+ Window position     | Max
+ --------------------|-------
+ [1 2 3 4 2 7] 1 3 6 | 7
+ 1 [2 3 4 2 7 1] 3 6 | 7
+ 1 2 [3 4 2 7 1 3] 6 | 7
+ 1 2 3 [4 2 7 1 3 6] | 7
+*
+*
+*
+*
+* */
+
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -11,28 +74,6 @@ import java.util.LinkedList;
 // Link: https://leetcode.com/problems/sliding-window-maximum/
 // Link: https://neetcode.io/problems/sliding-window-maximum
 public class MaxElemOfSubArrWithKElemLenWindow {
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        int n = nums.length;
-        int[] result = new int[n - k + 1]; // Non-overlapping window -> n/k; since overlapping window -> n - k + 1
-        Deque<Integer> deque = new LinkedList<>();
-        for (int i = 0; i < nums.length; i++) {
-
-
-            // Left(Head/Front/First) Side of Window: Remove elements out of window
-            while (!deque.isEmpty() && deque.peek() < i - k + 1) // deque.peekFirst() < i - k + 1
-                deque.poll();      //deque.pollFirst() or deque.removeFirst();
-
-            // Right(Rear/Last) Side of Window: If new unseen upcoming number is greater, remove smaller elements
-            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i])
-                deque.pollLast(); // deque.removeLast();
-
-            deque.offer(i); // deque.add(i)
-
-            if (i >= k - 1)
-                result[i - k + 1] = nums[deque.peek()];
-        }
-        return result;
-    }
 
     // windows of k elems are (0 to k-1), (1 to k), (2 to k + 1),...so on
     // For each window of k elem, there is a double ended queue where we maintain only index of visited elements in below particular order
@@ -47,6 +88,7 @@ public class MaxElemOfSubArrWithKElemLenWindow {
         int j = 0;
 
         for(int i = 0; i < k; i++){
+            if(i > nums.length - 1) return new int[]{ nums[monotonicDecreasingDeque.peekFirst()] }; // NOTE: If K > length of the array, return 1 element with the max of the array.
             // maintain monotonous decreasing order of deque
             while(!monotonicDecreasingDeque.isEmpty() && nums[i] > nums[monotonicDecreasingDeque.peekLast()]){
                 monotonicDecreasingDeque.pollLast();
@@ -94,6 +136,30 @@ public class MaxElemOfSubArrWithKElemLenWindow {
         //             result[j++] = nums[monotonicDecreasingDeque.peekFirst()];
         //         }
         //    }
+        return result;
+    }
+
+
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
+        int[] result = new int[n - k + 1]; // Non-overlapping window -> n/k; since overlapping window -> n - k + 1
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < nums.length; i++) {
+
+
+            // Left(Head/Front/First) Side of Window: Remove elements out of window
+            while (!deque.isEmpty() && deque.peek() < i - k + 1) // deque.peekFirst() < i - k + 1
+                deque.poll();      //deque.pollFirst() or deque.removeFirst();
+
+            // Right(Rear/Last) Side of Window: If new unseen upcoming number is greater, remove smaller elements
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i])
+                deque.pollLast(); // deque.removeLast();
+
+            deque.offer(i); // deque.add(i)
+
+            if (i >= k - 1)
+                result[i - k + 1] = nums[deque.peek()];
+        }
         return result;
     }
 

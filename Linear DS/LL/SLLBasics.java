@@ -2,10 +2,10 @@ import model.SLLNode;
 
 import java.util.HashMap;
 
-public class Basics {
+public class SLLBasics {
 
     // Function to insert a node at the end of the linked list.
-    SLLNode insertAtEnd(SLLNode head, int x) {
+    SLLNode insertAtEndTailReadLast(SLLNode head, int x) {
         // code here
         if(head == null){
             return head = new SLLNode(x);
@@ -18,14 +18,47 @@ public class Basics {
         return head;
     }
 
-    SLLNode insertAtFront(SLLNode head, int x) {
+    // insert at head is equivalent to insert before existing head
+    SLLNode insertAtFrontHeadFirst(SLLNode head, int x) {
         // code here
         if(head == null){
             return head = new SLLNode(x);
         }
-        SLLNode curr = new SLLNode(x);
-        curr.next = head; // insert at the end
-        return head = curr;
+        SLLNode newNode = new SLLNode(x);
+        newNode.next = head; // connect new node to existing old head
+        return head = newNode; // new node becomes the new head
+    }
+
+    SLLNode removeFrontHeadFirst(SLLNode head) {
+        if(head == null) return head;
+        head = head.next;
+        return head;
+    }
+
+    SLLNode removeEndTailRearLast_v2(SLLNode head){
+        if(head == null) return head;
+        if(head.next == null) return head = null;
+
+        SLLNode curr = head;
+        while(curr.next.next != null){
+            curr = curr.next; // LL traversal: curr point to node previous to tail
+        }
+        curr.next = null;
+        return head;
+    }
+
+
+    SLLNode removeEndTailRearLast(SLLNode head){
+        if(head == null) return head;
+
+        SLLNode curr = head;
+        SLLNode prev = head;
+        while(curr.next != null){
+            prev = curr; // point to 1 node before current
+            curr = curr.next; // LL traversal: curr point to node which equals nodeValue
+        }
+        prev.next = null;
+        return head;
     }
 
     SLLNode insertBeforeIndex(SLLNode head, int data, int toBeInsertedBeforeIndex) {
@@ -35,8 +68,8 @@ public class Basics {
             return head = newNode;
         }
         if(toBeInsertedBeforeIndex == 0){ // insert left to existing head
-            newNode.next = head;
-            return head = newNode;
+            newNode.next = head; // connect new node to existing old head
+            return head = newNode; // new node becomes the new head
         }
 
         // insert after current index node starting from head
@@ -88,39 +121,6 @@ public class Basics {
             i++;
         }
         prev.next = curr.next;
-        return head;
-    }
-
-
-
-    SLLNode removeHead(SLLNode head) {
-        if(head == null) return head;
-        head = head.next;
-        return head;
-    }
-
-    SLLNode removeTail(SLLNode head){
-        if(head == null) return head;
-
-        SLLNode curr = head;
-        SLLNode prev = head;
-        while(curr.next != null){
-            prev = curr; // point to 1 node before current
-            curr = curr.next; // LL traversal: curr point to node which equals nodeValue
-        }
-        prev.next = null;
-        return head;
-    }
-
-    SLLNode removeTail_v2(SLLNode head){
-        if(head == null) return head;
-        if(head.next == null) return head = null;
-
-        SLLNode curr = head;
-        while(curr.next.next != null){
-            curr = curr.next; // LL traversal: curr point to node previous to tail
-        }
-        curr.next = null;
         return head;
     }
 

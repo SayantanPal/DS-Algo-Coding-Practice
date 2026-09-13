@@ -366,8 +366,16 @@ For multiple duplicates, in second iteration while iterating:
          add/remove   add/remove
 * When using Deque as a stack, Top of Stack ie peek is at [front/head/first] of Deque
     - push() → push() (or offerFirst())
+    - peek() → peek() (or peekFirst()) [this is top of stack]
     - pop() → pop() (or pollFirst())
-    - peek() → peek() (or peekFirst())
+  
+* Default Behaviour of Deque as Queue:
+  - offer() same as offerFirst()
+  - peek() same as peekFirst()
+  - poll() same as pollFirst();
+
+* Only Difference between Deque as Stack vs Queue is pop() is pollFirst() and poll() is pollLast()
+
 * Dequeue as Stack:   [front/head/first] ←➔ ←➔ ←➔ [back/rear/tail/last]                                                                                                                                                       
                            remove        ←➔ ←➔ ←➔         add
 * Monotonic deque = a technique/pattern using a deque where you maintain elements in strictly increasing or decreasing order(like either one side of mountain/hill slope from peak to base).

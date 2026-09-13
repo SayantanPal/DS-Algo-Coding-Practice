@@ -111,7 +111,8 @@ Coding Practice for clearing Interviews
     * From index i, Left Starting Index = i - k + 1 TO Right Ending Index = i ie L = (i - k + 1) -> R = i
     * It has window size = i - (i - k + 1) + 1 = k
 
-    * Distance/length between L = (l + 1) TO R = (r - 1) is R - L + 1 = (r - 1) - (l + 1) - 1 = r - l - 1
+    * Distance/length between L = (l + 1) TO R = (r - 1) i.e., (l, r) i.e., exclusive is R - L + 1 = (r - 1) - (l + 1) - 1 = r - l - 1
+      While Distance/length between L = l To R = r i.e., [L, R] i.e., inclusive is R - L + 1 = r - l + 1
 
 # EVEN/ODD -> 
     Diff b/w even & odd is always odd ie ODD - EVEN = ODD; EVEN - ODD = ODD

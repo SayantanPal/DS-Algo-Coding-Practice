@@ -356,25 +356,53 @@ For multiple duplicates, in second iteration while iterating:
      2. No method call overhead per character
      3. Better CPU cache locality (contiguous memory)
 * String concatenation within nested loops is heavy. Instead use StringBuffer or StringBuilder to create string and then convert back using .toString()
+
+* In Java, 3 ways of defining stack :
+* ----------------------------------
+1. Deque as stack (recommended)
+Deque<Integer> stack = new ArrayDeque<>();
+
+2. Legacy Stack class (avoid - synchronized, slow)
+Stack<Integer> stack = new Stack<>();
+
+3. LinkedList as Deque
+Deque<Integer> stack = new LinkedList<>();
+
+Use option 1 for stack. ArrayDeque is faster than both Stack and LinkedList.
+
+
+* In Java, 3 ways of defining queue:
+* ----------------------------------
+1. ArrayDeque as queue (recommended)
+Queue<Integer> queue = new ArrayDeque<>();
+
+2. LinkedList as queue
+Queue<Integer> queue = new LinkedList<>();
+
+3. Priority Queue (min-heap by default)
+Queue<Integer> pq = new PriorityQueue<>();
+
+Use option 1 for regular queue. Use LinkedList only if you need null values (ArrayDeque doesn't allow nulls).
+
+
 * Remember for Queues(FIFO):
   -[LHS] FRONT/HEAD/FIRST(delete/dequeue/poll/pollFirst/pop/remove/removeFirst) <<<---- REAR/TAIL/BACK/LAST(insert/enqueue/add/offer) [RHS]
 * Queue: FIFO only — remove from FRONT/HEAD/FIRST, add at BACK/TAIL/REAR/LAST.
-  * Queue:   [front/head/first] ← ← ← [back/rear/tail/last]                                                                                                                                                       
-                   remove                      add
+* Queue:   [front/head/first] ← ← ← [back/rear/tail/last]                                                                                                                                                       
+                remove                      add
 * Deque (double-ended queue): Add or remove from both ends — front and back.
 * Deque:   [front] ← → [back]                                                                                                                                                         
          add/remove   add/remove
 * When using Deque as a stack, Top of Stack ie peek is at [front/head/first] of Deque
-    - push() → push() (or offerFirst())
+    - push() → push() (or offerFirst() or enqueue()) 
     - peek() → peek() (or peekFirst()) [this is top of stack]
-    - pop() → pop() (or pollFirst())
+    - pop() → pop() (or pollFirst()) [remove from Top Of Stack ie Front Head First]
   
 * Default Behaviour of Deque as Queue:
-  - offer() same as offerFirst()
+  - enqueue(): offer() same as offerFirst()
   - peek() same as peekFirst()
-  - poll() same as pollFirst();
-
-* Only Difference between Deque as Stack vs Queue is pop() is pollFirst() and poll() is pollLast()
+  - poll() same as pollFirst()
+  - dequeue(): pollLast() [remove from Rear Tail Last]
 
 * Dequeue as Stack:   [front/head/first] ←➔ ←➔ ←➔ [back/rear/tail/last]                                                                                                                                                       
                            remove        ←➔ ←➔ ←➔         add

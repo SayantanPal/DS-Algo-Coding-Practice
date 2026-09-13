@@ -6,8 +6,10 @@ import java.util.Deque;
 public class LargestAreaOfRectangleFromHistBars {
 
     // Using 2 stacks - Not Space Optimized
+    // TC = O(3N) = O(N); SC = O(3N) when stack reused = O(N)
     public int largestRectangleArea_v1(int[] A) {
 
+        // internally stack using utility method is reused
         int[] nextImmediateSmallerOnRightArr = NextImmediateSmallerNumberToTheRight.next_immediate_smaller_number_index_to_the_right(A);
         int[] prevImmediateSmallerOnLeftArr = PreviousImmediateSmallerNoToTheLeft.previous_immediate_smaller_number_index_to_the_left(A);
 

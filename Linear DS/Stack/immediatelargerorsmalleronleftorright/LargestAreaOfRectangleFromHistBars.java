@@ -8,8 +8,8 @@ public class LargestAreaOfRectangleFromHistBars {
     // Using 2 stacks - Not Space Optimized
     public int largestRectangleArea_v1(int[] A) {
 
-        int[] nextImmediateSmallerOnRightArr = NextImmediateSmallerNumberToTheRight.next_immediate_smaller_number_to_the_right(A);
-        int[] prevImmediateSmallerOnLeftArr = PreviousImmediateSmallerNoToTheLeft.previous_immediate_smaller_number_to_the_left(A);
+        int[] nextImmediateSmallerOnRightArr = NextImmediateSmallerNumberToTheRight.next_immediate_smaller_number_index_to_the_right(A);
+        int[] prevImmediateSmallerOnLeftArr = PreviousImmediateSmallerNoToTheLeft.previous_immediate_smaller_number_index_to_the_left(A);
 
         int maxArea = Integer.MIN_VALUE;
         for(int i = 0; i < A.length; i++){

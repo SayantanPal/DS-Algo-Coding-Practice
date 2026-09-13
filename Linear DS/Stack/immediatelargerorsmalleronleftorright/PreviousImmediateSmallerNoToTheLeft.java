@@ -8,10 +8,11 @@ import java.util.Stack;
 public class PreviousImmediateSmallerNoToTheLeft {
 
 
-    public static int[] previous_immediate_smaller_number_to_the_left(int[] A) {
+    public static int[] previous_immediate_smaller_number_index_to_the_left(int[] A) {
         Deque<Integer> prevImmediateSmallerOnLeftIndex = new ArrayDeque<>();
 
-        int[] prevImmediateSmallerOnLeftArr = new int[A.length]; // left wall
+        // answer array stores index of left wall ie index of previous immediate smaller element on left of A[i]
+        int[] prevImmediateSmallerOnLeftArrIndex = new int[A.length]; // left wall
 
         for(int i = 0; i < A.length; i++){
             // Try to find the previous immediate smaller element on left
@@ -19,10 +20,10 @@ public class PreviousImmediateSmallerNoToTheLeft {
             while(!prevImmediateSmallerOnLeftIndex.isEmpty() && A[prevImmediateSmallerOnLeftIndex.peek()] >= A[i]){
                 prevImmediateSmallerOnLeftIndex.pop(); // pop out all in between larger or equal elements
             }
-            prevImmediateSmallerOnLeftArr[i] = prevImmediateSmallerOnLeftIndex.isEmpty() ? -1: prevImmediateSmallerOnLeftIndex.peek();
+            prevImmediateSmallerOnLeftArrIndex[i] = prevImmediateSmallerOnLeftIndex.isEmpty() ? -1: prevImmediateSmallerOnLeftIndex.peek();
             prevImmediateSmallerOnLeftIndex.push(i);
         }
-        return prevImmediateSmallerOnLeftArr;
+        return prevImmediateSmallerOnLeftArrIndex;
     }
 
     public ArrayList<Integer> previous_immediate_smaller_number_to_the_left(ArrayList<Integer> nums) {

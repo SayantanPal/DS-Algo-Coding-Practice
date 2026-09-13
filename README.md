@@ -710,3 +710,21 @@ Maximum Distance Between a Pair of Values (LC 1855)
 Maximize Minimum Value After Rearrangement (LC 1968)
 
 
+Queue-
+------
+Stream / Order Processing
+- LC 387 — First Unique Character in a String
+- LC 346 — Moving Average from Data Stream
+- LC 933 — Number of Recent Calls
+- LC 649 — Dota2 Senate
+
+Task Scheduling
+- LC 621 — Task Scheduler
+- LC 950 — Reveal Cards In Increasing Order
+- LC 1700 — Number of Students Unable to Eat Lunch
+
+Basic Queue / Design
+- LC 232 — Implement Queue using Stacks
+- LC 225 — Implement Stack using Queues
+- LC 622 — Design Circular Queue
+- LC 641 — Design Circular Deque

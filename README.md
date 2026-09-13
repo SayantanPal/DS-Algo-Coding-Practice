@@ -101,14 +101,17 @@ Coding Practice for clearing Interviews
   * (A OR B) = (A XOR B) + 2 * (A AND B)
     ie (A | B) = (A ^ B) + 2 * (A & B)
 
-# K-Elem Window ->
+# LENGTH/K-Elem Window ->
     * From n - 1, Left Starting Index = ((n - 1) - k + 1) = (n - k) TO Right Ending Index = (n - 1). ie L = n - k -> R = n - 1
-    * Window Length/Size is: R - L + 1 = (n - 1) - (n - k) + 1 = k
+      Window Length/Size is: R - L + 1 = (n - 1) - (n - k) + 1 = k
+
     * In fixed sliding window, the i ranges from i = 0 to i < n - k + 1 ( <= n - k) which is equivalent to i = 0 to n - k
     Eg: Left Index 5 (= 7 - 3 + 1) TO Right Index 7 has window size indexes [5, 6, 7] k = 3 (=  7 - 5 + 1 = 3)
     
     * From index i, Left Starting Index = i - k + 1 TO Right Ending Index = i ie L = (i - k + 1) -> R = i
     * It has window size = i - (i - k + 1) + 1 = k
+
+    * Distance/length between L = (l + 1) TO R = (r - 1) is R - L + 1 = (r - 1) - (l + 1) - 1 = r - l - 1
 
 # EVEN/ODD -> 
     Diff b/w even & odd is always odd ie ODD - EVEN = ODD; EVEN - ODD = ODD

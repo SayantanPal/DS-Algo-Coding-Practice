@@ -213,6 +213,43 @@ public class SLLBasics {
         return prev;
     }
 
+    public SLLNode cloneSLL(SLLNode head){
+        SLLNode dummy = new SLLNode(-1);
+        SLLNode cloneCurr = dummy;
+        SLLNode originalCurr = head;
+        while(originalCurr != null){
+            cloneCurr.next = new SLLNode(originalCurr.data);
+            cloneCurr = cloneCurr.next;
+            originalCurr = originalCurr.next;
+        }
+        SLLNode headOfClone = dummy.next;
+        return headOfClone;
+    }
+
+    public SLLNode cloneSLLWithRandom(SLLNode head) {
+        SLLNode dummy = new SLLNode(-1);
+        SLLNode cloneCurr = dummy;
+        SLLNode originalCurr = head;
+        HashMap<SLLNode, SLLNode> map = new HashMap<>();
+        while(originalCurr != null){
+            cloneCurr.next = new SLLNode(originalCurr.data);
+            cloneCurr = cloneCurr.next;
+            map.put(originalCurr, cloneCurr);
+            originalCurr = originalCurr.next;
+        }
+        dummy = dummy.next;
+        SLLNode headOfClone = dummy;
+
+        cloneCurr = headOfClone;
+        originalCurr = head;
+        while(originalCurr != null){
+            cloneCurr.random = map.get(originalCurr.random);
+            cloneCurr = cloneCurr.next;
+            originalCurr = originalCurr.next;
+        }
+        return headOfClone;
+    }
+
     public SLLNode reverseListRec(SLLNode head) {
         if(head == null || head.next == null) return head;
 

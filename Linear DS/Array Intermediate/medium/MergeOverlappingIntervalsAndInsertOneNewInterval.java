@@ -2,12 +2,11 @@ package medium;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 // Link: https://leetcode.com/problems/merge-intervals/
 // Problem: 2-D Array
-public class MergeIntervals {
+public class MergeOverlappingIntervalsAndInsertOneNewInterval {
 
     public int[][] mergeOverlappingIntervals_v1(int[][] intervals) {
         // Arrays.sort(intervals, Comparator.comparingInt( (int[] interval) -> interval[0]));

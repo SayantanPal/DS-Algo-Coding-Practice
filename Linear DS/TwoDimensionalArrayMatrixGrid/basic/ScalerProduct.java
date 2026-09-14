@@ -1,4 +1,4 @@
-/*
+package basic;/*
 * You are given a matrix A and and an integer B, you have to perform scalar multiplication of matrix A with an integer B.
 *
 * A = [[1, 2, 3],

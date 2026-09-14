@@ -36,16 +36,19 @@ public class IslandPerimeter {
         int m = grid[0].length;
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
-                if(grid[i][j] == 1){
-                    if( ((j - 1) >= 0)  && ((j - 1) <  m) && grid[i][j - 1] == 0) totalPerimeter++;
-                    if( (j + 1 >= 0) && (j + 1 < m) && grid[i][j + 1] == 0) totalPerimeter++;
-                    if( ( i + 1  >= 0) && (i + 1 < n) && grid[i + 1][j] == 0) totalPerimeter++;
-                    if( (i - 1 >= 0) && (i - 1 < n) && (grid[i - 1][j] == 0) ) totalPerimeter++;
+                if(grid[i][j] == 1){ // filter only for island cells
 
-                    if(j == 0) totalPerimeter++;
-                    if(j == m - 1) totalPerimeter++;
-                    if(i == 0) totalPerimeter++;
-                    if(i == n - 1) totalPerimeter++;
+                    // check: for non-border cells
+                    if( (j - 1 >= 0) && (j - 1 < m) && grid[i][j - 1] == 0) totalPerimeter++; // if cell has 0 on left
+                    if( (j + 1 >= 0) && (j + 1 < m) && grid[i][j + 1] == 0) totalPerimeter++; // if cell has 0 on right
+                    if( (i + 1 >= 0) && (i + 1 < n) && grid[i + 1][j] == 0) totalPerimeter++; // if cell has 0 on top
+                    if( (i - 1 >= 0) && (i - 1 < n) && grid[i - 1][j] == 0) totalPerimeter++; // if cell has 0 on bottom
+
+                    // check: for border cells
+                    if(j == 0) totalPerimeter++; // if cell on 1st col
+                    if(j == m - 1) totalPerimeter++; // if cell on last col
+                    if(i == 0) totalPerimeter++; // if cell on 1st row
+                    if(i == n - 1) totalPerimeter++; // if cell on last row
                 }
             }
         }

@@ -1,9 +1,48 @@
-
+/*
+* You are given a 2D integer matrix A, make all the elements in a row or column zero if the A[i][j] = 0.
+* Specifically, make entire ith row and jth column zero.
+*
+* Example Input
+Input 1:
+[1,2,3,4]
+[5,6,7,0]
+[9,2,0,4]
+*
+* Example Output
+Output 1:
+[1,2,0,0]
+[0,0,0,0]
+[0,0,0,0]
+*
+* */
 
 // Link: https://leetcode.com/problems/set-matrix-zeroes/description/
-public class SetBothRowAndColZero {
+public class SetBothRowAndColZeroForAnyZeroElem {
 
-    public void setZeroes(int[][] matrix) {
+    public int[][] setZeroes_v1(int[][] A) {
+        int[] rowZeroVisited = new int[A.length];
+        int[] colZeroVisited = new int[A.length];
+
+        for(int i = 0; i < A.length; i++){
+            for(int j = 0; j < A[i].length; j++){
+                if(A[i][j] == 0){
+                    rowZeroVisited[i] = 1;
+                    colZeroVisited[j] = 1;
+                }
+            }
+        }
+
+        for(int i = 0; i < A.length; i++){
+            for(int j = 0; j < A[i].length; j++){
+                if(rowZeroVisited[i] == 1 || colZeroVisited[j] == 1){
+                    A[i][j] = 0;
+                }
+            }
+        }
+        return A;
+    }
+
+    public void setZeroes_v2(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;
 

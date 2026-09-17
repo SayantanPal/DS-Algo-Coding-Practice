@@ -175,7 +175,7 @@ General formula: floor(a / b) = (a >= 0) ? (a / b) : ( (a % b == 0) ? (a / b) : 
 Given by: (A >= 0) ? (A / 200): ( (A % 200) == 0 ? (A / 200) : (A / 200) - 1 )
 only 1 edge cond:
 if(A < 0 && A%200 !=0) // for a -ve no when not fully divisible, take one step lower for floor
-    return (A/200) - 1
+    return (A/200) - 1 // (A - k + 1) / k
 return (A/200)
 Use: Math.floorDiv(a, b)
 
@@ -183,7 +183,7 @@ Use: Math.floorDiv(a, b)
 General formula: ceil(a / b) = (a >= 0) ? ( (a + b - 1) / b) : ( (a % b == 0) ? ( (a + b - 1) / b ) : (a / b) + 1 );
 Given by: (A >= 0) ? ( (A + 200 - 1) / 200 ): ( (A % 200) == 0 ? ( (A + 200 - 1) / 200 ) : (A / 200) + 1 )
 if(A >= 0 && A%200 !=0) // for a +ve no when not fully divisible, take 1 step higher for ceil
-    return (A/200) + 1
+    return (A/200) + 1 // (A + k - 1)/k
 return (A/200)
 Use: Math.ceilDiv(a, b)
 

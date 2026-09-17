@@ -352,4 +352,48 @@ public class SLLBasics {
         }
         return head3.next;
     }
+
+    public SLLNode deleteDuplicatesFromSortedSLL(SLLNode head) {
+        SLLNode curr = head;
+        while(curr != null){
+            while(curr.next != null && curr.next.data == curr.data){
+                curr.next = curr.next.next;
+            }
+            curr = curr.next;
+        }
+        return head;
+    }
+
+    public SLLNode removeKthFromEnd(SLLNode head, int targetPosK) { // assume: targetPosK is equivalent to 1-based indexing
+        int n = 1;
+        SLLNode curr = head;
+
+        while(curr.next != null){
+            curr = curr.next;
+            n++;
+        }
+
+        if(n == 1) return head = null;
+
+        // GIVEN in PROB STAT: If targetPosK is greater than the size of the list, remove the first node of the list.
+        // Edge case: when targetPosK == n
+        if(n - targetPosK <= 0) return head.next;
+
+        curr = head;
+
+        // when B strictly < n, then
+        // from front, for k steps, we need (k - 1) jumps ie from back it is ( (n - k) - 1)) jumps
+        // (k - 1) total jumps is given by 0 to ((k - 1) - 1) or 1 to (k - 1)
+        for(int i = 1; i <= ( (n - targetPosK) - 1); i++){ //  for(int i = 0; i < ((n - B) - 1); i++){
+            curr = curr.next;
+        }
+
+        if(curr.next!=null){
+            curr.next = curr.next.next;
+        }
+
+        return head;
+    }
+
+
 }

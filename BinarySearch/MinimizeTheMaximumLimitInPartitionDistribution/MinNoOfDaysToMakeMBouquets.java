@@ -47,7 +47,7 @@ public class MinNoOfDaysToMakeMBouquets {
         long flowerCount = 0L;
         long bouquetCount = 0L;
         for(int i = 0; i < bloomDay.length; i++){
-            if(bloomDay[i] <= maxDaysLimitToWait) // when blood day is well within the limit of target days
+            if(bloomDay[i] <= maxDaysLimitToWait) // when bloom day is well within the limit of target days
                 flowerCount++; // count that flower in for bouquet formation
             else // when it breaks maxFlowerLimitInEachBouquet adjacent sequence
                 flowerCount = 0L; // reset flower count to 0 for tracking the next adjacent sequence

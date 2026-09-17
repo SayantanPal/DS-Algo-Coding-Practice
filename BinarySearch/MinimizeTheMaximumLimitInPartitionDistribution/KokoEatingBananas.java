@@ -44,7 +44,7 @@ public class KokoEatingBananas {
             //     totalHoursReqd++;
             //     if(totalHoursReqd > allowedMaxHrs) return false;
             // }
-            totalHoursReqd += (piles[i] + hourlyRate - 1) / hourlyRate;
+            totalHoursReqd += (piles[i] + hourlyRate - 1) / hourlyRate; // += Math.ceilDiv(piles[i], hourlyRate)
             if(totalHoursReqd > allowedMaxHrs) return false;
         }
         return true;

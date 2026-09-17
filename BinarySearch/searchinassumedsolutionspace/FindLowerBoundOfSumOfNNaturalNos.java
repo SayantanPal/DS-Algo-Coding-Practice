@@ -49,17 +49,17 @@ public class FindLowerBoundOfSumOfNNaturalNos {
         return lowerBound;
     }
 
-    public int solve_v2(int A) {
-        if(A <= 1) return A;
-        int l = 1, r = A - 1;
+    public int solve_v2(int sumOfNaturalNos) {
+        if(sumOfNaturalNos <= 1) return sumOfNaturalNos;
+        int l = 1, r = sumOfNaturalNos - 1;
         int lowerBound = 0;
         while(l <= r){
             int mid = l + (r - l)/2;
-            if(mid + 1 == 2*A/mid){
+            if(mid + 1 == 2*sumOfNaturalNos/mid){
                 return mid;
-            }else if(mid + 1 > 2*A/mid){
+            }else if(mid + 1 > 2*sumOfNaturalNos/mid){
                 r = mid - 1; // move left
-            }else if(mid + 1 < 2*A/mid){
+            }else if(mid + 1 < 2*sumOfNaturalNos/mid){
                 lowerBound = mid;
                 l = mid + 1; // move right
             }

@@ -2,8 +2,8 @@ import model.Node;
 
 public class DoublyLinkedList {
 
-    public static Node insertAtHead(int val, Node head){
-        Node newNode = new Node(val);
+    public static Node insertAtHead(Node head, int data){
+        Node newNode = new Node(data);
 
         // xx <-(prev)- newNode -(next)-> head
         // xx <-(prev)- newNode <-(prev)- head
@@ -21,121 +21,149 @@ public class DoublyLinkedList {
     public static Node insertAtTail(int val, Node head){
         Node newNode = new Node(val);
 
-        Node traversal = head;
-        while(traversal.next!=null){
-            traversal = traversal.next;
+        Node tail = head;
+        while(tail.next!=null){
+            tail = tail.next;
         }
 
         // endNode <-(prev)-newNode-> xx
         // endNode-(next)-> newNode-> xx
 
-        traversal.next = newNode;
-        newNode.prev = traversal;
-        newNode.next = null;
+        tail.next = newNode;
+        newNode.prev = tail;
 
         return head;
     }
 
     // whatever elem is at kth postion, push kth elem to (k+1)th position
-    static Node insertAtKthPositionIndex(int k, int val, Node head) {
+    public static Node insertAtKthPositionIndex(Node head, int index, int val) {
 
         // Write your code here.
-        Node traversal = head;
 
-        if(k == 0){ //k at head (edge case)
-            return insertAtHead(val, head);
+        if(index == 0){ // head node
+            return insertAtHead(head, val);
         }
+
+        Node curr = head;
 
         // normal cases
         // 0,1,....,(k - 1)th, kth[traversal]
-        for(int counter = 0; counter < k; counter++){ // at (k-1)th postion, traverse to next kth position and stop
-            traversal = traversal.next;// 5, 4, 3, 2, 1, 0
+        for(int i = 0; i < index; i++){ // at (k-1)th postion, traverse to next kth position and stop
+            curr = curr.next;// 5, 4, 3, 2, 1, 0
         }
         // traversal points at kth position here
 
-        if(traversal == null){ //k at end (edge case)
+        if(curr == null){ // curr points to tail node
             return insertAtTail(val, head);
         }
 
-
-        Node beforeKthPos = traversal.prev;
-        Node afterK = traversal; // before operations this was at kth postion. After operation this becomes k+1th position
         Node kthPositionNewNode = new Node(val);
 
         // xx <-(prev)- beforeKthPos -(next)-> kthPositionNewNode(new elem)-(next)-> afterK-(next)-> xx
         // xx <-(prev)- beforeKthPos  <-(prev)-kthPositionNewNode(new elem) <-(prev)-afterK-(next)-> xx
 
-        beforeKthPos.next = kthPositionNewNode;
-        kthPositionNewNode.prev = beforeKthPos;
+//        Node beforeKthPos = curr.prev;
+//        Node afterK = curr; // before operations this was at kth postion. After operation this becomes k+1th position
 
-        kthPositionNewNode.next = afterK;
-        afterK.prev = kthPositionNewNode;
+//        beforeKthPos.next = kthPositionNewNode;
+//        kthPositionNewNode.prev = beforeKthPos;
+//
+//        kthPositionNewNode.next = afterK;
+//        afterK.prev = kthPositionNewNode;
 
-        return head;
-    }
-
-    static Node deleteAtHead(Node head, int pos){
-        Node nextToHead = head.next;
-        nextToHead.prev = null;
-
-        head.prev = null;
-        head.next = null;
-        head = nextToHead;
+        insertBeforeAParticularNode(curr, kthPositionNewNode);
 
         return head;
     }
 
-    static Node deleteAtTail(Node head, int pos){
-        Node traversal = head;
-        while(traversal.next!=null){ // traversal is last node
-            traversal = traversal.next;
+
+    public static void insertBeforeAParticularNode(Node curr, Node newToBeInserted) {
+        if(newToBeInserted == null) return;
+
+        Node before = curr.prev;
+        Node after = curr.next;
+
+        before.next = newToBeInserted;
+        newToBeInserted.prev = before;
+
+        newToBeInserted.next = after;
+        after.prev = newToBeInserted;
+    }
+
+
+    // Link: https://www.naukri.com/code360/problems/insert-at-end-of-doubly-linked-list_10491197?leftPanelTabValue=PROBLEM
+    public static Node insertBeforeTail(Node head, int data) {
+        if(head == null) {
+            Node newNode = new Node(data);
+            return newNode;
+        }
+        // Write your code here
+        Node tail = head;
+        while(tail.next!=null){
+            tail = tail.next;
+        }
+        Node prev = tail.prev;
+
+        Node newNode = new Node(data);
+
+        // 4 pointer manipulation
+        newNode.prev = prev;
+        newNode.next = tail;
+        prev.next = newNode;
+        tail.prev = newNode;
+
+        return head;
+    }
+
+    public static Node deleteAtHead(Node head){
+        Node afterHead = head.next;
+        afterHead.prev = null; // afterHead becomes head since no pointers pointing to original head now
+        return afterHead;
+    }
+
+    static Node deleteAtTail(Node head){
+        Node tail = head;
+        while(tail.next!=null){
+            tail = tail.next;
         }
 
-        Node beforeK = traversal.prev;
-        beforeK.next = null;
-        traversal.prev = null;
+        Node beforeTail = tail.prev;
+        beforeTail.next = null; // beforeTail becomes tail since no pointers pointing to original tail now
 
         return head;
     }
 
     static void deleteAParticularNode(Node nodeToBeDeleted){
-        Node beforeK = nodeToBeDeleted.prev;
-        Node afterK = nodeToBeDeleted.next;
+        if(nodeToBeDeleted == null) return;
+        Node before = nodeToBeDeleted.prev;
+        Node after = nodeToBeDeleted.next;
 
-        beforeK.next = afterK;
-        afterK.prev = beforeK;
+        before.next = after;
+        after.prev = before;
 
         nodeToBeDeleted.prev = null;
         nodeToBeDeleted.next = null;
     }
 
-    static Node deleteNodeAtPos(Node head, int pos) {
-        // Write your code here.
-        Node traversal = head;
-
-        if(pos == 0){
-            return deleteAtHead(head, pos);
+    // Link: https://www.geeksforgeeks.org/problems/delete-node-in-doubly-linked-list/1
+    public static Node deleteNodeAtPosition(Node head, int pos) { // pos is 1-based indexing
+        if( head == null || head.next == null) return null;
+        if(pos == 1){ // head node
+            return deleteAtHead(head);
         }
 
-        // we should point to exactly at kth position via traversal
-        for(int counter = 0; counter < pos; counter++){
-            traversal = traversal.next;
+        // traversal here
+        Node curr = head;
+        for(int i = 1; i < pos; i++){
+            curr = curr.next;
         }
 
-        if(traversal.next == null){ // if traversal is last node
-            return deleteAtTail(head, pos);
+        if(curr.next == null){ // curr points to tail node
+            return deleteAtTail(head);
         }
 
-//        Node beforeK = traversal.prev;
-//        Node afterK = traversal.next;
-//
-//        beforeK.next = afterK;
-//        afterK.prev = beforeK;
-//
-//        traversal.prev = null;
-//        traversal.next = null;
-
-        deleteAParticularNode(traversal);
+        //curr is pointing at pos-th node
+        deleteAParticularNode(curr);
 
         return head;
     }
@@ -146,8 +174,7 @@ public class DoublyLinkedList {
         b.dataVal = temp;
     }
 
-    public static Node inPlaceReverseDLL(Node head)
-    {
+    public static Node inPlaceReverseDLL(Node head) {
         // Write your code here.
 
         Node traversal = head;
@@ -169,10 +196,8 @@ public class DoublyLinkedList {
         return head;
     }
 
-
     // Reversing Linked List via pointer manipulation
-    public static Node reverseDLL(Node head)
-    {
+    public static Node reverseDLL(Node head) {
         // Write your code here.
         Node currentTraversal = head.next;
 
@@ -203,8 +228,6 @@ public class DoublyLinkedList {
             // make next node as current scann node for next itr
             currentTraversal = nextNode;
         }
-
         return head;
-
     }
 }

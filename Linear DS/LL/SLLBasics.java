@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class SLLBasics {
 
     // Function to insert a node at the end of the linked list.
-    SLLNode insertAtEndTailReadLast(SLLNode head, int x) {
+    public static SLLNode insertAtEndTailReadLast(SLLNode head, int x) {
         // code here
         if(head == null){
             return head = new SLLNode(x);
@@ -19,7 +19,7 @@ public class SLLBasics {
     }
 
     // insert at head is equivalent to insert before existing head
-    SLLNode insertAtFrontHeadFirst(SLLNode head, int x) {
+    public static SLLNode insertAtFrontHeadFirst(SLLNode head, int x) {
         // code here
         if(head == null){
             return head = new SLLNode(x);
@@ -29,13 +29,13 @@ public class SLLBasics {
         return head = newNode; // new node becomes the new head
     }
 
-    SLLNode removeFrontHeadFirst(SLLNode head) {
+    public static SLLNode removeFrontHeadFirst(SLLNode head) {
         if(head == null) return head;
         head = head.next;
         return head;
     }
 
-    SLLNode removeEndTailRearLast_v2(SLLNode head){
+    public static SLLNode removeEndTailRearLast_v2(SLLNode head){
         if(head == null) return head;
         if(head.next == null) return head = null;
 
@@ -48,7 +48,7 @@ public class SLLBasics {
     }
 
 
-    SLLNode removeEndTailRearLast(SLLNode head){
+    public static SLLNode removeEndTailRearLast(SLLNode head){
         if(head == null) return head;
 
         SLLNode curr = head;
@@ -61,7 +61,7 @@ public class SLLBasics {
         return head;
     }
 
-    SLLNode insertBeforeIndex(SLLNode head, int data, int toBeInsertedBeforeIndex) {
+    public static SLLNode insertBeforeIndex(SLLNode head, int data, int toBeInsertedBeforeIndex) {
         // code here
         SLLNode newNode = new SLLNode(data);
         if(head == null){ // insert at head
@@ -86,7 +86,7 @@ public class SLLBasics {
         return head;
     }
 
-    SLLNode deleteAtIndex_v2(SLLNode head, int toBeDeletedIndex) {
+    public static SLLNode deleteAtIndex_v2(SLLNode head, int toBeDeletedIndex) {
         if(head == null) return null;
         if(toBeDeletedIndex == 0){
             head = head.next;
@@ -105,7 +105,7 @@ public class SLLBasics {
     }
 
 
-    SLLNode deleteAtIndex(SLLNode head, int toBeDeletedIndex) {
+    public static SLLNode deleteAtIndex(SLLNode head, int toBeDeletedIndex) {
         if(head == null) return null;
         if(toBeDeletedIndex == 0){
             head = head.next;
@@ -128,7 +128,7 @@ public class SLLBasics {
     // assume that input node definitely exists in SLL
     // node might not be head of SLL - it can be any node
     // node is definitely not tail node, so node.next always exists as not null
-    void deleteNode(SLLNode node){
+    public static void deleteNode(SLLNode node){
         // approach: if input node is to be deleted,
         // make/clone current input node as next node with data copy
         // drop the next node since current node already behaves as next node
@@ -196,7 +196,7 @@ public class SLLBasics {
         return fast;
     }
 
-    public SLLNode reverseList(SLLNode head) {
+    public static SLLNode reverseList(SLLNode head) {
         if(head == null) return head;
 
         SLLNode prev = null;
@@ -213,7 +213,7 @@ public class SLLBasics {
         return prev;
     }
 
-    public SLLNode cloneSLL(SLLNode head){
+    public static SLLNode cloneSLL(SLLNode head){
         SLLNode dummy = new SLLNode(-1);
         SLLNode cloneCurr = dummy;
         SLLNode originalCurr = head;
@@ -226,7 +226,7 @@ public class SLLBasics {
         return headOfClone;
     }
 
-    public SLLNode cloneSLLWithRandom(SLLNode head) {
+    public static SLLNode cloneSLLWithRandom(SLLNode head) {
         SLLNode dummy = new SLLNode(-1);
         SLLNode cloneCurr = dummy;
         SLLNode originalCurr = head;
@@ -250,7 +250,7 @@ public class SLLBasics {
         return headOfClone;
     }
 
-    public SLLNode reverseListRec(SLLNode head) {
+    public static SLLNode reverseListRec(SLLNode head) {
         if(head == null || head.next == null) return head;
 
         SLLNode newHead = reverseListRec(head.next);
@@ -258,5 +258,74 @@ public class SLLBasics {
         smallerReversedLL.next = head;
         head.next = null;
         return newHead;
+    }
+
+    public static SLLNode findFirstMiddleNode_v1(SLLNode head) { // finding 2nd middle in case of even length
+        if(head == null || head.next == null) return head;
+        int l = 0;
+        SLLNode curr = head;
+        while(curr != null){
+            curr = curr.next;
+            l++;
+        }
+        int midPos = (l - 1)/2;
+        curr = head;
+        for(int i = 1; i <= midPos; i++){
+            curr = curr.next;
+        }
+        return curr;
+    }
+
+    public static SLLNode findFirstMiddleNode_v2(SLLNode head){
+        if(head == null || head.next == null) return head;
+        SLLNode slow = head, fast = head;
+        // fast.next.next!=null stop check for even length SLL
+        // fast.next!=null stop check for odd length SLL
+        while(fast.next!=null && fast.next.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public static SLLNode findSecondMiddleNode(SLLNode head){
+        if(head == null || head.next == null) return head;
+        SLLNode slow = head, fast = head;
+        // fast!=null stop check for even length SLL
+        // fast.next!=null stop check for odd length SLL
+        while(fast != null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public static SLLNode mergeSortedLL(SLLNode head1, SLLNode head2){
+        SLLNode head3 = new SLLNode(-1);
+        SLLNode c3 = head3;
+        SLLNode c1 = head1, c2 = head2;
+
+        while(c1 != null && c2 != null){
+            if(c1.data < c2.data){
+                c3.next = c1;
+                c1 = c1.next;
+                c3 = c3.next;
+            }else{
+                c3.next = c2;
+                c2 = c2.next;
+                c3 = c3.next;
+            }
+        }
+        while(c1 != null){
+            c3.next = c1;
+            c1 = c1.next;
+            c3 = c3.next;
+        }
+        while(c2 != null){
+            c3.next = c2;
+            c2 = c2.next;
+            c3 = c3.next;
+        }
+        return head3.next;
     }
 }

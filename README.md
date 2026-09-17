@@ -732,7 +732,6 @@ Start with 56, 179, 937, 1029 — these force you to think carefully about compa
 
 Binary Search-
 --------------
-Koko Eating Bananas (LC 875) — binary search on rate instead of partition
 Minimize Max Distance to Gas Station (LC 774) — binary search on decimal answer
 Maximum Distance Between a Pair of Values (LC 1855)
 Maximize Minimum Value After Rearrangement (LC 1968)

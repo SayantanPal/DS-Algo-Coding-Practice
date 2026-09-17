@@ -196,7 +196,7 @@ public class SLLBasics {
         return fast;
     }
 
-    public static SLLNode reverseList(SLLNode head) {
+    public static SLLNode reverseSLL(SLLNode head) {
         if(head == null) return head;
 
         SLLNode prev = null;
@@ -211,6 +211,16 @@ public class SLLBasics {
         }
 
         return prev;
+    }
+
+    public static SLLNode reverseSLLRec(SLLNode head) {
+        if(head == null || head.next == null) return head;
+
+        SLLNode newHead = reverseSLLRec(head.next);
+        SLLNode smallerReversedLL = head.next; // initially head.next points to smaller subproblem which is already reversed
+        smallerReversedLL.next = head;
+        head.next = null;
+        return newHead;
     }
 
     public static SLLNode cloneSLL(SLLNode head){
@@ -248,16 +258,6 @@ public class SLLBasics {
             originalCurr = originalCurr.next;
         }
         return headOfClone;
-    }
-
-    public static SLLNode reverseListRec(SLLNode head) {
-        if(head == null || head.next == null) return head;
-
-        SLLNode newHead = reverseListRec(head.next);
-        SLLNode smallerReversedLL = head.next; // initially head.next points to smaller subproblem which is already reversed
-        smallerReversedLL.next = head;
-        head.next = null;
-        return newHead;
     }
 
     public static SLLNode findFirstMiddleNode_v1(SLLNode head) { // finding 2nd middle in case of even length
@@ -300,6 +300,30 @@ public class SLLBasics {
         return slow;
     }
 
+    public boolean isPalindrome(SLLNode A) {
+        SLLNode firstMiddleNode = findFirstMiddleNode_v2(A);
+
+        // split list into 2 equal halves at firstMiddleNode
+        SLLNode head2 = firstMiddleNode.next;
+        firstMiddleNode.next = null;
+
+        // reverse the 2nd half of SLL
+        head2 = reverseSLL(head2);
+
+        SLLNode c1 = A;
+        SLLNode c2 = head2;
+
+        while(c1 != null && c2 != null){
+            if(c1.data != c2.data) return false;
+            c1 = c1.next;
+            c2 = c2.next;
+        }
+
+        return true;
+    }
+
+    // In contrast to arrays, in case of SLL, merging 2 sorted LL into 1 has S.C. = O(1)
+    // T.C. is same across both arrays and SLL which is TC = O(N + M)
     public static SLLNode mergeSortedLL(SLLNode head1, SLLNode head2){
         SLLNode head3 = new SLLNode(-1);
         SLLNode c3 = head3;

@@ -95,11 +95,10 @@ public class LRUCacheUsingDLL {
         if(map.containsKey(node.key)) { // this is also cond to check if the element is in DLL tracker
             deleteAParticularNode(node);
             System.out.println("After deleting the node, DLL looks like:- ");
-            this.displayDLL();
         } else{
             System.out.println("Incoming Node not present to be deleted from DLL");
-            this.displayDLL();
         }
+        this.displayDLL();
         insertNodeAtTail(node);
         System.out.println("\nAfter inserting the node at tail MRU, DLL looks like:- ");
         this.displayDLL();

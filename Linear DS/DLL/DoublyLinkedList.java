@@ -117,26 +117,33 @@ public class DoublyLinkedList {
 
     public static Node deleteAtHead(Node head){
         Node afterHead = head.next;
-        afterHead.prev = null; // afterHead becomes head since no pointers pointing to original head now
-        return afterHead;
+        afterHead.prev = null;
+        return head = afterHead; // afterHead becomes head since no pointers pointing to original head now
     }
 
-    static Node deleteAtTail(Node head){
+    public static Node deleteAtTail(Node head){
         Node tail = head;
         while(tail.next!=null){
             tail = tail.next;
         }
 
         Node beforeTail = tail.prev;
-        beforeTail.next = null; // beforeTail becomes tail since no pointers pointing to original tail now
-
+        beforeTail.next = null;
+        // tail = beforeTail // beforeTail becomes tail since no pointers pointing to original tail now
         return head;
     }
 
-    static void deleteAParticularNode(Node nodeToBeDeleted){
+    public static void deleteAParticularNode(Node nodeToBeDeleted){
         if(nodeToBeDeleted == null) return;
         Node before = nodeToBeDeleted.prev;
         Node after = nodeToBeDeleted.next;
+
+        if(before == null && after == null) return; // single node - set head and tail to null
+
+        if(before == null)
+            deleteAtHead(nodeToBeDeleted); // nodeToBeDeleted is the head
+        if(after == null)
+            deleteAtTail(nodeToBeDeleted); // nodeToBeDeleted is the tail
 
         before.next = after;
         after.prev = before;

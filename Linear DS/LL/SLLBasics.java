@@ -169,6 +169,9 @@ public class SLLBasics {
     }
 
 // Event queue that starts reprocessing old events due to misconfigured pointers.
+
+    // Link: https://leetcode.com/problems/linked-list-cycle-ii/
+    // Link: https://leetcode.com/problems/linked-list-cycle/description/
     public static SLLNode detectCycleUsingFloydCycleOrTortoiseHare(SLLNode head) {
         //Your code goes here
 
@@ -258,6 +261,11 @@ public class SLLBasics {
             originalCurr = originalCurr.next;
         }
         return headOfClone;
+    }
+
+    // without using hashmap
+    public static SLLNode cloneSLLWithRandom_v2(SLLNode head) {
+        return null;
     }
 
     public static SLLNode findFirstMiddleNode_v1(SLLNode head) { // finding 2nd middle in case of even length
@@ -394,6 +402,48 @@ public class SLLBasics {
 
         return head;
     }
+
+    // Link: https://leetcode.com/problems/intersection-of-two-linked-lists/
+    public SLLNode getIntersectionNode(SLLNode headA, SLLNode headB) {
+        int n1 = 1, n2 = 1;
+        SLLNode currA = headA, currB = headB;
+
+        while(currA!=null){
+            currA = currA.next;
+            n1++;
+        }
+
+        while(currB!=null){
+            currB = currB.next;
+            n2++;
+        }
+
+        SLLNode longer, shorter;
+        int diffOfLenToSkip;
+        if(n1 > n2){
+            longer = headA;
+            shorter = headB;
+            diffOfLenToSkip = n1 - n2;
+        }else{
+            longer = headB;
+            shorter = headA;
+            diffOfLenToSkip = n2 - n1;
+        }
+
+        for(int i = 1; i <= diffOfLenToSkip; i++){
+            longer = longer.next;
+        }
+
+        while(longer != null && shorter != null){
+            if(longer == shorter) return longer;
+            longer = longer.next;
+            shorter = shorter.next;
+        }
+
+        return null;
+    }
+
+
 
 
 }

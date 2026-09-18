@@ -2,10 +2,10 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 // Link: https://leetcode.com/problems/min-stack/
-class MinStack {
+class MinStackUsing2Stacks {
     int currMin = Integer.MAX_VALUE;
     Deque<Integer> minimumTrack, stack;
-    public MinStack() {
+    public MinStackUsing2Stacks() {
         stack = new ArrayDeque<>();
         minimumTrack = new ArrayDeque<>();
     }

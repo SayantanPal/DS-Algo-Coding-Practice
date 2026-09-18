@@ -1,4 +1,5 @@
-public class MinStackUsingArray {
+// Link: https://leetcode.com/problems/min-stack/
+public class MinStackUsing2Arrays {
 
     private final int MAX_STACK_SIZE = 1000000; // 10^6
     private int[] stackImpl = new int[MAX_STACK_SIZE + 1];

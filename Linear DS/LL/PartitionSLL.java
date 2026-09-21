@@ -2,12 +2,8 @@ import model.SLLNode;
 
 /*
 * Partition List
-Solved
-feature icon
-Using hints except Complete Solution is Penalty free now
-Use Hint
-Problem Description
-
+*
+Problem Description:
 Given a linked list A and a value B, partition it such that all nodes less than B come before nodes greater than or equal to B.
 You should preserve the original relative order of the nodes in each of the two partitions.
 

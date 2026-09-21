@@ -41,6 +41,7 @@ It is obvious that we can make two bouquets in different ways.
 *
 * */
 
+// Link: https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/description/
 public class MinNoOfDaysToMakeMBouquets {
 
     public boolean canMakeBouquets(int[] bloomDay, long maxDaysLimitToWait, long maxFlowerLimitInEachBouquet, long noOfBouquetsNeeded){

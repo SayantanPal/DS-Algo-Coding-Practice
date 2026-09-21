@@ -26,7 +26,6 @@ piles.length <= h <= 109
 *
 * */
 
-
 // Link: https://leetcode.com/problems/koko-eating-bananas/
 public class KokoEatingBananas {
 
@@ -52,6 +51,7 @@ public class KokoEatingBananas {
     public int minEatingSpeed(int[] piles, int h) {
         // koko chooses to eat k bananas from that pile
         // means k <= n and k cannot be > n
+        // if(h > n) not possible -> return -1
         // Given/Assume: Koko cannot eat faster than the largest pile per hour.
         int maxPileVol = 0;
         // int minPileVol = Integer.MAX_VALUE;

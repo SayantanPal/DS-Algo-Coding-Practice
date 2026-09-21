@@ -40,7 +40,6 @@ Input 2:
 
 Example Output
 Output 1: 3 -> 4 -> 7 -> 7 -> 8 -> 11 -> 20 -> 20 -> 20 -> 22 -> 28 -> 30 -> 31 -> 39 -> 39
-
 Output 2:  2 -> 4 -> 7 -> 7 -> 11
 
 Example Explanation
@@ -48,7 +47,14 @@ Explanation 1: The return linked list is the flatten sorted list.
 *
 *
 * */
-public class FlattenATwoDimenLL {
+
+/*
+* What if we were given only two lists how we would have mergerd them?
+The idea is to extend the same on multiple lists, select any two list and merge them to make a single list.
+Now we have (total - 1) lists to merge, again repeat the above process untill we have only one list left.
+* */
+
+public class FlattenATwoDimenSLL {
 
     // vertical merging of two sorted SLL
     SLLNode mergeSortedLLWithDownPtr(SLLNode head1, SLLNode head2){

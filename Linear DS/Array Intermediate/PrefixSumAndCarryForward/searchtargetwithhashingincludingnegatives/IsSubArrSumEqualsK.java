@@ -15,6 +15,8 @@ An integer x is a multiple of k if there exists an integer n such that x = n * k
 * */
 // Link: https://leetcode.com/problems/continuous-subarray-sum/description/
 public class IsSubArrSumEqualsK {
+
+    // storing index per prefix sum is mandatory because the length of subarr should be at least 2
     public boolean checkSubarraySum(int[] nums, int k) {
         int n = nums.length;
         if(n < 2) return false;
@@ -22,7 +24,6 @@ public class IsSubArrSumEqualsK {
         int[] lookUpRem = new int[k];//HashMap<Integer, Integer> lookUpRem = new HashMap<>();
         Arrays.fill(lookUpRem, -2);   // -2 = "not seen" sentinel
         lookUpRem[0] = -1; // lookUpRem.put(0, -1); // empty prefix — handles subarrays divisible by K starting from index 0
-        int countSubArr = 0;
         int currPrefixSum = 0;
         for(int i = 0; i < n; i++){
             currPrefixSum += nums[i];

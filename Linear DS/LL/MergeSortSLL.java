@@ -6,6 +6,7 @@ public class MergeSortSLL {
         SLLNode firstMiddleNode = SLLBasics.findFirstMiddleNode_v2(head);
 
         // split list into 2 equal halves at firstMiddleNode
+        // create split after firstMiddleNode
         SLLNode head2 = firstMiddleNode.next;
         firstMiddleNode.next = null;
 

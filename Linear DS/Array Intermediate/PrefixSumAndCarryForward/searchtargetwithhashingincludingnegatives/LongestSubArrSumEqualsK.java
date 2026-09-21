@@ -38,6 +38,10 @@ public class LongestSubArrSumEqualsK {
         // Write your code here.
         HashMap<Integer, Integer> lookUp = new HashMap<>();
 
+        // for array as map lookup, we need to initialise array  unvisited with anything less than 0
+        // and -1 cannot be used because it gives correct len when prefix sum diff is 0 ie ranged prefix sum becomes k
+        // so for array lookup use Arrays.fill(lookUp, -2);
+
         // either use technique a or b
         lookUp.put(0, -1); //  technique a to acheive sum of k when index starts of beginning where the other pair is currPrefixSum - k = 0 ie currPrefixSum = k
         // OR
@@ -55,12 +59,12 @@ public class LongestSubArrSumEqualsK {
             // rightPrefixSum - leftPrefixSum = target sum k
             // you cannot scan right index because at ith step, future is not visited or traced out yet - only left sum is traced out and becomes past history to refer
             // so, leftPrefixSum = rightPrefixSum - target sum k
-            if(lookUp.containsKey(currPrefixSum - k)){
+            if(lookUp.containsKey(currPrefixSum - k)){ //if(lookUp[currPrefixSum - k] != -2)
                 // subarray ranges from index (prefixSum.get(currPrefixSum - k) + 1) to i
-                maxLen = Math.max(maxLen, i - lookUp.get(currPrefixSum - k));
+                maxLen = Math.max(maxLen, i - lookUp.get(currPrefixSum - k)); // i - lookUp[currPrefixSum - k]
             }
-            if(!lookUp.containsKey(currPrefixSum)){ // if it contains curr prefix sum at much lower indexes, then do not overwrite so that greedily algorithm can pick the same sum achieved from comparatively lower index to get longer length
-                lookUp.put(currPrefixSum, i);
+            if(!lookUp.containsKey(currPrefixSum)){ //if(lookUp[currPrefixSum] == -2) // if it contains curr prefix sum at much lower indexes, then do not overwrite so that greedily algorithm can pick the same sum achieved from comparatively lower index to get longer length
+                lookUp.put(currPrefixSum, i); // lookUp[currPrefixSum] = i
             }
         }
         return maxLen;

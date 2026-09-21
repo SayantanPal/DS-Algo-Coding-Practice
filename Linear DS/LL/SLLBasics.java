@@ -341,18 +341,19 @@ public class SLLBasics {
             if(c1.data < c2.data){
                 c3.next = c1;
                 c1 = c1.next;
-                c3 = c3.next;
             }else{
                 c3.next = c2;
                 c2 = c2.next;
-                c3 = c3.next;
             }
+            c3 = c3.next;
         }
+
         while(c1 != null){
             c3.next = c1;
             c1 = c1.next;
             c3 = c3.next;
         }
+
         while(c2 != null){
             c3.next = c2;
             c2 = c2.next;

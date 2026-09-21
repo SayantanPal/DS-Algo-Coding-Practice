@@ -44,6 +44,7 @@ Explanation 2:
 * */
 
 /*
+Idea -
 * For this question, we have to maintain two pointers.
 The first pointer is the one that maintains all nodes that are less than x.
 The second pointer is the one that maintains the nodes that are greater than or equal to x.

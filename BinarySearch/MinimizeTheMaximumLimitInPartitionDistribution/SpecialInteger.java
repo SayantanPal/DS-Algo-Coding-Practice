@@ -71,8 +71,8 @@ public class SpecialInteger {
         while(l <= r){
             int mid = l + (r - l)/2;
             if(canBePossible(A, mid, B)){
-                l = mid + 1;
                 ans = mid;
+                l = mid + 1;
             }else{
                 r = mid - 1;
             }

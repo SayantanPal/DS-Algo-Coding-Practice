@@ -199,6 +199,7 @@ public class SLLBasics {
         return fast;
     }
 
+    // Link: https://leetcode.com/problems/reverse-linked-list/description/
     public static SLLNode reverseSLL(SLLNode head) {
         if(head == null) return head;
 
@@ -224,6 +225,47 @@ public class SLLBasics {
         smallerReversedLL.next = head;
         head.next = null;
         return newHead;
+    }
+
+    public SLLNode reverseLLBetweenRange(SLLNode head, SLLNode tail){
+        if(head == null) return head;
+        SLLNode prev = null;
+        SLLNode curr = head;
+        while(curr != null && curr != tail.next){
+            SLLNode after = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = after;
+        }
+        return prev;
+    }
+    public SLLNode reverseList(SLLNode head, int k) {
+        if(k == 1) return head;
+        SLLNode dummy = new SLLNode(-1);
+        dummy.next = head;
+        SLLNode curr = dummy;
+        while(curr.next != null){
+            SLLNode before = curr;
+            SLLNode start = curr.next;
+            for(int i = 1; i <= k; i++){
+                if(curr.next == null){
+                    break;
+                }
+                curr = curr.next;
+            }
+            SLLNode end = curr;
+            SLLNode after = curr.next;
+
+            before.next = null;
+            end.next = null;
+
+            SLLNode reversedhead = reverseLLBetweenRange(start, end);
+
+            before.next = reversedhead;
+            start.next = after;
+            curr = start;
+        }
+        return dummy.next;
     }
 
     public static SLLNode cloneSLL(SLLNode head){
@@ -328,6 +370,48 @@ public class SLLBasics {
         }
 
         return true;
+    }
+
+    public int maxPalindromicLen(SLLNode head) {
+        if(head == null) return 0;
+        SLLNode prev = null;
+        SLLNode curr = head;
+        int maxPalindromeLen = 1; // in case only 1 node is present, that itself is paindrome
+        while(curr.next != null){
+            SLLNode after = curr.next;
+            curr.next = prev;
+
+            SLLNode l = prev;
+            SLLNode r = after;
+            int len = 1;
+            while(l!=null && r!=null){
+                if(l.data != r.data){
+                    break;
+                }
+                len += 2;
+                l = l.next;
+                r = r.next;
+            }
+            maxPalindromeLen = Math.max(maxPalindromeLen, len);
+
+            l = curr;
+            r = after;
+            len = 0;
+            while(l!=null && r!=null){
+                if(l.data != r.data){
+                    break;
+                }
+                len += 2;
+                l = l.next;
+                r = r.next;
+            }
+            maxPalindromeLen = Math.max(maxPalindromeLen, len);
+
+
+            prev = curr;
+            curr = after;
+        }
+        return maxPalindromeLen;
     }
 
     // In contrast to arrays, in case of SLL, merging 2 sorted LL into 1 has S.C. = O(1)
@@ -443,8 +527,4 @@ public class SLLBasics {
 
         return null;
     }
-
-
-
-
 }

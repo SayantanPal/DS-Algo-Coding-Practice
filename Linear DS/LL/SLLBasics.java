@@ -416,6 +416,7 @@ public class SLLBasics {
 
     // In contrast to arrays, in case of SLL, merging 2 sorted LL into 1 has S.C. = O(1)
     // T.C. is same across both arrays and SLL which is TC = O(N + M)
+    // Link: https://leetcode.com/problems/merge-two-sorted-lists/description/
     public static SLLNode mergeSortedLL(SLLNode head1, SLLNode head2){
         SLLNode head3 = new SLLNode(-1);
         SLLNode c3 = head3;

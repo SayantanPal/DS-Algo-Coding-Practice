@@ -1,4 +1,4 @@
-package classic.withhashing.longestsubstrwithoutrepeatingchar;
+package classic.variablesizeslidingwindow.withhashing.longestsubstrwithoutrepeatingchar;
 
 // Link: https://www.naukri.com/code360/problems/distinct-characters_2221410?leftPanelTabValue=PROBLEM
 // LC #340 — Longest Substring with At Most K Distinct Characters (premium, but very common in FAANG interviews)

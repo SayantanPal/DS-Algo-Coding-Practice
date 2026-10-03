@@ -330,7 +330,8 @@ For multiple duplicates, in second iteration while iterating:
 
 ## JAVA LANG SPECIFIC
 * Arrays.sort(Arrays.stream(arr).boxed().toArray( Integer[]::new ), Collections.reverseOrder()); //  descending order sorting
-
+* Integer[] IntegerArr = Arrays.stream(arr).boxed().toArray( Integer[]::new );
+* int[] arr = Arrays.stream(IntegerArr).mapToInt(i -> i).toArray();
 * To convert list of integer array to list of list:
 * List<int[]> result = new ArrayList<>(); -> result.add(new int[]{x, y}); -> int[][] result2 = result.toArray(new int[result.size()][]);
 

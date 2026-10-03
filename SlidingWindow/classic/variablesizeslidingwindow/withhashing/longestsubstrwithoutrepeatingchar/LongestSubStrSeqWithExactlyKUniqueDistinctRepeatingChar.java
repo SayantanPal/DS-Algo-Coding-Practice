@@ -1,4 +1,4 @@
-package classic.withhashing.longestsubstrwithoutrepeatingchar;
+package classic.variablesizeslidingwindow.withhashing.longestsubstrwithoutrepeatingchar;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package classic.withhashing.longestuniformsubstrafterreplacement;
+package classic.variablesizeslidingwindow.withhashing.longestuniformsubstrafterreplacement;
 
 // Link: https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/
 public class LongestSubArrOfOneWithMaxOneElemDelete {

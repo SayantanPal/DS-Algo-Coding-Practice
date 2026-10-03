@@ -1,4 +1,4 @@
-package classic.withhashing.longestuniformsubstrafterreplacement;
+package classic.variablesizeslidingwindow.withhashing.longestuniformsubstrafterreplacement;
 import java.util.HashMap;
 
 // Link: LC #424 — https://leetcode.com/problems/longest-repeating-character-replacement/

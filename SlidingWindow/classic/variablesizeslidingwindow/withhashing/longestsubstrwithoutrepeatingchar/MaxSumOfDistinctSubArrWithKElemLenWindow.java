@@ -1,4 +1,4 @@
-package classic.withhashing.longestsubstrwithoutrepeatingchar;
+package classic.variablesizeslidingwindow.withhashing.longestsubstrwithoutrepeatingchar;
 
 // Link: https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
 // Link: https://www.hellointerview.com/learn/code/sliding-window/maximum-sum-of-subarrays-of-size-k

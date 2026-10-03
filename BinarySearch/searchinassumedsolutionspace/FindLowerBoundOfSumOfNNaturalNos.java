@@ -66,4 +66,24 @@ public class FindLowerBoundOfSumOfNNaturalNos {
         }
         return lowerBound;
     }
+
+
+    public int arrangeCoins(int n) {
+        int lowerbound = -1;
+        int l = 1, r = n;
+
+        while(l <= r){
+            int mid = l + (r - l)/2;
+            long searchElem = (long)mid*(mid+1)/2;
+            if(searchElem == n){
+                return mid;
+            }else if(searchElem > n){
+                r = mid - 1;
+            }else if(searchElem < n){
+                lowerbound = mid;
+                l = mid + 1;
+            }
+        }
+        return lowerbound;
+    }
 }

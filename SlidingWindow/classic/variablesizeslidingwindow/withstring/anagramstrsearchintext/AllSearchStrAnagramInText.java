@@ -1,4 +1,4 @@
-package classic.withstring.anagramstrsearchintext;
+package classic.variablesizeslidingwindow.withstring.anagramstrsearchintext;
 
 import java.util.ArrayList;
 import java.util.Arrays;

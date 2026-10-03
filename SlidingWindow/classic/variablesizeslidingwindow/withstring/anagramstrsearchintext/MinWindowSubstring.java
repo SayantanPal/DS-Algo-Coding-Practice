@@ -1,4 +1,4 @@
-package classic.withstring.anagramstrsearchintext;
+package classic.variablesizeslidingwindow.withstring.anagramstrsearchintext;
 
 // Link:  LC #76 — https://leetcode.com/problems/minimum-window-substring/description/
 public class MinWindowSubstring {

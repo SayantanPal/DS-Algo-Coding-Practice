@@ -6,8 +6,8 @@ public class SquareRootOfANo {
     public int mySqrt(int x) {
         if(x <= 1) return x;
 
-        // solution spxce rxnges from 1 to x
-        int l = 1, r = x;
+        // solution space ranges from 1 to x/2 except for 0 and 1
+        int l = 1, r = x/2;
         int lowerBound = 0; // floor(sqrt(x))
         int upperBound = 0; // ceil(sqrt(x))
         while(l <= r){

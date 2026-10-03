@@ -1,4 +1,4 @@
-package classic.withhashing.longestuniformsubstrafterreplacement;
+package classic.variablesizeslidingwindow.withhashing.longestuniformsubstrafterreplacement;
 
 // Link: https://leetcode.com/problems/max-consecutive-ones-iii/
 public class LongestMaxConsecutiveOnesWithKReplacement {

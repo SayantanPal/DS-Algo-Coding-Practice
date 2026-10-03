@@ -43,11 +43,11 @@ import java.util.Arrays;
 public class AggressiveCows {
     public boolean checkIfAllCowsCanBePlaced(Integer[] A, long minDistanceThresholdBetweenCows, long totalNoOfCowsNeedToBePlaced){
         long noOfCows = 1L;
-        long previosCowDist = A[0];
+        long previosCowPos = A[0];
         for(int i = 1; i < A.length; i++){
-            if(A[i] - previosCowDist >= minDistanceThresholdBetweenCows){
+            if(A[i] - previosCowPos >= minDistanceThresholdBetweenCows){
                 noOfCows++;
-                previosCowDist = A[i];
+                previosCowPos = A[i];
             }
             if(noOfCows == totalNoOfCowsNeedToBePlaced) return true;
         }

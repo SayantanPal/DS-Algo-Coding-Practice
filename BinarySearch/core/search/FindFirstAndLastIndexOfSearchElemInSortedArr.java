@@ -1,3 +1,4 @@
+package core.search;
 
 // Link: https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 // Expected TC = O(log(2)N)

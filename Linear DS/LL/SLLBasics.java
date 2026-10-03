@@ -200,6 +200,8 @@ public class SLLBasics {
     }
 
     // Link: https://leetcode.com/problems/reverse-linked-list/description/
+    // Link: https://www.geeksforgeeks.org/problems/reverse-a-linked-list/1
+    // Link: https://www.naukri.com/code360/problems/reverse-linked-list_920513
     public static SLLNode reverseSLL(SLLNode head) {
         if(head == null) return head;
 
@@ -338,6 +340,9 @@ public class SLLBasics {
         return slow;
     }
 
+    // Link: https://leetcode.com/problems/middle-of-the-linked-list/description/
+    // Link: https://www.geeksforgeeks.org/problems/finding-middle-element-in-a-linked-list/1
+    // Link: https://www.naukri.com/code360/problems/middle-of-linked-list_973250
     public static SLLNode findSecondMiddleNode(SLLNode head){
         if(head == null || head.next == null) return head;
         SLLNode slow = head, fast = head;
@@ -350,6 +355,9 @@ public class SLLBasics {
         return slow;
     }
 
+    // Link: https://leetcode.com/problems/palindrome-linked-list/description/
+    // Link: https://www.geeksforgeeks.org/problems/check-if-linked-list-is-pallindrome/1
+    // Link: https://www.naukri.com/code360/problems/check-if-linked-list-is-palindrome_985248
     public boolean isPalindrome(SLLNode A) {
         SLLNode firstMiddleNode = findFirstMiddleNode_v2(A);
 
@@ -417,6 +425,8 @@ public class SLLBasics {
     // In contrast to arrays, in case of SLL, merging 2 sorted LL into 1 has S.C. = O(1)
     // T.C. is same across both arrays and SLL which is TC = O(N + M)
     // Link: https://leetcode.com/problems/merge-two-sorted-lists/description/
+    // Link: https://www.geeksforgeeks.org/problems/merge-two-sorted-linked-lists/1
+    // Link: https://www.naukri.com/code360/problems/800332
     public static SLLNode mergeSortedLL(SLLNode head1, SLLNode head2){
         SLLNode head3 = new SLLNode(-1);
         SLLNode c3 = head3;

@@ -33,11 +33,11 @@ public class MagneticForceBetweenBalls {
 
     public boolean checkIfAllBallsCanBePlaced(Integer[] position, long minDistanceThresholdBetween, long totalNoNeedToBePlaced){
         long cnt = 1L;
-        long previousDist = position[0];
+        long previousPos = position[0];
         for(int i = 1; i < position.length; i++){
-            if(position[i] - previousDist >= minDistanceThresholdBetween){
+            if(position[i] - previousPos >= minDistanceThresholdBetween){
                 cnt++;
-                previousDist = position[i];
+                previousPos = position[i];
             }
             if(cnt == totalNoNeedToBePlaced) return true;
         }

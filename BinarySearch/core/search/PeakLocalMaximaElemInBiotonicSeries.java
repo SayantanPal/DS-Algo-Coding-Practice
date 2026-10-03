@@ -1,3 +1,5 @@
+package core.search;
+
 // Link: https://leetcode.com/problems/peak-index-in-a-mountain-array/description/
 // Link: https://leetcode.com/problems/find-peak-element/description/
 public class PeakLocalMaximaElemInBiotonicSeries {
@@ -25,6 +27,25 @@ public class PeakLocalMaximaElemInBiotonicSeries {
         return result;
     }
 
+    public int findPeakElement_v2(int[] nums) {
+        int n = nums.length;
+        int l = 0, r = n - 1;
+        while(l <= r){
+            int mid = l + (r - l)/2;
+            boolean isLeftElemSmaller = (mid == 0) || (nums[mid - 1] < nums[mid]);
+            boolean isRightElemSmaller = (mid == n - 1) || (nums[mid + 1] < nums[mid]);
+
+            if(isLeftElemSmaller && isRightElemSmaller) return mid;
+
+            if(!isLeftElemSmaller){ // left is greater
+                r = mid - 1; // move towards left
+            }else if(!isRightElemSmaller){ // right is greater
+                l = mid + 1; // move towards right
+            }
+        }
+        return -1;
+    }
+
     public int findLocalMinima(int[] nums) {
         int n = nums.length;
         int l = 0, r = n - 1;
@@ -37,7 +58,7 @@ public class PeakLocalMaximaElemInBiotonicSeries {
                 return mid; //nums[mid];
             }else if( !leftGreater ){
                 result = mid; //nums[mid];
-                r = mid - 1; // move left further till left neighbour is smallet (left is same or not greater)
+                r = mid - 1; // move left further till left neighbour is smaller (left is same or not greater)
             }else if( !rightGreater ){
                 result = mid; //nums[mid];
                 l = mid + 1; // move right further till right neighbour is smaller (right is same or not greater)

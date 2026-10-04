@@ -139,9 +139,9 @@ So, the smallest prime no is 2
 
 * LCM(A, B) means a smallest number M exists such that M % A == M % B == 0. In case when A,B are co-prime to each other, then M = LCM(A, B) = A x B
 * All possible multiples of A and B ie A % M = B % M = 0 lies between LCM(A, B) to inf * LCM(A, B)
-* All possible common divisors of A and B lies between 1 to GCD(A, B)
-* When two numbers A, B are co-prime(no shared prime factors), 1 and they individually can fully divide them and ONLY 1 can fully divide BOTH of them - that means there is no other common factor apart from 1 since A != B. So, GCD(A, B) when A!= B and A and B are coprime is 1
-* As A * B = LCM(A, B) * GCD(A, B). When GCD or HCF of 2 co-prime is 1, then A * B = LCM(A, B).
+* All possible common divisors of A and B lies between 1 to GCDAndLCM(A, B)
+* When two numbers A, B are co-prime(no shared prime factors), 1 and they individually can fully divide them and ONLY 1 can fully divide BOTH of them - that means there is no other common factor apart from 1 since A != B. So, GCDAndLCM(A, B) when A!= B and A and B are coprime is 1
+* As A * B = LCM(A, B) * GCDAndLCM(A, B). When GCDAndLCM or HCF of 2 co-prime is 1, then A * B = LCM(A, B).
 * For any number A < M, A % M is always A
 * For any number A > M, A % M ranges between [0, M-1]
 * (A + B + C + ...) % M NOT always equals (A % M ) + (B % M) + (C % M) + ...
@@ -277,7 +277,7 @@ same follows till 'z'/'Z'
 2. Ceil of a number when div by 200, where the number can be positive or negative as well
 3. Check length of a number and also if a number is palindrome or not, given number can be negative as well
 4. Print no of days for a given month in non-leap year
-5. Code LCM and GCD/HCF separately both without using one another by formula
+5. Code LCM and GCDAndLCM/HCF separately both without using one another by formula
 6. Code Even and Odd number and a multiple of a number,say M(given) in a series of numbers from 1 to N(given) where worst case time complexity is less than O(N) in both case
 7. Check a number prime or not with average time complexity less than O(N) [ particularly/specifically for composite numbers]
 8. 0 mod(%) any No = 0 mathematically, which also proves mathematically 0 mod(%) 2 = 0 which makes 0 mathematically an EVEN NUMBER

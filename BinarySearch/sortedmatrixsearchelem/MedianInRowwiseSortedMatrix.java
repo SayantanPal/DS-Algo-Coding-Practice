@@ -23,10 +23,10 @@ public class MedianInRowwiseSortedMatrix {
         return upperBound;
     }
 
-    public int findTotalElemSmallerThanOrEqualToMedian(int[][] matrix, int mid){
+    public int findTotalElemSmallerThanOrEqualToSearchElem(int[][] matrix, int searchElem){
         int count = 0;
         for(int row = 0; row < matrix.length; row++)
-            count += findCountOfSmallerThanOrEqualToSearchElem(matrix, row, mid);
+            count += findCountOfSmallerThanOrEqualToSearchElem(matrix, row, searchElem);
         return count;
     }
 
@@ -57,13 +57,13 @@ public class MedianInRowwiseSortedMatrix {
         int median = -1;
         while(l <= r){
             int midSearchElem = l + (r - l)/2;
-            if(findTotalElemSmallerThanOrEqualToMedian(A, midSearchElem) == countGreaterThanOrEqualToMedian){
+            if(findTotalElemSmallerThanOrEqualToSearchElem(A, midSearchElem) == countGreaterThanOrEqualToMedian){
                 median = midSearchElem;
                 r = midSearchElem - 1;
-            }else if(findTotalElemSmallerThanOrEqualToMedian(A, midSearchElem) > countGreaterThanOrEqualToMedian){
+            }else if(findTotalElemSmallerThanOrEqualToSearchElem(A, midSearchElem) > countGreaterThanOrEqualToMedian){
                 median = midSearchElem;
                 r = midSearchElem - 1;
-            }else if(findTotalElemSmallerThanOrEqualToMedian(A, midSearchElem) < countGreaterThanOrEqualToMedian){
+            }else if(findTotalElemSmallerThanOrEqualToSearchElem(A, midSearchElem) < countGreaterThanOrEqualToMedian){
                 l = midSearchElem + 1;
             }
         }

@@ -1,10 +1,11 @@
 package sortedmatrixsearchelem;
 
+// Link: https://www.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1
 // median is N*M/2 + 1 because as per problem constraints, N*M is guranteed to be odd. The problem guarantees this, so you never hit the even case
 public class MedianInRowwiseSortedMatrix {
 
     // Row Level Binary Search in Row-wise sorted matrix
-    public int findUpperBoundSmallerThanOrEqualToSearchElem(int[][] matrix, int rowNo, int searchElem){
+    public int findCountOfSmallerThanOrEqualToSearchElem(int[][] matrix, int rowNo, int searchElem){
         // matrix are row-wise sorted -> apply binary search on each row
         int leftIndex = 0, rightIndex = matrix[rowNo].length - 1;
         int upperBound = matrix[rowNo].length;
@@ -22,10 +23,10 @@ public class MedianInRowwiseSortedMatrix {
         return upperBound;
     }
 
-    public int findTotalElemGtMedian(int[][] matrix, int median){
+    public int findTotalElemSmallerThanOrEqualToMedian(int[][] matrix, int mid){
         int count = 0;
         for(int row = 0; row < matrix.length; row++)
-            count += findUpperBoundSmallerThanOrEqualToSearchElem(matrix, row, median);
+            count += findCountOfSmallerThanOrEqualToSearchElem(matrix, row, mid);
         return count;
     }
 
@@ -35,14 +36,20 @@ public class MedianInRowwiseSortedMatrix {
         int minElem = Integer.MAX_VALUE;
         int maxElem = Integer.MIN_VALUE;
         for(int i = 0; i < A.length; i++){
-            for(int j = 0; j < A[i].length; j++){
-                minElem = Math.min(minElem, A[i][j]);
-                maxElem = Math.max(maxElem, A[i][j]);
-            }
+            minElem = Math.min(minElem, A[i][0]);
         }
+        for(int i = 0; i < A.length; i++){
+            maxElem = Math.max(maxElem, A[i][A.length - 1]);
+        }
+//        for(int i = 0; i < A.length; i++){
+//            for(int j = 0; j < A[i].length; j++){
+//                minElem = Math.min(minElem, A[i][j]);
+//                maxElem = Math.max(maxElem, A[i][j]);
+//            }
+//        }
         int n = A.length;
         int m = A[0].length;
-        // since n*m is guranteed to be odd that's why
+        // since n*m is guranteed to be odd, that's why
         int countGreaterThanOrEqualToMedian = n*m/2 + 1; // how many elements median is greater than or equal to - n*m/2 + 1
 
 
@@ -50,13 +57,13 @@ public class MedianInRowwiseSortedMatrix {
         int median = -1;
         while(l <= r){
             int midSearchElem = l + (r - l)/2;
-            if(findTotalElemGtMedian(A, midSearchElem) == countGreaterThanOrEqualToMedian){
+            if(findTotalElemSmallerThanOrEqualToMedian(A, midSearchElem) == countGreaterThanOrEqualToMedian){
                 median = midSearchElem;
                 r = midSearchElem - 1;
-            }else if(findTotalElemGtMedian(A, midSearchElem) > countGreaterThanOrEqualToMedian){
+            }else if(findTotalElemSmallerThanOrEqualToMedian(A, midSearchElem) > countGreaterThanOrEqualToMedian){
                 median = midSearchElem;
                 r = midSearchElem - 1;
-            }else if(findTotalElemGtMedian(A, midSearchElem) < countGreaterThanOrEqualToMedian){
+            }else if(findTotalElemSmallerThanOrEqualToMedian(A, midSearchElem) < countGreaterThanOrEqualToMedian){
                 l = midSearchElem + 1;
             }
         }

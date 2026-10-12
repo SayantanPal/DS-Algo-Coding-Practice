@@ -1,4 +1,4 @@
-package adjpairmatch;
+package arithmeticexpressions;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -1,4 +1,4 @@
-package validbalancedparenthesis;
+package arithmeticexpressions.validbalancedparenthesis;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

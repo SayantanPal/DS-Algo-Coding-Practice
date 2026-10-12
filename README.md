@@ -357,6 +357,17 @@ For multiple duplicates, in second iteration while iterating:
      2. No method call overhead per character
      3. Better CPU cache locality (contiguous memory)
 * String concatenation within nested loops is heavy. Instead use StringBuffer or StringBuilder to create string and then convert back using .toString()
+* Upper Bound: count of elements <= mid
+* To find count of elements lesser than or strictly lesser than search Elem k
+  A = [0, 2, 3, 3, 3]; 
+  
+  k = 3 (found)
+  Count of elements lesser or equals = 5 -> upper bound (default: n)
+  Count of elements strictly lesser = 2 -> First leftmost Index of k
+
+  k = 4 (not found)
+  Count of elements lesser or equals OR strictly lesser = upper bound (default: n)
+
 
 * In Java, 3 ways of defining stack :
 * ----------------------------------
@@ -438,6 +449,7 @@ list
 - string.length() vs arr.length vs list.size()
 - char[] c = wordStr.toCharArray() whereas wordStr = new String(c)
 - for nums as new Integer[], then only HashSet<Integer> set = new HashSet<>(Arrays.asList(nums));
+- kth largest also means (totalCount - k + 1)th smallest and vice versa
 
 ## PQ
 .offer()/.add()

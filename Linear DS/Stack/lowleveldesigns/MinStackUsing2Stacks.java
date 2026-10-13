@@ -1,13 +1,15 @@
+package lowleveldesigns;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 // Link: https://leetcode.com/problems/min-stack/
 class MinStackUsing2Stacks {
     int currMin = Integer.MAX_VALUE;
-    Deque<Integer> minimumTrack, stack;
+    Deque<Integer> minimumStack, stack;
     public MinStackUsing2Stacks() {
         stack = new ArrayDeque<>();
-        minimumTrack = new ArrayDeque<>();
+        minimumStack = new ArrayDeque<>();
     }
     
     public void push(int val) {
@@ -15,14 +17,14 @@ class MinStackUsing2Stacks {
         if(val < currMin){
             currMin = val;
         }
-        minimumTrack.offerFirst(currMin);
+        minimumStack.offerFirst(currMin);
     }
     
     public void pop() {
         stack.pollFirst();
-        minimumTrack.pollFirst();
-        if(!minimumTrack.isEmpty())
-            currMin = minimumTrack.peekFirst();
+        minimumStack.pollFirst();
+        if(!minimumStack.isEmpty())
+            currMin = minimumStack.peekFirst();
         else
             currMin = Integer.MAX_VALUE;
     }
@@ -32,6 +34,6 @@ class MinStackUsing2Stacks {
     }
     
     public int getMin() {
-        return minimumTrack.peekFirst();
+        return minimumStack.peekFirst();
     }
 }

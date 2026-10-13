@@ -1,4 +1,4 @@
-package arithmeticexpressions.validbalancedparenthesis;
+package adjpairmatch.repeatedremovalofadjduplicate;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -14,8 +14,6 @@ import java.util.HashMap;
 - So the copies aren't duplicates or garbage — they're the actual history of pushes, perfectly ordered by recency within each frequency level. The design is elegant precisely because of this.
 - when higher frequency of any element is removed, ordering of recency still matters for the same element with lower frequency traces as well. any element with higher frequency has crossed all the lower frequencies since there is always a unit step increment of frequency.
 
-*
-*
 * */
 
 // Link: https://leetcode.com/problems/maximum-frequency-stack/

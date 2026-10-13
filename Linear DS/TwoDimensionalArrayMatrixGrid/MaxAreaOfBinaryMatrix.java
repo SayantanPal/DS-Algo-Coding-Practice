@@ -2,9 +2,9 @@
 // Link: https://leetcode.com/problems/maximal-rectangle/description/
 public class MaxAreaOfBinaryMatrix {
 
-    // Total rectriangles created in possible worst case = N*(N+1)/2 x M*(M+1)/2
+    // Total rectangles created in possible worst case = N*(N+1)/2 x M*(M+1)/2
     // TC = O(N^2 x M^2)
-    public int maximalRectangle(int[][] A) {
+    public int maximalRectangle_v1(int[][] A) {
         int n = A.length, m = A[0].length;
         int maxArea = 0;
         for(int i = 0; i < n; i++){
@@ -44,4 +44,6 @@ public class MaxAreaOfBinaryMatrix {
 
         return maxArea;
     }
+
+    // version 2 is under stacks which reduce TC down to O(NxM)
 }

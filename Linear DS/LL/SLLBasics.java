@@ -457,6 +457,7 @@ public class SLLBasics {
         return head3.next;
     }
 
+    // Link: https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/
     public SLLNode deleteDuplicatesFromSortedSLL(SLLNode head) {
         SLLNode curr = head;
         while(curr != null){

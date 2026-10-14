@@ -15,6 +15,7 @@ public class MaxAreaOfBinaryMatrixUsingStacks {
         int n = A.length;
         int m = A[0].length;
 
+        // cumulative piling up of heights on each row
         for(int j = 0; j < m; j++){
             for(int i = 1; i < n; i++){
                 if(A[i][j] != 0 && A[i - 1][j] != 0){

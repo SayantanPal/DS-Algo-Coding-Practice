@@ -108,10 +108,10 @@ public class DiffOfMaxMinOfAllPossibleSubarrays {
 
             // elements (l1, r1) ie [l1 + 1, r1 - 1] are the indexes where elements are all smaller than or equal to A[i] ie A[i] is largest in such
             // (l1 + 1)th index to ith index on left has all elem smaller than or equal to A[i]
-            int noOfStartingPoints1 = i - (l1 + 1) + 1; // i - l
+            int noOfStartingPoints1 = i - (l1 + 1) + 1; // i - l1
 
             // ith index to (r1 - 1)th index on right has all elem smaller than or equal to A[i]
-            int noOfEndingPoints1 = (r1 - 1) - i + 1; // r - i
+            int noOfEndingPoints1 = (r1 - 1) - i + 1; // r1 - i
             // A[i] is greatest ie max in noOfStartingPoints*noOfEndingPoints subarray
             long cntOfSubArrMax = (long)noOfStartingPoints1 * noOfEndingPoints1;
 
@@ -120,10 +120,10 @@ public class DiffOfMaxMinOfAllPossibleSubarrays {
 
             // elements (l1, r1) ie [l1 + 1, r1 - 1] are the indexes where elements are all smaller than or equal to A[i] ie A[i] is largest in such
             // (l1 + 1)th index to ith index on left has all elem smaller than or equal to A[i]
-            int noOfStartingPoints2 = i - (l2 + 1) + 1; // i - l
+            int noOfStartingPoints2 = i - (l2 + 1) + 1; // i - l2
 
             // ith index to (r1 - 1)th index on right has all elem smaller than or equal to A[i]
-            int noOfEndingPoints2 = (r2 - 1) - i + 1; // r - i
+            int noOfEndingPoints2 = (r2 - 1) - i + 1; // r2 - i
             // A[i] is greatest ie max in noOfStartingPoints*noOfEndingPoints
             long cntOfSubArrMin = (long)noOfStartingPoints2 * noOfEndingPoints2;
 
@@ -159,10 +159,10 @@ public class DiffOfMaxMinOfAllPossibleSubarrays {
 
             // elements (l1, r1) ie [l1 + 1, r1 - 1] are the indexes where elements are all smaller than or equal to A[i] ie A[i] is largest in such
             // (l1 + 1)th index to ith index on left has all elem smaller than or equal to A[i]
-            int noOfStartingPoints1 = i - (l1 + 1) + 1; // i - l
+            int noOfStartingPoints1 = i - (l1 + 1) + 1; // i - l1
 
             // ith index to (r1 - 1)th index on right has all elem smaller than or equal to A[i]
-            int noOfEndingPoints1 = (r1 - 1) - i + 1; // r - i
+            int noOfEndingPoints1 = (r1 - 1) - i + 1; // r1 - i
             // A[i] is greatest ie max in noOfStartingPoints*noOfEndingPoints subarray
             long cntOfSubArrMax = (long)noOfStartingPoints1 * noOfEndingPoints1;
 
@@ -171,10 +171,10 @@ public class DiffOfMaxMinOfAllPossibleSubarrays {
 
             // elements (l1, r1) ie [l1 + 1, r1 - 1] are the indexes where elements are all smaller than or equal to A[i] ie A[i] is largest in such
             // (l1 + 1)th index to ith index on left has all elem smaller than or equal to A[i]
-            int noOfStartingPoints2 = i - (l2 + 1) + 1; // i - l
+            int noOfStartingPoints2 = i - (l2 + 1) + 1; // i - l2
 
             // ith index to (r1 - 1)th index on right has all elem smaller than or equal to A[i]
-            int noOfEndingPoints2 = (r2 - 1) - i + 1; // r - i
+            int noOfEndingPoints2 = (r2 - 1) - i + 1; // r2 - i
             // A[i] is greatest ie max in noOfStartingPoints*noOfEndingPoints
             long cntOfSubArrMin = (long)noOfStartingPoints2 * noOfEndingPoints2;
 

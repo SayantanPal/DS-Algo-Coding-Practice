@@ -55,7 +55,15 @@ public class CheckTwoBracketExpressions {
         // StringBuilder simplified = new StringBuilder();
         char lastOperator = '+';
         for(char ch: str.toCharArray()){
-            if(ch == '('){
+            if(ch >= 'a' && ch <= 'z'){ // when character is operand
+                // maintain operator associated with unique second operand in map
+                // for very first operand it is default initialized lastOperator
+                map.put(ch, lastOperator);
+
+                // optional: add answer of associated operator with second operand to result
+//                    simplified.append(lastOperator);
+//                    simplified.append(ch);
+            }else if(ch == '('){
                 // only maintain the assiociated left operators ie on the left side of EACH OPEN parenthesis
                 // eg: plus for +(.. or minus for -(..
                 // for very first parenthesis, the default lastOperator is plus
@@ -69,24 +77,13 @@ public class CheckTwoBracketExpressions {
                         lastOperator = '+'; // also default sign outside any parenthesis when -ve explicitly not mentioned
                     }
                 }
-            } else{ // when character is either operator or operand
-
-                if(ch >= 'a' && ch <= 'z'){ // when character is operand
-                    // maintain operator associated with unique second operand in map
-                    // for very first operand it is default initialized lastOperator
-                    map.put(ch, lastOperator);
-
-                    // optional: add answer of associated operator with second operand to result
-//                    simplified.append(lastOperator);
-//                    simplified.append(ch);
-                }else{
-                    // domino effect of toggling current operator only when the most recent last operator is -ve
-                    if(!operatorStack.isEmpty() && operatorStack.peek() == '-'){
-                        if(ch == '+') ch = '-';
-                        else ch = '+';
-                    }
-                    lastOperator = ch; // without domino effect, current operator sign remains as it is and updated as well
+            } else{ // when character is either operator
+                // domino effect of toggling current operator only when the most recent last operator is -ve
+                if(!operatorStack.isEmpty() && operatorStack.peek() == '-'){
+                    if(ch == '+') ch = '-';
+                    else ch = '+';
                 }
+                lastOperator = ch; // without domino effect, current operator sign remains as it is and updated as well
             }
         }
         // optional:

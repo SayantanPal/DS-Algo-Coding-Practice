@@ -1,7 +1,6 @@
 package arithmeticexpressions.validbalancedparenthesis;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 
 /*
 * Coding: Write a method to detect if a given string has balanced parentheses — {}, [], and ()
@@ -67,6 +66,19 @@ public class BalancedValidParenthesis {
             if (c == '(') stack.push(')');
             else if (c == '{') stack.push('}');
             else if (c == '[') stack.push(']');
+            else if (stack.isEmpty() || stack.pop() != c) return false;
+        }
+        return stack.isEmpty(); // this check is needed when input is for ex say: ({[
+    }
+
+    public boolean isValidBalancedParenthesis_v4(String str) {
+        Deque<Character> stack = new ArrayDeque<>();
+        Map<Character, Character> map = Map.of('(', ')', '{', '}', '[', ']'); // new HashMap<>(Map.of('(', ')', '{', '}', '[', ']'));
+
+        for (char c : str.toCharArray()) {
+            //if (c == '(' || c == '{' || c == '[') stack.push(map.get(c));
+            //if (Set.of('(', '(', '[').contains(c)) stack.push(map.get(c));
+            if (map.containsKey(c)) stack.push(map.get(c));
             else if (stack.isEmpty() || stack.pop() != c) return false;
         }
         return stack.isEmpty(); // this check is needed when input is for ex say: ({[

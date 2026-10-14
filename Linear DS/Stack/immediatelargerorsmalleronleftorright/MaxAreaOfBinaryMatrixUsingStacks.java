@@ -4,7 +4,7 @@ import static immediatelargerorsmalleronleftorright.NextImmediateSmallerNumberTo
 import static immediatelargerorsmalleronleftorright.PreviousImmediateSmallerNoToTheLeft.previous_immediate_smaller_number_index_to_the_left;
 
 // Link: https://leetcode.com/problems/maximal-rectangle/description/
-public class MaxAreaOfBinaryMatrixV2 {
+public class MaxAreaOfBinaryMatrixUsingStacks {
 
     // version 1 brute-force implementation using TC = O(N^2 x M ^2) is mentioned under 2D matrix grid module
 

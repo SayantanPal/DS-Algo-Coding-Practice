@@ -3,9 +3,9 @@ package immediatelargerorsmalleronleftorright;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-// Problem: Distance between each array element and next immediate greater element on right
+// Problem: Distance between each array element and next immediate strictly greater element on right
 // Link: https://leetcode.com/problems/daily-temperatures/
-public class DailyTemperatures {
+public class DailyWarmerTemperatures {
     public int[] dailyTemperatures(int[] temperatures) {
         Deque<int[]> monotonicDecreasingDeque = new ArrayDeque<>();
         int[] answer = new int[temperatures.length];

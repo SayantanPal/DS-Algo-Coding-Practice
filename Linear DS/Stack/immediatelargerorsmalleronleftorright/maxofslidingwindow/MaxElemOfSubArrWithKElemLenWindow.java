@@ -1,0 +1,147 @@
+package immediatelargerorsmalleronleftorright.maxofslidingwindow;
+
+
+/*
+* Q. Parking Ice Cream Truck
+Problem Description
+
+Imagine you're an ice cream truck driver in a beachside town. The beach is divided into several sections, and each section has varying numbers of beachgoers wanting ice cream given by the array of integers A.
+For simplicity, let's say the beach is divided into 8 sections. One day, you note down the number of potential customers in each section: [5, 12, 3, 4, 8, 10, 2, 7]. This means there are 5 people in the first section, 12 in the second, and so on.
+You can only stop your truck in B consecutive sections at a time because of parking restrictions. To maximize sales, you want to park where the most customers are clustered together.
+For all B consecutive sections, identify the busiest stretch to park your ice cream truck and serve the most customers. Return an array C, where C[i] is the busiest section in each of the B consecutive sections. Refer to the given example for clarity.
+NOTE: If B > length of the array, return 1 element with the max of the array.
+
+Problem Constraints: 1 <= |A|, B <= 106
+
+Input Format:
+The first argument given is the integer array A.
+The second argument given is the integer B.
+
+Output Format: Return an array C, where C[i] is the maximum value from A[i] to A[i+B-1].
+
+
+
+Example Input
+
+Input 1:
+ A = [1, 3, -1, -3, 5, 3, 6, 7]
+ B = 3
+
+Input 2:
+ A = [1, 2, 3, 4, 2, 7, 1, 3, 6]
+ B = 6
+
+
+Example Output
+Output 1: [3, 3, 5, 5, 6, 7]
+
+* Output 2: [7, 7, 7, 7]
+
+
+Example Explanation
+Explanation 1:
+
+ Window position     | Max
+ --------------------|-------
+ [1 3 -1] -3 5 3 6 7 | 3
+ 1 [3 -1 -3] 5 3 6 7 | 3
+ 1 3 [-1 -3 5] 3 6 7 | 5
+ 1 3 -1 [-3 5 3] 6 7 | 5
+ 1 3 -1 -3 [5 3 6] 7 | 6
+ 1 3 -1 -3 5 [3 6 7] | 7
+Explanation 2:
+
+ Window position     | Max
+ --------------------|-------
+ [1 2 3 4 2 7] 1 3 6 | 7
+ 1 [2 3 4 2 7 1] 3 6 | 7
+ 1 2 [3 4 2 7 1 3] 6 | 7
+ 1 2 3 [4 2 7 1 3 6] | 7
+*
+*
+*
+*
+* */
+
+import java.util.Deque;
+import java.util.LinkedList;
+
+// Problem: Sliding Window Maximum with K elements
+// I/P: nums = [1,3,-1,-3,5,3,6,7], k = 3
+// O/P: [3,3,5,5,6,7]
+// Efficient Solution: Use Deque to store useful elements in current window for O(n) solution
+
+// Link: https://leetcode.com/problems/sliding-window-maximum/
+// Link: https://neetcode.io/problems/sliding-window-maximum
+public class MaxElemOfSubArrWithKElemLenWindow {
+
+    // windows of k elems are (0 to k-1), (1 to k), (2 to k + 1),...so on
+    // For each window of k elem, there is a double ended queue where we maintain only index of visited elements in below particular order
+    // while inserting new element into de-queue, we make sure we maintain monotonous decreasing order sequence of elements
+    // to fit a new incoming element into existing de-queue, we try to put it in queue such that all numbers before or left to that new incoming element are greater in decreasing order from left to right
+    // we make sure that the newly incoming element is always the last one added to the rear end last of queue at right
+    // and also we make sure that the front head first at left of queue always contain the biggest element within the window of size k
+    // that's why before adding and positioning a new element index to the de-queue, we check if the front head first biggest element at left end is within window size k or not, followed by tracking + adding new incoming element index
+    public int[] maxSlidingWindow_v2(int[] nums, int k) {
+        Deque<Integer> monotonicDecreasingDeque = new LinkedList<Integer>();
+        int[] result = new int[nums.length - k + 1];
+        int j = 0;
+
+        for(int i = 0; i < k; i++){
+            if(i > nums.length - 1) return new int[]{ nums[monotonicDecreasingDeque.peekFirst()] }; // NOTE: If K > length of the array, return 1 element with the max of the array.
+            // maintain monotonous decreasing order of stack
+            while(!monotonicDecreasingDeque.isEmpty() && nums[i] > nums[monotonicDecreasingDeque.peek()]){
+                monotonicDecreasingDeque.pop();
+            }
+            monotonicDecreasingDeque.push(i);
+        }
+        // pick the maximum of current window
+        result[j++] = nums[monotonicDecreasingDeque.peekLast()];
+
+        for(int i = k; i < nums.length; i++){
+            // 1. squeeze the window from the left side to get current valid k-size/len window
+            // checking end rear/last of stack for squeeze/contraction using queue property
+            while(!monotonicDecreasingDeque.isEmpty() && monotonicDecreasingDeque.peekLast() <= (i - k)){
+                // if(!monotonicDecreasingDeque.isEmpty() && monotonicDecreasingDeque.peekFirst() == (i - k)){
+                monotonicDecreasingDeque.pollLast();
+            }
+
+            // 2. maintain monotonous decreasing order of stack
+            while(!monotonicDecreasingDeque.isEmpty() && nums[i] > nums[monotonicDecreasingDeque.peek()]){
+                monotonicDecreasingDeque.pop();
+            }
+            monotonicDecreasingDeque.push(i);
+
+            // 3. pick the maximum of current window
+            result[j++] = nums[monotonicDecreasingDeque.peekLast()];
+        }
+
+
+        return result;
+    }
+
+
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
+        int[] result = new int[n - k + 1]; // Non-overlapping window -> n/k; since overlapping window -> n - k + 1
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < nums.length; i++) {
+
+
+            // Left(Head/Front/First) Side of Window: Remove elements out of window
+            while (!deque.isEmpty() && deque.peek() < i - k + 1) // deque.peekFirst() < i - k + 1
+                deque.poll();      //deque.pollFirst() or deque.removeFirst();
+
+            // Right(Rear/Last) Side of Window: If new unseen upcoming number is greater, remove smaller elements
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i])
+                deque.pollLast(); // deque.removeLast();
+
+            deque.offer(i); // deque.add(i)
+
+            if (i >= k - 1)
+                result[i - k + 1] = nums[deque.peek()];
+        }
+        return result;
+    }
+
+}

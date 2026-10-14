@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class PalindromeCheck {
+public class PalindromeCheckUsingStack {
     public static void main(String[] args) {
         String str = "madam";
         Stack<Character> stack = new Stack<>();

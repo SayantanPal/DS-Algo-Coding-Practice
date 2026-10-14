@@ -45,11 +45,10 @@ public class DepthOfFolderStack {
         int stackDepth = 0;
         for(String s: logs){
             if(s.equals("../")){
-                if(stackDepth > 0){
+                if(stackDepth > 0)
                     stackDepth--; //pop
-                }
             }
-            else if(!s.equals("./"))
+            else if(!s.equals("./")) // when following patterns like "x/"
                 stackDepth++; //push
         }
         return stackDepth;

@@ -29,7 +29,7 @@ public class BalancedValidParenthesis {
         return stack.isEmpty();
     }
 
-    public static boolean isValidParenthesis_v1(String s) {
+    public static boolean isValidBalancedParenthesis_v1(String s) {
         // Write your code here.
         Deque<Character> stack = new ArrayDeque<>();
         char[] sArr = s.toCharArray();
@@ -48,7 +48,7 @@ public class BalancedValidParenthesis {
         return stack.isEmpty();
     }
 
-    public boolean isBalanced_v2(String str) {
+    public boolean isValidBalancedParenthesis_v2(String str) {
         Deque<Character> stack = new ArrayDeque<>();
         for (char c : str.toCharArray()) {
             if(!stack.isEmpty()) {
@@ -61,7 +61,7 @@ public class BalancedValidParenthesis {
         return stack.isEmpty(); // this check is needed when input is for ex say: ({[
     }
 
-    public boolean isBalanced_v3(String str) {
+    public boolean isValidBalancedParenthesis_v3(String str) {
         Deque<Character> stack = new ArrayDeque<>();
         for (char c : str.toCharArray()) {
             if (c == '(') stack.push(')');
@@ -71,4 +71,14 @@ public class BalancedValidParenthesis {
         }
         return stack.isEmpty(); // this check is needed when input is for ex say: ({[
     }
+
+    /*
+    Without the isEmpty() guard, calling stack.pop() on an empty stack throws an exception when a closing bracket appears with no matching opener.
+
+    For input ")", the stack is empty when ) is encountered (no opener was ever pushed)
+    The code reaches stack.pop() with nothing on the stack
+    ArrayDeque.pop() actually returns null rather than throwing, but then .equals() on null throws a NullPointerException — or if using element()/pop() directly, a NoSuchElementException
+    The isEmpty() check short-circuits first, returning false safely to signal the string is invalid
+    This is a classic defensive guard pattern: check the container is non-empty before accessing its top element
+    * */
 }

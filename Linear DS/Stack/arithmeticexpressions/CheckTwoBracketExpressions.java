@@ -70,21 +70,8 @@ public class CheckTwoBracketExpressions {
                     }
                 }
             } else{ // when character is either operator or operand
-                if(ch == '+'){
-                    // domino effect of toggling current operator only when the most recent last operator is -ve
-                    if(!operatorStack.isEmpty() && operatorStack.peek() == '-'){
-                        ch = '-';
-                    }
-                    lastOperator = ch;
 
-                }else if(ch == '-'){
-                    // domino effect of toggling current operator only when the most recent last operator is -ve
-                    if(!operatorStack.isEmpty() && operatorStack.peek() == '-'){
-                        ch = '+';
-                    }
-                    lastOperator = ch;
-                }
-                else{ // when character is operand
+                if(ch >= 'a' && ch <= 'z'){ // when character is operand
                     // maintain operator associated with unique second operand in map
                     // for very first operand it is default initialized lastOperator
                     map.put(ch, lastOperator);
@@ -92,8 +79,14 @@ public class CheckTwoBracketExpressions {
                     // optional: add answer of associated operator with second operand to result
 //                    simplified.append(lastOperator);
 //                    simplified.append(ch);
+                }else{
+                    // domino effect of toggling current operator only when the most recent last operator is -ve
+                    if(!operatorStack.isEmpty() && operatorStack.peek() == '-'){
+                        if(ch == '+') ch = '-';
+                        else ch = '+';
+                    }
+                    lastOperator = ch;
                 }
-
             }
         }
         // optional:

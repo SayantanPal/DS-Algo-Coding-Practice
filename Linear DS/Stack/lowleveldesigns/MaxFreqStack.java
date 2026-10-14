@@ -25,7 +25,7 @@ public class MaxFreqStack {
     int maxFreq;
 
     public MaxFreqStack() {
-        this.groupMap = new HashMap<Integer, ArrayDeque<Integer>>();
+        this.groupMap = new HashMap<>();
         this.freqMap = new HashMap<>();
     }
 
@@ -33,14 +33,17 @@ public class MaxFreqStack {
         int newFreq = this.freqMap.getOrDefault(val, 0) + 1;
         maxFreq = Math.max(maxFreq, newFreq);
         this.freqMap.put(val, newFreq);
-        this.groupMap.computeIfAbsent(newFreq, k -> new ArrayDeque<Integer>()).push(val);
+        this.groupMap.computeIfAbsent(newFreq, k -> new ArrayDeque<>()).push(val);
     }
 
     public int pop() {
         ArrayDeque<Integer> maxFreqElemStack = this.groupMap.get(maxFreq);
         int maxFreqElem = maxFreqElemStack.pop();
-        this.freqMap.put(maxFreqElem, maxFreq - 1);
-        if(maxFreqElemStack.isEmpty()) maxFreq--;
+        this.freqMap.put(maxFreqElem, maxFreq - 1); // with max frew element pop, its freq count gets reduced by 1 only
+        if(maxFreqElemStack.isEmpty()) { // if there is no element with this maxFreq
+            this.groupMap.remove(maxFreq); // not mandatory: but good to clear memory as and when not needed
+            maxFreq--; // track next smaller max freq - due to unit transition, next max Freq becomes 1 less only
+        }// else there might still be other elements in stack with same max freq
         return maxFreqElem;
     }
 }

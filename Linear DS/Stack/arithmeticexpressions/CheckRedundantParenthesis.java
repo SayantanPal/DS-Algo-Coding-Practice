@@ -8,15 +8,16 @@ public class CheckRedundantParenthesis {
 
     public int braces(String A) {
         Deque<Character> operatorStack = new ArrayDeque<>();
+        // no need to track any operands
         for(char c: A.toCharArray()){
             if(c == ')'){
                 if(!operatorStack.isEmpty() && operatorStack.peek() == '('){ // there is no operator between paired parenthesis
                     return 1; // hence clearly redundant
                 }else{
-                    while(!operatorStack.isEmpty() && operatorStack.peek() != '('){
+                    while(!operatorStack.isEmpty() && operatorStack.peek() != '('){ // pop out only the operators between opena nd closed parenthesis
                         operatorStack.pop();
                     }
-                    operatorStack.pop(); // remove '(' as well and its corresponing c ie ')' was never pushed - so everything in between popped out
+                    operatorStack.pop(); // finally remove '(' as well and its corresponing c ie ')' was never pushed - so everything in between operators popped out
                 }
             }else if(c == '(' || c == '+' || c == '-' || c == '*' || c == '/'){
                 operatorStack.push(c);

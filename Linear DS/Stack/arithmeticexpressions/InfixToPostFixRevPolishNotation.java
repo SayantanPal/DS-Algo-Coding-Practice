@@ -18,23 +18,23 @@ public class InfixToPostFixRevPolishNotation {
 
         for(char c: A.toCharArray()){
             if(c >= 'a' && c <= 'z')
-                sb.append(String.valueOf(c));
+                sb.append(c);
             else if(c == '(')
                 operatorStack.push(c);
             else if(c == ')'){
                 while(!operatorStack.isEmpty() && operatorStack.peek() != '('){
-                    sb.append(String.valueOf(operatorStack.pop()));
+                    sb.append(operatorStack.pop());
                 }
                 operatorStack.pop();
             }else{
                 while(!operatorStack.isEmpty() && operatorStack.peek() != '(' && getOperatorPriority(operatorStack.peek()) >= getOperatorPriority(c)){
-                    sb.append(String.valueOf(operatorStack.pop()));
+                    sb.append(operatorStack.pop());
                 }
                 operatorStack.push(c);
             }
         }
         while(!operatorStack.isEmpty()){
-            sb.append(String.valueOf(operatorStack.pop()));
+            sb.append(operatorStack.pop());
         }
         return sb.toString();
     }

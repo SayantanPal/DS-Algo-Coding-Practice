@@ -85,7 +85,7 @@ public class CheckTwoBracketExpressions {
                         if(ch == '+') ch = '-';
                         else ch = '+';
                     }
-                    lastOperator = ch;
+                    lastOperator = ch; // without domino effect, current operator sign remains as it is and updated as well
                 }
             }
         }

@@ -6,6 +6,19 @@ import java.util.Deque;
 // Link: https://leetcode.com/problems/reverse-prefix-of-word/description/
 public class ReversePrefixOfWord {
 
+    public String reversePrefix3(String word, char ch) {
+        StringBuilder sb = new StringBuilder();
+        boolean isFirstOccurance = true;
+        for(char c: word.toCharArray()){
+            sb.append(c);
+            if(isFirstOccurance && c == ch) {
+                sb = sb.reverse();
+                isFirstOccurance = false;
+            }
+        }
+        return sb.toString();
+    }
+
     public String reversePrefix2(String word, char ch) {
         StringBuilder sb = new StringBuilder();
         Deque<Character> stack = new ArrayDeque<>();
@@ -23,7 +36,10 @@ public class ReversePrefixOfWord {
 
         while(!stack.isEmpty()) sb.append(stack.pop());
 
-        if(!hasSearchChar) sb = sb.reverse();
+        if(!hasSearchChar) {
+            sb = sb.reverse();
+            return sb.toString();
+        }
 
         i++;
         while(i < word.length()){

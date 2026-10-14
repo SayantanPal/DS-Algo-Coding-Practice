@@ -49,7 +49,8 @@ public class DepthOfFolderStack {
                     stackDepth--; //pop
                 }
             }
-            else if(!s.equals("./")) stackDepth++; //push
+            else if(!s.equals("./"))
+                stackDepth++; //push
         }
         return stackDepth;
     }

@@ -154,8 +154,24 @@ public class SLLBasics {
         return null;
     }
 
-    // for arr: [1, 2, 3 , 4], it will return 3 as middle element/node
+    // for arr: [1, 2, 3, 4], it will return 2 as middle element/node
+    // 1st middle node for even len SLL
     public static SLLNode findMiddleNode(SLLNode head) {
+        if(head == null || head.next == null) return head;
+        SLLNode slow = head;
+        SLLNode fast = head;
+
+        while(fast.next!=null && fast.next.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    // for arr: [1, 2, 3, 4], it will return 3 as middle element/node
+    // 2nd middle node for even len SLL
+    public static SLLNode findMiddleNode2(SLLNode head) {
         if(head == null || head.next == null) return head;
         SLLNode slow = head;
         SLLNode fast = head;
@@ -241,6 +257,7 @@ public class SLLBasics {
         }
         return prev;
     }
+
     public SLLNode reverseList(SLLNode head, int k) {
         if(k == 1) return head;
         SLLNode dummy = new SLLNode(-1);

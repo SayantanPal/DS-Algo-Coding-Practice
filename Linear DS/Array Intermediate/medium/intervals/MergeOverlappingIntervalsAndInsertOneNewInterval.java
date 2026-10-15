@@ -148,6 +148,54 @@ public class MergeOverlappingIntervalsAndInsertOneNewInterval {
         return result;
     }
 
+    public int[][] insert_v4(int[][] intervals, int[] newInterval) {
+        List<int[]> result = new ArrayList<>();
+        int n = intervals.length;
+        if(n == 0){
+            result.add(newInterval);
+            return result.toArray(new int[result.size()][]);
+        }
+
+        // Option-A
+        Arrays.sort(intervals, (a, b)->(a[0] - b[0]));
+        List<int[]> merged = new ArrayList<>();
+        int i = 0;
+        while(i < n && intervals[i][0] <= newInterval[0]){
+            merged.add(intervals[i]);
+            i++;
+        }
+        merged.add(newInterval);
+        while(i < n){
+            merged.add(intervals[i]);
+            i++;
+        }
+        i = 1;
+
+
+        // Or Option-B
+        // List<int[]> merged = new ArrayList<>(Arrays.asList(intervals));
+        // merged.add(newInterval);
+        // merged.sort((a, b) -> a[0] - b[0]);
+        // int i = 1;
+
+        n = merged.size();
+        int currStartTime = merged.get(0)[0];
+        int currEndTime = merged.get(0)[1];
+
+        while(i < n){
+            if(currEndTime >= merged.get(i)[0]){ // overlap -> merge
+                currEndTime = Math.max(currEndTime, merged.get(i)[1]);
+            }else{ // no overlap -> track + start with next one
+                result.add(new int[]{currStartTime, currEndTime});
+                currStartTime = merged.get(i)[0];
+                currEndTime = merged.get(i)[1];
+            }
+            i++;
+        }
+        result.add(new int[]{currStartTime, currEndTime});
+        return result.toArray(new int[result.size()][]);
+    }
+
     // non-overlapping interval + insert
     public int[][] insert(int[][] intervals, int[] newInterval) {
         int n = intervals.length;
@@ -252,8 +300,6 @@ public class MergeOverlappingIntervalsAndInsertOneNewInterval {
 
     public int[][] insert_v3(int[][] intervals, int[] newInterval) {
         List<int[]> result = new ArrayList<>();
-
-        int i = 1;
         int n = intervals.length;
 
         if (n == 0) {
@@ -263,6 +309,8 @@ public class MergeOverlappingIntervalsAndInsertOneNewInterval {
 
         int currStartTime = intervals[0][0];
         int currEndTime = intervals[0][1];
+
+        int i = 1;
 
         // While 1: merge overlapping intervals that are entirely before newInterval
         while(i < n && newInterval[0] > intervals[i][1]){ // till new interval start time becomes greater than existing intervals end time, continue skipping

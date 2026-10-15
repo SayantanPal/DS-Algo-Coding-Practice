@@ -39,11 +39,25 @@ public class MaxFreqStack {
     public int pop() {
         ArrayDeque<Integer> maxFreqElemStack = this.groupMap.get(maxFreq);
         int maxFreqElem = maxFreqElemStack.pop();
-        this.freqMap.put(maxFreqElem, maxFreq - 1); // with max frew element pop, its freq count gets reduced by 1 only
+        this.freqMap.put(maxFreqElem, maxFreq - 1); // with max freq element pop, its freq count gets reduced by 1 only
         if(maxFreqElemStack.isEmpty()) { // if there is no element with this maxFreq
             this.groupMap.remove(maxFreq); // not mandatory: but good to clear memory as and when not needed
             maxFreq--; // track next smaller max freq - due to unit transition, next max Freq becomes 1 less only
         }// else there might still be other elements in stack with same max freq
         return maxFreqElem;
+    }
+
+    public int[] solve(int[][] A) {
+        int[] ans = new int[A.length];
+        for(int i = 0; i < A.length; i++){
+            if(A[i][0] == 1){
+                push(A[i][1]);
+                ans[i] = -1;
+            }
+            else if(A[i][0] == 2){
+                ans[i] = pop();
+            }
+        }
+        return ans;
     }
 }

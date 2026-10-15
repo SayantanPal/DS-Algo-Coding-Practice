@@ -11,7 +11,7 @@ import java.util.PriorityQueue;
 // Constraint: Not Kth distinct element;its kth largest elem - CANNOT USE TREESET
 public class FundamentalKthLargestAndSmallestElement {
 
-    // Less time optimized: O(n log n) - NOT ALLOWED
+    // Less time optimized: O(n log n + (n - k) log n) - NOT ALLOWED
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> (b - a));
 
@@ -24,14 +24,46 @@ public class FundamentalKthLargestAndSmallestElement {
         return maxHeap.peek();
     }
 
-    // More time optimized: O(n log k)
+    // Less time optimized: O(n log n - k log n) - NOT ALLOWED
     public int findKthLargest_v2(int[] nums, int k) {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
+        // first add n elements
+        for(int i = 0; i < nums.length; i++){
+            minHeap.offer(nums[i]);
+        }
+
+        // then evict smaller (n - k) smaller elements
+        for(int i = 1; i <= nums.length - k; i++){
+            minHeap.poll();
+        }
+
+        return minHeap.peek();
+    }
+
+    public int findKthLargest_v3(int[] nums, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b)->(a - b));
+        int n = nums.length;
+        for(int i = 0; i < nums.length; i++){
+            minHeap.offer(nums[i]);
+            // evict smaller (n - k) elements so that we end up having k larger elements
+            if(minHeap.size() > k){
+                minHeap.poll();
+            }
+        }
+        return minHeap.peek();
+    }
+
+    // More time optimized: O(n log k)
+    public int findKthLargest_v4(int[] nums, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        // O(k log k)
         for(int i = 0; i < k; i++){
             minHeap.offer(nums[i]);
         }
 
+        // O((n - k) log k)
         // evict smaller (n - k) elements so that we end up having k larger elements
         for(int i = k; i < nums.length; i++){
             if(nums[i] > minHeap.peek()){

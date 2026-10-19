@@ -457,6 +457,21 @@ list
 .peek()/.front()
 .remove()
 
+# Subarrays with target goal sum: Prefix Sum + HashMap Search
+- subarraySum = PrefixSumR - PrefixSumL
+- When subarraySum = targetSum, then
+  PrefixSumR - PrefixSumL = targetSum => PrefixSumR - targetSum = PrefixSumL and we are searching if already traced PrefixSumL exists by finding (PrefixSumR - targetSum)
+- When targetSum % k = 0 => (PrefixSumR - PrefixSumL) % k = 0 => PrefixSumR % k = PrefixSumL % k
+- When remainingSum % k = 0 => (targetSum - subarraySum) % k = 0 => targetSum % k = subarraySum % k => targetSum % k =  (PrefixSumR - PrefixSumL) % k => PrefixSumL % k = (PrefixSumR - targetSum) % k
+- When count of subarrays is asked:
+  - always consider 1 for 0 sum
+  - include current prefix sum as +1 count irrespective of current prefix sum already present or not
+  - track using cnt += map[currPrefixSum - ]
+- When Max/Min Len of subarrays is asked:
+  - always consider -1 for 0 sum
+  - ONLY include current prefix sum as +1 count when current prefix sum already not present to greedily prioritize max len so that oldest index is always hold in case of duplicate prefix sum
+  - when using lookup as array instead of hashmap, always flag unvisited index with -2 because -1 is used for 0 prefix sum length for correct calculation while 0 itself can be a valid index for a prefix sum
+
 ## KMP + LPS
 KMP (pattern search in text):
 - Build LPS array of pattern only → O(m) space

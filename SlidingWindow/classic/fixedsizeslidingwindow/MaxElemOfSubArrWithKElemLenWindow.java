@@ -89,53 +89,34 @@ public class MaxElemOfSubArrWithKElemLenWindow {
 
         for(int i = 0; i < k; i++){
             if(i > nums.length - 1) return new int[]{ nums[monotonicDecreasingDeque.peekFirst()] }; // NOTE: If K > length of the array, return 1 element with the max of the array.
-            // maintain monotonous decreasing order of deque
-            while(!monotonicDecreasingDeque.isEmpty() && nums[i] > nums[monotonicDecreasingDeque.peekLast()]){
-                monotonicDecreasingDeque.pollLast();
+            // maintain monotonous decreasing order of stack
+            while(!monotonicDecreasingDeque.isEmpty() && nums[i] > nums[monotonicDecreasingDeque.peek()]){
+                monotonicDecreasingDeque.pop();
             }
-            monotonicDecreasingDeque.offerLast(i);
+            monotonicDecreasingDeque.push(i);
         }
         // pick the maximum of current window
-        result[j++] = nums[monotonicDecreasingDeque.peekFirst()];
+        result[j++] = nums[monotonicDecreasingDeque.peekLast()];
 
         for(int i = k; i < nums.length; i++){
-            // 1. squeeze the window from the left side to get current valid window
-            while(!monotonicDecreasingDeque.isEmpty() && monotonicDecreasingDeque.peekFirst() <= (i - k)){
+            // 1. squeeze the window from the left side to get current valid k-size/len window
+            // checking end rear/last of stack for squeeze/contraction using queue property
+            while(!monotonicDecreasingDeque.isEmpty() && monotonicDecreasingDeque.peekLast() <= (i - k)){
                 // if(!monotonicDecreasingDeque.isEmpty() && monotonicDecreasingDeque.peekFirst() == (i - k)){
-                monotonicDecreasingDeque.pollFirst();
-            }
-
-            if(!monotonicDecreasingDeque.isEmpty() && monotonicDecreasingDeque.peekFirst() == (i - k)){
-                monotonicDecreasingDeque.pollFirst();
-            }
-
-            // 2. maintain monotonous decreasing order of deque
-            while(!monotonicDecreasingDeque.isEmpty() && nums[i] > nums[monotonicDecreasingDeque.peekLast()]){
                 monotonicDecreasingDeque.pollLast();
             }
-            monotonicDecreasingDeque.offerLast(i);
+
+            // 2. maintain monotonous decreasing order of stack
+            while(!monotonicDecreasingDeque.isEmpty() && nums[i] > nums[monotonicDecreasingDeque.peek()]){
+                monotonicDecreasingDeque.pop();
+            }
+            monotonicDecreasingDeque.push(i);
 
             // 3. pick the maximum of current window
-            result[j++] = nums[monotonicDecreasingDeque.peekFirst()];
+            result[j++] = nums[monotonicDecreasingDeque.peekLast()];
         }
 
-        //     for(int i = 0; i < nums.length; i++){
-        //         //sqeeze the window from the left side to get current valid window
-        //         while(!monotonicDecreasingDeque.isEmpty() && monotonicDecreasingDeque.peekFirst() <= (i - k)){
-        //             monotonicDecreasingDeque.pollFirst();
-        //         }
 
-        //         // maintain monotonous decreasing order of deque
-        //         while(!monotonicDecreasingDeque.isEmpty() && nums[i] > nums[monotonicDecreasingDeque.peekLast()]){
-        //             monotonicDecreasingDeque.pollLast();
-        //         }
-        //         monotonicDecreasingDeque.offerLast(i);
-
-        //         // pick the maximum of current window starting with index 0 to k-1 as first k elem windows
-        //         if(i >= k - 1){
-        //             result[j++] = nums[monotonicDecreasingDeque.peekFirst()];
-        //         }
-        //    }
         return result;
     }
 

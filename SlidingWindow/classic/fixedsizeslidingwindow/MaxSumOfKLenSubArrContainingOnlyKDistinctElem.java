@@ -45,16 +45,16 @@ public class MaxSumOfKLenSubArrContainingOnlyKDistinctElem {
         long maxSum = 0;
         // HashMap<Integer, Long> map = new HashMap<>();
         int[] freq = new int[100001];
-        int freqSize = 0;
+        int distCnt = 0;
         for(int i = 0; i < k; i++){
             // map.put(nums[i],map.getOrDefault(nums[i], 0L) + 1L);
             if(freq[nums[i]] == 0){
-                freqSize++;
+                distCnt++;
             }
             freq[nums[i]]++;
             sum += nums[i];
         }
-        if(freqSize == k){//if(map.size() == k){
+        if(distCnt == k){//if(map.size() == k){
             maxSum = Math.max(maxSum, sum);
         }
 
@@ -68,16 +68,16 @@ public class MaxSumOfKLenSubArrContainingOnlyKDistinctElem {
             if(freq[nums[i - k]] > 0){
                 freq[nums[i - k]]--;
                 if(freq[nums[i - k]] == 0){
-                    freqSize--;
+                    distCnt--;
                 }
             }
             // map.put(nums[i],map.getOrDefault(nums[i], 0L) + 1L);
             if(freq[nums[i]] == 0){
-                freqSize++;
+                distCnt++;
             }
             freq[nums[i]]++;
             sum += nums[i] - nums[i - k];
-            if(freqSize == k){//if(map.size() == k){
+            if(distCnt == k){//if(map.size() == k){
                 maxSum = Math.max(maxSum, sum);
             }
         }

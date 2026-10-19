@@ -13,6 +13,11 @@ A subarray is defined as a contiguous block of elements in the array.
 // constraint: length of smallest subarray that can be removed can be 0
 // constraint: whole array cannot be removed
 // constraint: array elements can be negative
+
+// (totalSum - subArrSum) % p = 0
+// totalSum % p = subArrSum % p
+// totalSum % p = (prefixSumR - prefixSumL) % p
+// prefixSumL % p = prefixSumR % p - totalSum % p = (prefixSumR - totalSum) % p
 public class SmallestSubArrWithRemElementsDivByK {
 
     public int minSubarray(int[] nums, int k) {
@@ -20,11 +25,13 @@ public class SmallestSubArrWithRemElementsDivByK {
         long totalSum = 0;
         for(int i = 0; i < n; i++) totalSum+= nums[i];
         int rangedTotalSum = (int)(totalSum % k);
+
+        // when entire array sum is already divisible by p. You don't need to remove anything - which is remove an empty array
         if (rangedTotalSum == 0) return 0; // length of smallest subarray that can be removed can be 0
 
 
         HashMap<Integer, Integer> indexForPrevPair = new HashMap<>(); //int[] indexForPrevPair = new int[p];
-        int minLen = n;
+        int minLen = n; // in corner case, if no smaller array found, then whole array lets consider needs to be removed
         // Arrays.fill(indexForPrevPair, -2);
         indexForPrevPair.put(0, -1); // indexForPrevPair[0] = -1; // empty prefix — handles subarrays divisible by K starting from index 0
         long currPrefixSum = 0;
@@ -36,6 +43,6 @@ public class SmallestSubArrWithRemElementsDivByK {
                 minLen = Math.min(minLen, i - indexForPrevPair.get(normalizedRemainder));
             indexForPrevPair.put(rangedCurrSum, i); // indexForPrevPair[rangedCurrSum] = i;
         }
-        return minLen == n ? -1 : minLen; // whole array cannot be removed
+        return minLen == n ? -1 : minLen; // given constraint: whole array cannot be removed
     }
 }

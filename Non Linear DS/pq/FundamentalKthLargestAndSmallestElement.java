@@ -87,6 +87,7 @@ public class FundamentalKthLargestAndSmallestElement {
         }
 
         // evict n - k larger elements so that we end up having k smaller elements
+        // leaving behind k smaller elements
         for(int i = k; i < arr.length; i++){
             if(arr[i] < maxHeap.peek()){
                 maxHeap.poll();

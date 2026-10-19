@@ -31,6 +31,8 @@ public class KClosestPointsToOrigin {
     public long calculateEuclideanDist(int x1, int y1, int x2, int y2){
         return ((long)(x1 - x2) * (x1 - x2)) + ((long)(y1 - y2) * (y1 - y2));
     }
+
+    // kth closest means kth smallest element
     public int[][] kClosest_v3(int[][] points, int k) {
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) ->
                 Long.compare(
@@ -42,6 +44,7 @@ public class KClosestPointsToOrigin {
         for (int[] point : points) {
             maxHeap.offer(point);
 
+            // evict n - k larger elements leaving exactly k smaller elements in heap
             if (maxHeap.size() > k) {
                 maxHeap.poll();
             }
@@ -49,7 +52,7 @@ public class KClosestPointsToOrigin {
 
         int[][] result = new int[k][2];
 
-        for (int i = 0; i < k; i++) {
+        for (int i = k - 1; i >= 0; i--) {
             result[i] = maxHeap.poll();
         }
 

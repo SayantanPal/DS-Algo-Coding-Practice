@@ -40,10 +40,9 @@ public class FirstUniqueNonRepeatingCharInStream {
     public String firstNonRepeating(String s) {
         // code here
         Deque<Character> queue = new ArrayDeque<>();
+        int[] freq = new int[26];
 
         StringBuilder sb = new StringBuilder();
-
-        int[] freq = new int[26];
         for(char c: s.toCharArray()){
 
             if(freq[c - 'a'] == 0){ // new element not encountered yet
@@ -61,6 +60,33 @@ public class FirstUniqueNonRepeatingCharInStream {
                 sb.append('#');
             }else{
                 sb.append(queue.peekFirst());
+            }
+        }
+        return sb.toString();
+    }
+
+    public String firstNonRepeating2(String s) {
+        // code here
+        Deque<Character> queue = new ArrayDeque<>();
+        int[] freq = new int[26];
+
+        StringBuilder sb = new StringBuilder();
+        for(char c: s.toCharArray()){
+
+            if(freq[c - 'a'] == 0){ // new element not encountered yet
+                queue.push(c);
+            }
+
+            freq[c - 'a']++;
+
+            while(!queue.isEmpty() && freq[queue.peekLast() - 'a'] > 1){
+                queue.pollLast();
+            }
+
+            if(queue.isEmpty()){
+                sb.append('#');
+            }else{
+                sb.append(queue.peekLast());
             }
         }
         return sb.toString();

@@ -48,7 +48,7 @@ public class CountOfAllPossibleSubArrSumEqualsK {
                 // for each currPrefixSum(RHS pair), there can be multiple such (currPrefixSum - k)(LHS pairs)
                 // count of subarrays look like
                 //  [(currPrefixSum - k)_1 -> currPrefixSum], [(currPrefixSum - k)_2 -> currPrefixSum], [(currPrefixSum - k)_3 -> currPrefixSum] and so on and so forth...
-                countSubArrays+= prefixSumMap.get(currPrefixSum - k);
+                countSubArrays += prefixSumMap.get(currPrefixSum - k);
             }
 
             // Store the 'currPrefixSum' value in the hash map.

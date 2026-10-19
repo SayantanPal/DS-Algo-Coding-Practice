@@ -3,7 +3,8 @@ package classic;
 * Farmer and the cows
 *
 Problem Description:
-Farmer John's N cows, conveniently numbered 1…N, are all standing in a row (they seem to do so often that it now takes very little prompting from Farmer John to line them up). Each cow has a breed ID: 1 for Holsteins and 2 for Jerseys.
+Farmer John's N cows, conveniently numbered 1…N, are all standing in a row (they seem to do so often that it now takes very little prompting from Farmer John to line them up).
+* Each cow has a breed ID: 1 for Holsteins and 2 for Jerseys.
 Farmer John would like your help counting the number of cows of each breed that lie within certain intervals of the ordering.
 
 

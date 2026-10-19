@@ -1,6 +1,8 @@
 package searchtargetwithhashingincludingnegatives;
 
 import java.util.Arrays;
+import java.util.HashMap;
+
 /*
 * Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
 
@@ -17,7 +19,7 @@ An integer x is a multiple of k if there exists an integer n such that x = n * k
 public class IsSubArrSumEqualsK {
 
     // storing index per prefix sum is mandatory because the length of subarr should be at least 2
-    public boolean checkSubarraySum(int[] nums, int k) {
+    public boolean checkSubarraySum_v2(int[] nums, int k) {
         int n = nums.length;
         if(n < 2) return false;
 
@@ -36,6 +38,21 @@ public class IsSubArrSumEqualsK {
             if(lookUpRem[remainder] == -2){// if(!lookUpRem.containsKey(remainder)){
                 lookUpRem[remainder] = i; //lookUpRem.put(remainder, i);
             }
+        }
+        return false;
+    }
+
+    public boolean checkSubarraySum(int[] nums, int k) {
+        HashMap<Long, Integer> map = new HashMap<>();
+        map.put(0L, -1);
+        long currCumPrefixSum = 0L;
+        for(int i = 0; i < nums.length; i++){
+            currCumPrefixSum += nums[i];
+            if(map.containsKey(currCumPrefixSum % k) && i - map.get(currCumPrefixSum % k) >= 2){
+                return true;
+            }
+            if(!map.containsKey(currCumPrefixSum % k))
+                map.put(currCumPrefixSum % k, i);
         }
         return false;
     }

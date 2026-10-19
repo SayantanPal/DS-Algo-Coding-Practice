@@ -1,13 +1,12 @@
-package searchtargetwithhashingincludingnegatives;
+package searchtargetwithhashingincludingnegatives.allpossiblesubarrsumequalsk;
 
-import java.util.Arrays;
 /*
 * Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
 A subarray is a contiguous part of the array.
 *
 * */
 // Link: https://leetcode.com/problems/binary-subarrays-with-sum/submissions/2064654078/
-public class CountOfSubArrEqualsK {
+public class CountOfBinarySubArrEqualsK {
     public int numSubarraysWithSum(int[] nums, int goal) {
         int n = nums.length;
         // arrays are possible when array elements are guranteed to be non-negative

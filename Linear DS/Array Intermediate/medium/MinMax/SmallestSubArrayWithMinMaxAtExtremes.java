@@ -23,7 +23,7 @@ Output 1: 2
 Output 2: 3
 * */
 
-public class ClosestMinMax {
+public class SmallestSubArrayWithMinMaxAtExtremes {
     public int solve(int[] A) {
         int n = A.length;
         int maximum = Integer.MIN_VALUE, minimum = Integer.MAX_VALUE;

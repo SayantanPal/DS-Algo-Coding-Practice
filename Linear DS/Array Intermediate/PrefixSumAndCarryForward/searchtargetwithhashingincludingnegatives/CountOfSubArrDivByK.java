@@ -30,19 +30,4 @@ public class CountOfSubArrDivByK {
         }
         return countSubArr;
     }
-
-    public boolean checkSubarraySum(int[] nums, int k) {
-        HashMap<Long, Integer> map = new HashMap<>();
-        map.put(0L, -1);
-        long currCumPrefixSum = 0L;
-        for(int i = 0; i < nums.length; i++){
-            currCumPrefixSum += nums[i];
-            if(map.containsKey(currCumPrefixSum % k) && i - map.get(currCumPrefixSum % k) >= 2){
-                return true;
-            }
-            if(!map.containsKey(currCumPrefixSum % k))
-                map.put(currCumPrefixSum % k, i);
-        }
-        return false;
-    }
 }

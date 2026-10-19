@@ -5,7 +5,7 @@ public class CountOfSubArrHavingOddSumOrEvenSum {
 
     // TC = O(N) using prefix sum technique
     // Intuition: Odd Prefix Sum - Even Prefix Sum = Odd Sum
-    // and Even Prefix Sum - Odd Prefix Sum = Even Sum
+    // and Even Prefix Sum - Odd Prefix Sum = Odd Sum
     public int numOfSubarraysWithOddSum_v2(int[] arr) {
         int n = arr.length;
         long evenPrefixSumCount = 1; // sum 0 ie empty prefix is also even prefix sum mathematically

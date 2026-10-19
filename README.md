@@ -466,11 +466,12 @@ list
 - When count of subarrays is asked:
   - always consider 1 for 0 sum
   - include current prefix sum as +1 count irrespective of current prefix sum already present or not
-  - track using cnt += map[currPrefixSum - ]
+  - track using cnt += map[currPrefixSum - targetSum]
 - When Max/Min Len of subarrays is asked:
   - always consider -1 for 0 sum
   - ONLY include current prefix sum as +1 count when current prefix sum already not present to greedily prioritize max len so that oldest index is always hold in case of duplicate prefix sum
   - when using lookup as array instead of hashmap, always flag unvisited index with -2 because -1 is used for 0 prefix sum length for correct calculation while 0 itself can be a valid index for a prefix sum
+  - track using max/minLen += Math.max/min(max/minLen, map[currPrefixSum - targetSum]);
 
 ## KMP + LPS
 KMP (pattern search in text):
